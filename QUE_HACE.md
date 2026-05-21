@@ -1,3 +1,3 @@
 # ¿Qué hace el sistema?
 
-> *En una frase. No qué gestiona: **qué hace**.*
+El sistema genera, organiza y permite consultar calendarios de exámenes académicos, coordinando asignaturas, aulas, profesores y alumnos.
