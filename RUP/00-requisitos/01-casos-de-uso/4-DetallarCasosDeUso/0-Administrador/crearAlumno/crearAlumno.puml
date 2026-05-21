@@ -1,0 +1,63 @@
+@startuml crearAlumno
+
+skinparam linetype polyline
+
+state crearAlumno as "crearAlumno()" {
+
+state " " as MostrandoFormulario
+state " " as GuardandoDatos
+state " " as ValidandoDatos
+state " " as SeleccionandoGrado
+
+[*] -[#green]-> MostrandoFormulario 
+note on link
+<b>Administrador</b> solicita crear alumno
+end note    
+
+MostrandoFormulario -[#green]-> SeleccionandoGrado
+note on link
+<b>Sistema</b> presenta formulario de creación
+• Permite introducir número de matrícula
+• Permite introducir nombre completo
+• Permite introducir email
+• Permite introducir curso actual
+• Permite solicitar seleccionar grado
+• Permite solicitar guardar alumno
+• Permite solicitar cancelar creación
+end note
+
+SeleccionandoGrado -[#green]-> MostrandoFormulario
+note on link
+<b>Administrador</b> solicita seleccionar grado
+<b>Sistema</b> presenta lista de grados disponibles
+<b>Administrador</b> introduce un grado
+end note
+
+MostrandoFormulario -[#green]-> ValidandoDatos
+note on link
+<b>Administrador</b> introduce todos los datos y solicita guardar
+end note
+
+ValidandoDatos -[#green]-> GuardandoDatos
+note on link
+<b>Sistema</b> presenta validación de campos requeridos
+<b>Sistema</b> presenta y valida que la matrícula sea única
+end note
+
+GuardandoDatos -[#green]-> [*]
+note on link
+<b>Sistema</b> visualiza y guarda el nuevo alumno en la base de datos
+end note
+}
+
+crearAlumno -[#green]-> ALUMNO_ABIERTO
+note on link
+editarAlumno()
+end note
+
+crearAlumno -[#green]-> ALUMNOS_ABIERTO
+note on link
+abrirAlumnos()
+end note
+
+@enduml

@@ -1,0 +1,30 @@
+@startuml diagrama-casos-uso-administrador-examenes-administracion-profesores
+
+left to right direction
+
+package "Administración de Profesores" {
+
+    actor "Administrador" as admin
+
+    usecase abrirProfesores as "abrirProfesores()"
+    usecase crearProfesor as "crearProfesor()"
+    usecase editarProfesor as "editarProfesor()"
+    usecase eliminarProfesor as "eliminarProfesor()"
+    usecase importarProfesores as "importarProfesores()"
+
+    usecase listarConflictosExamenes as "listarConflictosExamenes()"
+    usecase asignarProfesorAExamen as "asignarProfesorAExamen()"
+}
+
+admin --> importarProfesores
+admin --> listarConflictosExamenes
+admin --> asignarProfesorAExamen
+
+abrirProfesores <-- admin
+crearProfesor <-- admin
+editarProfesor <-- admin
+eliminarProfesor <-- admin
+
+eliminarProfesor .> abrirProfesores : <<include>>
+
+@enduml

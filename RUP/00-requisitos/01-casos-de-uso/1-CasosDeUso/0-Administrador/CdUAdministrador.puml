@@ -1,0 +1,113 @@
+@startuml diagrama-casos-uso-administrador-examenes
+
+left to right direction
+
+actor "Administrador" as admin
+
+package "Administración Académica" {
+
+    usecase abrirGrados as "abrirGrados()"
+    usecase crearGrado as "crearGrado()"
+    usecase editarGrado as "editarGrado()"
+    usecase eliminarGrado as "eliminarGrado()"
+    usecase importarGrados as "importarGrados()"
+
+    usecase abrirAsignaturas as "abrirAsignaturas()"
+    usecase crearAsignatura as "crearAsignatura()"
+    usecase editarAsignatura as "editarAsignatura()"
+    usecase eliminarAsignatura as "eliminarAsignatura()"
+    usecase importarAsignaturas as "importarAsignaturas()"
+
+}
+
+package "Administración de Exámenes" {
+
+    usecase abrirExamenes as "abrirExamenes()"
+    usecase crearExamen as "crearExamen()"
+    usecase editarExamen as "editarExamen()"
+    usecase eliminarExamen as "eliminarExamen()"
+
+    usecase generarCalendario as "generarCalendario()"
+    usecase consultarCalendario as "consultarCalendario()"
+    usecase descargarCalendarioExamenes as "descargarCalendarioExamenes()"
+}
+
+package "Administración de Profesores" {
+
+    usecase abrirProfesores as "abrirProfesores()"
+    usecase crearProfesor as "crearProfesor()"
+    usecase editarProfesor as "editarProfesor()"
+    usecase eliminarProfesor as "eliminarProfesor()"
+    usecase importarProfesores as "importarProfesores()"
+
+    usecase listarConflictosExamenes as "listarConflictosExamenes()"
+    usecase asignarProfesorAExamen as "asignarProfesorAExamen()"
+}
+
+package "Administración de Aulas" {
+
+    usecase abrirAulas as "abrirAulas()"
+    usecase crearAula as "crearAula()"
+    usecase editarAula as "editarAula()"
+    usecase eliminarAula as "eliminarAula()"
+    usecase importarAulas as "importarAulas()"
+}
+
+package "Administración de Alumnos" {
+
+    usecase abrirAlumnos as "abrirAlumnos()"
+    usecase crearAlumno as "crearAlumno()"
+    usecase editarAlumno as "editarAlumno()"
+    usecase eliminarAlumno as "eliminarAlumno()"
+    usecase importarAlumnos as "importarAlumnos()"
+}
+
+admin --> abrirGrados
+admin --> crearGrado
+admin --> editarGrado
+admin --> eliminarGrado
+admin --> importarGrados
+
+admin --> abrirAsignaturas
+admin --> crearAsignatura
+admin --> editarAsignatura
+admin --> eliminarAsignatura
+admin --> importarAsignaturas
+
+admin --> abrirExamenes
+admin --> crearExamen
+admin --> editarExamen
+admin --> eliminarExamen
+admin --> generarCalendario
+admin --> consultarCalendario
+
+admin --> abrirProfesores
+admin --> crearProfesor
+admin --> editarProfesor
+admin --> eliminarProfesor
+admin --> importarProfesores
+admin --> listarConflictosExamenes
+admin --> asignarProfesorAExamen
+
+admin --> abrirAulas
+admin --> crearAula
+admin --> editarAula
+admin --> eliminarAula
+admin --> importarAulas
+
+admin --> abrirAlumnos
+admin --> crearAlumno
+admin --> editarAlumno
+admin --> eliminarAlumno
+admin --> importarAlumnos
+
+consultarCalendario -[hidden]--> descargarCalendarioExamenes
+descargarCalendarioExamenes ..> consultarCalendario : <<extend>>
+eliminarGrado .> abrirGrados : <<include>>
+eliminarAsignatura .> abrirAsignaturas : <<include>>
+eliminarExamen .> abrirExamenes : <<include>>
+eliminarProfesor .> abrirProfesores : <<include>>
+eliminarAula .> abrirAulas : <<include>>
+eliminarAlumno .> abrirAlumnos : <<include>>
+
+@enduml

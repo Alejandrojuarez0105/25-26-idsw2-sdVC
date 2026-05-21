@@ -1,0 +1,31 @@
+@startuml diagrama-casos-uso-administrador-examenes-administracion-examenes
+
+left to right direction
+
+package "Administración de Exámenes" {
+
+    actor "Administrador" as admin
+
+    usecase abrirExamenes as "abrirExamenes()"
+    usecase crearExamen as "crearExamen()"
+    usecase editarExamen as "editarExamen()"
+    usecase eliminarExamen as "eliminarExamen()"
+
+    usecase generarCalendario as "generarCalendario()"
+    usecase consultarCalendario as "consultarCalendario()"
+    usecase descargarCalendarioExamenes as "descargarCalendarioExamenes()"
+}
+
+admin --> consultarCalendario
+admin --> crearExamen
+admin --> editarExamen
+
+abrirExamenes <-- admin
+eliminarExamen <-- admin 
+generarCalendario <-- admin
+
+consultarCalendario -[hidden]--> descargarCalendarioExamenes
+descargarCalendarioExamenes ..> consultarCalendario : <<extend>>
+eliminarExamen .> abrirExamenes : <<include>>
+
+@enduml

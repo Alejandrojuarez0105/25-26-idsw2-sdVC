@@ -1,0 +1,54 @@
+@startuml listarConflictosExamenes
+
+skinparam linetype polyline
+
+state listarConflictosExamenes as "listarConflictosExamenes()" {
+
+state " " as MostrandoConflictos
+state " " as ResolviendoConflictos
+
+[*] -[#green]-> MostrandoConflictos
+note on link
+<b>Administrador</b> solicita listar conflictos
+end note
+
+MostrandoConflictos -[#green]-> ResolviendoConflictos
+note on link
+<b>Sistema</b> presenta lista de conflictos
+• Muestra conflictos de horario
+• Muestra sobreposición de aulas
+• Muestra conflictos de profesores
+• Muestra estudiantes con múltiples exámenes
+• Permite solicitar resolver cada conflicto
+• Permite solicitar cerrar lista
+end note
+
+ResolviendoConflictos -[#green]-> MostrandoConflictos
+note on link
+<b>Administrador</b> solicita resolver conflicto específico
+<b>Sistema</b> visualiza y presenta opciones de resolución
+<b>Sistema</b> permite modificar horario o aula
+<b>Administrador</b> introduce cambios y solicita aplicar
+<b>Sistema</b> visualiza y actualiza el calendario
+<b>Sistema</b> muestra conflicto resuelto
+end note
+
+ResolviendoConflictos -[#green]-> [*]
+note on link
+<b>Administrador</b> solicita cerrar lista
+<b>Sistema</b> visualiza y cierra la vista de conflictos
+<b>Sistema</b> visualiza y guarda cambios realizados
+end note
+}
+
+listarConflictosExamenes -[#green]-> PROFESOR_PREFERENCIAS_ABIERTO
+note on link
+abrirEdicionProfesor()
+end note
+
+listarConflictosExamenes -[#green]-> PROFESOR_ABIERTO
+note on link
+editarProfesor()
+end note
+
+@enduml

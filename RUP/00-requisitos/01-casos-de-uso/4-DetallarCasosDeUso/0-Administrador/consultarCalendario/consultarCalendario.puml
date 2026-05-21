@@ -1,0 +1,51 @@
+@startuml consultarCalendario
+
+skinparam linetype polyline
+
+state consultarCalendario as "consultarCalendario()" {
+
+state " " as MostrandoCalendario
+state " " as FiltrandoVista
+
+[*] -[#green]-> MostrandoCalendario
+note on link
+<b>Administrador</b> solicita consultar calendario
+end note
+
+MostrandoCalendario -[#green]-> FiltrandoVista
+note on link
+<b>Sistema</b> presenta calendario de exámenes
+• Muestra vista mensual/semanal/diaria
+• Muestra exámenes con fecha, hora y aula
+• Muestra profesores asignados
+• Permite solicitar filtrar por grado
+• Permite solicitar filtrar por asignatura
+• Permite solicitar descargar calendario
+• Permite solicitar cerrar consulta
+end note
+
+FiltrandoVista -[#green]-> MostrandoCalendario
+note on link
+<b>Administrador</b> solicita aplicar filtros
+<b>Sistema</b> visualiza y aplica los filtros seleccionados
+<b>Sistema</b> presenta calendario filtrado
+end note
+
+FiltrandoVista -[#green]-> [*]
+note on link
+<b>Administrador</b> solicita cerrar consulta
+<b>Sistema</b> visualiza y cierra la vista del calendario
+end note
+}
+
+consultarCalendario -[#green]-> CALENDARIO_ABIERTO
+note on link
+descargarCalendarioExamenes()
+end note
+
+consultarCalendario -[#green]-> SISTEMA_DISPONIBLE
+note on link
+completarConsulta()
+end note
+
+@enduml

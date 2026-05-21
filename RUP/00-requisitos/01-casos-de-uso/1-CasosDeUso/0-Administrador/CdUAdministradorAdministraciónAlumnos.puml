@@ -1,0 +1,25 @@
+@startuml diagrama-casos-uso-administrador-examenes-administracion-alumnos
+
+left to right direction
+
+package "Administración de Alumnos" {
+
+    actor "Administrador" as admin
+
+    usecase abrirAlumnos as "abrirAlumnos()"
+    usecase crearAlumno as "crearAlumno()"
+    usecase editarAlumno as "editarAlumno()"
+    usecase eliminarAlumno as "eliminarAlumno()"
+    usecase importarAlumnos as "importarAlumnos()"
+}
+
+admin --> importarAlumnos
+admin --> editarAlumno
+
+abrirAlumnos <-- admin
+crearAlumno <-- admin
+eliminarAlumno <-- admin
+
+eliminarAlumno .> abrirAlumnos : <<include>>
+
+@enduml

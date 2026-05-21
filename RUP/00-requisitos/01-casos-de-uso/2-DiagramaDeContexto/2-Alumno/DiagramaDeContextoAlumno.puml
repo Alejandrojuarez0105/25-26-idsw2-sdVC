@@ -1,0 +1,23 @@
+@startuml diagrama-contexto-alumno-examenes
+
+left to right direction
+skinparam linetype polyline
+
+state "SESION_CERRADA" as NoAuth
+state "SISTEMA_DISPONIBLE" as Menu
+
+state "CALENDARIO_ABIERTO" as ConsultaCalendario
+
+[*] --> NoAuth
+
+NoAuth --> Menu : iniciarSesion()
+
+Menu --> NoAuth : cerrarSesion()
+
+Menu --> ConsultaCalendario : consultarCalendario()
+
+ConsultaCalendario --> ConsultaCalendario : descargarCalendarioExamenes()
+
+ConsultaCalendario --> Menu : completarConsulta()
+
+@enduml

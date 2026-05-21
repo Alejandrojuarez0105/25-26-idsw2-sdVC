@@ -1,0 +1,61 @@
+@startuml importarAulas
+
+skinparam linetype polyline
+
+state importarAulas as "importarAulas()" {
+
+state " " as SeleccionandoArchivo
+state " " as ProcesandoImportacion
+state " " as MostrandoResultados
+
+[*] -[#green]-> SeleccionandoArchivo
+note on link
+<b>Administrador</b> solicita importar aulas
+end note
+
+SeleccionandoArchivo -[#green]-> ProcesandoImportacion
+note on link
+<b>Sistema</b> presenta interfaz de importación
+• Permite seleccionar archivo CSV/Excel
+• Muestra formato de archivo requerido
+• Muestra tipos de aula disponibles
+• Permite solicitar iniciar importación
+• Permite solicitar cancelar importación
+end note
+
+ProcesandoImportacion -[#green]-> MostrandoResultados
+note on link
+<b>Administrador</b> introduce selección de archivo y solicita importar
+<b>Sistema</b> visualiza y procesa el archivo seleccionado
+<b>Sistema</b> visualiza y valida códigos únicos de aula
+end note
+
+MostrandoResultados -[#green]-> [*]
+note on link
+<b>Sistema</b> presenta resultados de importación
+• Muestra número de aulas importadas
+• Muestra aulas que no se pudieron importar
+• Muestra códigos duplicados
+• Permite solicitar revisar errores
+• Permite solicitar finalizar importación
+<b>Administrador</b> solicita finalizar importación
+end note
+
+ProcesandoImportacion -[#red]-> [*]
+note on link
+<b>Administrador</b> solicita cancelar importación
+<b>Sistema</b> visualiza y descarta el proceso de importación
+end note
+}
+
+importarAulas -[#green]-> AULAS_ABIERTO
+note on link
+abrirAulas()
+end note
+
+importarAulas -[#red]-> AULAS_ABIERTO
+note on link
+cancelar importación
+end note
+
+@enduml

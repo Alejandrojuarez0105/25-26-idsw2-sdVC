@@ -1,0 +1,25 @@
+@startuml diagrama-contexto-profesor-examenes
+
+left to right direction
+skinparam linetype polyline
+
+state "SESION_CERRADA" as NoAuth
+state "SISTEMA_DISPONIBLE" as Menu
+
+state "CALENDARIO_ABIERTO" as ConsultaCalendario
+state "INCIDENCIAS_ABIERTO" as Incidencias
+
+[*] --> NoAuth
+
+NoAuth --> Menu : iniciarSesion()
+
+Menu --> NoAuth : cerrarSesion()
+
+Menu --> ConsultaCalendario : consultarCalendario()
+Menu --> Incidencias : comunicarIncidenciasHorario()
+ConsultaCalendario --> ConsultaCalendario : descargarCalendarioExamenes()
+
+ConsultaCalendario --> Menu : completarConsulta()
+Incidencias --> Menu : completarComunicacion()
+
+@enduml

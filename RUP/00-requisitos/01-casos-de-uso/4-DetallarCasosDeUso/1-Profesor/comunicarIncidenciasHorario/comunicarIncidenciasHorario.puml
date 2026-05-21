@@ -1,0 +1,61 @@
+@startuml comunicarIncidenciasHorario
+
+skinparam linetype polyline
+
+state comunicarIncidenciasHorario as "comunicarIncidenciasHorario()" {
+
+state " " as SeleccionandoExamen
+state " " as DescribiendoIncidencia
+state " " as EnviandoReporte
+
+[*] -[#green]-> SeleccionandoExamen
+note on link
+<b>Profesor</b> solicita comunicar incidencia
+end note
+
+SeleccionandoExamen -[#green]-> DescribiendoIncidencia
+note on link
+<b>Sistema</b> presenta interfaz de reporte
+• Permite seleccionar examen con incidencia
+• Muestra datos del examen seleccionado
+• Permite seleccionar tipo de incidencia
+• Permite solicitar describir incidencia
+• Permite solicitar cancelar reporte
+end note
+
+DescribiendoIncidencia -[#green]-> EnviandoReporte
+note on link
+<b>Profesor</b> introduce descripción de la incidencia
+<b>Sistema</b> visualiza y valida la descripción
+<b>Sistema</b> permite solicitar adjuntar evidencias
+<b>Sistema</b> permite solicitar enviar reporte
+<b>Sistema</b> permite solicitar cancelar
+end note
+
+EnviandoReporte -[#green]-> [*]
+note on link
+<b>Profesor</b> solicita enviar reporte
+<b>Sistema</b> visualiza y envía la incidencia
+<b>Sistema</b> visualiza y notifica al administrador
+<b>Sistema</b> visualiza y confirma envío exitoso
+<b>Sistema</b> visualiza y registra la incidencia en el sistema
+end note
+
+EnviandoReporte -[#red]-> [*]
+note on link
+<b>Profesor</b> solicita cancelar reporte
+<b>Sistema</b> visualiza y descarta el reporte de incidencia
+end note
+}
+
+comunicarIncidenciasHorario -[#green]-> SISTEMA_DISPONIBLE
+note on link
+completarComunicacion()
+end note
+
+comunicarIncidenciasHorario -[#red]-> SISTEMA_DISPONIBLE
+note on link
+cancelar comunicación
+end note
+
+@enduml

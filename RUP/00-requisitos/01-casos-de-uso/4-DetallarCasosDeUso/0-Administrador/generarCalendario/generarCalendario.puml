@@ -1,0 +1,62 @@
+@startuml generarCalendario
+
+skinparam linetype polyline
+
+state generarCalendario as "generarCalendario()" {
+
+state " " as ConfigurandoParametros
+state " " as GenerandoCalendario
+state " " as MostrandoResultado
+
+[*] -[#green]-> ConfigurandoParametros
+note on link
+<b>Administrador</b> solicita generar calendario
+end note
+
+ConfigurandoParametros -[#green]-> GenerandoCalendario
+note on link
+<b>Sistema</b> presenta configuración de generación
+• Permite introducir fechas de inicio y fin
+• Permite seleccionar horarios disponibles
+• Permite solicitar validar disponibilidad
+• Permite solicitar iniciar generación
+• Permite solicitar cancelar generación
+end note
+
+GenerandoCalendario -[#green]-> MostrandoResultado
+note on link
+<b>Administrador</b> introduce parámetros y solicita generar
+<b>Sistema</b> visualiza y procesa la generación del calendario
+<b>Sistema</b> visualiza y asigna exámenes a aulas disponibles
+<b>Sistema</b> visualiza y asigna profesores a exámenes
+end note
+
+MostrandoResultado -[#green]-> [*]
+note on link
+<b>Sistema</b> presenta resultado de generación
+• Muestra número de exámenes programados
+• Muestra conflictos detectados
+• Muestra aulas asignadas
+• Permite solicitar revisar conflictos
+• Permite solicitar guardar calendario
+<b>Administrador</b> solicita guardar calendario
+end note
+
+GenerandoCalendario -[#red]-> [*]
+note on link
+<b>Administrador</b> solicita cancelar generación
+<b>Sistema</b> visualiza y descarta el proceso de generación
+end note
+}
+
+generarCalendario -[#green]-> CALENDARIO_GENERADO
+note on link
+completarProceso()
+end note
+
+generarCalendario -[#red]-> SISTEMA_DISPONIBLE
+note on link
+cancelar generación
+end note
+
+@enduml

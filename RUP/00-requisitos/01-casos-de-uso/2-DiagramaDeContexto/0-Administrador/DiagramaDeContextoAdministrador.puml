@@ -1,0 +1,109 @@
+@startuml diagrama-contexto-administrador-examenes
+
+left to right direction
+skinparam linetype polyline
+
+state "SESION_CERRADA" as NoAuth
+state "SISTEMA_DISPONIBLE" as Menu
+
+state "GRADOS_ABIERTO" as ListGrados
+state "GRADO_ABIERTO" as EditGrado
+
+state "ASIGNATURAS_ABIERTO" as ListAsignaturas
+state "ASIGNATURA_ABIERTO" as EditAsignatura
+
+state "EXAMENES_ABIERTO" as ListExamenes
+state "EXAMEN_ABIERTO" as EditExamen
+
+state "PROFESORES_ABIERTO" as ListProfesores
+state "PROFESOR_ABIERTO" as EditProfesor
+state "PROFESOR_PREFERENCIAS_ABIERTO" as EditProfesorPreferencias
+state "PROFESOR_EXAMENES_ABIERTO" as Asignaciones
+
+state "AULAS_ABIERTO" as ListAulas
+state "AULA_ABIERTA" as EditAula
+
+state "ALUMNOS_ABIERTO" as ListAlumnos
+state "ALUMNO_ABIERTO" as EditAlumno
+
+state "CALENDARIO_GENERADO" as Generacion
+state "CALENDARIO_ABIERTO" as Consulta
+
+[*] --> NoAuth
+NoAuth --> Menu : iniciarSesion()
+
+Menu --> NoAuth : cerrarSesion()
+
+Menu --> ListGrados : abrirGrados()
+Menu --> ListAsignaturas : abrirAsignaturas()
+Menu --> ListExamenes : abrirExamenes()
+Menu --> ListProfesores : abrirProfesores()
+Menu --> ListAulas : abrirAulas()
+Menu --> ListAlumnos : abrirAlumnos()
+Menu --> Generacion : generarCalendario()
+Menu --> Consulta : consultarCalendario()
+
+ListGrados --> EditGrado : crearGrado()
+ListGrados --> EditGrado : editarGrado()
+ListGrados --> ListGrados : eliminarGrado()
+ListGrados --> ListGrados : importarGrados()
+
+EditGrado --> EditGrado : editarGrado()
+EditGrado --> ListGrados : abrirGrados()
+
+ListAsignaturas --> EditAsignatura : crearAsignatura()
+ListAsignaturas --> EditAsignatura : editarAsignatura()
+ListAsignaturas --> ListAsignaturas : eliminarAsignatura()
+ListAsignaturas --> ListAsignaturas : importarAsignaturas()
+
+EditAsignatura --> EditAsignatura : editarAsignatura()
+EditAsignatura --> ListAsignaturas : abrirAsignaturas()
+
+ListExamenes --> EditExamen : crearExamen()
+ListExamenes --> EditExamen : editarExamen()
+ListExamenes --> ListExamenes : eliminarExamen()
+
+EditExamen --> EditExamen : editarExamen()
+EditExamen --> ListExamenes : abrirExamenes()
+
+ListProfesores --> EditProfesor : crearProfesor()
+ListProfesores --> EditProfesor : editarProfesor()
+ListProfesores --> ListProfesores : eliminarProfesor()
+ListProfesores --> ListProfesores : importarProfesores()
+
+EditProfesor --> EditProfesor : editarProfesor()
+EditProfesor --> EditProfesorPreferencias : listarConflictosExamenes()
+EditProfesor --> Asignaciones : asignarProfesorAExamen()
+EditProfesor --> ListProfesores : abrirProfesores()
+
+Asignaciones --> EditProfesor : editarProfesor()
+EditProfesorPreferencias --> EditProfesor : abrirEdicionProfesor()
+
+ListAulas --> EditAula : crearAula()
+ListAulas --> EditAula : editarAula()
+ListAulas --> ListAulas : eliminarAula()
+ListAulas --> ListAulas : importarAulas()
+
+EditAula --> EditAula : editarAula()
+EditAula --> ListAulas : abrirAulas()
+
+ListAlumnos --> EditAlumno : crearAlumno()
+ListAlumnos --> EditAlumno : editarAlumno()
+ListAlumnos --> ListAlumnos : eliminarAlumno()
+ListAlumnos --> ListAlumnos : importarAlumnos()
+
+EditAlumno --> EditAlumno : editarAlumno()
+EditAlumno --> ListAlumnos : abrirAlumnos()
+
+ListGrados --> Menu : completarGestion()
+ListAsignaturas --> Menu : completarGestion()
+ListExamenes --> Menu : completarGestion()
+ListProfesores --> Menu : completarGestion()
+ListAulas --> Menu : completarGestion()
+ListAlumnos --> Menu : completarGestion()
+
+Generacion --> Menu : completarProceso()
+Consulta --> Menu : completarConsulta()
+Consulta --> Consulta : descargarCalendarioExamenes()
+
+@enduml

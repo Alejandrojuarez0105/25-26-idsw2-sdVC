@@ -1,0 +1,14 @@
+@startuml
+
+[*] --> PendienteDeAsignar
+
+PendienteDeAsignar --> Asignando : iniciarAsignación()
+
+Asignando --> PendienteDeRevisión : generarCalendarioExamenes()
+
+PendienteDeRevisión --> Asignando : listarConflictosExamenes()
+PendienteDeRevisión --> Finalizado : validaciónCompleta()
+
+Finalizado --> [*]
+
+@enduml

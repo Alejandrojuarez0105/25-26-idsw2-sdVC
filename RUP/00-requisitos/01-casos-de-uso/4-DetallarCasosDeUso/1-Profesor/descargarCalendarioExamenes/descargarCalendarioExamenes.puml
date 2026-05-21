@@ -1,0 +1,52 @@
+@startuml descargarCalendarioExamenesProfesor
+
+skinparam linetype polyline
+
+state descargarCalendarioExamenes as "descargarCalendarioExamenes()" {
+
+state " " as SeleccionandoFormato
+state " " as GenerandoArchivo
+
+[*] -[#green]-> SeleccionandoFormato
+note on link
+<b>Profesor</b> solicita descargar calendario
+end note
+
+SeleccionandoFormato -[#green]-> GenerandoArchivo
+note on link
+<b>Sistema</b> presenta opciones de descarga personalizada
+• Permite seleccionar formato (PDF/Excel)
+• Permite seleccionar rango de fechas
+• Permite seleccionar información a incluir
+• Permite solicitar generar archivo personal
+• Permite solicitar cancelar descarga
+end note
+
+GenerandoArchivo -[#green]-> [*]
+note on link
+<b>Profesor</b> introduce preferencias y solicita descargar
+<b>Sistema</b> visualiza y genera archivo personalizado
+<b>Sistema</b> visualiza e incluye solo exámenes asignados al profesor
+<b>Sistema</b> muestra archivo para descarga
+<b>Sistema</b> presenta enlace de descarga
+<b>Profesor</b> solicita descargar archivo
+end note
+
+GenerandoArchivo -[#red]-> [*]
+note on link
+<b>Profesor</b> solicita cancelar descarga
+<b>Sistema</b> visualiza y descarta la generación del archivo
+end note
+}
+
+descargarCalendarioExamenes -[#green]-> CALENDARIO_ABIERTO
+note on link
+consultarCalendario()
+end note
+
+descargarCalendarioExamenes -[#red]-> CALENDARIO_ABIERTO
+note on link
+cancelar descarga
+end note
+
+@enduml

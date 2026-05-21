@@ -1,0 +1,61 @@
+@startuml crearExamen
+
+skinparam linetype polyline
+
+state crearExamen as "crearExamen()" {
+
+state " " as MostrandoFormulario
+state " " as GuardandoDatos
+state " " as ValidandoDatos
+state " " as SeleccionandoAsignatura
+
+[*] -[#green]-> MostrandoFormulario 
+note on link
+<b>Administrador</b> solicita crear examen
+end note    
+
+MostrandoFormulario -[#green]-> SeleccionandoAsignatura
+note on link
+<b>Sistema</b> presenta formulario de creación
+• Permite introducir código de examen
+• Permite introducir fecha y hora
+• Permite introducir duración
+• Permite solicitar seleccionar asignatura
+• Permite solicitar guardar examen
+• Permite solicitar cancelar creación
+end note
+
+SeleccionandoAsignatura -[#green]-> MostrandoFormulario
+note on link
+<b>Administrador</b> solicita seleccionar asignatura
+<b>Sistema</b> presenta lista de asignaturas disponibles
+<b>Administrador</b> introduce una asignatura
+end note
+
+MostrandoFormulario -[#green]-> ValidandoDatos
+note on link
+<b>Administrador</b> introduce todos los datos y solicita guardar
+end note
+
+ValidandoDatos -[#green]-> GuardandoDatos
+note on link
+<b>Sistema</b> presenta validación de campos requeridos
+end note
+
+GuardandoDatos -[#green]-> [*]
+note on link
+<b>Sistema</b> visualiza y guarda el nuevo examen en la base de datos
+end note
+}
+
+crearExamen -[#green]-> EXAMEN_ABIERTO
+note on link
+editarExamen()
+end note
+
+crearExamen -[#green]-> EXAMENES_ABIERTO
+note on link
+abrirExamenes()
+end note
+
+@enduml

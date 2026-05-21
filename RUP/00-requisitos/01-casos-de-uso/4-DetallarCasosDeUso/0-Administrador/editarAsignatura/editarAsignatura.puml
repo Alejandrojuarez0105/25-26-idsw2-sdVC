@@ -1,0 +1,55 @@
+@startuml editarAsignatura
+
+skinparam linetype polyline
+
+state editarAsignatura as "editarAsignatura()" {
+
+state " " as EditandoDatos
+state " " as GuardandoDatos
+
+[*] -[#green]-> EditandoDatos
+note on link
+<b>Administrador</b> solicita editar asignatura
+end note
+
+EditandoDatos -[#green]-> GuardandoDatos
+note on link
+<b>Sistema</b> presenta datos de edición
+• Permite introducir nuevo código
+• Permite introducir nuevo nombre
+• Permite introducir nuevos créditos
+• Permite solicitar cambiar grado asociado
+• Permite solicitar guardar cambios
+• Permite solicitar cancelar edición
+end note
+
+GuardandoDatos -[#green]-> EditandoDatos
+note on link
+<b>Administrador</b> solicita modificar campos
+<b>Sistema</b> permite introducir nuevos valores
+end note
+
+GuardandoDatos -[#green]-> [*]
+note on link
+<b>Administrador</b> solicita guardar y salir
+<b>Sistema</b> visualiza y actualiza la asignatura en la base de datos
+end note
+
+GuardandoDatos -[#red]-> [*]
+note on link
+<b>Administrador</b> solicita cancelar edición
+<b>Sistema</b> visualiza y descarta los cambios realizados
+end note
+}
+
+editarAsignatura -[#green]-> ASIGNATURAS_ABIERTO
+note on link
+abrirAsignaturas()
+end note
+
+editarAsignatura -[#red]-> ASIGNATURAS_ABIERTO
+note on link
+cancelar edición
+end note
+
+@enduml

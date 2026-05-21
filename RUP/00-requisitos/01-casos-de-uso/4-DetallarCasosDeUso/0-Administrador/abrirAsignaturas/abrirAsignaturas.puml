@@ -1,0 +1,64 @@
+@startuml abrirAsignaturas
+
+skinparam linetype polyline
+
+state abrirAsignaturas as "abrirAsignaturas()" {
+
+state " " as MostrandoLista
+state " " as FiltrandoLista
+
+[*] -[#green]-> MostrandoLista 
+note on link
+<b>Administrador</b> solicita abrir asignaturas
+end note    
+
+MostrandoLista -[#green]-> FiltrandoLista
+note on link
+<b>Sistema</b> presenta lista de asignaturas
+• Código, nombre, créditos de cada asignatura
+• Grado al que pertenece
+• Permite solicitar filtrar lista
+• Permite solicitar crear asignatura nueva
+• Permite solicitar eliminar asignatura
+• Permite solicitar editar asignatura
+• Permite solicitar importar asignaturas
+end note
+
+FiltrandoLista -[#green]-> FiltrandoLista
+note on link
+<b>Administrador</b> solicita filtrar lista
+<b>Sistema</b> presenta lista filtrada
+end note
+
+FiltrandoLista -[#green]-> [*]
+note on link
+<b>Administrador</b> solicita una de las opciones
+end note
+}
+
+abrirAsignaturas -[#green]-> ASIGNATURA_ABIERTO
+note on link
+editarAsignatura()
+end note
+
+abrirAsignaturas -[#green]-> ASIGNATURA_ABIERTO
+note on link
+crearAsignatura()
+end note
+
+abrirAsignaturas -[#green]-> ASIGNATURAS_ABIERTO
+note on link
+eliminarAsignatura()
+end note
+
+abrirAsignaturas -[#green]-> ASIGNATURAS_ABIERTO
+note on link
+importarAsignaturas()
+end note
+
+abrirAsignaturas -[#green]-> SISTEMA_DISPONIBLE
+note on link
+completarGestion()
+end note
+
+@enduml

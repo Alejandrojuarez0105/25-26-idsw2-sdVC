@@ -1,0 +1,61 @@
+@startuml crearAsignatura
+
+skinparam linetype polyline
+
+state crearAsignatura as "crearAsignatura()" {
+
+state " " as MostrandoFormulario
+state " " as GuardandoDatos
+state " " as ValidandoDatos
+state " " as SeleccionandoGrado
+
+[*] -[#green]-> MostrandoFormulario 
+note on link
+<b>Administrador</b> solicita crear asignatura
+end note    
+
+MostrandoFormulario -[#green]-> SeleccionandoGrado
+note on link
+<b>Sistema</b> presenta formulario de creación
+• Permite introducir código de asignatura
+• Permite introducir nombre de asignatura
+• Permite introducir número de créditos
+• Permite solicitar seleccionar grado
+• Permite solicitar guardar asignatura
+• Permite solicitar cancelar creación
+end note
+
+SeleccionandoGrado -[#green]-> MostrandoFormulario
+note on link
+<b>Administrador</b> solicita seleccionar grado
+<b>Sistema</b> presenta lista de grados disponibles
+<b>Administrador</b> introduce un grado
+end note
+
+MostrandoFormulario -[#green]-> ValidandoDatos
+note on link
+<b>Administrador</b> introduce todos los datos y solicita guardar
+end note
+
+ValidandoDatos -[#green]-> GuardandoDatos
+note on link
+<b>Sistema</b> presenta validación de campos requeridos
+end note
+
+GuardandoDatos -[#green]-> [*]
+note on link
+<b>Sistema</b> visualiza y guarda la nueva asignatura en la base de datos
+end note
+}
+
+crearAsignatura -[#green]-> ASIGNATURA_ABIERTO
+note on link
+editarAsignatura()
+end note
+
+crearAsignatura -[#green]-> ASIGNATURAS_ABIERTO
+note on link
+abrirAsignaturas()
+end note
+
+@enduml

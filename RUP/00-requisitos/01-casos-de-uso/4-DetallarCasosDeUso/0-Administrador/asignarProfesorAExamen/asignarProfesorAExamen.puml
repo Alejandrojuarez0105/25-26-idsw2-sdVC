@@ -1,0 +1,59 @@
+@startuml asignarProfesorAExamen
+
+skinparam linetype polyline
+
+state asignarProfesorAExamen as "asignarProfesorAExamen()" {
+
+state " " as SeleccionandoProfesor
+state " " as AsignandoExamen
+
+[*] -[#green]-> SeleccionandoProfesor
+note on link
+<b>Administrador</b> solicita asignar profesor a examen
+end note
+
+SeleccionandoProfesor -[#green]-> AsignandoExamen
+note on link
+<b>Sistema</b> presenta interfaz de asignación
+• Permite seleccionar profesor disponible
+• Muestra disponibilidad del profesor
+• Muestra exámenes sin profesor asignado
+• Permite solicitar pre-asignar
+• Permite solicitar cancelar asignación
+end note
+
+AsignandoExamen -[#green]-> SeleccionandoProfesor
+note on link
+<b>Administrador</b> introduce selección de profesor
+<b>Sistema</b> visualiza y verifica disponibilidad
+</b>Sistema</b> presenta confirmación de pre-asignación
+</b>Administrador</b> solicita asignar otro profesor
+end note
+
+AsignandoExamen -[#green]-> [*]
+note on link
+<b>Administrador</b> solicita confirmar asignación
+<b>Sistema</b> visualiza y asigna profesor al examen
+<b>Sistema</b> visualiza y actualiza el calendario
+<b>Sistema</b> visualiza y notifica al profesor asignado
+end note
+
+AsignandoExamen -[#red]-> [*]
+note on link
+<b>Administrador</b> solicita cancelar asignación
+<b>Sistema</b> visualiza y descarta la asignación
+<b>Sistema</b> visualiza y mantiene examen sin profesor asignado
+end note
+}
+
+asignarProfesorAExamen -[#green]-> PROFESOR_EXAMENES_ABIERTO
+note on link
+editarProfesor()
+end note
+
+asignarProfesorAExamen -[#red]-> PROFESOR_EXAMENES_ABIERTO
+note on link
+cancelar asignación
+end note
+
+@enduml

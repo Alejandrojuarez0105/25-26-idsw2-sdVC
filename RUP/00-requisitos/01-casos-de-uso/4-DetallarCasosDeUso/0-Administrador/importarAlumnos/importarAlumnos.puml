@@ -1,0 +1,63 @@
+@startuml importarAlumnos
+
+skinparam linetype polyline
+
+state importarAlumnos as "importarAlumnos()" {
+
+state " " as SeleccionandoArchivo
+state " " as ProcesandoImportacion
+state " " as MostrandoResultados
+
+[*] -[#green]-> SeleccionandoArchivo
+note on link
+<b>Administrador</b> solicita importar alumnos
+end note
+
+SeleccionandoArchivo -[#green]-> ProcesandoImportacion
+note on link
+<b>Sistema</b> presenta interfaz de importación
+• Permite seleccionar archivo CSV/Excel
+• Muestra formato de archivo requerido
+• Muestra grados disponibles para asociar
+• Permite solicitar iniciar importación
+• Permite solicitar cancelar importación
+end note
+
+ProcesandoImportacion -[#green]-> MostrandoResultados
+note on link
+<b>Administrador</b> introduce selección de archivo y solicita importar
+<b>Sistema</b> visualiza y procesa el archivo seleccionado
+<b>Sistema</b> visualiza y valida matrículas únicas
+<b>Sistema</b> visualiza y asigna alumnos a grados correspondientes
+end note
+
+MostrandoResultados -[#green]-> [*]
+note on link
+<b>Sistema</b> presenta resultados de importación
+• Muestra número de alumnos importados
+• Muestra alumnos que no se pudieron importar
+• Muestra matrículas duplicadas
+• Muestra grados no encontrados
+• Permite solicitar revisar errores
+• Permite solicitar finalizar importación
+<b>Administrador</b> solicita finalizar importación
+end note
+
+ProcesandoImportacion -[#red]-> [*]
+note on link
+<b>Administrador</b> solicita cancelar importación
+<b>Sistema</b> visualiza y descarta el proceso de importación
+end note
+}
+
+importarAlumnos -[#green]-> ALUMNOS_ABIERTO
+note on link
+abrirAlumnos()
+end note
+
+importarAlumnos -[#red]-> ALUMNOS_ABIERTO
+note on link
+cancelar importación
+end note
+
+@enduml

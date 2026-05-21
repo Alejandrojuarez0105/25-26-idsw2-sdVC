@@ -1,0 +1,49 @@
+@startuml eliminarExamen
+
+skinparam linetype polyline
+
+state eliminarExamen as "eliminarExamen()" {
+
+state " " as MostrandoConfirmacion
+state " " as ConfirmandoEliminacion
+
+[*] -[#green]-> MostrandoConfirmacion
+note on link
+<b>Administrador</b> solicita eliminar examen
+end note
+
+MostrandoConfirmacion -[#green]-> ConfirmandoEliminacion
+note on link
+<b>Sistema</b> presenta confirmación de eliminación
+• Muestra datos del examen a eliminar
+• Muestra fecha y hora programada
+• Muestra aula y profesor asignados
+• Permite solicitar confirmar eliminación
+• Permite solicitar cancelar eliminación
+end note
+
+ConfirmandoEliminacion -[#green]-> [*]
+note on link
+<b>Administrador</b> solicita confirmar eliminación
+<b>Sistema</b> visualiza y elimina el examen de la base de datos
+<b>Sistema</b> visualiza y actualiza lista de exámenes
+end note
+
+ConfirmandoEliminacion -[#red]-> [*]
+note on link
+<b>Administrador</b> solicita cancelar eliminación
+<b>Sistema</b> visualiza y descarta la operación de eliminación
+end note
+}
+
+eliminarExamen -[#green]-> EXAMENES_ABIERTO
+note on link
+abrirExamenes()
+end note
+
+eliminarExamen -[#red]-> EXAMENES_ABIERTO
+note on link
+cancelar eliminación
+end note
+
+@enduml

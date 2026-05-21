@@ -1,0 +1,19 @@
+@startuml CdU_Profesor
+left to right direction
+
+package "Consulta de Calendario de Exámenes" {
+    actor Profesor
+
+    usecase "comunicarIncidenciasHorario()" as comunicarIncidencias
+    usecase "consultarCalendario()" as consultarCalendario
+    usecase "descargarCalendarioExamenes()" as descargarCalendario
+}
+
+Profesor --> comunicarIncidencias 
+
+consultarCalendario <-- Profesor
+consultarCalendario -[hidden]--> descargarCalendario
+
+descargarCalendario ..> consultarCalendario : <<extend>>
+
+@enduml

@@ -1,0 +1,56 @@
+@startuml editarAlumno
+
+skinparam linetype polyline
+
+state editarAlumno as "editarAlumno()" {
+
+state " " as EditandoDatos
+state " " as GuardandoDatos
+
+[*] -[#green]-> EditandoDatos
+note on link
+<b>Administrador</b> solicita editar alumno
+end note
+
+EditandoDatos -[#green]-> GuardandoDatos
+note on link
+<b>Sistema</b> presenta datos de edición
+• Permite introducir nuevo nombre
+• Permite introducir nuevo email
+• Permite introducir nuevo curso
+• Permite solicitar cambiar grado asociado
+• Permite solicitar guardar cambios
+• Permite solicitar cancelar edición
+end note
+
+GuardandoDatos -[#green]-> EditandoDatos
+note on link
+<b>Administrador</b> solicita modificar campos
+<b>Sistema</b> permite introducir nuevos valores
+<b>Sistema</b> permite seleccionar grado diferente
+end note
+
+GuardandoDatos -[#green]-> [*]
+note on link
+<b>Administrador</b> solicita guardar y salir
+<b>Sistema</b> visualiza y actualiza el alumno en la base de datos
+end note
+
+GuardandoDatos -[#red]-> [*]
+note on link
+<b>Administrador</b> solicita cancelar edición
+<b>Sistema</b> visualiza y descarta los cambios realizados
+end note
+}
+
+editarAlumno -[#green]-> ALUMNOS_ABIERTO
+note on link
+abrirAlumnos()
+end note
+
+editarAlumno -[#red]-> ALUMNOS_ABIERTO
+note on link
+cancelar edición
+end note
+
+@enduml

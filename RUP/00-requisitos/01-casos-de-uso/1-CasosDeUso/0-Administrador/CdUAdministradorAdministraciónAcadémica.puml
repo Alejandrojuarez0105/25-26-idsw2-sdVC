@@ -1,0 +1,38 @@
+@startuml diagrama-casos-uso-administrador-examenes-administracion-academica
+
+left to right direction
+
+package "Administración Académica" {
+
+    actor "Administrador" as admin
+
+    usecase abrirGrados as "abrirGrados()"
+    usecase crearGrado as "crearGrado()"
+    usecase editarGrado as "editarGrado()"
+    usecase eliminarGrado as "eliminarGrado()"
+    usecase importarGrados as "importarGrados()"
+
+    usecase abrirAsignaturas as "abrirAsignaturas()"
+    usecase crearAsignatura as "crearAsignatura()"
+    usecase editarAsignatura as "editarAsignatura()"
+    usecase eliminarAsignatura as "eliminarAsignatura()"
+    usecase importarAsignaturas as "importarAsignaturas()"
+
+}
+
+admin --> abrirGrados
+admin --> crearGrado
+admin --> editarGrado
+admin --> eliminarGrado
+admin --> importarGrados
+
+abrirAsignaturas <-- admin
+crearAsignatura <-- admin
+editarAsignatura <-- admin
+eliminarAsignatura <-- admin
+importarAsignaturas <-- admin
+
+eliminarGrado .> abrirGrados : <<include>>
+eliminarAsignatura .> abrirAsignaturas : <<include>>
+
+@enduml

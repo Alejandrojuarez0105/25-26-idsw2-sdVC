@@ -1,0 +1,48 @@
+@startuml crearGrado
+
+skinparam linetype polyline
+
+state crearGrado as "crearGrado()" {
+
+state " " as MostrandoFormulario
+state " " as GuardandoDatos
+state " " as ValidandoDatos
+
+[*] -[#green]-> MostrandoFormulario 
+note on link
+<b>Administrador</b> solicita crear grado
+end note    
+
+MostrandoFormulario -[#green]-> ValidandoDatos
+note on link
+<b>Sistema</b> presenta formulario de creación
+• Permite introducir código del grado
+• Permite introducir nombre del grado
+• Permite introducir descripción
+• Permite solicitar guardar grado
+• Permite solicitar cancelar creación
+end note
+
+ValidandoDatos -[#green]-> GuardandoDatos
+note on link
+<b>Administrador</b> introduce datos y solicita guardar
+<b>Sistema</b> presenta validación de campos requeridos
+end note
+
+GuardandoDatos -[#green]-> [*]
+note on link
+<b>Sistema</b> guarda el nuevo grado en la base de datos
+end note
+}
+
+crearGrado -[#green]-> GRADO_ABIERTO
+note on link
+editarGrado()
+end note
+
+crearGrado -[#green]-> GRADOS_ABIERTO
+note on link
+abrirGrados()
+end note
+
+@enduml
