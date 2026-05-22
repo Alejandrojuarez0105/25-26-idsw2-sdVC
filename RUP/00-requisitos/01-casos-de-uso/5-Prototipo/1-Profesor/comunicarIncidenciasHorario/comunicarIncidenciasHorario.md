@@ -1,12 +1,12 @@
-﻿# comunicarIncidenciasHorario() -> Detalle y prototipado
+# comunicarIncidenciasHorario() -> Detalle y prototipado
 
-## Diagrama de especificaciÃ³n
+## Diagrama de especificación
 
 <div align=center>
 
-|       ![](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/1-Profesor/comunicarIncidenciasHorario/comunicarIncidenciasHorario.svg)        |
+|       ![](/images/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/1-Profesor/comunicarIncidenciasHorario/comunicarIncidenciasHorario.svg)        |
 | :---------------------------------------------------------------------------------------------------------------------------------------: |
-| [CÃ³digo fuente](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/1-Profesor/comunicarIncidenciasHorario/comunicarIncidenciasHorario.puml) |
+| [Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/1-Profesor/comunicarIncidenciasHorario/comunicarIncidenciasHorario.puml) |
 
 </div>
 
@@ -18,7 +18,7 @@
 
 <div align=center>
 
-| ![](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/1-Profesor/comunicarIncidenciasHorario/comunicarIncidenciasHorario.png) |
+| ![](/images/00-requisitos/01-casos-de-uso/5-Prototipo/1-Profesor/comunicarIncidenciasHorario/comunicarIncidenciasHorario.png) |
 | :-----------------------------------------------------------------------------------------------------------------: |
 
 </div>

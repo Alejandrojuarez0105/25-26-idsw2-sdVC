@@ -1,12 +1,12 @@
-﻿# editarProfesor() -> Detalle y prototipado
+# editarProfesor() -> Detalle y prototipado
 
-## Diagrama de especificaciÃ³n
+## Diagrama de especificación
 
 <div align=center>
 
-|       ![](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/editarProfesor/editarProfesor.svg)        |
+|       ![](/images/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/editarProfesor/editarProfesor.svg)        |
 | :------------------------------------------------------------------------------------------------------------------: |
-| [CÃ³digo fuente](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/editarProfesor/editarProfesor.puml) |
+| [Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/editarProfesor/editarProfesor.puml) |
 
 </div>
 
@@ -18,7 +18,7 @@
 
 <div align=center>
 
-| ![](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/editarProfesor/editarProfesor.png) |
+| ![](/images/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/editarProfesor/editarProfesor.png) |
 | :--------------------------------------------------------------------------------------------: |
 
 </div>

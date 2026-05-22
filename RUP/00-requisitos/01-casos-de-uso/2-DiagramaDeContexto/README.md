@@ -53,9 +53,9 @@ Se presentan diagramas individuales para:
 
 **Diagrama de contexto – Administrador**
 
-|       ![](/RUP/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)        |
+|       ![](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)        |
 | :--------------------------------------------------------------------------------------------------------------------: |
-| [Código fuente](/RUP/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.puml) |
+| [Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.puml) |
 
 </div>
 
@@ -67,9 +67,9 @@ Se presentan diagramas individuales para:
 
 **Diagrama de contexto – Profesor**
 
-|       ![](/RUP/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/1-Profesor/DiagramaDeContextoProfesor.svg)        |
+|       ![](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/1-Profesor/DiagramaDeContextoProfesor.svg)        |
 | :----------------------------------------------------------------------------------------------------------: |
-| [Código fuente](/RUP/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/1-Profesor/DiagramaDeContextoProfesor.puml) |
+| [Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/1-Profesor/DiagramaDeContextoProfesor.puml) |
 
 </div>
 
@@ -81,9 +81,9 @@ Se presentan diagramas individuales para:
 
 **Diagrama de contexto – Alumno**
 
-|       ![](/RUP/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/2-Alumno/DiagramaDeContextoAlumno.svg)        |
+|       ![](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/2-Alumno/DiagramaDeContextoAlumno.svg)        |
 | :------------------------------------------------------------------------------------------------------: |
-| [Código fuente](/RUP/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/2-Alumno/DiagramaDeContextoAlumno.puml) |
+| [Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/2-Alumno/DiagramaDeContextoAlumno.puml) |
 
 </div>
 

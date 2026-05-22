@@ -1,12 +1,12 @@
-﻿# descargarCalendarioExamenes() -> Detalle y prototipado
+# descargarCalendarioExamenes() -> Detalle y prototipado
 
-## Diagrama de especificaciÃ³n
+## Diagrama de especificación
 
 <div align=center>
 
-|       ![](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/2-Alumno/descargarCalendarioExamenes/descargarCalendarioExamenes.svg)        |
+|       ![](/images/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/2-Alumno/descargarCalendarioExamenes/descargarCalendarioExamenes.svg)        |
 | :-------------------------------------------------------------------------------------------------------------------------------------: |
-| [CÃ³digo fuente](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/2-Alumno/descargarCalendarioExamenes/descargarCalendarioExamenes.puml) |
+| [Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/2-Alumno/descargarCalendarioExamenes/descargarCalendarioExamenes.puml) |
 
 </div>
 
@@ -18,7 +18,7 @@
 
 <div align=center>
 
-| ![](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/2-Alumno/descargarCalendarioExamenes/descargarCalendarioExamenes.png) |
+| ![](/images/00-requisitos/01-casos-de-uso/5-Prototipo/2-Alumno/descargarCalendarioExamenes/descargarCalendarioExamenes.png) |
 | :---------------------------------------------------------------------------------------------------------------: |
 
 </div>

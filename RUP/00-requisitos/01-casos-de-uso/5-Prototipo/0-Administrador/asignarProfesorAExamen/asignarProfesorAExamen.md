@@ -1,12 +1,12 @@
-﻿# asignarProfesorAExamen() -> Detalle y prototipado
+# asignarProfesorAExamen() -> Detalle y prototipado
 
-## Diagrama de especificaciÃ³n
+## Diagrama de especificación
 
 <div align=center>
 
-|       ![](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/asignarProfesorAExamen/asignarProfesorAExamen.svg)        |
+|       ![](/images/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/asignarProfesorAExamen/asignarProfesorAExamen.svg)        |
 | :----------------------------------------------------------------------------------------------------------------------------------: |
-| [CÃ³digo fuente](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/asignarProfesorAExamen/asignarProfesorAExamen.puml) |
+| [Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/asignarProfesorAExamen/asignarProfesorAExamen.puml) |
 
 </div>
 
@@ -14,11 +14,11 @@
 
 ### Wireframes
 
-#### Pantalla: asignar un profesor a un exÃ¡men
+#### Pantalla: asignar un profesor a un exámen
 
 <div align=center>
 
-| ![](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/asignarProfesorAExamen/asignarProfesorAExamen.png) |
+| ![](/images/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/asignarProfesorAExamen/asignarProfesorAExamen.png) |
 | :------------------------------------------------------------------------------------------------------------: |
 
 </div>

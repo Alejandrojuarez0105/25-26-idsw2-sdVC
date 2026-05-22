@@ -1,12 +1,12 @@
-﻿# abrirProfesores() -> Detalle y prototipado
+# abrirProfesores() -> Detalle y prototipado
 
-## Diagrama de especificaciÃ³n
+## Diagrama de especificación
 
 <div align=center>
 
-|       ![](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/abrirProfesores/abrirProfesores.svg)        |
+|       ![](/images/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/abrirProfesores/abrirProfesores.svg)        |
 | :--------------------------------------------------------------------------------------------------------------------: |
-| [CÃ³digo fuente](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/abrirProfesores/abrirProfesores.puml) |
+| [Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/abrirProfesores/abrirProfesores.puml) |
 
 </div>
 
@@ -18,7 +18,7 @@
 
 <div align=center>
 
-| ![](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/abrirProfesores/abrirProfesores.png) |
+| ![](/images/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/abrirProfesores/abrirProfesores.png) |
 | :----------------------------------------------------------------------------------------------: |
 
 </div>

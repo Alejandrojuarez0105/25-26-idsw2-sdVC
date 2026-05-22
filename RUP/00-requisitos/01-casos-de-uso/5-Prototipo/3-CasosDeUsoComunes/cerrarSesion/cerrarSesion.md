@@ -1,12 +1,12 @@
-﻿# cerrarSesion() -> Detalle y prototipado
+# cerrarSesion() -> Detalle y prototipado
 
-## Diagrama de especificaciÃ³n
+## Diagrama de especificación
 
 <div align=center>
 
-|       ![](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/3-CasosDeUsoComunes/cerrarSesion/cerrarSesion.svg)        |
+|       ![](/images/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/3-CasosDeUsoComunes/cerrarSesion/cerrarSesion.svg)        |
 | :------------------------------------------------------------------------------------------------------------------: |
-| [CÃ³digo fuente](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/3-CasosDeUsoComunes/cerrarSesion/cerrarSesion.puml) |
+| [Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/3-CasosDeUsoComunes/cerrarSesion/cerrarSesion.puml) |
 
 </div>
 
@@ -14,11 +14,11 @@
 
 ### Wireframes
 
-#### Pantalla: cerrar sesiÃ³n
+#### Pantalla: cerrar sesión
 
 <div align=center>
 
-| ![](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/3-CasosDeUsoComunes/cerrarSesion/cerrarSesion.png) |
+| ![](/images/00-requisitos/01-casos-de-uso/5-Prototipo/3-CasosDeUsoComunes/cerrarSesion/cerrarSesion.png) |
 | :--------------------------------------------------------------------------------------------: |
 
 </div>

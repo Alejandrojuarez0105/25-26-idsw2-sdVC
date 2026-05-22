@@ -1,12 +1,12 @@
-﻿# iniciarSesion() -> Detalle y prototipado
+# iniciarSesion() -> Detalle y prototipado
 
-## Diagrama de especificaciÃ³n
+## Diagrama de especificación
 
 <div align=center>
 
-|       ![](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/3-CasosDeUsoComunes/iniciarSesion/iniciarSesion.svg)        |
+|       ![](/images/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/3-CasosDeUsoComunes/iniciarSesion/iniciarSesion.svg)        |
 | :--------------------------------------------------------------------------------------------------------------------: |
-| [CÃ³digo fuente](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/3-CasosDeUsoComunes/iniciarSesion/iniciarSesion.puml) |
+| [Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/3-CasosDeUsoComunes/iniciarSesion/iniciarSesion.puml) |
 
 </div>
 
@@ -14,29 +14,29 @@
 
 ### Wireframes
 
-#### Pantalla 1: iniciar sesiÃ³n
+#### Pantalla 1: iniciar sesión
 
 <div align=center>
 
-| ![](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/3-CasosDeUsoComunes/iniciarSesion/iniciarSesion.png) |
+| ![](/images/00-requisitos/01-casos-de-uso/5-Prototipo/3-CasosDeUsoComunes/iniciarSesion/iniciarSesion.png) |
 | :----------------------------------------------------------------------------------------------: |
 
 </div>
 
-#### Pantalla 2: inicio de sesiÃ³n exitoso
+#### Pantalla 2: inicio de sesión exitoso
 
 <div align=center>
 
-| ![](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/3-CasosDeUsoComunes/iniciarSesion/iniciarSesionExitoso.png) |
+| ![](/images/00-requisitos/01-casos-de-uso/5-Prototipo/3-CasosDeUsoComunes/iniciarSesion/iniciarSesionExitoso.png) |
 | :-----------------------------------------------------------------------------------------------------: |
 
 </div>
 
-#### Pantalla 3: credenciales invÃ¡lidas
+#### Pantalla 3: credenciales inválidas
 
 <div align=center>
 
-| ![](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/3-CasosDeUsoComunes/iniciarSesion/iniciarSesionError.png) |
+| ![](/images/00-requisitos/01-casos-de-uso/5-Prototipo/3-CasosDeUsoComunes/iniciarSesion/iniciarSesionError.png) |
 | :---------------------------------------------------------------------------------------------------: |
 
 </div>

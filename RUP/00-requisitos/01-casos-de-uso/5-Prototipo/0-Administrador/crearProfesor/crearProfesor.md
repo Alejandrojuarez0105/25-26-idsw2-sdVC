@@ -1,12 +1,12 @@
-﻿# crearProfesor() -> Detalle y prototipado
+# crearProfesor() -> Detalle y prototipado
 
-## Diagrama de especificaciÃ³n
+## Diagrama de especificación
 
 <div align=center>
 
-|       ![](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/crearProfesor/crearProfesor.svg)        |
+|       ![](/images/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/crearProfesor/crearProfesor.svg)        |
 | :----------------------------------------------------------------------------------------------------------------: |
-| [CÃ³digo fuente](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/crearProfesor/crearProfesor.puml) |
+| [Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/crearProfesor/crearProfesor.puml) |
 
 </div>
 
@@ -18,7 +18,7 @@
 
 <div align=center>
 
-| ![](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/crearProfesor/crearProfesor.png) |
+| ![](/images/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/crearProfesor/crearProfesor.png) |
 | :------------------------------------------------------------------------------------------: |
 
 </div>

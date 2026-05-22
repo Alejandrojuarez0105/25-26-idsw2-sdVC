@@ -4,42 +4,42 @@
 
 **Administrador**
 
-|![](/RUP/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministrador.svg)
+|![](/images/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministrador.svg)
 |:-:
-|[Código fuente](/RUP/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministrador.puml)
+|[Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministrador.puml)
 
 > Aquí se puede observar al actor **Administrador**, ha sido dividido en varios diagramas para mejorar la legibilidad,
 > manteniendo **exactamente los mismos casos de uso y relaciones** que el diagrama original.
 
 ### Administración Académica
 
-|       ![](/RUP/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministradorAdministraciónAcadémica.svg)        |
+|       ![](/images/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministradorAdministraciónAcadémica.svg)        |
 | :--------------------------------------------------------------------------------------------------------------------: |
-| [Código fuente](/RUP/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministradorAdministraciónAcadémica.puml) |
+| [Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministradorAdministraciónAcadémica.puml) |
 
 ### Administración de Exámenes
 
-|       ![](/RUP/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministradorAdministraciónExámenes.svg)        |
+|       ![](/images/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministradorAdministraciónExámenes.svg)        |
 | :-------------------------------------------------------------------------------------------------------------------: |
-| [Código fuente](/RUP/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministradorAdministraciónExámenes.puml) |
+| [Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministradorAdministraciónExámenes.puml) |
 
 ### Administración de Profesores
 
-|       ![](/RUP/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministradorAdministraciónProfesores.svg)        |
+|       ![](/images/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministradorAdministraciónProfesores.svg)        |
 | :---------------------------------------------------------------------------------------------------------------------: |
-| [Código fuente](/RUP/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministradorAdministraciónProfesores.puml) |
+| [Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministradorAdministraciónProfesores.puml) |
 
 ### Administración de Aulas
 
-|       ![](/RUP/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministradorAdministraciónAulas.svg)        |
+|       ![](/images/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministradorAdministraciónAulas.svg)        |
 | :----------------------------------------------------------------------------------------------------------------: |
-| [Código fuente](/RUP/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministradorAdministraciónAulas.puml) |
+| [Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministradorAdministraciónAulas.puml) |
 
 ### Administración de Alumnos
 
-|       ![](/RUP/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministradorAdministraciónAlumnos.svg)        |
+|       ![](/images/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministradorAdministraciónAlumnos.svg)        |
 | :------------------------------------------------------------------------------------------------------------------: |
-| [Código fuente](/RUP/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministradorAdministraciónAlumnos.puml) |
+| [Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/1-CasosDeUso/0-Administrador/CdUAdministradorAdministraciónAlumnos.puml) |
 
 > **Nota:**  
 > La descomposición del actor **Administrador** responde únicamente a criterios de **claridad visual**.
@@ -55,9 +55,9 @@
 
 **Profesor**
 
-|![](/RUP/00-requisitos/01-casos-de-uso/1-CasosDeUso/1-Profesor/CdUProfesor.svg)
+|![](/images/00-requisitos/01-casos-de-uso/1-CasosDeUso/1-Profesor/CdUProfesor.svg)
 |:-:
-|[Código fuente](/RUP/00-requisitos/01-casos-de-uso/1-CasosDeUso/1-Profesor/CdUProfesor.puml)
+|[Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/1-CasosDeUso/1-Profesor/CdUProfesor.puml)
 
 </div>
 
@@ -67,9 +67,9 @@
 
 **Alumno**
 
-|![](/RUP/00-requisitos/01-casos-de-uso/1-CasosDeUso/2-Alumno/CdUAlumno.svg)
+|![](/images/00-requisitos/01-casos-de-uso/1-CasosDeUso/2-Alumno/CdUAlumno.svg)
 |:-:
-|[Código fuente](/RUP/00-requisitos/01-casos-de-uso/1-CasosDeUso/2-Alumno/CdUAlumno.puml)
+|[Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/1-CasosDeUso/2-Alumno/CdUAlumno.puml)
 
 </div>
 

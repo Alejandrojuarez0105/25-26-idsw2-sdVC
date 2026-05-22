@@ -16,6 +16,19 @@
 
 **Resultado:** 
 1. Se ha recopiado correctamente el contenido de `02-imágenes` a `images/`. 
-2. Se ha realizado un reemplazo masivo en todos los archivos `.md` y `.puml` de `RUP/00-requisitos/`, cambiando las referencias obsoletas `/documentos/` por `/RUP/00-requisitos/` y redirigiendo las rutas de imágenes a la nueva ubicación.
+2. Se ha realizado un reemplazo masivo en todos los archivos `.md` y `.puml` de `RUP/00-requisitos/`, cambiando las referencias obsoletas `/documentos/` por `/RUP/00-requisitos/` e integrando las imágenes en la nueva ubicación.
 
 **Decisión:** Se corrigió la estructura de imágenes y se aseguraron todos los enlaces internos para mantener la integridad de la documentación en la nueva estructura.
+
+## [18:05] Centralización de recursos y reorganización estructural
+
+**Prompt:** Sí, está bien, pero ahora quiero reorganizar completamente la estructura del proyecto para mantener un orden centralizado de recursos, mueve TODAS las imágenes existentes dentro de cualquier carpeta del proyecto hacia la carpeta global images, y TODOS los archivos .puml hacia la carpeta global modelosUML, antes de moverlos, crea dentro de ambas carpetas una subcarpeta llamada 00-requisitos, y dentro de ella replica la estructura original de directorios para mantener trazabilidad y organización, deja únicamente los archivos README.md en sus carpetas originales dentro de RUP/00-requisitos, moviendo cualquier otro recurso visual o UML fuera de allí, después de reorganizar, actualiza automáticamente todas las rutas relativas, referencias Markdown, imágenes embebidas, includes de PlantUML y cualquier enlace roto o potencialmente inconsistente para que todo siga funcionando correctamente dentro de la nueva estructura del proyecto, finalmente, verifica que no existan referencias inválidas ni archivos duplicados innecesarios y resume claramente los cambios estructurales realizados.
+
+**Resultado:** 
+1. Se han creado las subcarpetas `00-requisitos` dentro de `images` y `modelosUML`.
+2. Se han movido todos los archivos de imagen (.png, .svg, .jpg, etc.) desde `RUP/00-requisitos` hacia `images/00-requisitos`, replicando su estructura interna.
+3. Se han movido todos los archivos `.puml` desde `RUP/00-requisitos` hacia `modelosUML/00-requisitos`, replicando su estructura interna.
+4. Se han actualizado todas las referencias en los archivos `.md` y `.puml` para apuntar a las nuevas ubicaciones centralizadas.
+5. Se han corregido enlaces rotos detectados durante el proceso de refactorización.
+
+**Decisión:** Se centralizaron los recursos visuales y UML para mejorar la organización del repositorio, manteniendo la documentación (READMEs) en sus carpetas originales de la metodología RUP.

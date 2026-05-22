@@ -1,12 +1,12 @@
-﻿# importarAsignaturas() -> Detalle y prototipado
+# importarAsignaturas() -> Detalle y prototipado
 
-## Diagrama de especificaciÃ³n
+## Diagrama de especificación
 
 <div align=center>
 
-|       ![](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/importarAsignaturas/importarAsignaturas.svg)        |
+|       ![](/images/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/importarAsignaturas/importarAsignaturas.svg)        |
 | :----------------------------------------------------------------------------------------------------------------------------: |
-| [CÃ³digo fuente](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/importarAsignaturas/importarAsignaturas.puml) |
+| [Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/importarAsignaturas/importarAsignaturas.puml) |
 
 </div>
 
@@ -18,7 +18,7 @@
 
 <div align=center>
 
-| ![](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/importarAsignaturas/importarAsignaturas.png) |
+| ![](/images/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/importarAsignaturas/importarAsignaturas.png) |
 | :------------------------------------------------------------------------------------------------------: |
 
 </div>

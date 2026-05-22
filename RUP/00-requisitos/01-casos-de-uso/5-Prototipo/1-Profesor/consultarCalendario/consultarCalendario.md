@@ -1,12 +1,12 @@
-﻿# consultarCalendario() -> Detalle y prototipado
+# consultarCalendario() -> Detalle y prototipado
 
-## Diagrama de especificaciÃ³n
+## Diagrama de especificación
 
 <div align=center>
 
-|       ![](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/1-Profesor/consultarCalendario/consultarCalendario.svg)        |
+|       ![](/images/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/1-Profesor/consultarCalendario/consultarCalendario.svg)        |
 | :-----------------------------------------------------------------------------------------------------------------------: |
-| [CÃ³digo fuente](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/1-Profesor/consultarCalendario/consultarCalendario.puml) |
+| [Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/1-Profesor/consultarCalendario/consultarCalendario.puml) |
 
 </div>
 
@@ -18,7 +18,7 @@
 
 <div align=center>
 
-| ![](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/1-Profesor/consultarCalendario/consultarCalendario.png) |
+| ![](/images/00-requisitos/01-casos-de-uso/5-Prototipo/1-Profesor/consultarCalendario/consultarCalendario.png) |
 | :-------------------------------------------------------------------------------------------------: |
 
 </div>

@@ -18,9 +18,9 @@
 
 <div align=center>
 	
-|![](/RUP/00-requisitos/00-modelo-del-dominio/DiagramaDeClases/DiagramaDeClasesGeneradorExamenes.svg)
+|![](/images/00-requisitos/00-modelo-del-dominio/DiagramaDeClases/DiagramaDeClasesGeneradorExamenes.svg)
 |:-:
-|[Código fuente](/RUP/00-requisitos/00-modelo-del-dominio/DiagramaDeClases/DiagramaDeClasesGeneradorExamenes.puml)
+|[Código fuente](/modelosUML/00-requisitos/00-modelo-del-dominio/DiagramaDeClases/DiagramaDeClasesGeneradorExamenes.puml)
 
 </div>
 
@@ -30,7 +30,7 @@
 
 |                                                                                               Diagrama de objetos                                                                                               |                                                                                                 Diagrama de objetos expandido                                                                                                 |
 | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| ![](/RUP/00-requisitos/00-modelo-del-dominio/DiagramaDeObjetos/DiagramaDeObjetosGeneradorExamenes.svg)<br>[Código fuente](/RUP/00-requisitos/00-modelo-del-dominio/DiagramaDeObjetos/DiagramaDeObjetosGeneradorExamenes.puml) | ![](/RUP/00-requisitos/00-modelo-del-dominio/DiagramaDeObjetos/SegundoDiagramaDeObjetosGeneradorExamenes.svg)<br>[Código fuente](/RUP/00-requisitos/00-modelo-del-dominio/DiagramaDeObjetos/SegundoDiagramaDeObjetosGeneradorExamenes.puml) |
+| ![](/images/00-requisitos/00-modelo-del-dominio/DiagramaDeObjetos/DiagramaDeObjetosGeneradorExamenes.svg)<br>[Código fuente](/modelosUML/00-requisitos/00-modelo-del-dominio/DiagramaDeObjetos/DiagramaDeObjetosGeneradorExamenes.puml) | ![](/images/00-requisitos/00-modelo-del-dominio/DiagramaDeObjetos/SegundoDiagramaDeObjetosGeneradorExamenes.svg)<br>[Código fuente](/modelosUML/00-requisitos/00-modelo-del-dominio/DiagramaDeObjetos/SegundoDiagramaDeObjetosGeneradorExamenes.puml) |
 
 </div>
 
@@ -39,8 +39,9 @@
 <div align=center>
 
 |                                                                                 Diagrama de estados de un exámen                                                                                  |                                                                                        Diagrama de estados del generador                                                                                        |
-| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| ![](/RUP/00-requisitos/00-modelo-del-dominio/DiagramaDeEstados/DiagramaDeEstadosDeUnExamen.svg)<br>[Código fuente](/RUP/00-requisitos/00-modelo-del-dominio/DiagramaDeEstados/DiagramaDeEstadosDeUnExamen.puml) | ![](/RUP/00-requisitos/00-modelo-del-dominio/DiagramaDeEstados/DiagramaDeEstadosGeneradorExamenes.svg)<br>[Código fuente](/RUP/00-requisitos/00-modelo-del-dominio/DiagramaDeEstados/DiagramaDeEstadosGeneradorExamenes.puml) |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| ![](/images/00-requisitos/00-modelo-del-dominio/DiagramaDeEstados/DiagramaDeEstadosDeUnExamen.svg)<br>[Código fuente](/modelosUML/00-requisitos/00-modelo-del-dominio/DiagramaDeEstados/DiagramaDeEstadosDeUnExamen.puml) | ![](/images/00-requisitos/00-modelo-del-dominio/DiagramaDeEstados/DiagramaDeEstadosGeneradorExamenes.svg)<br>[Código fuente](/modelosUML/00-requisitos/00-modelo-del-dominio/DiagramaDeEstados/DiagramaDeEstadosGeneradorExamenes.puml) |
+
 
 </div>
 

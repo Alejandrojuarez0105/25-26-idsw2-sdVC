@@ -1,12 +1,12 @@
-﻿# listarConflictosExamenes() -> Detalle y prototipado
+# listarConflictosExamenes() -> Detalle y prototipado
 
-## Diagrama de especificaciÃ³n
+## Diagrama de especificación
 
 <div align=center>
 
-|       ![](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/listarConflictosExamenes/listarConflictosExamenes.svg)        |
+|       ![](/images/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/listarConflictosExamenes/listarConflictosExamenes.svg)        |
 | :--------------------------------------------------------------------------------------------------------------------------------------: |
-| [CÃ³digo fuente](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/listarConflictosExamenes/listarConflictosExamenes.puml) |
+| [Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/listarConflictosExamenes/listarConflictosExamenes.puml) |
 
 </div>
 
@@ -14,11 +14,11 @@
 
 ### Wireframes
 
-#### Pantalla: listar los conflictos de exÃ¡menes
+#### Pantalla: listar los conflictos de exámenes
 
 <div align=center>
 
-| ![](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/listarConflictosExamenes/listarConflictosExamenes.png) |
+| ![](/images/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/listarConflictosExamenes/listarConflictosExamenes.png) |
 | :----------------------------------------------------------------------------------------------------------------: |
 
 </div>

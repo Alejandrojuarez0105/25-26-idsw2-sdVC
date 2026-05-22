@@ -1,12 +1,12 @@
-﻿# abrirAsignaturas() -> Detalle y prototipado
+# abrirAsignaturas() -> Detalle y prototipado
 
-## Diagrama de especificaciÃ³n
+## Diagrama de especificación
 
 <div align=center>
 
-|       ![](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/abrirAsignaturas/abrirAsignaturas.svg)        |
+|       ![](/images/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/abrirAsignaturas/abrirAsignaturas.svg)        |
 | :----------------------------------------------------------------------------------------------------------------------: |
-| [CÃ³digo fuente](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/abrirAsignaturas/abrirAsignaturas.puml) |
+| [Código fuente](/modelosUML/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/abrirAsignaturas/abrirAsignaturas.puml) |
 
 </div>
 
@@ -18,7 +18,7 @@
 
 <div align=center>
 
-| ![](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/abrirAsignaturas/abrirAsignaturas.png) |
+| ![](/images/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/abrirAsignaturas/abrirAsignaturas.png) |
 | :------------------------------------------------------------------------------------------------: |
 
 </div>
