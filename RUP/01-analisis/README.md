@@ -45,7 +45,7 @@ Análisis completo de cada caso de uso especificado mediante:
 ## Cobertura de análisis
 
 ### Casos en proceso de análisis
-- **Gestión del sistema**: `iniciarSesion()`
+- **Gestión del sistema**: `iniciarSesion()`, `cerrarSesion()`
 
 ## Arquitectura emergente
 

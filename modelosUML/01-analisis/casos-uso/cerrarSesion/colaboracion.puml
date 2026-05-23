@@ -1,0 +1,26 @@
+@startuml cerrarSesion-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Sistema Disponible" as SistemaDisponible
+package cerrarSesion as "cerrarSesion()" {
+    rectangle #629EF9 CerrarSesionView
+    rectangle #b5bd68 CerrarSesionController
+    rectangle #F2AC4E SesionRepository
+    rectangle #F2AC4E Sesion
+    rectangle #F2AC4E Usuario
+}
+
+rectangle #CDEBA5 ":Collaboration SESION_CERRADA" as SESION_CERRADA
+
+SistemaDisponible -r-> CerrarSesionView : cerrarSesion(Usuario)
+
+CerrarSesionView -d-> CerrarSesionController: solicitarCierre(Usuario)
+
+CerrarSesionController --> SesionRepository: terminarSesion(Usuario)
+SesionRepository --> Sesion: destruirSesion(Usuario)
+
+Sesion -d- Usuario
+
+CerrarSesionView ..r.> SESION_CERRADA: cerrarSesion()
+
+@enduml
