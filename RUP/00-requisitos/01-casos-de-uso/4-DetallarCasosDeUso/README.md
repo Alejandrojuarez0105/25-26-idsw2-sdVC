@@ -14,59 +14,59 @@
 
 # Detalle de Casos de Uso
 
-## InformaciÃ³n del Artefacto
+## Información del Artefacto
 
-- **Proyecto**: Generador de Fechas de ExÃ¡menes
-- **Fase RUP**: ElaboraciÃ³n
+- **Proyecto**: Generador de Fechas de Exámenes
+- **Fase RUP**: Elaboración
 - **Artefacto**: Detalle de casos de uso
-- **Autor**: Alejandro JuÃ¡rez
+- **Autor**: Alejandro Juárez
 - **Fecha**: 2025-12-17
 
 ---
 
-## IntroducciÃ³n
+## Introducción
 
-Este documento describe el **detalle de los casos de uso del sistema Generador de Fechas de ExÃ¡menes**, modelados mediante **diagramas de estados UML**.
+Este documento describe el **detalle de los casos de uso del sistema Generador de Fechas de Exámenes**, modelados mediante **diagramas de estados UML**.
 
-Cada caso de uso se representa como una **mÃ¡quina de estados independiente**, permitiendo visualizar:
+Cada caso de uso se representa como una **máquina de estados independiente**, permitiendo visualizar:
 
-- El flujo interno de ejecuciÃ³n del caso de uso.
-- La interacciÃ³n entre el actor y el sistema.
+- El flujo interno de ejecución del caso de uso.
+- La interacción entre el actor y el sistema.
 - Los estados intermedios y finales.
 - Las posibles cancelaciones y retornos.
 
 Este nivel de detalle complementa:
 
 - El diagrama de contexto.
-- La priorizaciÃ³n de casos de uso.
+- La priorización de casos de uso.
 
 ---
 
 > **ACCESO DIRECTO A LOS CASOS DE USO (DETALLE + PROTOTIPO)**
 >
-> Si se busca un **caso de uso concreto** o se desea consultar **su detalle junto con su prototipo**, accede directamente aquÃ­
+> Si se busca un **caso de uso concreto** o se desea consultar **su detalle junto con su prototipo**, accede directamente aquí
 >
 > **[Detalle y prototipo de los casos de uso por actor](/RUP/00-requisitos/01-casos-de-uso/0-Actores/README.md#detalle-y-prototipo-de-los-casos-de-uso)**
 >
-> AllÃ­ encontrarÃ¡s **tablas por actor** con enlaces individuales a cada caso de uso.
+> Allí encontrarás **tablas por actor** con enlaces individuales a cada caso de uso.
 
 ---
 
-## OrganizaciÃ³n de los Casos de Uso
+## Organización de los Casos de Uso
 
-Los casos de uso detallados se organizan segÃºn el **actor principal** que los ejecuta.
+Los casos de uso detallados se organizan según el **actor principal** que los ejecuta.
 
 ### Administrador
 
-Los casos de uso del Administrador estÃ¡n orientados a la **administraciÃ³n completa del sistema**:
+Los casos de uso del Administrador están orientados a la **administración completa del sistema**:
 
-- AdministraciÃ³n CRUD de todas las entidades (grados, asignaturas, exÃ¡menes, profesores, aulas, alumnos).
-- ImportaciÃ³n masiva de datos desde archivos.
-- GeneraciÃ³n automÃ¡tica del calendario de exÃ¡menes.
-- AdministraciÃ³n de conflictos y asignaciones.
-- Consulta y exportaciÃ³n del calendario final.
+- Administración CRUD de todas las entidades (grados, asignaturas, exámenes, profesores, aulas, alumnos).
+- Importación masiva de datos desde archivos.
+- Generación automática del calendario de exámenes.
+- Administración de conflictos y asignaciones.
+- Consulta y exportación del calendario final.
 
-**UbicaciÃ³n de los diagramas**:
+**Ubicación de los diagramas**:
 
 [README](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/0-Administrador/README.md) con el detallado de los 34 casos de uso del actor **Administrador**
 
@@ -83,9 +83,9 @@ Los casos de uso del Administrador estÃ¡n orientados a la **administraciÃ³n 
 
 ### Profesor
 
-Los casos de uso del Profesor permiten la **consulta del calendario publicado** y la **comunicaciÃ³n de incidencias** sobre su asignaciÃ³n.
+Los casos de uso del Profesor permiten la **consulta del calendario publicado** y la **comunicación de incidencias** sobre su asignación.
 
-**UbicaciÃ³n de los diagramas**:
+**Ubicación de los diagramas**:
 
 [README](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/1-Profesor/README.md) con el detallado de los 3 casos de uso del actor **Profesor**
 
@@ -99,9 +99,9 @@ Los casos de uso del Profesor permiten la **consulta del calendario publicado** 
 
 ### Alumno
 
-Los casos de uso del Alumno se centran exclusivamente en la **consulta y descarga del calendario de exÃ¡menes**, sin capacidad de modificaciÃ³n.
+Los casos de uso del Alumno se centran exclusivamente en la **consulta y descarga del calendario de exámenes**, sin capacidad de modificación.
 
-**UbicaciÃ³n de los diagramas**:
+**Ubicación de los diagramas**:
 
 [README](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/2-Alumno/README.md) con el detallado de los 2 casos de uso del actor **Alumno**
 
@@ -127,24 +127,24 @@ Los casos de uso del Alumno se centran exclusivamente en la **consulta y descarg
 
 ```
 4-DetallarCasosDeUso/
-â”œâ”€â”€ README.md (este documento)
-â”œâ”€â”€ 0-Administrador/
-â”‚   â”œâ”€â”€ README.md
-â”‚   â”œâ”€â”€ abrirAlumnos/
-â”‚   â”‚   â”œâ”€â”€ abrirAlumnos.puml
-â”‚   â”‚   â””â”€â”€ abrirAlumnos.svg
-â”‚   â””â”€â”€ ... (34 carpetas mÃ¡s)
-â”œâ”€â”€ 1-Profesor/
-â”‚   â”œâ”€â”€ README.md
-â”‚   â”œâ”€â”€ consultarCalendario/
-â”‚   â”‚   â”œâ”€â”€ consultarCalendario.puml
-â”‚   â”‚   â””â”€â”€ consultarCalendario.svg
-â”‚   â””â”€â”€ ... (2 carpetas mÃ¡s)
-â””â”€â”€ 2-Alumno/
-    â”œâ”€â”€ README.md
-    â”œâ”€â”€ consultarCalendario/
-    â”‚   â”œâ”€â”€ consultarCalendario.puml
-    â”‚   â””â”€â”€ consultarCalendario.svg
-    â””â”€â”€ ... (1 carpeta mÃ¡s)
+├── README.md (este documento)
+├── 0-Administrador/
+│   ├── README.md
+│   ├── abrirAlumnos/
+│   │   ├── abrirAlumnos.puml
+│   │   └── abrirAlumnos.svg
+│   └── ... (34 carpetas más)
+├── 1-Profesor/
+│   ├── README.md
+│   ├── consultarCalendario/
+│   │   ├── consultarCalendario.puml
+│   │   └── consultarCalendario.svg
+│   └── ... (2 carpetas más)
+└── 2-Alumno/
+    ├── README.md
+    ├── consultarCalendario/
+    │   ├── consultarCalendario.puml
+    │   └── consultarCalendario.svg
+    └── ... (1 carpeta más)
 ```
 
