@@ -32,3 +32,17 @@
 5. Se han corregido enlaces rotos detectados durante el proceso de refactorización.
 
 **Decisión:** Se centralizaron los recursos visuales y UML para mejorar la organización del repositorio, manteniendo la documentación (READMEs) en sus carpetas originales de la metodología RUP.
+
+## [23/05/2026 14:00] Sesión 3: Fase de Análisis e iniciarSesion()
+
+**Prompt:** Iniciar fase de Análisis RUP (Davidario). Crear estructura `RUP/01-analisis`, `images/01-analisis` y `modelosUML/01-analisis`. Generar `README.md` de disciplina y casos de uso basados en plantilla `pySigHor`. Realizar análisis MVC de `iniciarSesion()`. Corregir layouts para coincidir con estilo del proyecto (badges azules) y layouts del profesor (tablas de navegación). Asegurar consistencia con actor Administrador y jerarquía de breadcrumbs.
+
+**Resultado:** 
+1. **Estructura:** Creados directorios para la disciplina de Análisis manteniendo la estructura espejo.
+2. **Documentación:** Generados `RUP/01-analisis/README.md` y `RUP/01-analisis/casos-uso/README.md` con navegación adaptada al proyecto Davidario.
+3. **Análisis iniciarSesion():** 
+   - Generado `README.md` detallado en `RUP/01-analisis/casos-uso/iniciarSesion/` con secciones de principios, características y conexión RUP.
+   - Creado diagrama de colaboración PlantUML siguiendo estrictamente la plantilla del profesor y limitando el alcance al actor **Administrador**.
+4. **Refactorización Visual:** Ajustados layouts, barras de navegación y breadcrumbs para reflejar el estado actual de la fase (sin adelantar pestañas de análisis en niveles superiores).
+
+**Decisión:** Se estableció la base de la disciplina de Análisis y se completó satisfactoriamente el primer caso de uso, priorizando la coherencia con el modelo del profesor y la identidad del proyecto Davidario.
