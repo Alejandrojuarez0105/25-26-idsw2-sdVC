@@ -76,3 +76,19 @@
 **Decisión:** Se consolida la fase de análisis del caso de uso abrirGrados(), estableciendo el formato estándar de análisis definitivo para el proyecto y cerrando la sesión 5 como base para la siguiente etapa.
 
 
+
+## [24/05/2026 13:30] Sesión 6: Análisis RUP - importarGrados()
+
+**Prompt:** Continuación del análisis RUP del actor Administrador siguiendo el diagrama de contexto. Desarrollo del caso de uso `importarGrados()` como “apertura de entidad”, sin referencia directa en el profesor, tomando como base estructural `abrirGrados()` y manteniendo consistencia con `iniciarSesion()` y `cerrarSesion()`. Se solicitó generación completa de artefactos (README, diagrama UML `.puml`, imágenes) y actualización de cobertura en el sistema RUP.
+
+**Resultado:**
+
+1. **Creación del caso de uso importarGrados():** Generado `README.md` en `RUP/01-analisis/casos-uso/importarGrados/`, siguiendo el mismo patrón visual y estructural que `abrirGrados()`, con breadcrumb `Davidario > importarGrados > Análisis`.
+2. **Modelado UML:** Creado `colaboracion.puml` en `modelosUML/01-analisis/casos-uso/importarGrados/` bajo arquitectura MVC (View, Controller, Repository, Entidad) con actor único Administrador, reflejando el flujo de importación de datos.
+3. **Recursos gráficos:** Generada carpeta `images/01-analisis/casos-uso/importarGrados/` con el diagrama asociado al caso de uso.
+4. **Actualización de cobertura:** Modificado `RUP/01-analisis/README.md` para incluir `importarGrados()` respetando el orden del diagrama de contexto del Administrador.
+5. **Consistencia arquitectónica:** Se mantuvo coherencia con `abrirGrados`, `iniciarSesion` y `cerrarSesion`, respetando el patrón MVC y la trazabilidad RUP definida en el proyecto.
+
+**Decisión:** Se consolida la implementación del caso de uso `importarGrados()` como extensión del patrón de gestión de entidades, quedando alineado con la arquitectura RUP del sistema y estableciendo continuidad para futuros casos de uso del actor Administrador.
+
+
