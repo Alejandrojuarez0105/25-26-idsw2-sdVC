@@ -1,0 +1,31 @@
+@startuml editarGrado-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Grados Abierto" as GradosAbierto
+rectangle #CDEBA5 ":Grado Abierto" as GradoAbierto
+
+package editarGrado as "editarGrado()" {
+
+    rectangle #629EF9 EditarGradoView
+    rectangle #b5bd68 GradoController
+    rectangle #F2AC4E GradoRepository
+    rectangle #F2AC4E Grado
+}
+
+GradosAbierto --> EditarGradoView : editarGrado(gradoId)
+EditarGradoView --> GradoController : solicitarEdicion(gradoId)
+GradoController --> GradoRepository : buscarPorId(gradoId)
+
+GradoAbierto --> GradoAbierto : editarGrado()
+
+EditarGradoView --> GradoController : actualizar(gradoId, codigo, nombre, descripcion)
+GradoController --> GradoRepository : existeCodigo(codigo) : Boolean
+GradoController --> GradoRepository : actualizar(grado)
+GradoController --> Grado : <<update>>
+
+EditarGradoView ..> GradoAbierto : <<editar>>
+
+EditarGradoView ..> GradosAbierto : <<finalizar>> abrirGrados()
+EditarGradoView ..> GradosAbierto : <<cancelar>>
+
+@enduml

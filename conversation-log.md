@@ -59,8 +59,6 @@
 
 **Decisión:** Se completó el análisis de `cerrarSesion()` manteniendo la trazabilidad con los requisitos y la consistencia visual del proyecto. El usuario realizó ajustes manuales en el diagrama UML y la sección de cobertura para optimizar la referencia técnica.
 
-
-
 ## [24/05/2026 11:30] Sesión 5: Análisis RUP - abrirGrados()
 
 **Prompt:** Continuación de Análisis RUP. Consolidación de todos los prompts de la sesión 5 (inicio + correcciones + ajustes estructurales) para el análisis del caso de uso abrirGrados() siguiendo el actor Administrador, referencias a pySigHor, reglas de consistencia, estructura RUP y estandarización del formato de análisis en tablas Markdown.
@@ -74,8 +72,6 @@
    - Actualizada la cobertura de análisis en `RUP/01-analisis/README.md` respetando el orden real de los casos de uso.
 
 **Decisión:** Se consolida la fase de análisis del caso de uso abrirGrados(), estableciendo el formato estándar de análisis definitivo para el proyecto y cerrando la sesión 5 como base para la siguiente etapa.
-
-
 
 ## [24/05/2026 13:30] Sesión 6: Análisis RUP - importarGrados()
 
@@ -116,3 +112,16 @@
 4. **Coherencia técnica:** Se aseguró la trazabilidad, manteniendo la separación de responsabilidades MVC y la estandarización de las tablas de análisis.
 
 **Decisión:** Se consolidó el caso de uso `crearGrado()` como un componente clave en la gestión de entidades, respetando la estructura RUP y las normas de estilo del proyecto Davidario.
+
+## [25/05/2026 01:10] Sesión 9: Análisis RUP - editarGrado()
+
+**Prompt:** Continuación de la fase de análisis del actor Administrador siguiendo el diagrama de contexto. Desarrollo del caso de uso `editarGrado()` como "gestión de entidad". Se tomó como base estructural la metodología aplicada en sesiones anteriores, garantizando coherencia MVC y el estilo documental. Se solicitó generación de README, diagrama de colaboración PlantUML y actualización de índices.
+
+**Resultado:**
+
+1. **Creación del caso de uso editarGrado():** Generado `README.md` en `RUP/01-analisis/casos-uso/editarGrado/` con el layout oficial, breadcrumb `Davidario > editarGrado > Análisis` y documentación MVC.
+2. **Modelado UML:** Creado `colaboracion.puml` en `modelosUML/01-analisis/casos-uso/editarGrado/` integrando `GradoController` y `GradoRepository` para el flujo de edición, incluyendo recuperación y actualización.
+3. **Actualización de índices:** Modificado `RUP/01-analisis/casos-uso/README.md` para incluir `editarGrado` en la sección "Gestión de entidades" y actualizado `RUP/01-analisis/README.md` con la cobertura completa.
+4. **Coherencia técnica:** Se aseguró la trazabilidad, manteniendo la separación de responsabilidades MVC y la estandarización de las tablas de análisis.
+
+**Decisión:** Se consolidó el caso de uso `editarGrado()` como un componente clave en la gestión de entidades, respetando la estructura RUP y las normas de estilo del proyecto Davidario.

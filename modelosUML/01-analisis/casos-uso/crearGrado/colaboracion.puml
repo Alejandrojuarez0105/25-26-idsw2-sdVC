@@ -15,7 +15,7 @@ rectangle #CDEBA5 ":Grado Abierto" as GradoAbierto
 
 GradosAbierto --> CrearGradoView : crearGrado()
 
-CrearGradoView --> GradoController : crear(codigo, nombre) : Grado
+CrearGradoView --> GradoController : crear(codigo, nombre, descripcion) : Grado
 
 GradoController --> GradoRepository : existeCodigo(codigo) : Boolean
 GradoController --> Grado : <<create>>

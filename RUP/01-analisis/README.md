@@ -54,6 +54,7 @@ Análisis completo de cada caso de uso especificado mediante:
 - **Gestión de entidades**:
   - [eliminarGrado](casos-uso/eliminarGrado/README.md) - Eliminación de grados académicos.
   - [crearGrado](casos-uso/crearGrado/README.md) - Creación de nuevos grados académicos.
+  - [editarGrado](casos-uso/editarGrado/README.md) - Modificación de grados académicos.
 
 ## Arquitectura emergente
 
