@@ -50,6 +50,7 @@ Análisis completo de cada caso de uso especificado mediante:
   - [cerrarSesion](casos-uso/cerrarSesion/README.md) - Finalización de sesión segura.
 - **Apertura de entidades**:
   - [abrirGrados](casos-uso/abrirGrados/README.md) - Gestión de vista de listado de grados.
+  - [importarGrados](casos-uso/importarGrados/README.md) - Importación masiva de grados académicos.
 - **Gestión de entidades**:
   - [eliminarGrado](casos-uso/eliminarGrado/README.md) - Eliminación de grados académicos.
 
