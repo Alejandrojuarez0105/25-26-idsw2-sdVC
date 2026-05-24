@@ -53,6 +53,7 @@ Análisis completo de cada caso de uso especificado mediante:
   - [importarGrados](casos-uso/importarGrados/README.md) - Importación masiva de grados académicos.
 - **Gestión de entidades**:
   - [eliminarGrado](casos-uso/eliminarGrado/README.md) - Eliminación de grados académicos.
+  - [crearGrado](casos-uso/crearGrado/README.md) - Creación de nuevos grados académicos.
 
 ## Arquitectura emergente
 

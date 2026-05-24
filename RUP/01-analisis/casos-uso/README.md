@@ -28,6 +28,7 @@ Esta carpeta contiene el análisis MVC (Model-View-Controller) de cada caso de u
 
 ### Gestión de entidades
 - [eliminarGrado](/RUP/01-analisis/casos-uso/eliminarGrado/README.md) - Eliminación de grados académicos
+- [crearGrado](/RUP/01-analisis/casos-uso/crearGrado/README.md) - Creación de nuevos grados académicos
 
 ## Estructura de análisis
 

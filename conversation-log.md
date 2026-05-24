@@ -1,4 +1,4 @@
-﻿# Conversation log
+# Conversation log
 
 ## [21/05/2026 12:35] Sesión 1: Migración inicial de artefactos RUP
 
@@ -91,8 +91,6 @@
 
 **Decisión:** Se consolida la implementación del caso de uso `importarGrados()` como extensión del patrón de gestión de entidades, quedando alineado con la arquitectura RUP del sistema y estableciendo continuidad para futuros casos de uso del actor Administrador.
 
-
-
 ## [24/05/2026 15:45] Sesión 7: Análisis RUP - eliminarGrado()
 
 **Prompt:** Continuación de la fase de análisis del actor Administrador siguiendo estrictamente el diagrama de contexto. Desarrollo del caso de uso `eliminarGrado()` como "gestión de entidad". Se tomó como base estructural la metodología y patrones aplicados en casos de uso previos (abrirGrados, importarGrados). Se incluyó la validación de dependencias (uso de AsignaturaRepository) a petición del usuario, reflejando el cambio en el diagrama `colaboracion.puml`. Se actualizaron los índices de cobertura del proyecto.
@@ -106,4 +104,15 @@
 
 **Decisión:** Se finalizó el análisis de `eliminarGrado()` integrando la validación necesaria de dependencias, cumpliendo con la estructura RUP establecida y actualizando la documentación global del proyecto.
 
+## [24/05/2026 17:50] Sesión 8: Análisis RUP - crearGrado()
 
+**Prompt:** Continuación de la fase de análisis del actor Administrador siguiendo el diagrama de contexto. Desarrollo del caso de uso `crearGrado()` como "gestión de entidad". Se tomó como base estructural la metodología aplicada en sesiones anteriores, garantizando coherencia MVC y el estilo documental. Se solicitó generación de README, diagrama de colaboración PlantUML y actualización de índices.
+
+**Resultado:**
+
+1. **Creación del caso de uso crearGrado():** Generado `README.md` en `RUP/01-analisis/casos-uso/crearGrado/` con el layout oficial, breadcrumb `Davidario > crearGrado > Análisis` y documentación MVC.
+2. **Modelado UML:** Creado `colaboracion.puml` en `modelosUML/01-analisis/casos-uso/crearGrado/` integrando `GradoController` y `GradoRepository` para el flujo de creación.
+3. **Actualización de índices:** Modificado `RUP/01-analisis/casos-uso/README.md` para incluir `crearGrado` en la sección "Gestión de entidades" y actualizado `RUP/01-analisis/README.md` con la cobertura completa.
+4. **Coherencia técnica:** Se aseguró la trazabilidad, manteniendo la separación de responsabilidades MVC y la estandarización de las tablas de análisis.
+
+**Decisión:** Se consolidó el caso de uso `crearGrado()` como un componente clave en la gestión de entidades, respetando la estructura RUP y las normas de estilo del proyecto Davidario.
