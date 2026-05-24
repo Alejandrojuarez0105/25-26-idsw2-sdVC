@@ -1,4 +1,4 @@
-<div align="right">
+﻿<div align="right">
 
 [![](https://img.shields.io/badge/-Inicio-0A3B64?style=for-the-badge&logo=github&logoColor=white)](/README.md)
 [![](https://img.shields.io/badge/-Modelo_del_Dominio-0A3B64?style=for-the-badge&logo=drawio&logoColor=white)](/RUP/00-requisitos/00-modelo-del-dominio/README.md)
@@ -24,7 +24,7 @@ Análisis completo de cada caso de uso especificado mediante:
 - **Diagramas de colaboración**: Interacciones conceptuales entre clases de análisis.
 - **Responsabilidades definidas**: Separación clara por estereotipos.
 
-## Metodología de análisis aplicada
+## Metodologí­a de análisis aplicada
 
 ### Patrón MVC sistemático
 - **Model (Entity)**: Entidades del dominio y repositorios de datos.
@@ -61,7 +61,7 @@ Análisis completo de cada caso de uso especificado mediante:
 ## Trazabilidad
 
 ### De requisitos a análisis
-- **Casos de uso detallados**: Los estados y transiciones guían la identificación de responsabilidades.
+- **Casos de uso detallados**: Los estados y transiciones guí­an la identificación de responsabilidades.
 - **Modelo del dominio**: Provee las entidades base para las clases Entity.
 - **Prototipos**: Definen la estructura conceptual de las clases Boundary.
 
@@ -69,5 +69,5 @@ Análisis completo de cada caso de uso especificado mediante:
 
 - [Casos de uso especificados](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/README.md)
 - [Diagrama de contexto - Administrador](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)
-- [AGENTES.md](/AGENTES.md) - Metodología y protocolos
+- [AGENTES.md](/AGENTES.md) - Metodologí­a y protocolos
 - [Log de conversaciones](/conversation-log.md)

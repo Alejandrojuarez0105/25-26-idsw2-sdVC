@@ -1,4 +1,4 @@
-<div align="right">
+﻿<div align="right">
 
 [![](https://img.shields.io/badge/-Inicio-0A3B64?style=for-the-badge&logo=github&logoColor=white)](/README.md)
 [![](https://img.shields.io/badge/-Modelo_del_Dominio-0A3B64?style=for-the-badge&logo=drawio&logoColor=white)](/RUP/00-requisitos/00-modelo-del-dominio/README.md)
@@ -47,9 +47,9 @@ Cada carpeta de análisis contiene:
 - Clases que representan conceptos del dominio o persistencia.
 - Repositories y entidades de negocio.
 
-## Metodología de análisis
+## Metodologí­a de análisis
 
 - **Patrón MVC** aplicado sistemáticamente.
-- **Colaboraciones explícitas** entre clases de análisis.
+- **Colaboraciones explí­citas** entre clases de análisis.
 - **Trazabilidad** desde la especificación de requisitos hasta el análisis.
 - **Nomenclatura consistente** con el glosario y el modelo del dominio.
