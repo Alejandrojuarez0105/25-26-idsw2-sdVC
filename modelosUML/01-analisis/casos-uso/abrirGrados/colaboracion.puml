@@ -1,0 +1,34 @@
+@startuml abrirGrados-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Sistema Disponible" as SistemaDisponible
+package abrirGrados as "abrirGrados()" {
+    rectangle #629EF9 AbrirGradosView
+    rectangle #b5bd68 GradosController
+    rectangle #F2AC4E GradoRepository
+    rectangle #F2AC4E Grado
+}
+
+rectangle #CDEBA5 ":Collaboration CrearGrado" as CrearGrado
+rectangle #CDEBA5 ":Collaboration EditarGrado" as EditarGrado
+rectangle #CDEBA5 ":Collaboration EliminarGrado" as EliminarGrado
+rectangle #CDEBA5 ":Collaboration ImportarGrados" as ImportarGrados
+
+SistemaDisponible -r-> AbrirGradosView : abrirGrados()
+
+AbrirGradosView -d-> GradosController: listarGrados()
+AbrirGradosView -d-> GradosController: filtrarGrados(criterio)
+
+GradosController -r-> GradoRepository: obtenerTodos()
+GradosController -r-> GradoRepository: buscarPorCriterio(criterio)
+
+GradoRepository -d-> Grado: <<accede>>
+
+AbrirGradosView -r-> SistemaDisponible: completarGestion()
+
+AbrirGradosView ..> CrearGrado: crearGrado()
+AbrirGradosView ..> EditarGrado: editarGrado(Grado)
+AbrirGradosView ..> EliminarGrado: eliminarGrado(Grado)
+AbrirGradosView ..> ImportarGrados: importarGrados()
+
+@enduml

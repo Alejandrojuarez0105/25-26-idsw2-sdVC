@@ -112,6 +112,7 @@ Análisis del caso de uso `cerrarSesion()` mediante diagrama de colaboración MV
 
 ## referencias
 
-- [Especificación detallada](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/3-CasosDeUsoComunes/cerrarSesion/cerrarSesion.md)
+- [Especificación detallada: cerrarSesion()](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/3-CasosDeUsoComunes/cerrarSesion/cerrarSesion.md)
+- [Diagrama de contexto - Administrador](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)
 - [Modelo del dominio](/RUP/00-requisitos/00-modelo-del-dominio/README.md)
 - [AGENTES.md](/AGENTES.md) - Metodología de análisis RUP

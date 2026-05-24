@@ -44,8 +44,12 @@ Análisis completo de cada caso de uso especificado mediante:
 
 ## Cobertura de análisis
 
-### Casos en proceso de análisis
-- **Gestión del sistema**: `iniciarSesion()`, `cerrarSesion()`
+### Casos completamente analizados
+- **Gestión del sistema**: 
+  - [iniciarSesion](casos-uso/iniciarSesion/README.md) - Autenticación con clases de análisis MVC.
+  - [cerrarSesion](casos-uso/cerrarSesion/README.md) - Finalización de sesión segura.
+- **Apertura de entidades**:
+  - [abrirGrados](casos-uso/abrirGrados/README.md) - Gestión de vista de listado de grados.
 
 ## Arquitectura emergente
 
@@ -64,5 +68,6 @@ Análisis completo de cada caso de uso especificado mediante:
 ## Referencias
 
 - [Casos de uso especificados](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/README.md)
+- [Diagrama de contexto - Administrador](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)
 - [AGENTES.md](/AGENTES.md) - Metodología y protocolos
 - [Log de conversaciones](/conversation-log.md)

@@ -22,6 +22,9 @@ Esta carpeta contiene el análisis MVC (Model-View-Controller) de cada caso de u
 - [iniciarSesion](/RUP/01-analisis/casos-uso/iniciarSesion/README.md) - Autenticación con clases de análisis MVC
 - [cerrarSesion](/RUP/01-analisis/casos-uso/cerrarSesion/README.md) - Finalización de sesión segura
 
+### Apertura de entidades
+- [abrirGrados](/RUP/01-analisis/casos-uso/abrirGrados/README.md) - Gestión de vista de listado de grados
+
 ## Estructura de análisis
 
 Cada carpeta de análisis contiene:
