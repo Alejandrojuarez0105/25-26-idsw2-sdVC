@@ -92,3 +92,18 @@
 **Decisión:** Se consolida la implementación del caso de uso `importarGrados()` como extensión del patrón de gestión de entidades, quedando alineado con la arquitectura RUP del sistema y estableciendo continuidad para futuros casos de uso del actor Administrador.
 
 
+
+## [24/05/2026 15:45] Sesión 7: Análisis RUP - eliminarGrado()
+
+**Prompt:** Continuación de la fase de análisis del actor Administrador siguiendo estrictamente el diagrama de contexto. Desarrollo del caso de uso `eliminarGrado()` como "gestión de entidad". Se tomó como base estructural la metodología y patrones aplicados en casos de uso previos (abrirGrados, importarGrados). Se incluyó la validación de dependencias (uso de AsignaturaRepository) a petición del usuario, reflejando el cambio en el diagrama `colaboracion.puml`. Se actualizaron los índices de cobertura del proyecto.
+
+**Resultado:**
+
+1. **Creación del caso de uso eliminarGrado():** Generado `README.md` en `RUP/01-analisis/casos-uso/eliminarGrado/` con el layout oficial, breadcrumb `Davidario > eliminarGrado > Análisis` y documentación MVC.
+2. **Modelado UML:** Actualizado `colaboracion.puml` en `modelosUML/01-analisis/casos-uso/eliminarGrado/` para integrar la lógica de validación de dependencias contra `AsignaturaRepository`.
+3. **Actualización de índices:** Modificado `RUP/01-analisis/casos-uso/README.md` para incluir la sección "Gestión de entidades" con `eliminarGrado` y actualizado `RUP/01-analisis/README.md` con la nueva cobertura de análisis.
+4. **Coherencia técnica:** Se aseguró la trazabilidad completa, manteniendo la separación MVC y el estilo documental del proyecto.
+
+**Decisión:** Se finalizó el análisis de `eliminarGrado()` integrando la validación necesaria de dependencias, cumpliendo con la estructura RUP establecida y actualizando la documentación global del proyecto.
+
+

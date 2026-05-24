@@ -25,6 +25,9 @@ Esta carpeta contiene el análisis MVC (Model-View-Controller) de cada caso de u
 ### Apertura de entidades
 - [abrirGrados](/RUP/01-analisis/casos-uso/abrirGrados/README.md) - Gestión de vista de listado de grados
 
+### Gestión de entidades
+- [eliminarGrado](/RUP/01-analisis/casos-uso/eliminarGrado/README.md) - Eliminación de grados académicos
+
 ## Estructura de análisis
 
 Cada carpeta de análisis contiene:

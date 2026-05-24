@@ -36,11 +36,13 @@ Análisis del caso de uso `cerrarSesion()` mediante diagrama de colaboración MV
 |Clase|Responsabilidad|Trazabilidad|
 |-|-|-|
 |**Sesion**|Entidad que representa el estado de autenticación activa y su finalización.|Concepto del caso de uso|
+|**SesionRepository**|Capa de acceso a la gestión del ciclo de vida de la sesión (creación, finalización e invalidación).|Soporte al control de cierre de sesión|
 
 ### clases view (azul #629EF9)
 |Clase|Responsabilidad|Derivación|
 |-|-|-|
-|**LogoutView**|Ventana de interacción para confirmar el cierre de sesión.|Wireframe Prototipo|
+|**CerrarSesionView**|Ventana de interacción para confirmar el cierre de sesión.|Wireframe Prototipo|
+
 
 ### clases controller (verde #b5bd68)
 |Clase|Responsabilidad|Caso de uso|
@@ -81,6 +83,11 @@ Análisis del caso de uso `cerrarSesion()` mediante diagrama de colaboración MV
 ### con modelo del dominio
 - **Sesion** (concepto) → **Sesion** (clase de análisis)
 
+### nota sobre el actor Usuario
+
+En el diagrama de colaboración se incluye el concepto de **Usuario** asociado a la sesión como entidad contextual necesaria para la finalización de la misma.  
+Aunque no se modela como clase de análisis independiente en este caso de uso, se utiliza como referencia conceptual para identificar la sesión activa.
+
 ## principios de análisis aplicados
 
 ### patrón mvc
@@ -107,6 +114,10 @@ Análisis del caso de uso `cerrarSesion()` mediante diagrama de colaboración MV
 ### hacia diseño
 - **Clases conceptuales**: Base para la implementación de la gestión de tokens o cookies.
 - **Colaboraciones**: Definen el flujo de navegación de retorno al login.
+
+### capa de persistencia de sesión
+
+En este caso de uso se introduce `SesionRepository` como mecanismo de abstracción para la gestión del ciclo de vida de la sesión (finalización e invalidación), actuando como soporte del controlador en la coordinación del cierre de sesión.
 
 **Código fuente:** [colaboracion.puml](../../../../modelosUML/01-analisis/casos-uso/cerrarSesion/colaboracion.puml)
 

@@ -1,0 +1,26 @@
+@startuml eliminarGrado-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Grados Abierto" as GradosAbierto
+
+package eliminarGrado as "eliminarGrado()" {
+    rectangle #629EF9 EliminarGradoView
+    rectangle #b5bd68 GradoController
+    rectangle #F2AC4E GradoRepository
+    rectangle #F2AC4E Grado
+}
+
+rectangle #F2AC4E AsignaturaRepository
+
+GradosAbierto --> EliminarGradoView : eliminarGrado(gradoId)
+
+EliminarGradoView --> GradoController : eliminarGrado(gradoId)
+
+GradoController --> AsignaturaRepository : contarPorGrado(gradoId)
+
+GradoController --> GradoRepository : eliminar(gradoId)
+
+EliminarGradoView --> GradosAbierto : finalizar
+EliminarGradoView --> GradosAbierto : cancelar
+
+@enduml

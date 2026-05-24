@@ -61,6 +61,10 @@ Análisis de colaboración del caso de uso `importarGrados()` mediante el patró
 - **Vista**: Responde a solicitudes de `ImportarGradosView`.
 - **Repositorio**: Delega la persistencia a `GradoRepository`.
 
+### tipo conceptual: ImportResult
+
+**ImportResult** es un objeto de resultado conceptual utilizado en el caso de uso para representar el estado de la operación de importación (éxito, errores y detalles del proceso). No se considera una clase de dominio persistente.
+
 ### clases de entidad (entity)
 
 #### GradoRepository
