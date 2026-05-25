@@ -52,6 +52,7 @@ Análisis completo de cada caso de uso especificado mediante:
   - [abrirGrados](casos-uso/abrirGrados/README.md) - Gestión de vista de listado de grados.
   - [importarGrados](casos-uso/importarGrados/README.md) - Importación masiva de grados académicos.
   - [abrirAsignaturas](casos-uso/abrirAsignaturas/README.md) - Gestión de vista de listado de asignaturas.
+  - [abrirExamenes](casos-uso/abrirExamenes/README.md) - Gestión de vista de listado de exámenes.
 - **Gestión de entidades**:
   - [eliminarGrado](casos-uso/eliminarGrado/README.md) - Eliminación de grados académicos.
   - [crearGrado](casos-uso/crearGrado/README.md) - Creación de nuevos grados académicos.

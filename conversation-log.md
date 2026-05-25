@@ -190,3 +190,16 @@
 4. **Coherencia técnica:** Se aseguró la trazabilidad, manteniendo la separación de responsabilidades MVC y la estandarización de las tablas de análisis.
 
 **Decisión:** Se consolidó el caso de uso `editarAsignatura()` como una funcionalidad de gestión necesaria, respetando la estructura RUP y las normas de estilo del proyecto Davidario.
+
+## [25/05/2026 15:15] Sesión 15: Análisis RUP - abrirExamenes()
+
+**Prompt:** Continuación de la fase de análisis del actor Administrador siguiendo el diagrama de contexto. Desarrollo del caso de uso `abrirExamenes()` como "apertura de entidad". Se tomó como base estructural la metodología aplicada en sesiones anteriores (específicamente siguiendo el patrón de `abrirGrados`), garantizando coherencia MVC y el estilo documental. Se solicitó generación de README, diagrama de colaboración PlantUML y actualización de índices.
+
+**Resultado:**
+
+1. **Creación del caso de uso abrirExamenes():** Generado `README.md` en `RUP/01-analisis/casos-uso/abrirExamenes/` con el layout oficial, breadcrumb `Davidario > abrirExamenes > Análisis` y documentación MVC.
+2. **Modelado UML:** Creado `colaboracion.puml` en `modelosUML/01-analisis/casos-uso/abrirExamenes/` integrando `ExamenesController` y `ExamenRepository` para el flujo de consulta y filtrado.
+3. **Actualización de índices:** Modificado `RUP/01-analisis/casos-uso/README.md` para incluir `abrirExamenes` en la sección "Apertura de entidades" y actualizado `RUP/01-analisis/README.md` con la cobertura completa.
+4. **Coherencia técnica:** Se aseguró la trazabilidad, manteniendo la separación de responsabilidades MVC y la estandarización de las tablas de análisis.
+
+**Decisión:** Se consolidó el caso de uso `abrirExamenes()` como una funcionalidad de lectura fundamental, respetando la estructura RUP y las normas de estilo del proyecto Davidario.

@@ -1,0 +1,33 @@
+@startuml abrirExamenes-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Sistema Disponible" as SistemaDisponible
+
+package abrirExamenes as "abrirExamenes()" {
+    rectangle #629EF9 AbrirExamenesView
+    rectangle #b5bd68 ExamenesController
+    rectangle #F2AC4E ExamenRepository
+    rectangle #F2AC4E Examen
+}
+
+rectangle #CDEBA5 ":Collaboration CrearExamen" as CrearExamen
+rectangle #CDEBA5 ":Collaboration EditarExamen" as EditarExamen
+rectangle #CDEBA5 ":Collaboration EliminarExamen" as EliminarExamen
+
+SistemaDisponible -r-> AbrirExamenesView : abrirExamenes()
+
+AbrirExamenesView -d-> ExamenesController: listarExamenes()
+AbrirExamenesView -d-> ExamenesController: filtrarExamenes(criterio)
+
+ExamenesController -r-> ExamenRepository: obtenerTodos()
+ExamenesController -r-> ExamenRepository: buscarPorCriterio(criterio)
+
+ExamenRepository -d-> Examen: <<accede>>
+
+AbrirExamenesView -r-> SistemaDisponible: completarGestion()
+
+AbrirExamenesView ..> CrearExamen: crearExamen()
+AbrirExamenesView ..> EditarExamen: editarExamen(Examen)
+AbrirExamenesView ..> EliminarExamen: eliminarExamen(Examen)
+
+@enduml
