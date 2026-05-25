@@ -61,6 +61,7 @@ Análisis completo de cada caso de uso especificado mediante:
   - [eliminarAsignatura](casos-uso/eliminarAsignatura/README.md) - Eliminación de asignaturas.
   - [crearAsignatura](casos-uso/crearAsignatura/README.md) - Creación de nuevas asignaturas académicas.
   - [editarAsignatura](casos-uso/editarAsignatura/README.md) - Modificación de asignaturas académicas.
+  - [eliminarExamen](casos-uso/eliminarExamen/README.md) - Eliminación de exámenes.
 
 ## Arquitectura emergente
 
