@@ -1,0 +1,40 @@
+@startuml editarAlumno-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Alumnos Abierto" as AlumnosAbierto
+rectangle #CDEBA5 ":Alumno Abierto" as AlumnoAbierto
+
+package editarAlumno as "editarAlumno()" {
+
+    rectangle #629EF9 EditarAlumnoView
+    rectangle #b5bd68 AlumnoController
+    rectangle #F2AC4E AlumnoRepository
+    rectangle #F2AC4E GradoRepository
+    rectangle #F2AC4E Alumno
+}
+
+AlumnosAbierto --> EditarAlumnoView : editarAlumno(alumnoId)
+
+EditarAlumnoView --> AlumnoController : solicitarEdicion(alumnoId)
+AlumnoController --> AlumnoRepository : buscarPorId(alumnoId)
+
+AlumnoAbierto --> AlumnoAbierto : editarAlumno()
+
+EditarAlumnoView --> AlumnoController : obtenerGrados()
+AlumnoController --> GradoRepository : obtenerTodos()
+
+EditarAlumnoView --> AlumnoController : actualizar(alumnoId, nie, nombre, apellidos, correo, curso, grado)
+
+AlumnoController --> AlumnoRepository : existeNIE(nie) : Boolean
+
+AlumnoController --> AlumnoRepository : actualizar(alumno)
+
+AlumnoController --> Alumno : <<update>>
+
+EditarAlumnoView ..> AlumnoAbierto : <<editar>>
+
+EditarAlumnoView ..> AlumnosAbierto : <<finalizar>> abrirAlumnos()
+
+EditarAlumnoView ..> AlumnosAbierto : <<cancelar>>
+
+@enduml

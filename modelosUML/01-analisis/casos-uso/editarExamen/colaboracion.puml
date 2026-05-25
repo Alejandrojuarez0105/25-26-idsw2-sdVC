@@ -1,0 +1,32 @@
+@startuml editarExamen-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Examenes Abierto" as ExamenesAbierto
+rectangle #CDEBA5 ":Examen Abierto" as ExamenAbierto
+
+package editarExamen as "editarExamen()" {
+
+    rectangle #629EF9 EditarExamenView
+    rectangle #b5bd68 ExamenController
+    rectangle #F2AC4E ExamenRepository
+    rectangle #F2AC4E Examen
+}
+
+ExamenesAbierto --> EditarExamenView : editarExamen(examenId)
+
+EditarExamenView --> ExamenController : solicitarEdicion(examenId)
+ExamenController --> ExamenRepository : buscarPorId(examenId)
+
+EditarExamenView --> ExamenController : actualizar(examenId, codigo, fechaHora, duracion, asignatura, aula)
+ExamenController --> ExamenRepository : existeCodigo(codigo) : Boolean
+ExamenController --> ExamenRepository : actualizar(examen)
+ExamenController --> Examen : <<update>>
+
+EditarExamenView ..> ExamenAbierto : <<editar>>
+
+EditarExamenView ..> ExamenesAbierto : <<finalizar>> abrirExamenes()
+EditarExamenView ..> ExamenesAbierto : <<cancelar>>
+
+ExamenAbierto --> ExamenAbierto : editarExamen()
+
+@enduml

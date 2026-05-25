@@ -1,0 +1,26 @@
+@startuml importarAlumnos-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Alumnos Abierto" as AlumnosAbierto
+
+package importarAlumnos as "importarAlumnos()" {
+
+    rectangle #629EF9 ImportarAlumnosView
+    rectangle #b5bd68 AlumnoController
+    rectangle #F2AC4E AlumnoRepository
+    rectangle #F2AC4E Alumno
+}
+
+AlumnosAbierto -r-> ImportarAlumnosView : importarAlumnos()
+
+ImportarAlumnosView -d-> AlumnoController : importar(archivo) : ImportResult
+
+ImportarAlumnosView -d-> AlumnoController : obtenerFormatoRequerido()
+
+AlumnoController -r-> AlumnoRepository : guardarLote(alumnos)
+AlumnoRepository -- Alumno
+
+ImportarAlumnosView ..> AlumnosAbierto : mostrarResultado(importResult)
+ImportarAlumnosView ..> AlumnosAbierto : cancelarImportacion()
+
+@enduml

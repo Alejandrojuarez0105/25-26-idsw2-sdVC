@@ -53,6 +53,7 @@ Análisis completo de cada caso de uso especificado mediante:
   - [importarGrados](casos-uso/importarGrados/README.md) - Importación masiva de grados académicos.
   - [abrirAsignaturas](casos-uso/abrirAsignaturas/README.md) - Gestión de vista de listado de asignaturas.
   - [abrirExamenes](casos-uso/abrirExamenes/README.md) - Gestión de vista de listado de exámenes.
+  - [abrirAlumnos](casos-uso/abrirAlumnos/README.md) - Gestión de vista de listado de alumnos.
 - **Gestión de entidades**:
   - [eliminarGrado](casos-uso/eliminarGrado/README.md) - Eliminación de grados académicos.
   - [crearGrado](casos-uso/crearGrado/README.md) - Creación de nuevos grados académicos.
@@ -62,6 +63,12 @@ Análisis completo de cada caso de uso especificado mediante:
   - [crearAsignatura](casos-uso/crearAsignatura/README.md) - Creación de nuevas asignaturas académicas.
   - [editarAsignatura](casos-uso/editarAsignatura/README.md) - Modificación de asignaturas académicas.
   - [eliminarExamen](casos-uso/eliminarExamen/README.md) - Eliminación de exámenes.
+  - [crearExamen](casos-uso/crearExamen/README.md) - Creación de nuevos exámenes.
+  - [editarExamen](casos-uso/editarExamen/README.md) - Modificación de exámenes existentes.
+  - [importarAlumnos](casos-uso/importarAlumnos/README.md) - Importación masiva de alumnos.
+  - [eliminarAlumno](casos-uso/eliminarAlumno/README.md) - Eliminación de alumnos.
+  - [crearAlumno](casos-uso/crearAlumno/README.md) - Creación de nuevos alumnos.
+  - [editarAlumno](casos-uso/editarAlumno/README.md) - Modificación de alumnos existentes.
 
 ## Arquitectura emergente
 

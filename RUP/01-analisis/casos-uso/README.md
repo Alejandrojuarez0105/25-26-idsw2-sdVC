@@ -27,6 +27,7 @@ Esta carpeta contiene el análisis MVC (Model-View-Controller) de cada caso de u
 - [importarGrados](/RUP/01-analisis/casos-uso/importarGrados/README.md) - Importación masiva de grados académicos
 - [abrirAsignaturas](/RUP/01-analisis/casos-uso/abrirAsignaturas/README.md) - Gestión de vista de listado de asignaturas
 - [abrirExamenes](/RUP/01-analisis/casos-uso/abrirExamenes/README.md) - Gestión de vista de listado de exámenes
+- [abrirAlumnos](/RUP/01-analisis/casos-uso/abrirAlumnos/README.md) - Gestión de vista de listado de alumnos
 
 ### Gestión de entidades
 - [eliminarGrado](/RUP/01-analisis/casos-uso/eliminarGrado/README.md) - Eliminación de grados académicos
@@ -37,6 +38,12 @@ Esta carpeta contiene el análisis MVC (Model-View-Controller) de cada caso de u
 - [crearAsignatura](/RUP/01-analisis/casos-uso/crearAsignatura/README.md) - Creación de nuevas asignaturas académicas
 - [editarAsignatura](/RUP/01-analisis/casos-uso/editarAsignatura/README.md) - Modificación de asignaturas académicas
 - [eliminarExamen](/RUP/01-analisis/casos-uso/eliminarExamen/README.md) - Eliminación de exámenes
+- [crearExamen](/RUP/01-analisis/casos-uso/crearExamen/README.md) - Creación de nuevos exámenes
+- [editarExamen](/RUP/01-analisis/casos-uso/editarExamen/README.md) - Modificación de exámenes existentes
+- [importarAlumnos](/RUP/01-analisis/casos-uso/importarAlumnos/README.md) - Importación masiva de alumnos
+- [eliminarAlumno](/RUP/01-analisis/casos-uso/eliminarAlumno/README.md) - Eliminación de alumnos
+- [crearAlumno](/RUP/01-analisis/casos-uso/crearAlumno/README.md) - Creación de nuevos alumnos
+- [editarAlumno](/RUP/01-analisis/casos-uso/editarAlumno/README.md) - Modificación de alumnos existentes
 
 ## Estructura de análisis
 

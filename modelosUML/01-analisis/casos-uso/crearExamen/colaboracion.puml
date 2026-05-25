@@ -1,0 +1,29 @@
+@startuml crearExamen-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Examenes Abierto" as ExamenesAbierto
+
+package crearExamen as "crearExamen()" {
+
+    rectangle #629EF9 CrearExamenView
+    rectangle #b5bd68 ExamenController
+    rectangle #F2AC4E ExamenRepository
+    rectangle #F2AC4E Examen
+}
+
+rectangle #CDEBA5 ":Examen Abierto" as ExamenAbierto
+
+ExamenesAbierto --> CrearExamenView : crearExamen()
+
+CrearExamenView --> ExamenController : crear(codigo, fechaHora, duracion, asignatura) : Examen
+
+ExamenController --> ExamenRepository : existeCodigo(codigo) : Boolean
+
+ExamenController --> ExamenRepository : guardar(examen)
+
+ExamenController --> Examen : <<create>>
+
+CrearExamenView ..> ExamenAbierto : <<finalizar>> editarExamen(examenNuevo)
+CrearExamenView ..> ExamenesAbierto : <<cancelar>>
+
+@enduml

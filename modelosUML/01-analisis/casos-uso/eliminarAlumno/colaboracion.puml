@@ -1,0 +1,21 @@
+@startuml eliminarAlumno-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Alumnos Abierto" as AlumnosAbierto
+
+package eliminarAlumno as "eliminarAlumno()" {
+    rectangle #629EF9 EliminarAlumnoView
+    rectangle #b5bd68 AlumnoController
+    rectangle #F2AC4E AlumnoRepository
+    rectangle #F2AC4E Alumno
+}
+
+AlumnosAbierto --> EliminarAlumnoView : eliminarAlumno(alumnoId)
+EliminarAlumnoView --> AlumnoController : confirmarEliminacion(alumnoId)
+AlumnoController --> AlumnoRepository : eliminar(alumnoId)
+AlumnoRepository --> Alumno : <<elimina>>
+
+EliminarAlumnoView ..> AlumnosAbierto : <<finalizar>>
+EliminarAlumnoView ..> AlumnosAbierto : <<cancelar>>
+
+@enduml

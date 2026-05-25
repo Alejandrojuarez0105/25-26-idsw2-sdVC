@@ -1,0 +1,39 @@
+@startuml crearAlumno-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Alumnos Abierto" as AlumnosAbierto
+rectangle #CDEBA5 ":Alumno Abierta" as AlumnoAbierta
+
+package crearAlumno as "crearAlumno()" {
+
+    rectangle #629EF9 CrearAlumnoView
+    rectangle #b5bd68 AlumnoController
+    rectangle #F2AC4E AlumnoRepository
+    rectangle #F2AC4E GradoRepository
+    rectangle #F2AC4E Alumno
+    rectangle #F2AC4E Grado
+}
+
+AlumnosAbierto --> CrearAlumnoView : crearAlumno()
+
+CrearAlumnoView --> AlumnoController : obtenerGrados() : Lista<Grado>
+
+AlumnoController --> GradoRepository : obtenerTodos() : Lista<Grado>
+
+GradoRepository --> Grado : consultar()
+
+CrearAlumnoView --> AlumnoController : crear(nie, nombre, apellidos, correo, curso, grado) : Alumno
+
+AlumnoController --> AlumnoController : validarCampos()
+
+AlumnoController --> AlumnoRepository : existeNIE(nie) : Boolean
+
+AlumnoController --> Alumno : <<create>>
+
+AlumnoController --> AlumnoRepository : guardar(alumno)
+
+CrearAlumnoView ..> AlumnoAbierta : <<finalizar>> editarAlumno(alumnoNuevo)
+
+CrearAlumnoView ..> AlumnosAbierto : <<cancelar>>
+
+@enduml

@@ -216,3 +216,20 @@
 4. **Coherencia técnica:** Se aseguró la trazabilidad, manteniendo la separación de responsabilidades MVC y la estandarización de las tablas de análisis.
 
 **Decisión:** Se consolidó el caso de uso `eliminarExamen()` como una funcionalidad de gestión necesaria, respetando la estructura RUP y las normas de estilo del proyecto Davidario.
+
+## [25/05/2026 17:00] Sesión 17: Análisis RUP - crearExamen() y expansión no solicitada de casos de uso
+
+**Prompt:** Continuación de la fase de análisis del actor Administrador siguiendo el diagrama de contexto. Desarrollo del caso de uso `crearExamen()` como "gestión de entidad". Se tomó como base estructural la metodología aplicada en sesiones anteriores (específicamente siguiendo el patrón de `crearGrado` y `crearAsignatura`), garantizando coherencia MVC y el estilo documental. Se solicitó generación de README, diagrama de colaboración PlantUML y actualización de índices.
+
+Durante la ejecución, el agente continuó generando de forma automática otros casos de uso no solicitados pertenecientes a la rama de Exámenes y la rama de Alumnos, lo cual no formaba parte del alcance definido para la sesión. La ejecución fue detenida manualmente por el usuario.
+
+**Resultado:**
+
+1. **Creación del caso de uso crearExamen():** Generado `README.md` en `RUP/01-analisis/casos-uso/crearExamen/` con el layout oficial, breadcrumb `Davidario > crearExamen > Análisis` y documentación MVC.
+2. **Modelado UML:** Creado `colaboracion.puml` en `modelosUML/01-analisis/casos-uso/crearExamen/` integrando `ExamenController` y `ExamenRepository` para el flujo de creación.
+3. **Actualización de índices:** Modificado `RUP/01-analisis/casos-uso/README.md` para incluir `crearExamen` en la sección "Gestión de entidades" y actualizado `RUP/01-analisis/README.md` con la cobertura completa.
+4. **Coherencia técnica:** Se aseguró la trazabilidad, manteniendo la separación de responsabilidades MVC y la estandarización de las tablas de análisis.
+5. **Desviación de alcance:** Se generaron casos de uso adicionales no solicitados relacionados con Exámenes (incluyendo crearExamen() y editarExamen()), y la rama de Alumnos (incluyendo abrirAlumnos(), importarAlumnos(), eliminarAlumno(), crearAlumno() y editarAlumno()), fuera del alcance definido para la sesión, siendo posteriormente detenidos por el usuario.
+6. **Corrección manual del estado del proyecto:** El usuario realizó ajustes manuales en el repositorio para mantener la coherencia del modelo RUP y eliminar o corregir los artefactos generados fuera del alcance previsto.
+
+**Decisión:** Se consolida el caso de uso `crearExamen()` como resultado válido de la sesión. Se registra la desviación de alcance ocurrida durante la generación automática de casos de uso adicionales, así como su corrección manual posterior, manteniendo la integridad del proyecto Davidario y su estructura RUP.
