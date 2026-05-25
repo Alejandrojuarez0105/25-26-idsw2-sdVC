@@ -1,0 +1,35 @@
+@startuml abrirAsignaturas-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Sistema Disponible" as SistemaDisponible
+
+package abrirAsignaturas as "abrirAsignaturas()" {
+    rectangle #629EF9 AbrirAsignaturasView
+    rectangle #b5bd68 AsignaturasController
+    rectangle #F2AC4E AsignaturaRepository
+    rectangle #F2AC4E Asignatura
+}
+
+rectangle #CDEBA5 ":Collaboration CrearAsignatura" as CrearAsignatura
+rectangle #CDEBA5 ":Collaboration EditarAsignatura" as EditarAsignatura
+rectangle #CDEBA5 ":Collaboration EliminarAsignatura" as EliminarAsignatura
+rectangle #CDEBA5 ":Collaboration ImportarAsignaturas" as ImportarAsignaturas
+
+SistemaDisponible -r-> AbrirAsignaturasView : abrirAsignaturas()
+
+AbrirAsignaturasView -d-> AsignaturasController: listarAsignaturas()
+AbrirAsignaturasView -d-> AsignaturasController: filtrarAsignaturas(criterio)
+
+AsignaturasController -r-> AsignaturaRepository: obtenerTodas()
+AsignaturasController -r-> AsignaturaRepository: buscarPorCriterio(criterio)
+
+AsignaturaRepository -d-> Asignatura: <<accede>>
+
+AbrirAsignaturasView -r-> SistemaDisponible: completarGestion()
+
+AbrirAsignaturasView ..> CrearAsignatura: crearAsignatura()
+AbrirAsignaturasView ..> EditarAsignatura: editarAsignatura(Asignatura)
+AbrirAsignaturasView ..> EliminarAsignatura: eliminarAsignatura(Asignatura)
+AbrirAsignaturasView ..> ImportarAsignaturas: ImportarAsignaturas
+
+@enduml
