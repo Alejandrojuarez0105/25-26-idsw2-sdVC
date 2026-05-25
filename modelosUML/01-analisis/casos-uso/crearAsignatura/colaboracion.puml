@@ -1,0 +1,29 @@
+@startuml crearAsignatura-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Asignaturas Abierto" as AsignaturasAbierto
+
+package crearAsignatura as "crearAsignatura()" {
+
+    rectangle #629EF9 CrearAsignaturaView
+    rectangle #b5bd68 AsignaturaController
+    rectangle #F2AC4E AsignaturaRepository
+    rectangle #F2AC4E Asignatura
+}
+
+rectangle #CDEBA5 ":Asignatura Abierta" as AsignaturaAbierta
+
+AsignaturasAbierto --> CrearAsignaturaView : crearAsignatura()
+
+CrearAsignaturaView --> AsignaturaController : crear(codigo, nombre, creditos, grado) : Asignatura
+
+AsignaturaController --> AsignaturaRepository : existeCodigo(codigo) : Boolean
+
+AsignaturaController --> Asignatura : <<create>>
+
+AsignaturaController --> AsignaturaRepository : guardar(asignatura)
+
+CrearAsignaturaView ..> AsignaturaAbierta : <<finalizar>> editarAsignatura(asignaturaNueva)
+CrearAsignaturaView ..> AsignaturasAbierto : <<cancelar>>
+
+@enduml
