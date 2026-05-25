@@ -1,0 +1,31 @@
+@startuml editarAsignatura-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Asignaturas Abierto" as AsignaturasAbierto
+rectangle #CDEBA5 ":Asignatura Abierta" as AsignaturaAbierta
+
+package editarAsignatura as "editarAsignatura()" {
+
+    rectangle #629EF9 EditarAsignaturaView
+    rectangle #b5bd68 AsignaturaController
+    rectangle #F2AC4E AsignaturaRepository
+    rectangle #F2AC4E Asignatura
+}
+
+AsignaturasAbierto --> EditarAsignaturaView : editarAsignatura(asignaturaId)
+EditarAsignaturaView --> AsignaturaController : solicitarEdicion(asignaturaId)
+AsignaturaController --> AsignaturaRepository : buscarPorId(asignaturaId)
+
+AsignaturaAbierta --> AsignaturaAbierta : editarAsignatura()
+
+EditarAsignaturaView --> AsignaturaController : actualizar(asignaturaId, codigo, nombre, creditos, grado)
+AsignaturaController --> AsignaturaRepository : existeCodigo(codigo) : Boolean
+AsignaturaController --> AsignaturaRepository : actualizar(asignatura)
+AsignaturaController --> Asignatura : <<update>>
+
+EditarAsignaturaView ..> AsignaturaAbierta : <<editar>>
+
+EditarAsignaturaView ..> AsignaturasAbierto : <<finalizar>> abrirAsignaturas()
+EditarAsignaturaView ..> AsignaturasAbierto : <<cancelar>>
+
+@enduml

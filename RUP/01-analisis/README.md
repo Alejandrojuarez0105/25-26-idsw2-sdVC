@@ -59,6 +59,7 @@ Análisis completo de cada caso de uso especificado mediante:
   - [importarAsignaturas](casos-uso/importarAsignaturas/README.md) - Importación masiva de asignaturas.
   - [eliminarAsignatura](casos-uso/eliminarAsignatura/README.md) - Eliminación de asignaturas.
   - [crearAsignatura](casos-uso/crearAsignatura/README.md) - Creación de nuevas asignaturas académicas.
+  - [editarAsignatura](casos-uso/editarAsignatura/README.md) - Modificación de asignaturas académicas.
 
 ## Arquitectura emergente
 
