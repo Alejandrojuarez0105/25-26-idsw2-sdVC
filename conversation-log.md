@@ -138,3 +138,16 @@
 4. **Coherencia técnica:** Se aseguró la trazabilidad, manteniendo la separación de responsabilidades MVC y la estandarización de las tablas de análisis.
 
 **Decisión:** Se consolidó el caso de uso `abrirAsignaturas()` como una funcionalidad de lectura fundamental, respetando la estructura RUP y las normas de estilo del proyecto Davidario.
+
+## [25/05/2026 11:00] Sesión 11: Análisis RUP - importarAsignaturas()
+
+**Prompt:** Continuación de la fase de análisis del actor Administrador siguiendo el diagrama de contexto. Desarrollo del caso de uso `importarAsignaturas()` como "apertura de entidad". Se tomó como base estructural la metodología aplicada en sesiones anteriores (específicamente siguiendo el patrón de `importarGrados`), garantizando coherencia MVC y el estilo documental. Se solicitó generación de README, diagrama de colaboración PlantUML y actualización de índices.
+
+**Resultado:**
+
+1. **Creación del caso de uso importarAsignaturas():** Generado `README.md` en `RUP/01-analisis/casos-uso/importarAsignaturas/` con el layout oficial, breadcrumb `Davidario > importarAsignaturas > Análisis` y documentación MVC.
+2. **Modelado UML:** Creado `colaboracion.puml` en `modelosUML/01-analisis/casos-uso/importarAsignaturas/` integrando `AsignaturasController` y `AsignaturaRepository` para el flujo de importación masiva.
+3. **Actualización de índices:** Modificado `RUP/01-analisis/casos-uso/README.md` para incluir `importarAsignaturas` en la sección "Apertura de entidades" y actualizado `RUP/01-analisis/README.md` con la cobertura completa.
+4. **Coherencia técnica:** Se aseguró la trazabilidad, manteniendo la separación de responsabilidades MVC y la estandarización de las tablas de análisis.
+
+**Decisión:** Se consolidó el caso de uso `importarAsignaturas()` como una extensión del patrón de gestión de entidades, respetando la estructura RUP y las normas de estilo del proyecto Davidario.
