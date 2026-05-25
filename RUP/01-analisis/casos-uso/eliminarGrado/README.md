@@ -46,6 +46,7 @@ Análisis de colaboración del caso de uso `eliminarGrado()` mediante el patrón
 - **Entrada**: Recibe `eliminarGrado(gradoId)` desde `:Grados Abierto`.
 - **Control**: Se comunica con `GradoController`.
 - **Salida**: Navega de regreso a `:Grados Abierto` tras finalizar o cancelar.
+- **Control adicional**: Solicita validación de dependencias mediante `verificarAsignaturasAsociadas(gradoId)` en `GradoController`.
 
 ### clases de control
 
@@ -58,6 +59,7 @@ Análisis de colaboración del caso de uso `eliminarGrado()` mediante el patrón
 
 **Colaboraciones**:
 - **Vista**: Responde a solicitudes de `EliminarGradoView`.
+- **Vista (validación)**: Recibe llamadas de verificación mediante `verificarAsignaturasAsociadas(gradoId)` desde `EliminarGradoView`.
 - **Repositorio**: Colabora con `AsignaturaRepository` para validaciones y con `GradoRepository` para la eliminación.
 
 ### clases de entidad (entity)

@@ -32,6 +32,7 @@ Esta carpeta contiene el análisis MVC (Model-View-Controller) de cada caso de u
 - [crearGrado](/RUP/01-analisis/casos-uso/crearGrado/README.md) - Creación de nuevos grados académicos
 - [editarGrado](/RUP/01-analisis/casos-uso/editarGrado/README.md) - Modificación de grados académicos
 - [importarAsignaturas](/RUP/01-analisis/casos-uso/importarAsignaturas/README.md) - Importación masiva de asignaturas
+- [eliminarAsignatura](/RUP/01-analisis/casos-uso/eliminarAsignatura/README.md) - Eliminación de asignaturas
 
 ## Estructura de análisis
 

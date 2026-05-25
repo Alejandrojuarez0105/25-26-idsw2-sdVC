@@ -57,6 +57,7 @@ Análisis completo de cada caso de uso especificado mediante:
   - [crearGrado](casos-uso/crearGrado/README.md) - Creación de nuevos grados académicos.
   - [editarGrado](casos-uso/editarGrado/README.md) - Modificación de grados académicos.
   - [importarAsignaturas](casos-uso/importarAsignaturas/README.md) - Importación masiva de asignaturas.
+  - [eliminarAsignatura](casos-uso/eliminarAsignatura/README.md) - Eliminación de asignaturas.
 
 ## Arquitectura emergente
 
