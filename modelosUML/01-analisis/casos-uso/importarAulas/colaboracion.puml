@@ -1,0 +1,26 @@
+@startuml importarAulas-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Aulas Abierto" as AulasAbierto
+
+package importarAulas as "importarAulas()" {
+
+    rectangle #629EF9 ImportarAulasView
+    rectangle #b5bd68 AulaController
+    rectangle #F2AC4E AulaRepository
+    rectangle #F2AC4E Aula
+}
+
+AulasAbierto -r-> ImportarAulasView : importarAulas()
+
+ImportarAulasView -d-> AulaController : importar(archivo) : ImportResult
+
+ImportarAulasView -d-> AulaController : obtenerFormatoRequerido()
+
+AulaController -r-> AulaRepository : guardarLote(aulas)
+AulaRepository -- Aula
+
+ImportarAulasView ..> AulasAbierto : mostrarResultado(importResult)
+ImportarAulasView ..> AulasAbierto : cancelarImportacion()
+
+@enduml

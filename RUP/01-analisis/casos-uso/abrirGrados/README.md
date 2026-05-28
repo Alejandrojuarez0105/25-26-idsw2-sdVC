@@ -104,37 +104,11 @@ Análisis de colaboración del caso de uso `abrirGrados()` mediante el patrón M
 
 ## correspondencia con requisitos
 
-### mapeado con especificación detallada
-
 |Requisito del caso de uso|Clase responsable|Método/Colaboración|
 |-|-|-|
 |Presentar lista de grados|`AbrirGradosView`|Coordina con `GradosController.listarGrados()`|
 |Permitir filtrado de lista|`AbrirGradosView`|Invoca `GradosController.filtrarGrados(criterio)`|
 |Acceso a datos de grados|`GradoRepository`|`obtenerTodos()`, `buscarPorCriterio()`|
-
-### patrón de colaboración establecido
-
-Este análisis sigue el patrón consolidado para los casos de uso de "apertura" en el proyecto:
-- **Entrada estandarizada**: Transición desde el estado disponible del sistema.
-- **MVC puro**: Separación estricta de responsabilidades.
-- **Navegación extendida**: Puntos de enlace con futuros casos de uso CRUD.
-
-## características del análisis
-
-### responsabilidades identificadas
-- **AbrirGradosView**: Interfaz conceptual derivada del prototipo.
-- **GradosController**: Orquestación del flujo y lógica de filtrado.
-- **GradoRepository**: Capa de abstracción de datos.
-
-## conexión con disciplina rup
-
-### desde requisitos
-- **Especificación detallada**: Provee el flujo básico de visualización.
-- **Prototipo**: Define los elementos de visualización (tabla de grados, buscador).
-
-### hacia diseño
-- **Clases conceptuales**: Guían la definición de la arquitectura por capas.
-- **Colaboraciones**: Establecen los contratos de comunicación entre componentes.
 
 **Código fuente:** [colaboracion.puml](../../../../modelosUML/01-analisis/casos-uso/abrirGrados/colaboracion.puml)
 

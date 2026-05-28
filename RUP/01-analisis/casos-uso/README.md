@@ -24,12 +24,13 @@ Esta carpeta contiene el análisis MVC (Model-View-Controller) de cada caso de u
 
 ### Apertura de entidades
 - [abrirGrados](/RUP/01-analisis/casos-uso/abrirGrados/README.md) - Gestión de vista de listado de grados
-- [importarGrados](/RUP/01-analisis/casos-uso/importarGrados/README.md) - Importación masiva de grados académicos
 - [abrirAsignaturas](/RUP/01-analisis/casos-uso/abrirAsignaturas/README.md) - Gestión de vista de listado de asignaturas
 - [abrirExamenes](/RUP/01-analisis/casos-uso/abrirExamenes/README.md) - Gestión de vista de listado de exámenes
+- [abrirAulas](/RUP/01-analisis/casos-uso/abrirAulas/README.md) - Gestión de vista de listado de aulas
 - [abrirAlumnos](/RUP/01-analisis/casos-uso/abrirAlumnos/README.md) - Gestión de vista de listado de alumnos
 
 ### Gestión de entidades
+- [importarGrados](/RUP/01-analisis/casos-uso/importarGrados/README.md) - Importación masiva de grados académicos
 - [eliminarGrado](/RUP/01-analisis/casos-uso/eliminarGrado/README.md) - Eliminación de grados académicos
 - [crearGrado](/RUP/01-analisis/casos-uso/crearGrado/README.md) - Creación de nuevos grados académicos
 - [editarGrado](/RUP/01-analisis/casos-uso/editarGrado/README.md) - Modificación de grados académicos
@@ -40,6 +41,10 @@ Esta carpeta contiene el análisis MVC (Model-View-Controller) de cada caso de u
 - [eliminarExamen](/RUP/01-analisis/casos-uso/eliminarExamen/README.md) - Eliminación de exámenes
 - [crearExamen](/RUP/01-analisis/casos-uso/crearExamen/README.md) - Creación de nuevos exámenes
 - [editarExamen](/RUP/01-analisis/casos-uso/editarExamen/README.md) - Modificación de exámenes existentes
+- [importarAulas](/RUP/01-analisis/casos-uso/importarAulas/README.md) - Importación masiva de aulas
+- [eliminarAula](/RUP/01-analisis/casos-uso/eliminarAula/README.md) - Eliminación de aulas
+- [crearAula](/RUP/01-analisis/casos-uso/crearAula/README.md) - Creación de nuevas aulas
+- [editarAula](/RUP/01-analisis/casos-uso/editarAula/README.md) - Modificación de aulas existentes
 - [importarAlumnos](/RUP/01-analisis/casos-uso/importarAlumnos/README.md) - Importación masiva de alumnos
 - [eliminarAlumno](/RUP/01-analisis/casos-uso/eliminarAlumno/README.md) - Eliminación de alumnos
 - [crearAlumno](/RUP/01-analisis/casos-uso/crearAlumno/README.md) - Creación de nuevos alumnos

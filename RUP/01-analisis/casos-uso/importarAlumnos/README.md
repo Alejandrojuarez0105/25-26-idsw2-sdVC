@@ -12,8 +12,8 @@
 - **Proyecto**: Davidario - Sistema de Gestión de Exámenes
 - **Fase RUP**: Elaboración
 - **Disciplina**: Análisis
-- **Versión**: 1.0
-- **Fecha**: 25/05/2026
+- **Versión**: 1.1
+- **Fecha**: 28/05/2026
 - **Autor**: Alejandro Juárez
 
 ## propósito
@@ -38,9 +38,9 @@ Análisis de colaboración del caso de uso `importarAlumnos()` mediante el patr�
 **Estereotipo**: Vista (Boundary)
 **Responsabilidades**:
 - Proporcionar la interfaz para la selección y carga de archivos de importación.
-- Presentar el estado del proceso de importación (progreso, errores, éxito).
+- Presentar el resultado del proceso de importación (`ImportResult`).
 - Interactuar con el controlador para iniciar el procesamiento del archivo.
-- Manejar la navegación de retorno a la gestión de alumnos.
+- Manejar la navegación de retorno o cancelación de la importación.
 
 **Colaboraciones**:
 - **Entrada**: Recibe `importarAlumnos()` desde `:Alumnos Abierto`.
@@ -53,9 +53,8 @@ Análisis de colaboración del caso de uso `importarAlumnos()` mediante el patr�
 **Estereotipo**: Control
 **Responsabilidades**:
 - Orquestar el flujo de importación masiva.
-- Delegar el procesamiento y parseo del archivo.
-- Coordinar la validación de los datos importados frente a las reglas de negocio.
-- Gestionar la persistencia masiva a través del repositorio.
+- Proporcionar la estructura/formato requerido para la importación.
+- Coordinar la validación y persistencia masiva a través del repositorio.
 
 **Colaboraciones**:
 - **Vista**: Responde a solicitudes de `ImportarAlumnosView`.
@@ -63,25 +62,23 @@ Análisis de colaboración del caso de uso `importarAlumnos()` mediante el patr�
 
 ### tipo conceptual: ImportResult
 
-**ImportResult** es un objeto de resultado conceptual utilizado en el caso de uso para representar el estado de la operación de importación (éxito, errores y detalles del proceso). No se considera una clase de dominio persistente.
+**ImportResult** es un objeto de resultado conceptual utilizado en el caso de uso para representar el estado de la operación de importación (éxito, errores y detalles del proceso).
 
 ### clases de entidad (entity)
 
 #### AlumnoRepository
 **Estereotipo**: Entidad
 **Responsabilidades**:
-- Abstraer el acceso a datos de los alumnos.
-- Proporcionar métodos para la inserción masiva (guardado por lotes).
+- Proporcionar métodos para la inserción masiva (`guardarLote`).
 
 **Colaboraciones**:
 - **Control**: Responde a `AlumnoController`.
-- **Entidad**: Gestiona instancias de `Alumno`.
+- **Entidad**: Gestiona e interactúa con `Alumno`.
 
 #### Alumno
 **Estereotipo**: Entidad
 **Responsabilidades**:
 - Representar la información de un alumno individual a importar.
-- Encapsular los datos del dominio (NIA, nombre, correo, etc.).
 
 **Colaboraciones**:
 - **Repositorio**: Es gestionado por `AlumnoRepository`.
@@ -94,7 +91,7 @@ Análisis de colaboración del caso de uso `importarAlumnos()` mediante el patr�
 2. **Obtención formato**: `ImportarAlumnosView` → `AlumnoController.obtenerFormatoRequerido()`
 3. **Importación**: `ImportarAlumnosView` → `AlumnoController.importar(archivo) : ImportResult`
 4. **Persistencia**: `AlumnoController` → `AlumnoRepository.guardarLote(alumnos)`
-5. **Resultado**: `ImportarAlumnosView` → `:Alumnos Abierto.mostrarResultado(importResult)` (mostrar resultado o cancelar)
+5. **Resultado**: `ImportarAlumnosView` → `:Alumnos Abierto.mostrarResultado(importResult)` (finalizar o cancelar)
 
 ## correspondencia con requisitos
 
@@ -111,7 +108,7 @@ Análisis de colaboración del caso de uso `importarAlumnos()` mediante el patr�
 
 Este análisis mantiene la consistencia con el patrón de "gestión de entidades":
 - **Reutilización de Repositorios**: Se utiliza el `AlumnoRepository` ya identificado en `abrirAlumnos()`.
-- **MVC puro**: El controlador de alumnos se especializa en la lógica de carga masiva.
+- **MVC puro**: El controlador de alumno se especializa en la lógica de carga masiva.
 - **Trazabilidad**: Enlace directo con la vista de gestión principal.
 
 ## características del análisis
@@ -134,7 +131,7 @@ Este análisis mantiene la consistencia con el patrón de "gestión de entidades
 
 ## referencias
 
-- [abrirAlumnos() - Análisis de referencia](/RUP/01-analisis/casos-uso/abrirAlumnos/README.md)
+- [Especificación detallada: importarAlumnos()](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/importarAlumnos/importarAlumnos.md)
 - [Diagrama de contexto - Administrador](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)
 - [Modelo del dominio](/RUP/00-requisitos/00-modelo-del-dominio/README.md)
 - [AGENTES.md](/AGENTES.md) - Metodología de análisis RUP

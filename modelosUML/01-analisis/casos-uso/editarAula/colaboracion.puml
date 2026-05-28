@@ -1,0 +1,33 @@
+@startuml editarAula-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Aulas Abierto" as AulasAbierto
+rectangle #CDEBA5 ":Aula Abierta" as AulaAbierta
+
+package editarAula as "editarAula()" {
+
+    rectangle #629EF9 EditarAulaView
+    rectangle #b5bd68 AulaController
+    rectangle #F2AC4E AulaRepository
+    rectangle #F2AC4E Aula
+}
+
+AulasAbierto --> EditarAulaView : editarAula(aulaId)
+EditarAulaView --> AulaController : solicitarEdicion(aulaId)
+
+AulaController --> AulaRepository : buscarPorId(aulaId)
+
+EditarAulaView --> AulaController : actualizar(nombre, capacidad, edificio, planta, tipo)
+
+AulaController --> AulaRepository : existeNombre(nombre) : Boolean
+AulaController --> AulaRepository : actualizar(aula)
+AulaController --> Aula : <<update>>
+
+EditarAulaView ..> AulaAbierta : <<editar>>
+
+EditarAulaView ..> AulasAbierto : <<finalizar>> abrirAulas()
+EditarAulaView ..> AulasAbierto : <<cancelar>>
+
+AulaAbierta --> AulaAbierta : editarAula
+
+@enduml

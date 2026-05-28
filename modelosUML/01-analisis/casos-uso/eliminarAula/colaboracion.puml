@@ -1,0 +1,29 @@
+@startuml eliminarAula-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Aulas Abierto" as AulasAbierto
+
+package eliminarAula as "eliminarAula()" {
+    rectangle #629EF9 EliminarAulaView
+    rectangle #b5bd68 AulaController
+    rectangle #F2AC4E AulaRepository
+    rectangle #F2AC4E ExamenRepository
+    rectangle #F2AC4E Aula
+}
+
+AulasAbierto --> EliminarAulaView : eliminarAula(aulaId)
+
+EliminarAulaView --> AulaController : confirmarEliminacion(aulaId)
+
+AulaController --> ExamenRepository : contarPorAula(aulaId)
+
+AulaController --> EliminarAulaView : mostrarAdvertencia()
+
+AulaController --> AulaRepository : eliminar(aulaId)
+
+AulaRepository --> Aula : <<elimina>>
+
+EliminarAulaView ..> AulasAbierto : <<finalizar>>
+EliminarAulaView ..> AulasAbierto : <<cancelar>>
+
+@enduml

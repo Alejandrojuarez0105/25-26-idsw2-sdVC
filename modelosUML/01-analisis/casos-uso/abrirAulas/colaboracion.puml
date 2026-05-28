@@ -1,0 +1,34 @@
+@startuml abrirAulas-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Sistema Disponible" as SistemaDisponible
+package abrirAulas as "abrirAulas()" {
+    rectangle #629EF9 AbrirAulasView
+    rectangle #b5bd68 AulasController
+    rectangle #F2AC4E AulaRepository
+    rectangle #F2AC4E Aula
+}
+
+rectangle #CDEBA5 ":Collaboration CrearAula" as CrearAula
+rectangle #CDEBA5 ":Collaboration EditarAula" as EditarAula
+rectangle #CDEBA5 ":Collaboration EliminarAula" as EliminarAula
+rectangle #CDEBA5 ":Collaboration ImportarAulas" as ImportarAulas
+
+SistemaDisponible -r-> AbrirAulasView : abrirAulas()
+
+AbrirAulasView -d-> AulasController: listarAulas()
+AbrirAulasView -d-> AulasController: filtrarAulas(criterio)
+
+AulasController -r-> AulaRepository: obtenerTodas()
+AulasController -r-> AulaRepository: buscarPorCriterio(criterio)
+
+AulaRepository -d-> Aula: <<accede>>
+
+AbrirAulasView -r-> SistemaDisponible: completarGestion()
+
+AbrirAulasView ..> CrearAula: crearAula()
+AbrirAulasView ..> EditarAula: editarAula(Aula)
+AbrirAulasView ..> EliminarAula: eliminarAula(Aula)
+AbrirAulasView ..> ImportarAulas: importarAulas()
+
+@enduml

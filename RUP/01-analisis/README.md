@@ -50,11 +50,12 @@ Análisis completo de cada caso de uso especificado mediante:
   - [cerrarSesion](casos-uso/cerrarSesion/README.md) - Finalización de sesión segura.
 - **Apertura de entidades**:
   - [abrirGrados](casos-uso/abrirGrados/README.md) - Gestión de vista de listado de grados.
-  - [importarGrados](casos-uso/importarGrados/README.md) - Importación masiva de grados académicos.
   - [abrirAsignaturas](casos-uso/abrirAsignaturas/README.md) - Gestión de vista de listado de asignaturas.
   - [abrirExamenes](casos-uso/abrirExamenes/README.md) - Gestión de vista de listado de exámenes.
+  - [abrirAulas](casos-uso/abrirAulas/README.md) - Gestión de vista de listado de aulas.
   - [abrirAlumnos](casos-uso/abrirAlumnos/README.md) - Gestión de vista de listado de alumnos.
 - **Gestión de entidades**:
+  - [importarGrados](casos-uso/importarGrados/README.md) - Importación masiva de grados académicos.
   - [eliminarGrado](casos-uso/eliminarGrado/README.md) - Eliminación de grados académicos.
   - [crearGrado](casos-uso/crearGrado/README.md) - Creación de nuevos grados académicos.
   - [editarGrado](casos-uso/editarGrado/README.md) - Modificación de grados académicos.
@@ -65,6 +66,10 @@ Análisis completo de cada caso de uso especificado mediante:
   - [eliminarExamen](casos-uso/eliminarExamen/README.md) - Eliminación de exámenes.
   - [crearExamen](casos-uso/crearExamen/README.md) - Creación de nuevos exámenes.
   - [editarExamen](casos-uso/editarExamen/README.md) - Modificación de exámenes existentes.
+  - [importarAulas](casos-uso/importarAulas/README.md) - Importación masiva de aulas.
+  - [eliminarAula](casos-uso/eliminarAula/README.md) - Eliminación de aulas.
+  - [crearAula](casos-uso/crearAula/README.md) - Creación de nuevas aulas.
+  - [editarAula](casos-uso/editarAula/README.md) - Modificación de aulas existentes.
   - [importarAlumnos](casos-uso/importarAlumnos/README.md) - Importación masiva de alumnos.
   - [eliminarAlumno](casos-uso/eliminarAlumno/README.md) - Eliminación de alumnos.
   - [crearAlumno](casos-uso/crearAlumno/README.md) - Creación de nuevos alumnos.

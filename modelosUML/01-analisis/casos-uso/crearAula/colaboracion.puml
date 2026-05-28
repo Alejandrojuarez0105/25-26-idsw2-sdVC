@@ -1,0 +1,27 @@
+@startuml crearAula-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Aulas Abierto" as AulasAbierto
+
+package crearAula as "crearAula()" {
+
+    rectangle #629EF9 CrearAulaView
+    rectangle #b5bd68 AulaController
+    rectangle #F2AC4E AulaRepository
+    rectangle #F2AC4E Aula
+}
+
+rectangle #CDEBA5 ":Aula Abierta" as AulaAbierta
+
+AulasAbierto --> CrearAulaView : crearAula()
+
+CrearAulaView --> AulaController : crear(codigo, nombre, capacidad, edificio, planta, tipo) : Aula
+
+AulaController --> AulaRepository : existeNombre(nombre) : Boolean
+AulaController --> Aula : <<create>>
+AulaController --> AulaRepository : guardar(aula)
+
+CrearAulaView ..> AulaAbierta : <<finalizar>> editarAula(aulaNueva)
+CrearAulaView ..> AulasAbierto : <<cancelar>>
+
+@enduml

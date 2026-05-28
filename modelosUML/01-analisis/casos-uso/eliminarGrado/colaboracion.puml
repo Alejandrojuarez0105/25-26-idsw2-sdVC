@@ -20,7 +20,7 @@ GradoController --> AsignaturaRepository : contarPorGrado(gradoId)
 
 GradoController --> GradoRepository : eliminar(gradoId)
 
-EliminarGradoView --> GradosAbierto : finalizar
-EliminarGradoView --> GradosAbierto : cancelar
+EliminarGradoView ..> GradosAbierto : finalizar
+EliminarGradoView ..> GradosAbierto : cancelar
 
 @enduml
