@@ -77,7 +77,7 @@ EditProfesor --> Asignaciones : asignarProfesorAExamen()
 EditProfesor --> ListProfesores : abrirProfesores()
 
 Asignaciones --> EditProfesor : editarProfesor()
-EditProfesorPreferencias --> EditProfesor : abrirEdicionProfesor()
+EditProfesorPreferencias --> EditProfesor : editarProfesor()
 
 ListAulas --> EditAula : crearAula()
 ListAulas --> EditAula : editarAula()
