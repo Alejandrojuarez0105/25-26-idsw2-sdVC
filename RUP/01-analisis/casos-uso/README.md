@@ -26,6 +26,7 @@ Esta carpeta contiene el análisis MVC (Model-View-Controller) de cada caso de u
 - [abrirGrados](/RUP/01-analisis/casos-uso/abrirGrados/README.md) - Gestión de vista de listado de grados
 - [abrirAsignaturas](/RUP/01-analisis/casos-uso/abrirAsignaturas/README.md) - Gestión de vista de listado de asignaturas
 - [abrirExamenes](/RUP/01-analisis/casos-uso/abrirExamenes/README.md) - Gestión de vista de listado de exámenes
+- [abrirProfesores](/RUP/01-analisis/casos-uso/abrirProfesores/README.md) - Gestión de vista de listado de profesores
 - [abrirAulas](/RUP/01-analisis/casos-uso/abrirAulas/README.md) - Gestión de vista de listado de aulas
 - [abrirAlumnos](/RUP/01-analisis/casos-uso/abrirAlumnos/README.md) - Gestión de vista de listado de alumnos
 
@@ -41,6 +42,12 @@ Esta carpeta contiene el análisis MVC (Model-View-Controller) de cada caso de u
 - [eliminarExamen](/RUP/01-analisis/casos-uso/eliminarExamen/README.md) - Eliminación de exámenes
 - [crearExamen](/RUP/01-analisis/casos-uso/crearExamen/README.md) - Creación de nuevos exámenes
 - [editarExamen](/RUP/01-analisis/casos-uso/editarExamen/README.md) - Modificación de exámenes existentes
+- [importarProfesores](/RUP/01-analisis/casos-uso/importarProfesores/README.md) - Importación masiva de profesores
+- [eliminarProfesor](/RUP/01-analisis/casos-uso/eliminarProfesor/README.md) - Eliminación de profesores
+- [crearProfesor](/RUP/01-analisis/casos-uso/crearProfesor/README.md) - Creación de nuevos profesores
+- [editarProfesor](/RUP/01-analisis/casos-uso/editarProfesor/README.md) - Modificación de profesores existentes
+- [listarConflictosExamenes](/RUP/01-analisis/casos-uso/listarConflictosExamenes/README.md) - Consulta de conflictos horarios de profesores
+- [asignarProfesorAExamen](/RUP/01-analisis/casos-uso/asignarProfesorAExamen/README.md) - Asignación de supervisores a exámenes
 - [importarAulas](/RUP/01-analisis/casos-uso/importarAulas/README.md) - Importación masiva de aulas
 - [eliminarAula](/RUP/01-analisis/casos-uso/eliminarAula/README.md) - Eliminación de aulas
 - [crearAula](/RUP/01-analisis/casos-uso/crearAula/README.md) - Creación de nuevas aulas

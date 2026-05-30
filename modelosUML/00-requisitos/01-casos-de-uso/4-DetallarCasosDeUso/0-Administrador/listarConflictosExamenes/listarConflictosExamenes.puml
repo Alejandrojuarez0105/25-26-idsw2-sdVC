@@ -42,9 +42,6 @@ end note
 }
 
 listarConflictosExamenes -[#green]-> PROFESOR_PREFERENCIAS_ABIERTO
-note on link
-abrirEdicionProfesor()
-end note
 
 listarConflictosExamenes -[#green]-> PROFESOR_ABIERTO
 note on link

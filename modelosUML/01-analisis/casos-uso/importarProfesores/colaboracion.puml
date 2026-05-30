@@ -1,0 +1,23 @@
+@startuml importarProfesores-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Profesores Abierto" as ProfesoresAbierto
+package importarProfesores as "importarProfesores()" {
+    rectangle #629EF9 ImportarProfesoresView
+    rectangle #b5bd68 ProfesorController
+    rectangle #F2AC4E ProfesorRepository
+    rectangle #F2AC4E Profesor
+}
+
+ProfesoresAbierto -r-> ImportarProfesoresView : importarProfesores()
+
+ImportarProfesoresView -d-> ProfesorController: importar(archivo) : ImportResult
+ImportarProfesoresView -d-> ProfesorController: obtenerFormatoRequerido()
+
+ProfesorController -r-> ProfesorRepository: guardarLote(profesores)
+ProfesorRepository -- Profesor
+
+ImportarProfesoresView ..> ProfesoresAbierto : mostrarResultado(importResult)
+ImportarProfesoresView ..> ProfesoresAbierto : cancelarImportacion()
+
+@enduml

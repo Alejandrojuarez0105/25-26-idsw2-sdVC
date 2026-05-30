@@ -1,0 +1,31 @@
+@startuml editarProfesor-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Profesores Abierto" as ProfesoresAbierto
+rectangle #CDEBA5 ":Profesor Abierto" as ProfesorAbierto
+
+package editarProfesor as "editarProfesor()" {
+
+    rectangle #629EF9 EditarProfesorView
+    rectangle #b5bd68 ProfesorController
+    rectangle #F2AC4E ProfesorRepository
+    rectangle #F2AC4E Profesor
+}
+
+ProfesoresAbierto --> EditarProfesorView : editarProfesor(profesorId)
+EditarProfesorView --> ProfesorController : solicitarEdicion(profesorId)
+ProfesorController --> ProfesorRepository : buscarPorId(profesorId)
+
+ProfesorAbierto --> ProfesorAbierto : editarProfesor()
+
+EditarProfesorView --> ProfesorController : actualizar(nombre, email, departamento)
+ProfesorController --> ProfesorRepository : existeCorreo(correo) : Boolean
+ProfesorController --> ProfesorRepository : actualizar(profesor)
+ProfesorController --> Profesor : <<update>>
+
+EditarProfesorView ..> ProfesorAbierto : <<editar>>
+
+EditarProfesorView ..> ProfesoresAbierto : <<finalizar>> abrirProfesores()
+EditarProfesorView ..> ProfesoresAbierto : <<cancelar>>
+
+@enduml

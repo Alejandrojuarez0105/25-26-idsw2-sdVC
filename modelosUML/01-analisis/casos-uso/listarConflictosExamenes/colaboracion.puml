@@ -1,0 +1,34 @@
+@startuml listarConflictosExamenes-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Profesor Abierto" as ProfesorAbierto
+rectangle #CDEBA5 ":Profesor Preferencias Abierto" as ProfesorPreferenciasAbierto
+
+package listarConflictosExamenes as "listarConflictosExamenes()" {
+
+    rectangle #629EF9 ListarConflictosView
+    rectangle #b5bd68 ConflictosController
+    rectangle #F2AC4E ProfesorRepository
+    rectangle #F2AC4E ExamenRepository
+    rectangle #F2AC4E Profesor
+}
+
+ProfesorAbierto --> ListarConflictosView : listarConflictosExamenes(profesorId)
+
+ListarConflictosView --> ConflictosController : obtenerConflictos(profesorId)
+
+ConflictosController --> ProfesorRepository : buscarPorId(profesorId)
+ConflictosController --> ExamenRepository : buscarPorProfesor(profesorId)
+ConflictosController --> ConflictosController : detectarSolapamientos(examenes)
+
+ProfesorRepository --> Profesor : <<accede>>
+
+ListarConflictosView --> ConflictosController : resolverConflicto(conflictoId, cambios)
+
+ConflictosController --> ExamenRepository : actualizarExamen(examen)
+ConflictosController --> ConflictosController : detectarSolapamientos(examenes)
+
+ListarConflictosView ..> ProfesorPreferenciasAbierto : <<finalizar>>
+ListarConflictosView ..> ProfesorAbierto : editarProfesor()
+
+@enduml

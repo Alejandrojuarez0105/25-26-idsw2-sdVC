@@ -1,0 +1,34 @@
+@startuml abrirProfesores-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Sistema Disponible" as SistemaDisponible
+package abrirProfesores as "abrirProfesores()" {
+    rectangle #629EF9 AbrirProfesoresView
+    rectangle #b5bd68 ProfesoresController
+    rectangle #F2AC4E ProfesorRepository
+    rectangle #F2AC4E Profesor
+}
+
+rectangle #CDEBA5 ":Collaboration CrearProfesor" as CrearProfesor
+rectangle #CDEBA5 ":Collaboration EditarProfesor" as EditarProfesor
+rectangle #CDEBA5 ":Collaboration EliminarProfesor" as EliminarProfesor
+rectangle #CDEBA5 ":Collaboration ImportarProfesores" as ImportarProfesores
+
+SistemaDisponible -r-> AbrirProfesoresView : abrirProfesores()
+
+AbrirProfesoresView -d-> ProfesoresController: listarProfesores()
+AbrirProfesoresView -d-> ProfesoresController: filtrarProfesores(criterio)
+
+ProfesoresController -r-> ProfesorRepository: obtenerTodos()
+ProfesoresController -r-> ProfesorRepository: buscarPorCriterio(criterio)
+
+ProfesorRepository -d-> Profesor: <<accede>>
+
+AbrirProfesoresView -r-> SistemaDisponible: completarGestion()
+
+AbrirProfesoresView ..> CrearProfesor: crearProfesor()
+AbrirProfesoresView ..> EditarProfesor: editarProfesor(Profesor)
+AbrirProfesoresView ..> EliminarProfesor: eliminarProfesor(Profesor)
+AbrirProfesoresView ..> ImportarProfesores: importarProfesores()
+
+@enduml

@@ -1,0 +1,27 @@
+@startuml crearProfesor-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Profesores Abierto" as ProfesoresAbierto
+
+package crearProfesor as "crearProfesor()" {
+
+    rectangle #629EF9 CrearProfesorView
+    rectangle #b5bd68 ProfesorController
+    rectangle #F2AC4E ProfesorRepository
+    rectangle #F2AC4E Profesor
+}
+
+rectangle #CDEBA5 ":Profesor Abierto" as ProfesorAbierto
+
+ProfesoresAbierto --> CrearProfesorView : crearProfesor()
+
+CrearProfesorView --> ProfesorController : crear(codigo, nombre, email, departamento) : Profesor
+
+ProfesorController --> ProfesorRepository : existeCorreo(email) : Boolean
+ProfesorController --> Profesor : <<create>>
+ProfesorController --> ProfesorRepository : guardar(profesor)
+
+CrearProfesorView ..> ProfesorAbierto : <<finalizar>> editarProfesor(profesorNuevo)
+CrearProfesorView ..> ProfesoresAbierto : <<cancelar>>
+
+@enduml

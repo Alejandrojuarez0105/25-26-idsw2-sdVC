@@ -1,0 +1,41 @@
+@startuml asignarProfesorAExamen-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Profesor Abierto" as ProfesorAbierto
+rectangle #CDEBA5 ":Profesor Examenes Abierto" as ProfesorExamenesAbierto
+
+package asignarProfesorAExamen as "asignarProfesorAExamen()" {
+
+    rectangle #629EF9 AsignarProfesorView
+    rectangle #b5bd68 AsignacionesController
+    rectangle #F2AC4E ProfesorRepository
+    rectangle #F2AC4E ExamenRepository
+    rectangle #F2AC4E Profesor
+    rectangle #F2AC4E Examen
+}
+
+ProfesorAbierto --> AsignarProfesorView : asignarProfesorAExamen()
+
+AsignarProfesorView --> AsignacionesController : listarExamenesDisponibles()
+
+AsignacionesController --> ExamenRepository : obtenerTodosSinProfesor()
+
+AsignarProfesorView --> AsignacionesController : seleccionarProfesor(profesorId)
+AsignarProfesorView --> AsignacionesController : asignar(profesorId, examenId)
+
+AsignacionesController --> ProfesorRepository : buscarPorId(profesorId)
+AsignacionesController --> ExamenRepository : asignarProfesor(profesorId, examenId)
+
+AsignacionesController --> ExamenRepository : obtenerTodos()
+
+AsignacionesController --> AsignacionesController : verificarDisponibilidad()
+
+ExamenRepository --> Examen : <<accede>>
+ProfesorRepository --> Profesor : <<accede>>
+
+AsignarProfesorView ..> ProfesorExamenesAbierto : <<confirmar>> actualizarAsignaciones()
+AsignarProfesorView ..> ProfesorExamenesAbierto : <<cancelar>>
+
+AsignarProfesorView ..> ProfesorAbierto : editarProfesor()
+
+@enduml

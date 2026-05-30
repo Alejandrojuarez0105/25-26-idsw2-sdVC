@@ -52,6 +52,7 @@ Análisis completo de cada caso de uso especificado mediante:
   - [abrirGrados](casos-uso/abrirGrados/README.md) - Gestión de vista de listado de grados.
   - [abrirAsignaturas](casos-uso/abrirAsignaturas/README.md) - Gestión de vista de listado de asignaturas.
   - [abrirExamenes](casos-uso/abrirExamenes/README.md) - Gestión de vista de listado de exámenes.
+  - [abrirProfesores](casos-uso/abrirProfesores/README.md) - Gestión de vista de listado de profesores.
   - [abrirAulas](casos-uso/abrirAulas/README.md) - Gestión de vista de listado de aulas.
   - [abrirAlumnos](casos-uso/abrirAlumnos/README.md) - Gestión de vista de listado de alumnos.
 - **Gestión de entidades**:
@@ -66,6 +67,12 @@ Análisis completo de cada caso de uso especificado mediante:
   - [eliminarExamen](casos-uso/eliminarExamen/README.md) - Eliminación de exámenes.
   - [crearExamen](casos-uso/crearExamen/README.md) - Creación de nuevos exámenes.
   - [editarExamen](casos-uso/editarExamen/README.md) - Modificación de exámenes existentes.
+  - [importarProfesores](casos-uso/importarProfesores/README.md) - Importación masiva de profesores.
+  - [eliminarProfesor](casos-uso/eliminarProfesor/README.md) - Eliminación de profesores.
+  - [crearProfesor](casos-uso/crearProfesor/README.md) - Creación de nuevos profesores.
+  - [editarProfesor](casos-uso/editarProfesor/README.md) - Modificación de profesores existentes.
+  - [listarConflictosExamenes](casos-uso/listarConflictosExamenes/README.md) - Consulta de conflictos horarios de profesores.
+  - [asignarProfesorAExamen](casos-uso/asignarProfesorAExamen/README.md) - Asignación de supervisores a exámenes.
   - [importarAulas](casos-uso/importarAulas/README.md) - Importación masiva de aulas.
   - [eliminarAula](casos-uso/eliminarAula/README.md) - Eliminación de aulas.
   - [crearAula](casos-uso/crearAula/README.md) - Creación de nuevas aulas.
