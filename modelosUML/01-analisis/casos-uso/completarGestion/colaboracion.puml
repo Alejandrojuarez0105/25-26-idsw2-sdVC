@@ -1,0 +1,38 @@
+@startuml completarGestion-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Sistema Disponible" as SistemaDisponible
+
+package completarGestion as "completarGestion()" {
+    rectangle #629EF9 GestionView
+    rectangle #b5bd68 CompletarGestionController
+    rectangle #F2AC4E PermisosRepository
+    rectangle #F2AC4E OpcionesMenu
+    rectangle #F2AC4E Sesion
+}
+
+rectangle #CDEBA5 ":Collaboration AbrirGrados" as AbrirGrados
+rectangle #CDEBA5 ":Collaboration AbrirAsignaturas" as AbrirAsignaturas
+rectangle #CDEBA5 ":Collaboration AbrirProfesores" as AbrirProfesores
+rectangle #CDEBA5 ":Collaboration AbrirAulas" as AbrirAulas
+rectangle #CDEBA5 ":Collaboration AbrirExamenes" as AbrirExamenes
+rectangle #CDEBA5 ":Collaboration AbrirAlumnos" as AbrirAlumnos
+
+SistemaDisponible -r-> GestionView : disponibilizarSistema()
+
+GestionView -d-> CompletarGestionController: habilitarOpciones(administrador)
+
+CompletarGestionController --> Sesion: getUsuario() : Usuario
+CompletarGestionController --> PermisosRepository: obtenerOpciones(usuario) : List<Opcion>
+CompletarGestionController --> OpcionesMenu: crearOpciones(opciones) : OpcionesMenu
+
+GestionView --> OpcionesMenu: getOpciones() : List<Opcion>
+
+GestionView ..> AbrirGrados: abrirGrados()
+GestionView ..> AbrirAsignaturas: abrirAsignaturas()
+GestionView ..> AbrirProfesores: abrirProfesores()
+GestionView ..> AbrirAulas: abrirAulas()
+GestionView ..> AbrirExamenes: abrirExamenes()
+GestionView ..> AbrirAlumnos: abrirAlumnos()
+
+@enduml

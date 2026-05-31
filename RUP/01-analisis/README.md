@@ -81,6 +81,7 @@ Análisis completo de cada caso de uso especificado mediante:
   - [eliminarAlumno](casos-uso/eliminarAlumno/README.md) - Eliminación de alumnos.
   - [crearAlumno](casos-uso/crearAlumno/README.md) - Creación de nuevos alumnos.
   - [editarAlumno](casos-uso/editarAlumno/README.md) - Modificación de alumnos existentes.
+  - [completarGestion](casos-uso/completarGestion/README.md) - Finalización de actividades administrativas.
 - **Procesos del sistema**:
   - [generarCalendario](casos-uso/generarCalendario/README.md) - Generación algorítmica del calendario de exámenes.
   - [completarProceso](casos-uso/completarProceso/README.md) - Finalización de actividades de procesamiento.
