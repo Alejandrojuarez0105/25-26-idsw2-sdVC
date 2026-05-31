@@ -278,3 +278,16 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Consistencia técnica:** Se mantuvo la trazabilidad con el diagrama de contexto y se respetó el layout y breadcrumbs del proyecto, integrando la lógica de generación con los repositorios de Exámenes y Aulas.
 
 **Decisión:** Se completó satisfactoriamente el análisis de la rama Calendario, estableciendo el patrón para procesos de negocio complejos y cerrando la sesión de forma controlada.
+
+## [31/05/2026 18:30] Sesión 21: Análisis RUP - Rama Consulta de Calendario
+
+**Prompt:** COMENZAMOS, Sesión 21: Continuación de Análisis RUP. Continuaremos con el análisis de casos de uso del actor Administrador siguiendo estrictamente el orden definido en el diagrama de contexto... En esta sesión se desarrollará de forma controlada la extensión de la rama Consultar Calendario, incorporando funcionalidades de consulta y gestión del calendario de exámenes, incluyendo los siguientes casos de uso: consultarCalendario(), descargarCalendarioExamenes(), completarConsulta()... Debes mantener coherencia total con la estructura ya estabilizada del proyecto Davidario.
+
+**Resultado:**
+1. **Creación del caso de uso consultarCalendario():** Generado `README.md` en `RUP/01-analisis/casos-uso/consultarCalendario/` y `colaboracion.puml` en `modelosUML/01-analisis/casos-uso/consultarCalendario/` permitiendo la visualización y filtrado de la programación.
+2. **Creación del caso de uso descargarCalendarioExamenes():** Generado `README.md` en `RUP/01-analisis/casos-uso/descargarCalendarioExamenes/` y `colaboracion.puml` en `modelosUML/01-analisis/casos-uso/descargarCalendarioExamenes/` para la exportación de datos programados.
+3. **Creación del caso de uso completarConsulta():** Generado `README.md` en `RUP/01-analisis/casos-uso/completarConsulta/` y `colaboracion.puml` en `modelosUML/01-analisis/casos-uso/completarConsulta/` para el retorno ordenado al menú principal.
+4. **Actualización de índices:** Modificados `RUP/01-analisis/README.md` y `RUP/01-analisis/casos-uso/README.md` incluyendo la nueva sección "Consulta de información".
+5. **Consistencia técnica:** Se aseguró la trazabilidad con el diagrama de contexto y se mantuvo el patrón MVC, integrando la vista de consulta con el controlador de calendario y el repositorio de exámenes.
+
+**Decisión:** Se completó satisfactoriamente la extensión de la rama Calendario, cerrando el ciclo de vida de programación y consulta para el actor Administrador y manteniendo la integridad metodológica RUP.

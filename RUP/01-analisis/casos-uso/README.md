@@ -61,6 +61,11 @@ Esta carpeta contiene el análisis MVC (Model-View-Controller) de cada caso de u
 - [generarCalendario](/RUP/01-analisis/casos-uso/generarCalendario/README.md) - Generación algorítmica del calendario de exámenes
 - [completarProceso](/RUP/01-analisis/casos-uso/completarProceso/README.md) - Finalización de actividades de procesamiento
 
+### Consulta de información
+- [consultarCalendario](/RUP/01-analisis/casos-uso/consultarCalendario/README.md) - Visualización y filtrado del calendario de exámenes
+- [descargarCalendarioExamenes](/RUP/01-analisis/casos-uso/descargarCalendarioExamenes/README.md) - Exportación del calendario en formatos externos
+- [completarConsulta](/RUP/01-analisis/casos-uso/completarConsulta/README.md) - Finalización de la actividad de consulta
+
 ## Estructura de análisis
 
 Cada carpeta de análisis contiene:

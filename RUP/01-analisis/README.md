@@ -84,6 +84,10 @@ Análisis completo de cada caso de uso especificado mediante:
 - **Procesos del sistema**:
   - [generarCalendario](casos-uso/generarCalendario/README.md) - Generación algorítmica del calendario de exámenes.
   - [completarProceso](casos-uso/completarProceso/README.md) - Finalización de actividades de procesamiento.
+- **Consulta de información**:
+  - [consultarCalendario](casos-uso/consultarCalendario/README.md) - Visualización y filtrado del calendario de exámenes.
+  - [descargarCalendarioExamenes](casos-uso/descargarCalendarioExamenes/README.md) - Exportación del calendario en formatos externos.
+  - [completarConsulta](casos-uso/completarConsulta/README.md) - Finalización de la actividad de consulta.
 
 ## Arquitectura emergente
 

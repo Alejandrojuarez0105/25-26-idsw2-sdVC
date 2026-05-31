@@ -1,0 +1,45 @@
+@startuml consultarCalendario-analisis-optimo
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Sistema Disponible" as SistemaDisponible
+
+package consultarCalendario as "consultarCalendario()" {
+
+    rectangle #629EF9 ConsultarCalendarioView
+    rectangle #b5bd68 CalendarioController
+    rectangle #F2AC4E ExamenRepository
+
+    rectangle #F2AC4E Calendario
+    rectangle #F2AC4E Examen
+    rectangle #F2AC4E Asignatura
+    rectangle #F2AC4E Grado
+
+    rectangle #F2AC4E ":Session" as Session
+}
+
+rectangle #CDEBA5 ":Calendario Abierto" as CalendarioAbierto
+rectangle #CDEBA5 ":Collaboration DescargarCalendario" as DescargarCalendario
+rectangle #CDEBA5 ":Collaboration ComunicarIncidencia" as Incidencia
+
+SistemaDisponible -r-> ConsultarCalendarioView : consultarCalendario()
+
+ConsultarCalendarioView -d-> CalendarioController : solicitarCalendario(rango, filtros)
+
+CalendarioController -l-> Session : obtenerUsuarioActivo()
+
+CalendarioController -d-> ExamenRepository : buscarExamenes(rango, filtros, usuario)
+
+ExamenRepository --> Examen
+Examen --> Asignatura
+Asignatura --> Grado
+Calendario --> Examen
+
+ConsultarCalendarioView -r-> CalendarioAbierto : mostrarCalendario(List<Examen>)
+
+CalendarioAbierto -d-> ConsultarCalendarioView : descargarCalendarioExamenes()
+ConsultarCalendarioView ..> DescargarCalendario : <<descargar>>
+ConsultarCalendarioView ..> Incidencia : <<incidencia>> (Profesor)
+
+ConsultarCalendarioView ..> SistemaDisponible : <<finalizar>> completarConsulta()
+
+@enduml
