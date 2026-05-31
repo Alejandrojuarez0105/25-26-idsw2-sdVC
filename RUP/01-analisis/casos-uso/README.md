@@ -57,6 +57,10 @@ Esta carpeta contiene el análisis MVC (Model-View-Controller) de cada caso de u
 - [crearAlumno](/RUP/01-analisis/casos-uso/crearAlumno/README.md) - Creación de nuevos alumnos
 - [editarAlumno](/RUP/01-analisis/casos-uso/editarAlumno/README.md) - Modificación de alumnos existentes
 
+### Procesos del sistema
+- [generarCalendario](/RUP/01-analisis/casos-uso/generarCalendario/README.md) - Generación algorítmica del calendario de exámenes
+- [completarProceso](/RUP/01-analisis/casos-uso/completarProceso/README.md) - Finalización de actividades de procesamiento
+
 ## Estructura de análisis
 
 Cada carpeta de análisis contiene:

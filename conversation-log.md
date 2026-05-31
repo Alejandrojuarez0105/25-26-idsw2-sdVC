@@ -266,3 +266,15 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 9. **Consistencia técnica:** Se mantuvo la trazabilidad con el modelo del dominio y el diagrama de contexto, respetando el layout, breadcrumbs y arquitectura MVC del proyecto.
 
 **Decisión:** Se completó satisfactoriamente el análisis de la rama Profesores, integrando funcionalidades clave de gestión y asignación, manteniendo la coherencia metodológica con el resto del proyecto Davidario.
+
+## [31/05/2026 16:35] Sesión 20: Análisis RUP - Rama Calendario
+
+**Prompt:** COMENZAMOS, Sesión 20: Continuación de Análisis RUP. Continuaremos con el análisis de casos de uso del actor Administrador siguiendo estrictamente el orden definido en el diagrama de contexto... En esta sesión se desarrollará de forma controlada toda la rama correspondiente a Calendario, incluyendo los siguientes casos de uso: generarCalendario(), completarProceso()... Debes mantener coherencia total con la estructura ya estabilizada del proyecto Davidario.
+
+**Resultado:**
+1. **Creación del caso de uso generarCalendario():** Generado `README.md` en `RUP/01-analisis/casos-uso/generarCalendario/` y `colaboracion.puml` en `modelosUML/01-analisis/casos-uso/generarCalendario/` siguiendo el patrón MVC para procesos algorítmicos.
+2. **Creación del caso de uso completarProceso():** Generado `README.md` en `RUP/01-analisis/casos-uso/completarProceso/` y `colaboracion.puml` en `modelosUML/01-analisis/casos-uso/completarProceso/` para formalizar la salida de actividades de procesamiento.
+3. **Actualización de índices:** Modificados `RUP/01-analisis/README.md` y `RUP/01-analisis/casos-uso/README.md` incluyendo la nueva sección "Procesos del sistema" para albergar la rama Calendario.
+4. **Consistencia técnica:** Se mantuvo la trazabilidad con el diagrama de contexto y se respetó el layout y breadcrumbs del proyecto, integrando la lógica de generación con los repositorios de Exámenes y Aulas.
+
+**Decisión:** Se completó satisfactoriamente el análisis de la rama Calendario, estableciendo el patrón para procesos de negocio complejos y cerrando la sesión de forma controlada.

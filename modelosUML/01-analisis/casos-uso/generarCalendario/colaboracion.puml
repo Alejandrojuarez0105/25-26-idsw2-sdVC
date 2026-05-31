@@ -1,0 +1,41 @@
+@startuml generarCalendario-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Sistema Disponible" as SistemaDisponible
+rectangle #CDEBA5 ":Calendario Generado" as CalendarioGenerado
+rectangle #CDEBA5 ":Collaboration ListarConflictosExamenes" as ListarConflictosExamenes
+
+package generarCalendario as "generarCalendario()" {
+
+    rectangle #629EF9 GenerarCalendarioView
+    rectangle #b5bd68 CalendarioController
+    rectangle #F2AC4E ExamenRepository
+    rectangle #F2AC4E AulaRepository
+    rectangle #F2AC4E ProfesorRepository
+    rectangle #F2AC4E PreferenciaRepository
+    rectangle #F2AC4E Examen
+    rectangle #F2AC4E Calendario
+    rectangle #F2AC4E GeneracionResult
+}
+
+SistemaDisponible --> GenerarCalendarioView : generarCalendario()
+
+CalendarioController --> ExamenRepository : obtenerExamenesPendientes()
+CalendarioController --> AulaRepository : obtenerAulasDisponibles()
+CalendarioController --> ProfesorRepository : obtenerProfesoresDisponibles()
+CalendarioController --> PreferenciaRepository : verificarPreferenciasDocentes(franja, fecha)
+
+GenerarCalendarioView --> CalendarioController : generar(fechaInicio, fechaFin, franjas) : GeneracionResult 
+
+GenerarCalendarioView ..> ListarConflictosExamenes : revisarConflictos()
+
+CalendarioController --> Examen : <<update>> asignarProfesorAExamen()
+
+CalendarioController --> Calendario : <<update>>
+
+CalendarioController --> GeneracionResult : <<create>>
+
+GenerarCalendarioView ..> CalendarioGenerado : <<finalizar>> guardarCalendario()
+GenerarCalendarioView ..> SistemaDisponible : <<cancelar>>
+
+@enduml

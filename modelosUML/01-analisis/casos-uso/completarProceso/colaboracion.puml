@@ -1,0 +1,18 @@
+@startuml completarProceso-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Calendario Generado" as CalendarioGenerado
+package completarProceso as "completarProceso()" {
+    rectangle #629EF9 GenerarCalendarioView
+    rectangle #b5bd68 CalendarioController
+}
+
+rectangle #CDEBA5 ":Sistema Disponible" as SistemaDisponible
+
+CalendarioGenerado -r-> GenerarCalendarioView : completarProceso()
+
+GenerarCalendarioView -d-> CalendarioController : finalizarSesionProceso()
+
+GenerarCalendarioView -r-> SistemaDisponible : <<navega>>
+
+@enduml
