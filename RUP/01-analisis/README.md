@@ -46,49 +46,49 @@ Análisis completo de cada caso de uso especificado mediante:
 
 ### Casos completamente analizados
 - **Gestión del sistema**: 
-  - [iniciarSesion](casos-uso/iniciarSesion/README.md) - Autenticación con clases de análisis MVC.
-  - [cerrarSesion](casos-uso/cerrarSesion/README.md) - Finalización de sesión segura.
+  - [iniciarSesion](casos-uso/0-Administrador/iniciarSesion/README.md) - Autenticación con clases de análisis MVC.
+  - [cerrarSesion](casos-uso/0-Administrador/cerrarSesion/README.md) - Finalización de sesión segura.
 - **Apertura de entidades**:
-  - [abrirGrados](casos-uso/abrirGrados/README.md) - Gestión de vista de listado de grados.
-  - [abrirAsignaturas](casos-uso/abrirAsignaturas/README.md) - Gestión de vista de listado de asignaturas.
-  - [abrirExamenes](casos-uso/abrirExamenes/README.md) - Gestión de vista de listado de exámenes.
-  - [abrirProfesores](casos-uso/abrirProfesores/README.md) - Gestión de vista de listado de profesores.
-  - [abrirAulas](casos-uso/abrirAulas/README.md) - Gestión de vista de listado de aulas.
-  - [abrirAlumnos](casos-uso/abrirAlumnos/README.md) - Gestión de vista de listado de alumnos.
+  - [abrirGrados](casos-uso/0-Administrador/abrirGrados/README.md) - Gestión de vista de listado de grados.
+  - [abrirAsignaturas](casos-uso/0-Administrador/abrirAsignaturas/README.md) - Gestión de vista de listado de asignaturas.
+  - [abrirExamenes](casos-uso/0-Administrador/abrirExamenes/README.md) - Gestión de vista de listado de exámenes.
+  - [abrirProfesores](casos-uso/0-Administrador/abrirProfesores/README.md) - Gestión de vista de listado de profesores.
+  - [abrirAulas](casos-uso/0-Administrador/abrirAulas/README.md) - Gestión de vista de listado de aulas.
+  - [abrirAlumnos](casos-uso/0-Administrador/abrirAlumnos/README.md) - Gestión de vista de listado de alumnos.
 - **Gestión de entidades**:
-  - [importarGrados](casos-uso/importarGrados/README.md) - Importación masiva de grados académicos.
-  - [eliminarGrado](casos-uso/eliminarGrado/README.md) - Eliminación de grados académicos.
-  - [crearGrado](casos-uso/crearGrado/README.md) - Creación de nuevos grados académicos.
-  - [editarGrado](casos-uso/editarGrado/README.md) - Modificación de grados académicos.
-  - [importarAsignaturas](casos-uso/importarAsignaturas/README.md) - Importación masiva de asignaturas.
-  - [eliminarAsignatura](casos-uso/eliminarAsignatura/README.md) - Eliminación de asignaturas.
-  - [crearAsignatura](casos-uso/crearAsignatura/README.md) - Creación de nuevas asignaturas académicas.
-  - [editarAsignatura](casos-uso/editarAsignatura/README.md) - Modificación de asignaturas académicas.
-  - [eliminarExamen](casos-uso/eliminarExamen/README.md) - Eliminación de exámenes.
-  - [crearExamen](casos-uso/crearExamen/README.md) - Creación de nuevos exámenes.
-  - [editarExamen](casos-uso/editarExamen/README.md) - Modificación de exámenes existentes.
-  - [importarProfesores](casos-uso/importarProfesores/README.md) - Importación masiva de profesores.
-  - [eliminarProfesor](casos-uso/eliminarProfesor/README.md) - Eliminación de profesores.
-  - [crearProfesor](casos-uso/crearProfesor/README.md) - Creación de nuevos profesores.
-  - [editarProfesor](casos-uso/editarProfesor/README.md) - Modificación de profesores existentes.
-  - [listarConflictosExamenes](casos-uso/listarConflictosExamenes/README.md) - Consulta de conflictos horarios de profesores.
-  - [asignarProfesorAExamen](casos-uso/asignarProfesorAExamen/README.md) - Asignación de supervisores a exámenes.
-  - [importarAulas](casos-uso/importarAulas/README.md) - Importación masiva de aulas.
-  - [eliminarAula](casos-uso/eliminarAula/README.md) - Eliminación de aulas.
-  - [crearAula](casos-uso/crearAula/README.md) - Creación de nuevas aulas.
-  - [editarAula](casos-uso/editarAula/README.md) - Modificación de aulas existentes.
-  - [importarAlumnos](casos-uso/importarAlumnos/README.md) - Importación masiva de alumnos.
-  - [eliminarAlumno](casos-uso/eliminarAlumno/README.md) - Eliminación de alumnos.
-  - [crearAlumno](casos-uso/crearAlumno/README.md) - Creación de nuevos alumnos.
-  - [editarAlumno](casos-uso/editarAlumno/README.md) - Modificación de alumnos existentes.
-  - [completarGestion](casos-uso/completarGestion/README.md) - Finalización de actividades administrativas.
+  - [importarGrados](casos-uso/0-Administrador/importarGrados/README.md) - Importación masiva de grados académicos.
+  - [eliminarGrado](casos-uso/0-Administrador/eliminarGrado/README.md) - Eliminación de grados académicos.
+  - [crearGrado](casos-uso/0-Administrador/crearGrado/README.md) - Creación de nuevos grados académicos.
+  - [editarGrado](casos-uso/0-Administrador/editarGrado/README.md) - Modificación de grados académicos.
+  - [importarAsignaturas](casos-uso/0-Administrador/importarAsignaturas/README.md) - Importación masiva de asignaturas.
+  - [eliminarAsignatura](casos-uso/0-Administrador/eliminarAsignatura/README.md) - Eliminación de asignaturas.
+  - [crearAsignatura](casos-uso/0-Administrador/crearAsignatura/README.md) - Creación de nuevas asignaturas académicas.
+  - [editarAsignatura](casos-uso/0-Administrador/editarAsignatura/README.md) - Modificación de asignaturas académicas.
+  - [eliminarExamen](casos-uso/0-Administrador/eliminarExamen/README.md) - Eliminación de exámenes.
+  - [crearExamen](casos-uso/0-Administrador/crearExamen/README.md) - Creación de nuevos exámenes.
+  - [editarExamen](casos-uso/0-Administrador/editarExamen/README.md) - Modificación de exámenes existentes.
+  - [importarProfesores](casos-uso/0-Administrador/importarProfesores/README.md) - Importación masiva de profesores.
+  - [eliminarProfesor](casos-uso/0-Administrador/eliminarProfesor/README.md) - Eliminación de profesores.
+  - [crearProfesor](casos-uso/0-Administrador/crearProfesor/README.md) - Creación de nuevos profesores.
+  - [editarProfesor](casos-uso/0-Administrador/editarProfesor/README.md) - Modificación de profesores existentes.
+  - [listarConflictosExamenes](casos-uso/0-Administrador/listarConflictosExamenes/README.md) - Consulta de conflictos horarios de profesores.
+  - [asignarProfesorAExamen](casos-uso/0-Administrador/asignarProfesorAExamen/README.md) - Asignación de supervisores a exámenes.
+  - [importarAulas](casos-uso/0-Administrador/importarAulas/README.md) - Importación masiva de aulas.
+  - [eliminarAula](casos-uso/0-Administrador/eliminarAula/README.md) - Eliminación de aulas.
+  - [crearAula](casos-uso/0-Administrador/crearAula/README.md) - Creación de nuevas aulas.
+  - [editarAula](casos-uso/0-Administrador/editarAula/README.md) - Modificación de aulas existentes.
+  - [importarAlumnos](casos-uso/0-Administrador/importarAlumnos/README.md) - Importación masiva de alumnos.
+  - [eliminarAlumno](casos-uso/0-Administrador/eliminarAlumno/README.md) - Eliminación de alumnos.
+  - [crearAlumno](casos-uso/0-Administrador/crearAlumno/README.md) - Creación de nuevos alumnos.
+  - [editarAlumno](casos-uso/0-Administrador/editarAlumno/README.md) - Modificación de alumnos existentes.
+  - [completarGestion](casos-uso/0-Administrador/completarGestion/README.md) - Finalización de actividades administrativas.
 - **Procesos del sistema**:
-  - [generarCalendario](casos-uso/generarCalendario/README.md) - Generación algorítmica del calendario de exámenes.
-  - [completarProceso](casos-uso/completarProceso/README.md) - Finalización de actividades de procesamiento.
+  - [generarCalendario](casos-uso/0-Administrador/generarCalendario/README.md) - Generación algorítmica del calendario de exámenes.
+  - [completarProceso](casos-uso/0-Administrador/completarProceso/README.md) - Finalización de actividades de procesamiento.
 - **Consulta de información**:
-  - [consultarCalendario](casos-uso/consultarCalendario/README.md) - Visualización y filtrado del calendario de exámenes.
-  - [descargarCalendarioExamenes](casos-uso/descargarCalendarioExamenes/README.md) - Exportación del calendario en formatos externos.
-  - [completarConsulta](casos-uso/completarConsulta/README.md) - Finalización de la actividad de consulta.
+  - [consultarCalendario](casos-uso/0-Administrador/consultarCalendario/README.md) - Visualización y filtrado del calendario de exámenes.
+  - [descargarCalendarioExamenes](casos-uso/0-Administrador/descargarCalendarioExamenes/README.md) - Exportación del calendario en formatos externos.
+  - [completarConsulta](casos-uso/0-Administrador/completarConsulta/README.md) - Finalización de la actividad de consulta.
 
 ## Arquitectura emergente
 

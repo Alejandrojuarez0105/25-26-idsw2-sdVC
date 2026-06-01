@@ -19,53 +19,53 @@ Esta carpeta contiene el análisis MVC (Model-View-Controller) de cada caso de u
 ## Casos de uso analizados
 
 ### Gestión del sistema
-- [iniciarSesion](/RUP/01-analisis/casos-uso/iniciarSesion/README.md) - Autenticación con clases de análisis MVC
-- [cerrarSesion](/RUP/01-analisis/casos-uso/cerrarSesion/README.md) - Finalización de sesión segura
+- [iniciarSesion](/RUP/01-analisis/casos-uso/0-Administrador/iniciarSesion/README.md) - Autenticación con clases de análisis MVC
+- [cerrarSesion](/RUP/01-analisis/casos-uso/0-Administrador/cerrarSesion/README.md) - Finalización de sesión segura
 
 ### Apertura de entidades
-- [abrirGrados](/RUP/01-analisis/casos-uso/abrirGrados/README.md) - Gestión de vista de listado de grados
-- [abrirAsignaturas](/RUP/01-analisis/casos-uso/abrirAsignaturas/README.md) - Gestión de vista de listado de asignaturas
-- [abrirExamenes](/RUP/01-analisis/casos-uso/abrirExamenes/README.md) - Gestión de vista de listado de exámenes
-- [abrirProfesores](/RUP/01-analisis/casos-uso/abrirProfesores/README.md) - Gestión de vista de listado de profesores
-- [abrirAulas](/RUP/01-analisis/casos-uso/abrirAulas/README.md) - Gestión de vista de listado de aulas
-- [abrirAlumnos](/RUP/01-analisis/casos-uso/abrirAlumnos/README.md) - Gestión de vista de listado de alumnos
+- [abrirGrados](/RUP/01-analisis/casos-uso/0-Administrador/abrirGrados/README.md) - Gestión de vista de listado de grados
+- [abrirAsignaturas](/RUP/01-analisis/casos-uso/0-Administrador/abrirAsignaturas/README.md) - Gestión de vista de listado de asignaturas
+- [abrirExamenes](/RUP/01-analisis/casos-uso/0-Administrador/abrirExamenes/README.md) - Gestión de vista de listado de exámenes
+- [abrirProfesores](/RUP/01-analisis/casos-uso/0-Administrador/abrirProfesores/README.md) - Gestión de vista de listado de profesores
+- [abrirAulas](/RUP/01-analisis/casos-uso/0-Administrador/abrirAulas/README.md) - Gestión de vista de listado de aulas
+- [abrirAlumnos](/RUP/01-analisis/casos-uso/0-Administrador/abrirAlumnos/README.md) - Gestión de vista de listado de alumnos
 
 ### Gestión de entidades
-- [importarGrados](/RUP/01-analisis/casos-uso/importarGrados/README.md) - Importación masiva de grados académicos
-- [eliminarGrado](/RUP/01-analisis/casos-uso/eliminarGrado/README.md) - Eliminación de grados académicos
-- [crearGrado](/RUP/01-analisis/casos-uso/crearGrado/README.md) - Creación de nuevos grados académicos
-- [editarGrado](/RUP/01-analisis/casos-uso/editarGrado/README.md) - Modificación de grados académicos
-- [importarAsignaturas](/RUP/01-analisis/casos-uso/importarAsignaturas/README.md) - Importación masiva de asignaturas
-- [eliminarAsignatura](/RUP/01-analisis/casos-uso/eliminarAsignatura/README.md) - Eliminación de asignaturas
-- [crearAsignatura](/RUP/01-analisis/casos-uso/crearAsignatura/README.md) - Creación de nuevas asignaturas académicas
-- [editarAsignatura](/RUP/01-analisis/casos-uso/editarAsignatura/README.md) - Modificación de asignaturas académicas
-- [eliminarExamen](/RUP/01-analisis/casos-uso/eliminarExamen/README.md) - Eliminación de exámenes
-- [crearExamen](/RUP/01-analisis/casos-uso/crearExamen/README.md) - Creación de nuevos exámenes
-- [editarExamen](/RUP/01-analisis/casos-uso/editarExamen/README.md) - Modificación de exámenes existentes
-- [importarProfesores](/RUP/01-analisis/casos-uso/importarProfesores/README.md) - Importación masiva de profesores
-- [eliminarProfesor](/RUP/01-analisis/casos-uso/eliminarProfesor/README.md) - Eliminación de profesores
-- [crearProfesor](/RUP/01-analisis/casos-uso/crearProfesor/README.md) - Creación de nuevos profesores
-- [editarProfesor](/RUP/01-analisis/casos-uso/editarProfesor/README.md) - Modificación de profesores existentes
-- [listarConflictosExamenes](/RUP/01-analisis/casos-uso/listarConflictosExamenes/README.md) - Consulta de conflictos horarios de profesores
-- [asignarProfesorAExamen](/RUP/01-analisis/casos-uso/asignarProfesorAExamen/README.md) - Asignación de supervisores a exámenes
-- [importarAulas](/RUP/01-analisis/casos-uso/importarAulas/README.md) - Importación masiva de aulas
-- [eliminarAula](/RUP/01-analisis/casos-uso/eliminarAula/README.md) - Eliminación de aulas
-- [crearAula](/RUP/01-analisis/casos-uso/crearAula/README.md) - Creación de nuevas aulas
-- [editarAula](/RUP/01-analisis/casos-uso/editarAula/README.md) - Modificación de aulas existentes
-- [importarAlumnos](/RUP/01-analisis/casos-uso/importarAlumnos/README.md) - Importación masiva de alumnos
-- [eliminarAlumno](/RUP/01-analisis/casos-uso/eliminarAlumno/README.md) - Eliminación de alumnos
-- [crearAlumno](/RUP/01-analisis/casos-uso/crearAlumno/README.md) - Creación de nuevos alumnos
-- [editarAlumno](/RUP/01-analisis/casos-uso/editarAlumno/README.md) - Modificación de alumnos existentes
-- [completarGestion](/RUP/01-analisis/casos-uso/completarGestion/README.md) - Finalización de actividades administrativas
+- [importarGrados](/RUP/01-analisis/casos-uso/0-Administrador/importarGrados/README.md) - Importación masiva de grados académicos
+- [eliminarGrado](/RUP/01-analisis/casos-uso/0-Administrador/eliminarGrado/README.md) - Eliminación de grados académicos
+- [crearGrado](/RUP/01-analisis/casos-uso/0-Administrador/crearGrado/README.md) - Creación de nuevos grados académicos
+- [editarGrado](/RUP/01-analisis/casos-uso/0-Administrador/editarGrado/README.md) - Modificación de grados académicos
+- [importarAsignaturas](/RUP/01-analisis/casos-uso/0-Administrador/importarAsignaturas/README.md) - Importación masiva de asignaturas
+- [eliminarAsignatura](/RUP/01-analisis/casos-uso/0-Administrador/eliminarAsignatura/README.md) - Eliminación de asignaturas
+- [crearAsignatura](/RUP/01-analisis/casos-uso/0-Administrador/crearAsignatura/README.md) - Creación de nuevas asignaturas académicas
+- [editarAsignatura](/RUP/01-analisis/casos-uso/0-Administrador/editarAsignatura/README.md) - Modificación de asignaturas académicas
+- [eliminarExamen](/RUP/01-analisis/casos-uso/0-Administrador/eliminarExamen/README.md) - Eliminación de exámenes
+- [crearExamen](/RUP/01-analisis/casos-uso/0-Administrador/crearExamen/README.md) - Creación de nuevos exámenes
+- [editarExamen](/RUP/01-analisis/casos-uso/0-Administrador/editarExamen/README.md) - Modificación de exámenes existentes
+- [importarProfesores](/RUP/01-analisis/casos-uso/0-Administrador/importarProfesores/README.md) - Importación masiva de profesores
+- [eliminarProfesor](/RUP/01-analisis/casos-uso/0-Administrador/eliminarProfesor/README.md) - Eliminación de profesores
+- [crearProfesor](/RUP/01-analisis/casos-uso/0-Administrador/crearProfesor/README.md) - Creación de nuevos profesores
+- [editarProfesor](/RUP/01-analisis/casos-uso/0-Administrador/editarProfesor/README.md) - Modificación de profesores existentes
+- [listarConflictosExamenes](/RUP/01-analisis/casos-uso/0-Administrador/listarConflictosExamenes/README.md) - Consulta de conflictos horarios de profesores
+- [asignarProfesorAExamen](/RUP/01-analisis/casos-uso/0-Administrador/asignarProfesorAExamen/README.md) - Asignación de supervisores a exámenes
+- [importarAulas](/RUP/01-analisis/casos-uso/0-Administrador/importarAulas/README.md) - Importación masiva de aulas
+- [eliminarAula](/RUP/01-analisis/casos-uso/0-Administrador/eliminarAula/README.md) - Eliminación de aulas
+- [crearAula](/RUP/01-analisis/casos-uso/0-Administrador/crearAula/README.md) - Creación de nuevas aulas
+- [editarAula](/RUP/01-analisis/casos-uso/0-Administrador/editarAula/README.md) - Modificación de aulas existentes
+- [importarAlumnos](/RUP/01-analisis/casos-uso/0-Administrador/importarAlumnos/README.md) - Importación masiva de alumnos
+- [eliminarAlumno](/RUP/01-analisis/casos-uso/0-Administrador/eliminarAlumno/README.md) - Eliminación de alumnos
+- [crearAlumno](/RUP/01-analisis/casos-uso/0-Administrador/crearAlumno/README.md) - Creación de nuevos alumnos
+- [editarAlumno](/RUP/01-analisis/casos-uso/0-Administrador/editarAlumno/README.md) - Modificación de alumnos existentes
+- [completarGestion](/RUP/01-analisis/casos-uso/0-Administrador/completarGestion/README.md) - Finalización de actividades administrativas
 
 ### Procesos del sistema
-- [generarCalendario](/RUP/01-analisis/casos-uso/generarCalendario/README.md) - Generación algorítmica del calendario de exámenes
-- [completarProceso](/RUP/01-analisis/casos-uso/completarProceso/README.md) - Finalización de actividades de procesamiento
+- [generarCalendario](/RUP/01-analisis/casos-uso/0-Administrador/generarCalendario/README.md) - Generación algorítmica del calendario de exámenes
+- [completarProceso](/RUP/01-analisis/casos-uso/0-Administrador/completarProceso/README.md) - Finalización de actividades de procesamiento
 
 ### Consulta de información
-- [consultarCalendario](/RUP/01-analisis/casos-uso/consultarCalendario/README.md) - Visualización y filtrado del calendario de exámenes
-- [descargarCalendarioExamenes](/RUP/01-analisis/casos-uso/descargarCalendarioExamenes/README.md) - Exportación del calendario en formatos externos
-- [completarConsulta](/RUP/01-analisis/casos-uso/completarConsulta/README.md) - Finalización de la actividad de consulta
+- [consultarCalendario](/RUP/01-analisis/casos-uso/0-Administrador/consultarCalendario/README.md) - Visualización y filtrado del calendario de exámenes
+- [descargarCalendarioExamenes](/RUP/01-analisis/casos-uso/0-Administrador/descargarCalendarioExamenes/README.md) - Exportación del calendario en formatos externos
+- [completarConsulta](/RUP/01-analisis/casos-uso/0-Administrador/completarConsulta/README.md) - Finalización de la actividad de consulta
 
 ## Estructura de análisis
 
