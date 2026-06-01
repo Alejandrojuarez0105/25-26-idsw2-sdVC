@@ -1,0 +1,18 @@
+@startuml completarConsulta-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Calendario Abierto" as CalendarioAbierto
+package completarConsulta as "completarConsulta()" {
+    rectangle #629EF9 ConsultarCalendarioView
+    rectangle #b5bd68 CalendarioController
+}
+
+rectangle #CDEBA5 ":Sistema Disponible" as SistemaDisponible
+
+CalendarioAbierto -r-> ConsultarCalendarioView : completarConsulta()
+
+ConsultarCalendarioView -d-> CalendarioController : finalizarSesionConsulta()
+
+ConsultarCalendarioView -r-> SistemaDisponible : <<navega>>
+
+@enduml

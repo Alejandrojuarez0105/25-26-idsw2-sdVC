@@ -327,3 +327,15 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 5. **Consistencia técnica:** Se preservó la trazabilidad con los prototipos y diagramas de contexto del Profesor, asegurando la coherencia arquitectónica con la rama del Administrador.
 
 **Decisión:** Se consolidó la base de análisis para el actor Profesor, completando todas las funcionalidades definidas en su diagrama de contexto y manteniendo la integridad documental del proyecto.
+
+## [01/06/2026 21:15] Sesión 25: Análisis RUP - Actor Alumno
+
+**Prompt:** COMENZAMOS, Sesión 25: Continuación de Análisis RUP. Continuaremos con el análisis de casos de uso del actor Alumno siguiendo estrictamente el orden definido en el diagrama de contexto... En esta sesión se desarrollará de forma controlada toda la rama correspondiente al actor Alumno, incluyendo los siguientes casos de uso: iniciarSesion(), cerrarSesion(), consultarCalendario(), descargarCalendarioExamenes(), completarConsulta()...
+
+**Resultado:**
+1. **Creación de estructura:** Generadas subcarpetas `2-Alumno/` en `RUP/01-analisis/casos-uso/`, `modelosUML/01-analisis/casos-uso/` e `images/01-analisis/casos-uso/`.
+2. **Adaptación de casos reutilizados:** Generados `README.md` y `colaboracion.puml` para `iniciarSesion()`, `cerrarSesion()`, `consultarCalendario()`, `descargarCalendarioExamenes()` y `completarConsulta()`, adaptando el actor y mensajes al contexto del Alumno (eliminando transiciones no correspondientes como las de incidencias).
+3. **Actualización de índices:** Modificados `RUP/01-analisis/README.md` y `RUP/01-analisis/casos-uso/README.md` para incorporar la sección "Actor Alumno" con sus respectivos enlaces.
+4. **Consistencia técnica:** Se preservó la trazabilidad con los diagramas de contexto del Alumno, asegurando la coherencia arquitectónica con las ramas de los otros actores.
+
+**Decisión:** Se completó satisfactoriamente el análisis para el actor Alumno, cerrando el ciclo de análisis para todos los actores principales del sistema Davidario.

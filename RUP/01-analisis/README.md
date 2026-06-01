@@ -99,6 +99,13 @@ Análisis completo de cada caso de uso especificado mediante:
   - [comunicarIncidenciasHorario](casos-uso/1-Profesor/comunicarIncidenciasHorario/README.md) - Reporte de incidencias en la programación.
   - [completarComunicacion](casos-uso/1-Profesor/completarComunicacion/README.md) - Finalización de reporte.
 
+- **Actor Alumno**:
+  - [iniciarSesion](casos-uso/2-Alumno/iniciarSesion/README.md) - Acceso al sistema para alumnos.
+  - [cerrarSesion](casos-uso/2-Alumno/cerrarSesion/README.md) - Cierre de sesión seguro.
+  - [consultarCalendario](casos-uso/2-Alumno/consultarCalendario/README.md) - Consulta de exámenes programados del alumno.
+  - [descargarCalendarioExamenes](casos-uso/2-Alumno/descargarCalendarioExamenes/README.md) - Exportación del calendario personal.
+  - [completarConsulta](casos-uso/2-Alumno/completarConsulta/README.md) - Finalización de consulta.
+
 ## Arquitectura emergente
 
 ### Separación de responsabilidades por capas
