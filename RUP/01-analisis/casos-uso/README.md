@@ -67,6 +67,15 @@ Esta carpeta contiene el análisis MVC (Model-View-Controller) de cada caso de u
 - [descargarCalendarioExamenes](/RUP/01-analisis/casos-uso/0-Administrador/descargarCalendarioExamenes/README.md) - Exportación del calendario en formatos externos
 - [completarConsulta](/RUP/01-analisis/casos-uso/0-Administrador/completarConsulta/README.md) - Finalización de la actividad de consulta
 
+### Actor Profesor
+- [iniciarSesion](/RUP/01-analisis/casos-uso/1-Profesor/iniciarSesion/README.md) - Acceso al sistema para profesores
+- [cerrarSesion](/RUP/01-analisis/casos-uso/1-Profesor/cerrarSesion/README.md) - Cierre de sesión seguro
+- [consultarCalendario](/RUP/01-analisis/casos-uso/1-Profesor/consultarCalendario/README.md) - Consulta de exámenes programados del profesor
+- [descargarCalendarioExamenes](/RUP/01-analisis/casos-uso/1-Profesor/descargarCalendarioExamenes/README.md) - Exportación del calendario personal
+- [completarConsulta](/RUP/01-analisis/casos-uso/1-Profesor/completarConsulta/README.md) - Finalización de consulta
+- [comunicarIncidenciasHorario](/RUP/01-analisis/casos-uso/1-Profesor/comunicarIncidenciasHorario/README.md) - Reporte de incidencias en la programación
+- [completarComunicacion](/RUP/01-analisis/casos-uso/1-Profesor/completarComunicacion/README.md) - Finalización de reporte
+
 ## Estructura de análisis
 
 Cada carpeta de análisis contiene:

@@ -1,0 +1,18 @@
+@startuml completarComunicacion-analisis
+skinparam linetype polyline
+
+rectangle #CDEBA5 ":Incidencias Abierto" as IncidenciasAbierto
+package completarComunicacion as "completarComunicacion()" {
+    rectangle #629EF9 ComunicarIncidenciasView
+    rectangle #b5bd68 IncidenciasController
+}
+
+rectangle #CDEBA5 ":Sistema Disponible" as SistemaDisponible
+
+IncidenciasAbierto -r-> ComunicarIncidenciasView : completarComunicacion()
+
+ComunicarIncidenciasView -d-> IncidenciasController : finalizarSesionComunicacion()
+
+ComunicarIncidenciasView -r-> SistemaDisponible : <<navega>>
+
+@enduml

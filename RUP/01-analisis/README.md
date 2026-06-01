@@ -90,6 +90,15 @@ Análisis completo de cada caso de uso especificado mediante:
   - [descargarCalendarioExamenes](casos-uso/0-Administrador/descargarCalendarioExamenes/README.md) - Exportación del calendario en formatos externos.
   - [completarConsulta](casos-uso/0-Administrador/completarConsulta/README.md) - Finalización de la actividad de consulta.
 
+- **Actor Profesor**:
+  - [iniciarSesion](casos-uso/1-Profesor/iniciarSesion/README.md) - Acceso al sistema para profesores.
+  - [cerrarSesion](casos-uso/1-Profesor/cerrarSesion/README.md) - Cierre de sesión seguro.
+  - [consultarCalendario](casos-uso/1-Profesor/consultarCalendario/README.md) - Consulta de exámenes programados del profesor.
+  - [descargarCalendarioExamenes](casos-uso/1-Profesor/descargarCalendarioExamenes/README.md) - Exportación del calendario personal.
+  - [completarConsulta](casos-uso/1-Profesor/completarConsulta/README.md) - Finalización de consulta.
+  - [comunicarIncidenciasHorario](casos-uso/1-Profesor/comunicarIncidenciasHorario/README.md) - Reporte de incidencias en la programación.
+  - [completarComunicacion](casos-uso/1-Profesor/completarComunicacion/README.md) - Finalización de reporte.
+
 ## Arquitectura emergente
 
 ### Separación de responsabilidades por capas

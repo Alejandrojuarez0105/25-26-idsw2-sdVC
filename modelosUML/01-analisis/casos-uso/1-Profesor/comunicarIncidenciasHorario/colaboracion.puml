@@ -1,0 +1,51 @@
+@startuml comunicarIncidenciasHorario-analisis
+
+skinparam linetype polyline
+skinparam nodesep 100
+skinparam ranksep 100
+
+rectangle #CDEBA5 ":Sistema Disponible" as SistemaDisponible
+rectangle #CDEBA5 ":Incidencias Abierto" as IncidenciasAbierto
+
+package comunicarIncidenciasHorario as "comunicarIncidenciasHorario()" {
+
+    rectangle #629EF9 ComunicarIncidenciasView
+    rectangle #b5bd68 IncidenciasController
+    rectangle #F2AC4E ExamenRepository
+    rectangle #F2AC4E IncidenciaRepository
+    rectangle #F2AC4E Examen
+    rectangle #F2AC4E Incidencia
+}
+
+SistemaDisponible -r-> ComunicarIncidenciasView : comunicarIncidenciasHorario()
+
+ComunicarIncidenciasView -d-> IncidenciasController : obtenerExamenesAsignados()
+
+IncidenciasController -r-> ExamenRepository : buscarPorProfesorActivo()
+ExamenRepository --> Examen
+
+ComunicarIncidenciasView -d-> IncidenciasController : seleccionarExamen(examenId)
+
+IncidenciasController -u-> ExamenRepository : buscarPorId(examenId)
+
+IncidenciasController -l-> ComunicarIncidenciasView : mostrarDatosExamen(examen)
+
+ComunicarIncidenciasView -d-> IncidenciasController : seleccionarTipoIncidencia(tipo)
+
+ComunicarIncidenciasView -d-> IncidenciasController : introducirDescripcion(texto)
+
+ComunicarIncidenciasView -d-> IncidenciasController : registrarIncidencia(examenId, tipo, descripcion)
+
+IncidenciasController -> Incidencia : <<create>>
+
+IncidenciasController -> IncidenciaRepository : guardar(incidencia)
+
+IncidenciaRepository --> Incidencia
+
+ComunicarIncidenciasView -r-> IncidenciasAbierto : mostrarIncidenciaRegistrada()
+
+IncidenciasAbierto ..> SistemaDisponible : <<finalizar>> completarComunicacion()
+
+IncidenciasAbierto ..> SistemaDisponible : cancelarComunicacion()
+
+@enduml
