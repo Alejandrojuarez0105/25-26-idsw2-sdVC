@@ -1,0 +1,21 @@
+@startuml arquitectura-davidario
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title Diagrama de Arquitectura - Davidario
+
+Person(actor, "Administrador / Profesor / Alumno", "Usuario del sistema")
+
+System_Boundary(system, "Arquitectura Davidario") {
+
+    Container(frontend, "React SPA (Vite + TypeScript)", "Frontend", "Interfaz de usuario")
+
+    Container(backend, "NestJS API", "Backend", "API REST y lógica de negocio")
+
+    ContainerDb(database, "PostgreSQL 16", "Base de Datos", "Persistencia de datos")
+}
+
+Rel(actor, frontend, "HTTP/HTTPS (UI)")
+Rel(frontend, backend, "REST API (JSON)")
+Rel(backend, database, "Prisma/TypeORM (SQL)")
+
+@enduml

@@ -351,3 +351,15 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Preparación metodológica:** Se definieron los artefactos de diseño obligatorios (Clases de Diseño, Secuencia de Diseño, Modelo Físico) para garantizar la coherencia RUP.
 
 **Decisión:** Se dio inicio formal a la fase de Diseño del proyecto Davidario, estableciendo los cimientos técnicos y estructurales para la transformación de los requisitos analíticos en especificaciones de implementación.
+
+## [02/06/2026 00:45] Sesión 27: Refinamiento de la Documentación de Diseño
+
+**Prompt:** COMENZAMOS, Sesión 27: Continuación de la fase de Diseño RUP. Haremos algunas correcciones al README puesto en RUP\02-diseño... agregar Ventajas y Rol al Stack Tecnológico... crear arquitectura.puml y clases-diseño.puml... crear apartado de Configuración y estructura... crear README dentro de RUP/02-diseño/casos-uso.
+
+**Resultado:**
+1. **Modelado Global de Diseño:** Creados `arquitectura.puml` (detallando la interacción Frontend-Backend-DB) y `clases-diseño.puml` (especificando tipos de datos técnicos, UUIDs y DTOs iniciales) en `modelosUML/02-diseño/`.
+2. **Refactorización del README Principal:** Actualizado `RUP/02-diseño/README.md` incorporando las ventajas y roles del stack (React, NestJS, PostgreSQL), integrando los nuevos diagramas globales y definiendo la estructura inicial del repositorio de código.
+3. **Índice de Casos de Uso:** Generado `RUP/02-diseño/casos-uso/README.md` como punto de entrada para los futuros diseños detallados por actor.
+4. **Consistencia Metodológica:** Se alineó la documentación con el estándar pedagógico del profesor, manteniendo la trazabilidad con los modelos de análisis previos.
+
+**Decisión:** Se consolidó la base documental y técnica de la fase de Diseño, estableciendo los patrones de arquitectura y persistencia que regirán el desarrollo detallado del sistema.

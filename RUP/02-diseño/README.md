@@ -16,57 +16,78 @@
 
 Esta sección constituye la fase de **Diseño** del sistema **Davidario**, donde se transforman los modelos de análisis conceptuales en especificaciones técnicas detalladas para la implementación, utilizando un stack tecnológico moderno y escalable.
 
-## Stack Tecnológico
+## Propósito
+Esta fase tiene como objetivo definir la arquitectura del sistema, la selección tecnológica y el diseño detallado de los componentes para guiar la implementación técnica y asegurar la calidad del producto final.
 
-El diseño del sistema se fundamenta en las siguientes tecnologías:
+## Stack Tecnológico Seleccionado
 
-### Frontend
+Para la implementación de **Davidario**, se ha seleccionado una arquitectura de **Single Page Application (SPA)** con Backend modular, optimizada para el ecosistema TypeScript.
+
+### Frontend: React + TypeScript
 - **Framework**: [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
 - **Build Tool**: [Vite](https://vitejs.dev/)
-- **Estilo**: CSS modular y componentes reutilizables.
+- **Ventajas**: Reactividad eficiente, ecosistema masivo de componentes y tipado estático con TypeScript que previene errores comunes en UI.
+- **Rol**: Interfaz de usuario interactiva, gestión de rutas en el cliente y consumo de la API REST.
 
-### Backend
+### Backend: Node.js + NestJS
 - **Framework**: [NestJS](https://nestjs.com/) (Node.js + TypeScript)
 - **Arquitectura**: Basada en módulos, controladores y servicios.
 - **ORM**: [Prisma](https://www.prisma.io/) o [TypeORM](https://typeorm.io/) (orientado a PostgreSQL).
+- **Ventajas**: Arquitectura modular robusta, inyección de dependencias nativa y soporte de primera clase para TypeScript.
+- **Rol**: Lógica de negocio centralizada, validación de datos, seguridad y orquestación del acceso a datos.
 
-### Base de Datos
+### Base de Datos: PostgreSQL 16
 - **Motor**: [PostgreSQL 16](https://www.postgresql.org/)
 - **Gestión**: pgAdmin para administración y monitoreo.
+- **Ventajas**: Motor relacional estándar de la industria, soporte para tipos complejos (JSONB, UUID) y alta integridad referencial.
+- **Rol**: Almacenamiento persistente de toda la información del sistema.
 
-## Arquitectura de Diseño
+## Artefactos de Diseño General
 
-El sistema sigue una arquitectura de **Capas Técnicas** que extiende el patrón MVC de análisis:
+### Arquitectura del sistema
 
-1.  **Capa de Presentación (Frontend)**: Componentes React que implementan las vistas (Boundary) identificadas.
-2.  **Capa de API (Backend - Controllers)**: Endpoints NestJS que actúan como controladores de diseño.
-3.  **Capa de Lógica de Negocio (Backend - Services)**: Servicios NestJS que encapsulan la lógica compleja.
-4.  **Capa de Persistencia (Backend - Repositories/ORM)**: Mapeo de entidades a la base de datos relacional.
+Vista técnica de alto nivel de las capas del sistema y su comunicación.
 
-## Artefactos de Diseño
+<div align=center>
 
-Para cada caso de uso se desarrollarán los siguientes artefactos:
+|![Diagrama de Arquitectura](/images/02-diseño/casos-uso/arquitectura-davidario.svg)|
+|:-:|
+|[Código PlantUML](/modelosUML/02-diseño/arquitectura.puml)|
 
-- **Diagramas de Clase de Diseño**: Detalle de atributos, métodos y tipos de datos (TypeScript).
-- **Diagramas de Secuencia de Diseño**: Interacción entre componentes de React, Controladores NestJS y la Base de Datos.
-- **Modelo Físico de Datos**: Esquema de tablas, llaves primarias y foráneas en PostgreSQL.
-- **Contratos de API**: Definición de objetos Request/Response (JSON).
+</div>
 
-## Cobertura de Diseño
+### Diagrama de clases de diseño (dominio y datos)
+
+Modelado detallado de entidades, tipos de datos técnicos y esquemas de persistencia.
+
+<div align=center>
+
+|![Diagrama de Clases de Diseño](/images/02-diseño/casos-uso/clases-diseño-davidario.svg)|
+|:-:|
+|[Código PlantUML](/modelosUML/02-diseño/clases-diseño.puml)|
+
+</div>
+
+## Configuración y Estructura del Proyecto
+
+El proyecto se organiza bajo un patrón de repositorio moderno facilitando la separación de capas:
+
+*   **/src/frontend**: Aplicación React con Vite.
+*   **/src/backend**: Aplicación NestJS (Módulos, Controladores, Servicios).
+*   **/src/shared**: Tipos TypeScript compartidos y DTOs comunes.
+*   **/prisma**: Esquemas de base de datos y migraciones (en caso de usar Prisma).
+
+## Diseño de Casos de Uso
+
+El diseño detallado de cada caso de uso se organiza en subcarpetas por actor dentro de [casos-uso](casos-uso/README.md):
 
 ### Actor Administrador
-*(Se irán incorporando los diseños detallados de los 39 casos de uso analizados)*
 
-- **Gestión del Sistema**:
-  - [iniciarSesion](casos-uso/0-Administrador/iniciarSesion/README.md)
-  - [cerrarSesion](casos-uso/0-Administrador/cerrarSesion/README.md)
-- **Gestión de Entidades**:
-  - [Grados](casos-uso/0-Administrador/abrirGrados/README.md)
-  - [Asignaturas](casos-uso/0-Administrador/abrirAsignaturas/README.md)
-  - [Exámenes](casos-uso/0-Administrador/abrirExamenes/README.md)
-  - [Aulas](casos-uso/0-Administrador/abrirAulas/README.md)
-  - [Profesores](casos-uso/0-Administrador/abrirProfesores/README.md)
-  - [Alumnos](casos-uso/0-Administrador/abrirAlumnos/README.md)
+#### Gestión del Sistema
+*(Se irá completando progresivamente)*
+
+#### Gestión de Entidades
+*(Se irá completando progresivamente)*
 
 ## Metodología de Diseño
 
@@ -78,4 +99,5 @@ Para cada caso de uso se desarrollarán los siguientes artefactos:
 
 - [Disciplina de Análisis](/RUP/01-analisis/README.md)
 - [Diagrama de Contexto - Administrador](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)
+- [Modelo del Dominio](/RUP/00-requisitos/00-modelo-del-dominio/README.md)
 - [AGENTES.md](/AGENTES.md) - Protocolos de diseño y codificación

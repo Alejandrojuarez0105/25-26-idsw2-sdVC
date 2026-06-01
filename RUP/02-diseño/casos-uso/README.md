@@ -1,0 +1,59 @@
+<div align="right">
+
+[![](https://img.shields.io/badge/-Inicio-0A3B64?style=for-the-badge&logo=github&logoColor=white)](/README.md)
+[![](https://img.shields.io/badge/-Modelo_del_Dominio-0A3B64?style=for-the-badge&logo=drawio&logoColor=white)](/RUP/00-requisitos/00-modelo-del-dominio/README.md)
+[![](https://img.shields.io/badge/-Actores_Y_Casos_de_Uso-0A3B64?style=for-the-badge&logo=use-case&logoColor=white)](/RUP/00-requisitos/01-casos-de-uso/0-Actores/README.md)
+[![](https://img.shields.io/badge/-Diagramas_de_Contexto-0A3B64?style=for-the-badge&logo=flowchart&logoColor=white)](/RUP/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/README.md)
+[![](https://img.shields.io/badge/-Detalle_de_Casos_de_Uso-0A3B64?style=for-the-badge&logo=notepad&logoColor=white)](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/README.md)
+[![](https://img.shields.io/badge/-Prototipos-0A3B64?style=for-the-badge&logo=figma&logoColor=white)](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/README.md)
+[![](https://img.shields.io/badge/-Priorización-0A3B64?style=for-the-badge&logo=priority&logoColor=white)](/RUP/00-requisitos/01-casos-de-uso/3-PriorizarCasosDeUso/README.md)
+[![](https://img.shields.io/badge/-Sesiones-0A3B64?style=for-the-badge&logo=google-meet&logoColor=white)](/RUP/00-requisitos/03-sesiones/README.md)
+[![](https://img.shields.io/badge/-IA-0A3B64?style=for-the-badge&logo=openai&logoColor=white)](/conversation-log.md)
+
+</div>
+
+# Diseño de Casos de Uso
+
+Esta carpeta contiene el diseño detallado de los casos de uso, transformando las clases de análisis conceptuales en componentes técnicos (Frontend y Backend) y definiendo la interacción mediante diagramas de secuencia de diseño.
+
+## Casos de uso diseñados
+
+*(Los diseños se irán incorporando progresivamente siguiendo el orden de la fase de análisis)*
+
+### Actor Administrador
+
+#### Gestión del sistema
+*(Vacío - En desarrollo)*
+
+#### Apertura de entidades
+*(Vacío - En desarrollo)*
+
+#### Gestión de entidades
+*(Vacío - En desarrollo)*
+
+#### Procesos del sistema
+*(Vacío - En desarrollo)*
+
+#### Consulta de información
+*(Vacío - En desarrollo)*
+
+### Actor Profesor
+*(Vacío - En desarrollo)*
+
+### Actor Alumno
+*(Vacío - En desarrollo)*
+
+## Estructura de diseño
+
+Cada carpeta de diseño incluye:
+
+- **README.md**: Documentación técnica del diseño del caso de uso.
+- **clases-diseño.puml**: Diagrama de clases de diseño (Controladores, Servicios, Componentes).
+- **secuencia-diseño.puml**: Diagrama de secuencia técnica detallando el flujo entre capas.
+
+## Metodologí­a de diseño detallado
+
+- **Contratos de Interfaz**: Definición de props en React y DTOs en NestJS.
+- **Lógica de Negocio**: Centralizada en servicios de NestJS.
+- **Estado del UI**: Gestión de hooks y estados locales en React.
+- **Persistencia**: Uso de repositorios orquestados por el ORM.
