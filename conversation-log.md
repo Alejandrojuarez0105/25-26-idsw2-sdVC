@@ -339,3 +339,15 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Consistencia técnica:** Se preservó la trazabilidad con los diagramas de contexto del Alumno, asegurando la coherencia arquitectónica con las ramas de los otros actores.
 
 **Decisión:** Se completó satisfactoriamente el análisis para el actor Alumno, cerrando el ciclo de análisis para todos los actores principales del sistema Davidario.
+
+## [02/06/2026 00:30] Sesión 26: Inicio de la fase de Diseño RUP
+
+**Prompt:** COMENZAMOS, Sesión 26: Inicio de la fase de Diseño RUP. A partir de este punto se da inicio formal a la fase de diseño del proyecto Davidario... establecer la estructura base del diseño del sistema, incluyendo la organización de carpetas, preparación del entorno y creación del documento inicial de diseño... Stack: React + TS + Vite (Frontend), NestJS + TS (Backend), PostgreSQL 16 (DB).
+
+**Resultado:**
+1. **Creación de estructura:** Generadas las carpetas base `02-diseño` en `RUP/`, `modelosUML/` e `images/`, incluyendo la subcarpeta `casos-uso/0-Administrador/`.
+2. **Análisis de referencia:** Se internalizó la metodología de diseño del profesor para adaptarla al stack tecnológico moderno definido (React/NestJS/PostgreSQL).
+3. **README de Diseño:** Creado `RUP/02-diseño/README.md` estableciendo la arquitectura de capas técnicas, el stack de desarrollo y el catálogo inicial de casos de uso a diseñar, asegurando la trazabilidad con la fase de análisis previa.
+4. **Preparación metodológica:** Se definieron los artefactos de diseño obligatorios (Clases de Diseño, Secuencia de Diseño, Modelo Físico) para garantizar la coherencia RUP.
+
+**Decisión:** Se dio inicio formal a la fase de Diseño del proyecto Davidario, estableciendo los cimientos técnicos y estructurales para la transformación de los requisitos analíticos en especificaciones de implementación.
