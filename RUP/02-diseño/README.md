@@ -81,7 +81,8 @@ El diseño detallado de cada caso de uso se organiza en subcarpetas por actor de
 ### Actor Administrador
 
 #### Gestión del Sistema
-*(Se irá completando progresivamente)*
+- [iniciarSesion](casos-uso/0-Administrador/iniciarSesion/README.md) - Diseño del acceso seguro.
+- [cerrarSesion](casos-uso/0-Administrador/cerrarSesion/README.md) - Diseño de finalización de sesión.
 
 #### Gestión de Entidades
 *(Se irá completando progresivamente)*

@@ -23,7 +23,8 @@ Esta carpeta contiene el diseño detallado de los casos de uso, transformando la
 ### Actor Administrador
 
 #### Gestión del sistema
-*(Vacío - En desarrollo)*
+- [iniciarSesion](0-Administrador/iniciarSesion/README.md) - Diseño técnico del acceso al sistema.
+- [cerrarSesion](0-Administrador/cerrarSesion/README.md) - Diseño técnico de la finalización de sesión.
 
 #### Apertura de entidades
 *(Vacío - En desarrollo)*

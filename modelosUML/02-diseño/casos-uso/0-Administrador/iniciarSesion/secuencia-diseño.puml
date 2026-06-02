@@ -1,0 +1,41 @@
+@startuml secuencia-diseño-iniciarSesion
+skinparam linetype polyline
+skinparam shadowing false
+
+actor Administrador
+participant "LoginView (React)" as View
+participant "useAuth (Hook)" as Hook
+participant "AuthService (Axios)" as Client
+participant "AuthController (NestJS)" as Controller
+participant "AuthService (Logic)" as Service
+participant "UsersService" as Users
+database "PostgreSQL" as DB
+
+Administrador -> View : introduce credenciales
+View -> Hook : login(credentials)
+Hook -> Client : authenticate(credentials)
+Client -> Controller : HTTP POST /auth/login (DTO)
+Controller -> Service : validateUser(credentials)
+Service -> Users : findByEmail(email)
+Users -> DB : SELECT * FROM "Usuario"
+DB --> Users : user_data
+Users --> Service : User
+Service -> Service : verify password (Bcrypt)
+Service --> Controller : validation result
+
+alt autenticación exitosa
+    Controller -> Service : login(User)
+    Service -> Service : sign JWT
+    Service --> Controller : { token, user_info }
+    Controller --> Client : 200 OK (AuthResponse)
+    Client --> Hook : store token & user
+    Hook --> View : success redirect
+    View --> Administrador : muestra dashboard
+else credenciales inválidas
+    Controller --> Client : 401 Unauthorized
+    Client --> Hook : error message
+    Hook --> View : display error
+    View --> Administrador : muestra advertencia
+end
+
+@enduml

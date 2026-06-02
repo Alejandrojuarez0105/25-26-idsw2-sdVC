@@ -1,113 +1,134 @@
-@startuml clases-diseño-davidario
+@startuml clases-diseño
 
-title Diagrama de Clases de Diseño - Davidario - Iteración 1
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam packageStyle rectangle
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+top to bottom direction
 
-package "Dominio / Modelos" {
+title Arquitectura Detallada de Dependencias y Dominio (NestJS + TypeORM)
 
-    class Universidad {
-        + id: UUID
-        + nombre: string
-    }
+package "API Layer (Controllers)" as Controllers #E3F2FD {
 
-    class Facultad {
-        + id: UUID
-        + nombre: string
-        + universidadId: UUID
-    }
-
-    class Grado {
-        + id: UUID
-        + nombre: string
-        + facultadId: UUID
-    }
-
-    class Asignatura {
-        + id: UUID
-        + codigo: string
-        + nombre: string
-        + creditos: number
-        + gradoId: UUID
-    }
-
-    class Profesor {
-        + id: UUID
-        + codigo: string
-        + nombre: string
-        + apellidos: string
-        + email: string
-        + departamento: string
-    }
-
-    class Alumno {
-        + id: UUID
-        + expediente: string
-        + nombre: string
-        + apellidos: string
-        + email: string
-    }
-
-    class Aula {
-        + id: UUID
-        + codigo: string
-        + nombre: string
-        + capacidad: number
-        + edificio: string
-        + planta: string
-        + tipo: string
-    }
-
-    class Examen {
-        + id: UUID
-        + fecha: Date
-        + asignaturaId: UUID
-        + aulaId: UUID
-        + supervisorId: UUID
-        + estado: ExamenEstado
-    }
-
-    enum ExamenEstado {
-        PENDIENTE
-        PROGRAMADO
-        FINALIZADO
-        CANCELADO
-    }
-
-    class FranjaHoraria {
-        + id: UUID
-        + dia: DayOfWeek
-        + horaInicio: Time
-        + horaFin: Time
-    }
+    class AuthController
+    class GradoController
+    class AsignaturaController
+    class ProfesorController
+    class AulaController
+    class AlumnoController
+    class ExamenController
+    class CalendarioController
+    class IncidenciaController
 }
 
-package "API / Schemas (DTOs)" {
+package "Business Logic Layer (Services)" as Services #F1F8E9 {
 
-    class CreateExamenDTO {
-        + asignaturaId: UUID
-        + fecha: Date
-    }
-
-    class UpdateExamenDTO {
-        + aulaId: UUID
-        + supervisorId: UUID
-        + fecha: Date
-    }
+    class AuthService
+    class GradoService
+    class AsignaturaService
+    class ProfesorService
+    class AulaService
+    class AlumnoService
+    class ExamenService
+    class CalendarioService
+    class IncidenciaService
 }
 
-package "Relaciones de Dominio" {
+package "Data Access Layer (Repositories)" as Repos #FFF3E0 {
 
-    Universidad "1" *-- "*" Facultad
-    Facultad "1" *-- "*" Grado
-    Grado "1" *-- "*" Asignatura
-
-    Asignatura "*" o-- "*" Profesor : "impartida por"
-    Asignatura "1" o-- "*" Alumno : "inscritos en"
-    Asignatura "1" o-- "*" Examen : "evalúa mediante"
-
-    Examen "1" --> "0..1" Aula : "se realiza en"
-    Examen "1" --> "0..1" Profesor : "supervisado por"
-    Examen "*" --> "0..1" FranjaHoraria : "programado en"
-    Examen "*" o-- "*" Alumno : "presentado por"
+    class UsuarioRepository <<TypeORM>>
+    class GradoRepository <<TypeORM>>
+    class AsignaturaRepository <<TypeORM>>
+    class ProfesorRepository <<TypeORM>>
+    class AulaRepository <<TypeORM>>
+    class AlumnoRepository <<TypeORM>>
+    class ExamenRepository <<TypeORM>>
+    class CalendarioRepository <<TypeORM>>
+    class IncidenciaRepository <<TypeORM>>
+    class PreferenciaRepository <<TypeORM>>
 }
+
+package "Domain Layer (Entities)" as Domain #FAFAFA {
+
+    class Usuario <<Entity>>
+    class Grado <<Entity>>
+    class Asignatura <<Entity>>
+    class Profesor <<Entity>>
+    class Preferencia <<Entity>>
+    class Aula <<Entity>>
+    class Alumno <<Entity>>
+    class Examen <<Entity>>
+    class Calendario <<Entity>>
+    class Incidencia <<Entity>>
+}
+
+package "DTOs" #E3F2FD {
+    class LoginDto
+    class CrearGradoDto
+    class CrearAsignaturaDto
+    class CrearProfesorDto
+    class CrearAulaDto
+    class CrearAlumnoDto
+    class CrearExamenDto
+    class GenerarCalendarioDto
+    class CrearIncidenciaDto
+}
+
+AuthController --> AuthService
+GradoController --> GradoService
+AsignaturaController --> AsignaturaService
+ProfesorController --> ProfesorService
+AulaController --> AulaService
+AlumnoController --> AlumnoService
+ExamenController --> ExamenService
+CalendarioController --> CalendarioService
+IncidenciaController --> IncidenciaService
+
+AuthController ..> LoginDto
+GradoController ..> CrearGradoDto
+AsignaturaController ..> CrearAsignaturaDto
+ProfesorController ..> CrearProfesorDto
+AulaController ..> CrearAulaDto
+AlumnoController ..> CrearAlumnoDto
+ExamenController ..> CrearExamenDto
+CalendarioController ..> GenerarCalendarioDto
+IncidenciaController ..> CrearIncidenciaDto
+
+AuthService --> UsuarioRepository
+GradoService --> GradoRepository
+AsignaturaService --> AsignaturaRepository
+ProfesorService --> ProfesorRepository
+ProfesorService --> PreferenciaRepository
+AulaService --> AulaRepository
+AlumnoService --> AlumnoRepository
+ExamenService --> ExamenRepository
+CalendarioService --> ExamenRepository
+CalendarioService --> AulaRepository
+CalendarioService --> PreferenciaRepository
+IncidenciaService --> IncidenciaRepository
+
+UsuarioRepository ..> Usuario
+GradoRepository ..> Grado
+AsignaturaRepository ..> Asignatura
+ProfesorRepository ..> Profesor
+AulaRepository ..> Aula
+AlumnoRepository ..> Alumno
+ExamenRepository ..> Examen
+CalendarioRepository ..> Calendario
+IncidenciaRepository ..> Incidencia
+PreferenciaRepository ..> Preferencia
+
+Grado "1" *-- "0..*" Asignatura
+Asignatura "0..*" -- "0..*" Profesor
+Profesor "1" *-- "0..*" Preferencia
+Asignatura "1" -- "0..*" Examen
+Aula "1" -- "0..*" Examen
+Profesor "1" -- "0..*" Examen
+Grado "1" -- "0..*" Alumno
+Calendario "1" *-- "0..*" Examen
+Examen "1" *-- "0..*" Incidencia
 
 @enduml

@@ -375,3 +375,15 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Vinculación Documental:** Actualizado el `README.md` de la fase de diseño con un enlace directo a la guía de configuración y scaffolding.
 
 **Decisión:** Se completó la especificación técnica de infraestructura del proyecto Davidario, proporcionando la hoja de ruta para la organización del código y la configuración del entorno de desarrollo.
+
+## [02/06/2026 19:50] Sesión 29: Diseño RUP - Autenticación
+
+**Prompt:** COMENZAMOS, Sesión 29: Inicio de la fase de Diseño RUP (Casos de uso base de autenticación)... se trabajará exclusivamente sobre: Actor Administrador: iniciarSesion(), cerrarSesion()... RUP/02-diseño/casos-uso/0-Administrador/iniciarSesion/README.md... RUP/02-diseño/casos-uso/0-Administrador/cerrarSesion/README.md.
+
+**Resultado:**
+1. **Diseño de iniciarSesion():** Generado `README.md`, `clases-diseño.puml` y `secuencia-diseño.puml` en `RUP/02-diseño/casos-uso/0-Administrador/iniciarSesion/`. Se modeló el flujo completo desde el componente React `LoginView`, pasando por el controlador NestJS, hasta la validación en PostgreSQL y devolución de JWT.
+2. **Diseño de cerrarSesion():** Generado `README.md` y `secuencia-diseño.puml` detallando la invalidación del token en el cliente (`useAuth` hook) y la redirección programática.
+3. **Actualización de índices:** Modificados `RUP/02-diseño/README.md` y `RUP/02-diseño/casos-uso/README.md` para incluir el estado de diseño de estos casos de uso.
+4. **Consistencia técnica:** Se aseguró la trazabilidad con los modelos de análisis previos, transformando las clases conceptuales en componentes reales del stack React/NestJS.
+
+**Decisión:** Se consolidó el diseño técnico de la infraestructura de seguridad del sistema, estableciendo los patrones para la comunicación cliente-servidor y la gestión de sesiones.
