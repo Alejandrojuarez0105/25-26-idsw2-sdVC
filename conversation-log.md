@@ -363,3 +363,15 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Consistencia Metodológica:** Se alineó la documentación con el estándar pedagógico del profesor, manteniendo la trazabilidad con los modelos de análisis previos.
 
 **Decisión:** Se consolidó la base documental y técnica de la fase de Diseño, estableciendo los patrones de arquitectura y persistencia que regirán el desarrollo detallado del sistema.
+
+## [02/06/2026 19:10] Sesión 28: Configuración y Scaffolding del Proyecto
+
+**Prompt:** COMENZAMOS, sesión 28: Añadiendo la configuración del proyecto al README. Dentro de la misma carpeta de RUP/02-diseño/ vas a crear un archivo llamado configuración-proyecto.md... definir estructura de directorios, configuraciones técnicas y esquema de base de datos... mapeo de diseño a código.
+
+**Resultado:**
+1. **Documentación Técnica:** Creado `RUP/02-diseño/configuración-proyecto.md` detallando el scaffolding para el stack React/NestJS/PostgreSQL, las estrategias de seguridad (JWT, Argon2) y la persistencia (Prisma/TypeORM).
+2. **Esquema Físico Inicial:** Definido el esquema SQL de PostgreSQL para las entidades base (Usuario, Grado, Asignatura) integrando el uso de UUIDs.
+3. **Trazabilidad de Implementación:** Establecido el mapeo entre artefactos UML y archivos de código fuente, facilitando la transición a la fase de construcción.
+4. **Vinculación Documental:** Actualizado el `README.md` de la fase de diseño con un enlace directo a la guía de configuración y scaffolding.
+
+**Decisión:** Se completó la especificación técnica de infraestructura del proyecto Davidario, proporcionando la hoja de ruta para la organización del código y la configuración del entorno de desarrollo.

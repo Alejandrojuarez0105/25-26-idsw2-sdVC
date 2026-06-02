@@ -50,9 +50,9 @@ Vista técnica de alto nivel de las capas del sistema y su comunicación.
 
 <div align=center>
 
-|![Diagrama de Arquitectura](/images/02-diseño/casos-uso/arquitectura-davidario.svg)|
+|![Diagrama de Arquitectura](/images/02-diseño/arquitectura.svg)|
 |:-:|
-|[Código PlantUML](/modelosUML/02-diseño/arquitectura.puml)|
+|[Código PlantUML](../../modelosUML/02-diseño/arquitectura.puml)|
 
 </div>
 
@@ -62,20 +62,17 @@ Modelado detallado de entidades, tipos de datos técnicos y esquemas de persiste
 
 <div align=center>
 
-|![Diagrama de Clases de Diseño](/images/02-diseño/casos-uso/clases-diseño-davidario.svg)|
+|![Diagrama de Clases de Diseño](/images/02-diseño/clases-diseño.svg)|
 |:-:|
-|[Código PlantUML](/modelosUML/02-diseño/clases-diseño.puml)|
+|[Código PlantUML](../../modelosUML/02-diseño/clases-diseño.puml)|
 
 </div>
 
 ## Configuración y Estructura del Proyecto
 
-El proyecto se organiza bajo un patrón de repositorio moderno facilitando la separación de capas:
+Definición de la estructura de directorios, configuraciones técnicas iniciales y esquema de base de datos para materializar la arquitectura en código ejecutable.
 
-*   **/src/frontend**: Aplicación React con Vite.
-*   **/src/backend**: Aplicación NestJS (Módulos, Controladores, Servicios).
-*   **/src/shared**: Tipos TypeScript compartidos y DTOs comunes.
-*   **/prisma**: Esquemas de base de datos y migraciones (en caso de usar Prisma).
+[Documento de Configuración y Scaffolding](configuración-proyecto.md)
 
 ## Diseño de Casos de Uso
 
