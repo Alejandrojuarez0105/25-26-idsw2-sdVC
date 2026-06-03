@@ -1,0 +1,43 @@
+# =========================
+# NODE / DEPENDENCIES
+# =========================
+node_modules/
+
+# =========================
+# BACKEND BUILD
+# =========================
+backend/dist/
+backend/build/
+backend/*.tsbuildinfo
+
+# =========================
+# FRONTEND BUILD
+# =========================
+frontend/dist/
+frontend/build/
+
+# =========================
+# ENV FILES (MUY IMPORTANTE)
+# =========================
+backend/.env
+frontend/.env
+.env
+
+# =========================
+# LOGS
+# =========================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# DATABASE / PRISMA
+# =========================
+backend/prisma/migrations/
+backend/prisma/dev.db
+
+# =========================
+# OS FILES
+# =========================
+.DS_Store
+Thumbs.db

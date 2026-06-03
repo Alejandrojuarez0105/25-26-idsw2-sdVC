@@ -1,0 +1,121 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum RolUsuario {
+  Admin
+  Profesor
+  Alumno
+}
+
+model Usuario {
+  id               String       @id @default(uuid()) @db.Uuid
+  nombre           String       @db.VarChar(50)
+  apellido         String       @db.VarChar(50)
+  email            String       @unique @db.VarChar(100)
+  password         String       @db.VarChar(255)
+  rol              RolUsuario
+  activo           Boolean      @default(true)
+  fechaCreacion    DateTime     @default(now()) @db.Timestamptz
+  
+  // Relations
+  profesor         Profesor?
+  alumno           Alumno?
+
+  @@index([email])
+}
+
+model CursoAcademico {
+  id      String  @id @default(uuid()) @db.Uuid
+  nombre  String  @unique @db.VarChar(20)
+  activo  Boolean @default(false)
+}
+
+model Grado {
+  id                 String       @id @default(uuid()) @db.Uuid
+  codigo             String       @unique @db.VarChar(20)
+  nombre             String       @db.VarChar(100)
+  descripcion        String?      @db.Text
+  fechaActualizacion DateTime     @default(now()) @db.Timestamptz @updatedAt
+
+  asignaturas        Asignatura[]
+  alumnos            Alumno[]
+}
+
+model Asignatura {
+  id            String   @id @default(uuid()) @db.Uuid
+  codigo        String   @unique @db.VarChar(20)
+  nombre        String   @db.VarChar(100)
+  creditos      Int
+  fechaCreacion DateTime @default(now()) @db.Timestamptz
+  
+  gradoId       String   @db.Uuid
+  grado         Grado    @relation(fields: [gradoId], references: [id], onDelete: Cascade)
+
+  profesores    ProfesorAsignatura[]
+  matriculas    Matricula[]
+
+  @@index([gradoId])
+}
+
+model Alumno {
+  id         String   @id @default(uuid()) @db.Uuid
+  usuarioId  String   @unique @db.Uuid
+  usuario    Usuario  @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  matricula  String   @unique @db.VarChar(20)
+  gradoId    String   @db.Uuid
+  grado      Grado    @relation(fields: [gradoId], references: [id])
+
+  matriculas Matricula[]
+}
+
+model Profesor {
+  id           String   @id @default(uuid()) @db.Uuid
+  usuarioId    String   @unique @db.Uuid
+  usuario      Usuario  @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  departamento String?  @db.VarChar(100)
+
+  asignaturas  ProfesorAsignatura[]
+}
+
+model ProfesorAsignatura {
+  profesorId   String     @db.Uuid
+  profesor     Profesor   @relation(fields: [profesorId], references: [id], onDelete: Cascade)
+  asignaturaId String     @db.Uuid
+  asignatura   Asignatura @relation(fields: [asignaturaId], references: [id], onDelete: Cascade)
+
+  @@id([profesorId, asignaturaId])
+}
+
+model Matricula {
+  id             String     @id @default(uuid()) @db.Uuid
+  alumnoId       String     @db.Uuid
+  alumno         Alumno     @relation(fields: [alumnoId], references: [id], onDelete: Cascade)
+  asignaturaId   String     @db.Uuid
+  asignatura     Asignatura @relation(fields: [asignaturaId], references: [id], onDelete: Cascade)
+  fechaMatricula DateTime   @default(now()) @db.Timestamptz
+
+  notas          Nota[]
+
+  @@unique([alumnoId, asignaturaId])
+  @@index([alumnoId])
+}
+
+model Nota {
+  id            String    @id @default(uuid()) @db.Uuid
+  matriculaId   String    @db.Uuid
+  matricula     Matricula @relation(fields: [matriculaId], references: [id], onDelete: Cascade)
+  nota          Decimal   @db.Decimal(4, 2)
+  convocatoria  String?   @db.VarChar(20)
+  fechaRegistro DateTime  @default(now()) @db.Timestamptz
+
+  @@index([matriculaId])
+}

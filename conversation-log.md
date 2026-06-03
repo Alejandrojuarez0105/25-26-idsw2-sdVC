@@ -399,3 +399,22 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Actualización de Índices:** Reflejado el avance en `RUP/02-diseño/README.md` y `RUP/02-diseño/casos-uso/README.md`, manteniendo la trazabilidad incremental con la fase de análisis.
 
 **Decisión:** Se completó satisfactoriamente el diseño técnico de la rama Grados, estableciendo los patrones de implementación para las operaciones CRUD y de importación masiva bajo la arquitectura NestJS + React.
+
+## [03/06/2026 17:15] Sesión 31: Inicio de Implementación RUP - iniciarSesion()
+
+**Prompt:** COMENZAMOS, Sesión 31: Inicio de Implementación RUP. Hemos iniciado la fase de Implementación... trabajaremos exclusivamente sobre el caso de uso: iniciarSesion()... crear toda la infraestructura mínima necesaria para que el sistema pueda ejecutarse localmente... Backend (NestJS), Frontend (React), PostgreSQL 16.
+
+**Resultado:**
+1. **Infraestructura de Backend (NestJS):**
+   - Configurado `src/backend/package.json` y esquema Prisma (`prisma/schema.prisma`) basado en el diseño relacional robusto.
+   - Implementado el módulo `Auth` incluyendo `AuthController`, `AuthService` (con Bcrypt y JWT) y `PrismaService`.
+   - Establecida la validación global mediante `ValidationPipe` y configuración de entorno en `.env`.
+2. **Infraestructura de Frontend (React + Vite):**
+   - Configurado `src/frontend/package.json` y estructurado el proyecto por features.
+   - Implementada la página de login (`LoginView.tsx`), el hook `useAuth` para gestión de estado y el cliente API con Axios e interceptores.
+   - Establecida la navegación básica con `react-router-dom` incluyendo redirección por rol (Admin, Profesor, Alumno).
+3. **Persistencia y Documentación:**
+   - Generado script SQL `src/database-setup.sql` para la inicialización de PostgreSQL 16.
+   - Creado `src/README.md` con las instrucciones detalladas de instalación y ejecución local.
+
+**Decisión:** Se estableció la base técnica funcional del proyecto Davidario, logrando la implementación incremental del primer ramillete de autenticación y asegurando la coherencia entre el diseño técnico y el código ejecutable.
