@@ -17,6 +17,7 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 - [abrirGrados](0-Administrador/abrirGrados/README.md) - Implementación de la vista de listado de grados.
 - [importarGrados](0-Administrador/importarGrados/README.md) - Implementación de la carga masiva de grados.
 - [eliminarGrado](0-Administrador/eliminarGrado/README.md) - Implementación de la funcionalidad de borrado.
+- [crearGrado](0-Administrador/crearGrado/README.md) - Implementación del registro de nuevos grados.
 
 #### Gestión de entidades
 *(En desarrollo)*

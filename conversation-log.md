@@ -500,3 +500,18 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Validación y Estabilidad:** Se aseguró que la carga masiva no afecte la integridad de los datos existentes y que el listado se refresque correctamente tras la operación.
 
 **Decisión:** Se completó satisfactoriamente la funcionalidad de importación masiva para el módulo de grados, proporcionando al Administrador una herramienta eficiente para la carga inicial de datos bajo los estándares institucionales.
+
+## [04/06/2026 01:30] Sesión 38: Implementación de crearGrado()
+
+**Prompt:** Muy bien, para la sesión 38 vamos a hacer la implementación del caso de uso crearGrado... permitir que un administrador pueda crear nuevos grados desde la interfaz de gestión... Backend: Agregar endpoint POST /grados... Frontend: Botón Crear Grado, Formulario, Validación de campos... respetar el diseño del prototipo.
+
+**Resultado:**
+1. **Extensión del Backend:** Actualizado `GradosService` con el método `create`, que incluye validación de unicidad de código, y `GradosController` con el endpoint `POST /grados` (retornando `201 Created` o `409 Conflict`).
+2. **Desarrollo del Frontend:**
+   - Creado el componente `CrearGradoView.tsx` en `src/frontend/src/features/admin/grados/`, replicando fielmente el prototipo visual `crearGrado.html` (campos de texto, textarea, botones estilizados y tipografía Courier New).
+   - Implementada la validación de campos obligatorios y formato de código (letras, números y guiones).
+   - Configurada la ruta `/admin/grados/crear` en `App.tsx` y vinculado el botón correspondiente en el listado principal.
+3. **Documentación Técnica:** Creado `RUP/03-desarrollo/casos-uso/0-Administrador/crearGrado/README.md` y actualizados los índices globales de implementación.
+4. **Validación de Flujo:** Se aseguró la actualización automática del listado de grados tras la creación exitosa mediante redirección programática.
+
+**Decisión:** Se completó la funcionalidad de alta de entidades para el módulo de grados, manteniendo la coherencia arquitectónica NestJS + React y el rigor metodológico RUP del proyecto.

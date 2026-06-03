@@ -131,7 +131,7 @@ const GradosView: React.FC = () => {
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '25px', flexWrap: 'wrap' }}>
           <button 
-            onClick={() => handleAccionNoImplementada('Crear nuevo')}
+            onClick={() => navigate('/admin/grados/crear')}
             style={{ minWidth: '160px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #999', fontWeight: 'bold', background: '#28a745', color: 'white' }}
           >
             ➕ Crear nuevo

@@ -13,6 +13,24 @@ export class GradosService {
     });
   }
 
+  async create(data: any) {
+    const existing = await this.prisma.grado.findUnique({
+      where: { codigo: data.codigo },
+    });
+
+    if (existing) {
+      throw new Error(`El código ${data.codigo} ya existe.`);
+    }
+
+    return this.prisma.grado.create({
+      data: {
+        codigo: data.codigo,
+        nombre: data.nombre,
+        descripcion: data.descripcion,
+      },
+    });
+  }
+
   async createMany(data: any[]) {
     const results = {
       success: 0,

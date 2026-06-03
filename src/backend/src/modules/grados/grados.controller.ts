@@ -8,6 +8,7 @@ import {
   NotFoundException,
   Param,
   Post,
+  ConflictException,
 } from '@nestjs/common';
 import { GradosService } from './grados.service';
 
@@ -18,6 +19,16 @@ export class GradosController {
   @Get()
   findAll() {
     return this.gradosService.findAll();
+  }
+
+  @Post()
+  @HttpCode(HttpStatus.CREATED)
+  async create(@Body() data: any) {
+    try {
+      return await this.gradosService.create(data);
+    } catch (err) {
+      throw new ConflictException(err.message);
+    }
   }
 
   @Post('import')

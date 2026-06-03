@@ -50,6 +50,7 @@ A continuación se detallan las especificaciones de implementación por actor y 
 - [abrirGrados](casos-uso/0-Administrador/abrirGrados/README.md) - Implementación de la vista de listado de grados académicos.
 - [importarGrados](casos-uso/0-Administrador/importarGrados/README.md) - Implementación de la carga masiva mediante archivos CSV.
 - [eliminarGrado](casos-uso/0-Administrador/eliminarGrado/README.md) - Implementación del borrado seguro y controlado.
+- [crearGrado](casos-uso/0-Administrador/crearGrado/README.md) - Implementación del alta de nuevos grados académicos.
 
 ## Referencias
 
