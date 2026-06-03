@@ -30,7 +30,11 @@ Esta carpeta contiene el diseño detallado de los casos de uso, transformando la
 *(Vacío - En desarrollo)*
 
 #### Gestión de entidades
-*(Vacío - En desarrollo)*
+- [abrirGrados](0-Administrador/abrirGrados/README.md) - Diseño de vista de listado.
+- [importarGrados](0-Administrador/importarGrados/README.md) - Diseño de carga masiva.
+- [eliminarGrado](0-Administrador/eliminarGrado/README.md) - Diseño de borrado.
+- [crearGrado](0-Administrador/crearGrado/README.md) - Diseño de registro.
+- [editarGrado](0-Administrador/editarGrado/README.md) - Diseño de modificación.
 
 #### Procesos del sistema
 *(Vacío - En desarrollo)*

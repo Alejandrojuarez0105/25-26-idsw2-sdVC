@@ -1,0 +1,31 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "GradosImportView\n(React)" as UI <<Component>>
+participant "useGradosImport\n(Hook)" as Hook <<Hook>>
+participant "GradosService\n(Axios)" as FService <<Service>>
+participant "GradosController\n(NestJS)" as Controller <<Controller>>
+participant "GradosService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+Administrador -> UI : Selecciona archivo (CSV/Excel)
+Administrador -> UI : Click en "Importar"
+UI -> Hook : importGrados(file)
+Hook -> FService : importGrados(file)
+FService -> Controller : POST /grados/import (Multipart/Form-Data)
+Controller -> BService : processImport(fileBuffer)
+loop Por cada fila del archivo
+    BService -> BService : Validar datos
+    alt Datos válidos
+        BService -> DB : UPSERT "Grado"
+    else Datos inválidos
+        BService -> BService : Registrar error
+    end
+end
+BService --> Controller : ImportResultDTO
+Controller --> FService : JSON Response
+FService --> Hook : ImportResultDTO
+Hook --> UI : Actualiza estado (resultados)
+UI --> Administrador : Muestra resumen de importación
+@enduml

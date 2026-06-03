@@ -1,0 +1,26 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "GradosListView\n(React)" as UI <<Component>>
+participant "useGrados\n(Hook)" as Hook <<Hook>>
+participant "GradosService\n(Axios)" as FService <<Service>>
+participant "GradosController\n(NestJS)" as Controller <<Controller>>
+participant "GradosService\n(Logic)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+Administrador -> UI : Click en eliminar grado
+UI -> UI : Mostrar confirmación
+Administrador -> UI : Confirma eliminación
+UI -> Hook : deleteGrado(id)
+Hook -> FService : deleteGrado(id)
+FService -> Controller : DELETE /grados/:id
+Controller -> BService : remove(id)
+BService -> DB : DELETE FROM "Grado" WHERE id = :id
+DB --> BService : OK
+BService --> Controller : OK (204 No Content)
+Controller --> FService : OK
+FService --> Hook : OK
+Hook --> UI : Quita grado de la lista local
+UI --> Administrador : Muestra mensaje de éxito
+@enduml

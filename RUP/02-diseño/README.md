@@ -85,9 +85,13 @@ El diseño detallado de cada caso de uso se organiza en subcarpetas por actor de
 - [cerrarSesion](casos-uso/0-Administrador/cerrarSesion/README.md) - Diseño de finalización de sesión.
 
 #### Gestión de Entidades
-*(Se irá completando progresivamente)*
+- [abrirGrados](casos-uso/0-Administrador/abrirGrados/README.md) - Diseño de vista de listado.
+- [importarGrados](casos-uso/0-Administrador/importarGrados/README.md) - Diseño de carga masiva.
+- [eliminarGrado](casos-uso/0-Administrador/eliminarGrado/README.md) - Diseño de borrado.
+- [crearGrado](casos-uso/0-Administrador/crearGrado/README.md) - Diseño de registro.
+- [editarGrado](casos-uso/0-Administrador/editarGrado/README.md) - Diseño de modificación.
 
-## Metodología de Diseño
+#### Procesos del sistema
 
 - **Trazabilidad estricta**: Cada clase de diseño debe mapearse a una o más clases de análisis.
 - **Tipado fuerte**: Uso de TypeScript en todo el stack para minimizar errores en tiempo de ejecución.

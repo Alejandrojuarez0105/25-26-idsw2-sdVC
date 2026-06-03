@@ -387,3 +387,15 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Consistencia técnica:** Se aseguró la trazabilidad con los modelos de análisis previos, transformando las clases conceptuales en componentes reales del stack React/NestJS.
 
 **Decisión:** Se consolidó el diseño técnico de la infraestructura de seguridad del sistema, estableciendo los patrones para la comunicación cliente-servidor y la gestión de sesiones.
+
+## [03/06/2026 00:15] Sesión 30: Diseño RUP - Rama Grados
+
+**Prompt:** ## COMENZAMOS, Sesión 30: Continuación de Diseño RUP. Continuaremos con la fase de diseño del sistema... se desarrollará el diseño completo de la rama correspondiente a: abrirGrados(), importarGrados(), eliminarGrado(), crearGrado(), editarGrado()... adaptarlo completamente a la arquitectura y stack definido... React, NestJS, PostgreSQL 16.
+
+**Resultado:**
+1. **Diseño de Casos de Uso (Rama Grados):** Generados los artefactos técnicos (`README.md`, `clases-diseño.puml`, `secuencia-diseño.puml`) para los 5 casos de uso de la rama de Grados dentro de `RUP/02-diseño/casos-uso/0-Administrador/`.
+2. **Especificación Frontend/Backend:** Se detallaron los componentes React (Views, hooks como `useGrados`, `useGradoForm`) y los controladores/servicios de NestJS, asegurando la validación mediante DTOs.
+3. **Mapeo de Persistencia:** Se integró el esquema de base de datos PostgreSQL 16 definido en la configuración del proyecto, utilizando UUIDs para la identificación de registros.
+4. **Actualización de Índices:** Reflejado el avance en `RUP/02-diseño/README.md` y `RUP/02-diseño/casos-uso/README.md`, manteniendo la trazabilidad incremental con la fase de análisis.
+
+**Decisión:** Se completó satisfactoriamente el diseño técnico de la rama Grados, estableciendo los patrones de implementación para las operaciones CRUD y de importación masiva bajo la arquitectura NestJS + React.

@@ -1,0 +1,39 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "GradoEditView\n(React)" as UI <<Component>>
+participant "useGradoForm\n(Hook)" as Hook <<Hook>>
+participant "GradosService\n(Axios)" as FService <<Service>>
+participant "GradosController\n(NestJS)" as Controller <<Controller>>
+participant "GradosService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+== Carga de Datos ==
+Administrador -> UI : Accede a editar grado
+UI -> Hook : loadGrado(id)
+Hook -> FService : getGradoById(id)
+FService -> Controller : GET /grados/:id
+Controller -> BService : findOne(id)
+BService -> DB : SELECT * FROM "Grado" WHERE id = :id
+DB --> BService : Grado Data
+BService --> Controller : Grado Entity
+Controller --> FService : JSON Response
+FService --> Hook : Grado Object
+Hook --> UI : Rellena formulario
+
+== Edición ==
+Administrador -> UI : Modifica campos
+Administrador -> UI : Click en "Editar"
+UI -> Hook : update(id, data)
+Hook -> FService : updateGrado(id, data)
+FService -> Controller : PATCH /grados/:id (JSON Body)
+Controller -> BService : update(id, dto)
+BService -> DB : UPDATE "Grado" SET ... WHERE id = :id
+DB --> BService : OK
+BService --> Controller : Updated Grado Entity
+Controller --> FService : JSON Response
+FService --> Hook : Success
+Hook --> UI : Redirigir / Mostrar éxito
+UI --> Administrador : Muestra confirmación de cambios
+@enduml

@@ -1,0 +1,26 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "GradoCreateView\n(React)" as UI <<Component>>
+participant "useGradoForm\n(Hook)" as Hook <<Hook>>
+participant "GradosService\n(Axios)" as FService <<Service>>
+participant "GradosController\n(NestJS)" as Controller <<Controller>>
+participant "GradosService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+Administrador -> UI : Rellena formulario de nuevo grado
+Administrador -> UI : Click en "Guardar"
+UI -> Hook : submit(data)
+Hook -> FService : createGrado(data)
+FService -> Controller : POST /grados (JSON Body)
+Controller -> BService : create(dto)
+BService -> BService : Validar código único
+BService -> DB : INSERT INTO "Grado" (...)
+DB --> BService : Grado Creado (with UUID)
+BService --> Controller : Grado Entity
+Controller --> FService : JSON Response (201 Created)
+FService --> Hook : Grado Object
+Hook --> UI : Redirigir a listado / Mostrar éxito
+UI --> Administrador : Muestra confirmación de creación
+@enduml

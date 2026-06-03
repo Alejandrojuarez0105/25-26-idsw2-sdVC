@@ -1,7 +1,7 @@
 <div align="right">
 
 |[🏠️](/RUP/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|[🔍 Análisis](/RUP/01-analisis/casos-uso/0-Administrador/cerrarSesion/README.md)|**Diseño**|Implementación|Pruebas|
-|-|-|-|-|-|
+|-|-|-|-|-|-|
 
 </div>
 
@@ -69,4 +69,5 @@ Interacción técnica para la limpieza de credenciales y redirección del actor.
 - [Análisis: cerrarSesion()](/RUP/01-analisis/casos-uso/0-Administrador/cerrarSesion/README.md)
 - [Configuración del Proyecto](/RUP/02-diseño/configuración-proyecto.md)
 - [Diagrama de Contexto - Administrador](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)
+- [Diagramas de Clases](/images/02-diseño/clases-diseño.svg) - Diseño Global
 - [AGENTES.md](/AGENTES.md) - Protocolos de diseño
