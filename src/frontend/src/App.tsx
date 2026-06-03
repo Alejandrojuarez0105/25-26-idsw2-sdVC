@@ -1,11 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoginView from './features/auth/login/LoginView';
-
-// Placeholders for Dashboards
-const AdminDashboard = () => <div style={{ padding: '2rem' }}><h1>Dashboard Administrador</h1><p>Bienvenido al sistema Davidario.</p></div>;
-const ProfesorDashboard = () => <div style={{ padding: '2rem' }}><h1>Dashboard Profesor</h1><p>Bienvenido, docente.</p></div>;
-const AlumnoDashboard = () => <div style={{ padding: '2rem' }}><h1>Dashboard Alumno</h1><p>Bienvenido, estudiante.</p></div>;
+import AdminDashboard from './features/admin/AdminDashboard';
+import ProfesorDashboard from './features/profesor/ProfesorDashboard';
+import AlumnoDashboard from './features/alumno/AlumnoDashboard';
 
 const App: React.FC = () => {
   return (

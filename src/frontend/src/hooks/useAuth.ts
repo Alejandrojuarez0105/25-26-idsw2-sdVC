@@ -7,6 +7,9 @@ export const useAuth = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const userJson = localStorage.getItem('user');
+  const user = userJson ? JSON.parse(userJson) : null;
+
   const login = async (credentials: any) => {
     setLoading(true);
     setError(null);
@@ -33,5 +36,5 @@ export const useAuth = () => {
     navigate('/login');
   };
 
-  return { login, logout, error, loading };
+  return { login, logout, user, error, loading };
 };
