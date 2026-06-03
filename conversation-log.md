@@ -470,3 +470,18 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 5. **Documentación Técnica:** Creado el informe de desarrollo en `RUP/03-desarrollo/casos-uso/0-Administrador/abrirGrados/README.md` y actualizados los índices globales de implementación.
 
 **Decisión:** Se completó satisfactoriamente el primer módulo de gestión de entidades, logrando la visualización funcional de los grados académicos y manteniendo la estabilidad y trazabilidad RUP del sistema Davidario.
+
+## [04/06/2026 00:05] Sesión 36: Implementación de eliminarGrado()
+
+**Prompt:** Muy bien, para la sesión 36 vamos a hacer la implementación del caso de uso eliminarGrado... Permitir que un administrador elimine un grado existente desde la interfaz de abrirGrados... Backend: Agregar endpoint DELETE /grados/:id... Frontend: Agregar Botón Eliminar, Confirmación previa, Refresco automático... No modificar estructura de base de datos.
+
+**Resultado:**
+1. **Extensión del Backend:** Actualizado `GradosService` con el método `remove` (usando Prisma) y `GradosController` con el endpoint `DELETE /grados/:id`. Se implementó el manejo de excepciones `404 NotFound`.
+2. **Refinamiento del Frontend:**
+   - Se actualizó el servicio `grados.service.ts` con el método `remove`.
+   - Se modificó `GradosView.tsx` para integrar la lógica de selección múltiple (checkboxes), resaltado de filas y el flujo de confirmación institucional en cascada (incluyendo el prompt "ELIMINAR") según el prototipo `eliminarGrado.html`.
+   - Se habilitó la acción del botón "Eliminar seleccionado" con refresco automático de la lista tras el éxito.
+3. **Documentación Técnica:** Creado `RUP/03-desarrollo/casos-uso/0-Administrador/eliminarGrado/README.md` y actualizados los índices globales de implementación (`README.md` y `casos-uso/README.md`).
+4. **Consistencia RUP:** Se preservó la estabilidad de los casos de uso previos (`iniciarSesion`, `cerrarSesion`, `abrirGrados`) y la integridad del esquema de base de datos.
+
+**Decisión:** Se consolidó la funcionalidad de gestión destructiva controlada para el módulo de grados, cumpliendo con los estándares de seguridad y fidelidad visual establecidos para el actor Administrador.

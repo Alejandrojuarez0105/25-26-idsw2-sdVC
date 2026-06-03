@@ -13,8 +13,9 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 - [iniciarSesion](0-Administrador/iniciarSesion/README.md) - Implementación del acceso seguro.
 - [cerrarSesion](0-Administrador/cerrarSesion/README.md) - Implementación de la finalización de sesión.
 
-#### Apertura de entidades
+#### Gestión de entidades
 - [abrirGrados](0-Administrador/abrirGrados/README.md) - Implementación de la vista de listado de grados.
+- [eliminarGrado](0-Administrador/eliminarGrado/README.md) - Implementación de la funcionalidad de borrado.
 
 #### Gestión de entidades
 *(En desarrollo)*

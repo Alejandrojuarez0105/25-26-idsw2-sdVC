@@ -13,4 +13,8 @@ export const gradosService = {
     const response = await api.get('/grados');
     return response.data;
   },
+
+  async remove(id: string): Promise<void> {
+    await api.delete(`/grados/${id}`);
+  },
 };

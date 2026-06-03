@@ -12,4 +12,20 @@ export class GradosService {
       },
     });
   }
+
+  async remove(id: string) {
+    // Check if degree exists
+    const grado = await this.prisma.grado.findUnique({
+      where: { id },
+    });
+
+    if (!grado) {
+      return null;
+    }
+
+    // Delete the degree (cascade delete will handle associated items if configured in Prisma)
+    return this.prisma.grado.delete({
+      where: { id },
+    });
+  }
 }
