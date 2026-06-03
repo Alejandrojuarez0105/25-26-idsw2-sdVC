@@ -17,4 +17,9 @@ export const gradosService = {
   async remove(id: string): Promise<void> {
     await api.delete(`/grados/${id}`);
   },
+
+  async importGrados(data: any[]): Promise<any> {
+    const response = await api.post('/grados/import', data);
+    return response.data;
+  },
 };

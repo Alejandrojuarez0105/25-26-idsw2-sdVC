@@ -13,6 +13,43 @@ export class GradosService {
     });
   }
 
+  async createMany(data: any[]) {
+    const results = {
+      success: 0,
+      failed: 0,
+      errors: [],
+    };
+
+    for (const item of data) {
+      try {
+        // Validate uniqueness of code
+        const existing = await this.prisma.grado.findUnique({
+          where: { codigo: item.codigo },
+        });
+
+        if (existing) {
+          results.failed++;
+          results.errors.push(`El código ${item.codigo} ya existe.`);
+          continue;
+        }
+
+        await this.prisma.grado.create({
+          data: {
+            codigo: item.codigo,
+            nombre: item.nombre,
+            descripcion: item.descripcion,
+          },
+        });
+        results.success++;
+      } catch (err) {
+        results.failed++;
+        results.errors.push(`Error en ${item.codigo}: ${err.message}`);
+      }
+    }
+
+    return results;
+  }
+
   async remove(id: string) {
     // Check if degree exists
     const grado = await this.prisma.grado.findUnique({

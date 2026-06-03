@@ -7,6 +7,7 @@ import AlumnoDashboard from './features/alumno/AlumnoDashboard';
 import LogoutView from './features/auth/logout/LogoutView';
 import GradosView from './features/admin/grados/GradosView';
 import EliminarGradoView from './features/admin/grados/EliminarGradoView';
+import ImportarGradosView from './features/admin/grados/ImportarGradosView';
 
 const App: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/grados" element={<GradosView />} />
         <Route path="/admin/grados/eliminar" element={<EliminarGradoView />} />
+        <Route path="/admin/grados/importar" element={<ImportarGradosView />} />
         <Route path="/profesor" element={<ProfesorDashboard />} />
         <Route path="/alumno" element={<AlumnoDashboard />} />
         <Route path="/" element={<Navigate to="/login" replace />} />

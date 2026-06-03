@@ -485,3 +485,18 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Consistencia RUP:** Se preservó la estabilidad de los casos de uso previos (`iniciarSesion`, `cerrarSesion`, `abrirGrados`) y la integridad del esquema de base de datos.
 
 **Decisión:** Se consolidó la funcionalidad de gestión destructiva controlada para el módulo de grados, cumpliendo con los estándares de seguridad y fidelidad visual establecidos para el actor Administrador.
+
+## [04/06/2026 00:50] Sesión 37: Implementación de importarGrados()
+
+**Prompt:** Muy bien, para la sesión 37 vamos a hacer la implementación del caso de uso importarGrados... Permitir que un administrador pueda importar múltiples grados de forma masiva desde la interfaz de gestión de grados... Backend: Agregar endpoint POST /grados/import... Frontend: Botón Importar, Interfaz para cargar o pegar datos, Validación básica... respetar el diseño del prototipo.
+
+**Resultado:**
+1. **Extensión del Backend:** Actualizado `GradosService` con el método `createMany`, el cual procesa una lista de objetos, valida la unicidad del código y retorna estadísticas de éxito/error. Se añadió el endpoint `POST /grados/import` en el `GradosController`.
+2. **Desarrollo del Frontend:**
+   - Creado el componente `ImportarGradosView.tsx` en `src/frontend/src/features/admin/grados/`, replicando fielmente el prototipo visual `importarGrados.html` (paneles, selectores de archivo, checkboxes de opciones).
+   - Implementado un parser CSV basado en `FileReader` para transformar archivos locales en datos JSON compatibles con la API.
+   - Vinculada la ruta `/admin/grados/importar` en `App.tsx` y el botón correspondiente en el listado principal.
+3. **Documentación Técnica:** Creado `RUP/03-desarrollo/casos-uso/0-Administrador/importarGrados/README.md` y actualizados los índices globales de implementación.
+4. **Validación y Estabilidad:** Se aseguró que la carga masiva no afecte la integridad de los datos existentes y que el listado se refresque correctamente tras la operación.
+
+**Decisión:** Se completó satisfactoriamente la funcionalidad de importación masiva para el módulo de grados, proporcionando al Administrador una herramienta eficiente para la carga inicial de datos bajo los estándares institucionales.
