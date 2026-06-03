@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Consultar Calendario de Exámenes - No Disponible</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .contenedor{
+      width: 650px;
+      background: #ececec;
+      padding: 20px;
+    }
+
+    .titulo{
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+    }
+
+    /* Panel de error */
+    .panel-error{
+      background: #f8d7da;
+      border: 2px solid #dc3545;
+      padding: 25px;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    .texto-error{
+      font-size: 24px;
+      font-weight: bold;
+      color: #721c24;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .texto-error span{
+      font-size: 32px;
+    }
+
+    .mensaje-info{
+      margin-top: 15px;
+      font-size: 14px;
+      color: #721c24;
+    }
+
+    /* Panel de instrucciones */
+    .panel-instrucciones{
+      border: 1px solid #cfcfcf;
+      padding: 18px;
+      margin-bottom: 28px;
+      background: #ededed;
+    }
+
+    .panel-instrucciones h3{
+      font-size: 18px;
+      margin-bottom: 15px;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    .instrucciones-lista{
+      margin-left: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .instrucciones-lista li{
+      font-size: 14px;
+    }
+
+    /* Panel de estado actual */
+    .panel-estado{
+      border: 1px solid #cfcfcf;
+      padding: 18px;
+      margin-bottom: 28px;
+      background: #ededed;
+    }
+
+    .panel-estado h3{
+      font-size: 18px;
+      margin-bottom: 15px;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    .estado-grid{
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px 20px;
+      padding-left: 20px;
+    }
+
+    .estado-label{
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .estado-valor{
+      font-size: 14px;
+    }
+
+    .estado-valor.error{
+      color: #dc3545;
+      font-weight: bold;
+    }
+
+    .estado-valor.ok{
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    /* Nota final */
+    .nota-final{
+      background: #e7f3ff;
+      border-left: 4px solid #2d89ef;
+      padding: 12px 15px;
+      margin-bottom: 25px;
+      font-size: 13px;
+      color: #2c3e50;
+      font-style: italic;
+    }
+
+    .botones{
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .btn{
+      min-width: 215px;
+      padding: 14px 25px;
+      border-radius: 4px;
+      font-size: 18px;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid #999;
+      font-weight: bold;
+    }
+
+    .btn-volver{
+      background: #2d89ef;
+      color: white;
+      border: 1px solid #1d5faa;
+    }
+
+    .btn-volver:hover{
+      background: #1e6bc7;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1 class="titulo">CONSULTAR CALENDARIO DE EXÁMENES</h1>
+
+    <!-- Panel de error -->
+    <div class="panel-error">
+      <div class="texto-error">
+        <span>❌</span>
+        <span>NO HAY CALENDARIO DISPONIBLE</span>
+        <span>❌</span>
+      </div>
+      <div class="mensaje-info">
+        El sistema no tiene ningún calendario de exámenes generado.
+      </div>
+    </div>
+
+    <!-- Instrucciones -->
+    <div class="panel-instrucciones">
+      <h3>📋 Para generar un calendario de exámenes:</h3>
+      <ul class="instrucciones-lista">
+        <li>1. Configure al menos 1 grado académico</li>
+        <li>2. Defina al menos 5 asignaturas</li>
+        <li>3. Asigne al menos 3 profesores</li>
+        <li>4. Registre al menos 2 aulas disponibles</li>
+        <li>5. Use la opción "Generar Calendario" del menú principal</li>
+      </ul>
+    </div>
+
+    <!-- Estado actual del sistema -->
+    <div class="panel-estado">
+      <h3>📊 Estado actual del sistema:</h3>
+      <div class="estado-grid">
+        <div class="estado-label">Grados configurados:</div>
+        <div class="estado-valor ok" id="grados">2</div>
+        
+        <div class="estado-label">Asignaturas definidas:</div>
+        <div class="estado-valor error" id="asignaturas">3 ERROR</div>
+        
+        <div class="estado-label">Profesores disponibles:</div>
+        <div class="estado-valor ok" id="profesores">4</div>
+        
+        <div class="estado-label">Aulas disponibles:</div>
+        <div class="estado-valor ok" id="aulas">3</div>
+        
+        <div class="estado-label">Estudiantes matriculados:</div>
+        <div class="estado-valor ok" id="estudiantes">120</div>
+      </div>
+    </div>
+
+    <!-- Nota final -->
+    <div class="nota-final">
+      💡 Una vez generado el calendario, podrá consultarlo desde esta misma opción.
+    </div>
+
+    <div class="botones">
+      <button class="btn btn-volver" id="btnVolver">
+        Volver al Menú
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    // Elementos del DOM
+    const btnVolver = document.getElementById('btnVolver');
+    
+    // Elementos de estado
+    const gradosSpan = document.getElementById('grados');
+    const asignaturasSpan = document.getElementById('asignaturas');
+    const profesoresSpan = document.getElementById('profesores');
+    const aulasSpan = document.getElementById('aulas');
+    const estudiantesSpan = document.getElementById('estudiantes');
+    
+    // Valores actuales del sistema (simulados)
+    let estadoSistema = {
+      grados: 2,
+      asignaturas: 3,
+      profesores: 4,
+      aulas: 3,
+      estudiantes: 120
+    };
+    
+    // Función para actualizar el estado visual
+    function actualizarEstadoVisual() {
+      gradosSpan.textContent = estadoSistema.grados;
+      gradosSpan.className = estadoSistema.grados >= 1 ? 'estado-valor ok' : 'estado-valor error';
+      
+      asignaturasSpan.textContent = estadoSistema.asignaturas + (estadoSistema.asignaturas < 5 ? ' ERROR' : '');
+      asignaturasSpan.className = estadoSistema.asignaturas >= 5 ? 'estado-valor ok' : 'estado-valor error';
+      
+      profesoresSpan.textContent = estadoSistema.profesores;
+      profesoresSpan.className = estadoSistema.profesores >= 3 ? 'estado-valor ok' : 'estado-valor error';
+      
+      aulasSpan.textContent = estadoSistema.aulas;
+      aulasSpan.className = estadoSistema.aulas >= 2 ? 'estado-valor ok' : 'estado-valor error';
+      
+      estudiantesSpan.textContent = estadoSistema.estudiantes;
+      estudiantesSpan.className = 'estado-valor ok';
+    }
+    
+    // Función para verificar si se puede generar el calendario
+    function verificarRequisitos() {
+      const requisitos = {
+        grados: estadoSistema.grados >= 1,
+        asignaturas: estadoSistema.asignaturas >= 5,
+        profesores: estadoSistema.profesores >= 3,
+        aulas: estadoSistema.aulas >= 2
+      };
+      
+      return requisitos.grados && requisitos.asignaturas && requisitos.profesores && requisitos.aulas;
+    }
+    
+    // Evento Volver al Menú
+    btnVolver.addEventListener('click', () => {
+      const confirmar = confirm('¿Deseas volver al menú principal?');
+      if (confirmar) {
+        alert('🔙 Volviendo al menú principal...');
+        // Aquí redirigir al menú principal
+        // window.location.href = 'menu_principal.html';
+      }
+    });
+    
+    // Función para simular actualización de datos (opcional)
+    function actualizarDatosSistema() {
+      // Esta función podría ser llamada periódicamente o desde una API
+      // Por ahora solo mostramos los datos estáticos
+      console.log('Estado del sistema:', estadoSistema);
+      console.log('¿Se puede generar calendario?', verificarRequisitos() ? 'SÍ' : 'NO');
+    }
+    
+    // Inicializar
+    actualizarEstadoVisual();
+    actualizarDatosSistema();
+  </script>
+
+</body>
+</html>

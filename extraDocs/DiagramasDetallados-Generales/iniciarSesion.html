@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iniciar Sesión - Universidad Europea del Atlántico</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .contenedor{
+      width: 480px;
+      background: #ececec;
+      padding: 30px;
+      border: 1px solid #cfcfcf;
+      text-align: center;
+    }
+
+    .logo{
+      margin-bottom: 20px;
+    }
+
+    .logo h1{
+      font-size: 32px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .logo .universidad{
+      font-size: 14px;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    .titulo{
+      font-size: 24px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+    }
+
+    .campo{
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .campo label{
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .campo input{
+      width: 100%;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 15px;
+      border: 1px solid #bdbdbd;
+      background: white;
+    }
+
+    .campo input:focus{
+      outline: none;
+      border-color: #2d89ef;
+    }
+
+    .opcion-recordar{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .opcion-recordar input{
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .opcion-recordar label{
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn{
+      width: 100%;
+      padding: 12px;
+      border-radius: 4px;
+      font-size: 18px;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid #999;
+      font-weight: bold;
+      background: #2d89ef;
+      color: white;
+      border: 1px solid #1d5faa;
+      margin-bottom: 30px;
+    }
+
+    .btn:hover{
+      background: #1e6bc7;
+    }
+
+    hr{
+      border: none;
+      border-top: 1px solid #cfcfcf;
+      margin: 20px 0;
+    }
+
+    .footer{
+      font-size: 12px;
+      color: #666;
+    }
+
+    .footer .sistema{
+      margin-bottom: 8px;
+    }
+
+    .footer .version{
+      font-size: 11px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <div class="logo">
+      <h1>UE</h1>
+      <div class="universidad">Universidad Europea del Atlántico</div>
+    </div>
+
+    <div class="titulo">Davidario</div>
+
+    <div class="campo">
+      <label for="email">Usuario / Email</label>
+      <input type="email" id="email" placeholder="admin@uneatlantico.es" value="admin@uneatlantico.es">
+    </div>
+
+    <div class="campo">
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" placeholder="••••••" value="123456">
+    </div>
+
+    <div class="opcion-recordar">
+      <input type="checkbox" id="recordar">
+      <label for="recordar">Recordar sesión</label>
+    </div>
+
+    <button class="btn" id="btnIniciarSesion">Iniciar Sesión</button>
+
+    <div class="footer">
+      <div class="sistema">Sistema de gestión de exámenes de <strong>Uneatlántico</strong></div>
+      <div class="version">Versión 1.0 · © 2025</div>
+    </div>
+
+  </div>
+
+  <script>
+    // Elementos del DOM
+    const inputEmail = document.getElementById('email');
+    const inputPassword = document.getElementById('password');
+    const chkRecordar = document.getElementById('recordar');
+    const btnIniciarSesion = document.getElementById('btnIniciarSesion');
+
+    // Credenciales de ejemplo para cada rol
+    const usuarios = {
+      admin: { email: 'admin@uneatlantico.es', password: '123456', rol: 'administrador' },
+      profesor: { email: 'profesor@uneatlantico.es', password: '123456', rol: 'profesor' },
+      alumno: { email: 'alumno@uneatlantico.es', password: '123456', rol: 'alumno' }
+    };
+
+    // Función para validar credenciales
+    function validarCredenciales(email, password) {
+      // Verificar admin
+      if (email === usuarios.admin.email && password === usuarios.admin.password) {
+        return { valido: true, rol: 'administrador' };
+      }
+      // Verificar profesor
+      if (email === usuarios.profesor.email && password === usuarios.profesor.password) {
+        return { valido: true, rol: 'profesor' };
+      }
+      // Verificar alumno
+      if (email === usuarios.alumno.email && password === usuarios.alumno.password) {
+        return { valido: true, rol: 'alumno' };
+      }
+      return { valido: false, rol: null };
+    }
+
+    // Función para guardar sesión
+    function guardarSesion(email, rol, recordar) {
+      if (recordar) {
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('userRol', rol);
+        localStorage.setItem('sesionGuardada', 'true');
+      } else {
+        sessionStorage.setItem('userEmail', email);
+        sessionStorage.setItem('userRol', rol);
+      }
+    }
+
+    // Función para iniciar sesión
+    function iniciarSesion() {
+      const email = inputEmail.value.trim();
+      const password = inputPassword.value;
+      const recordar = chkRecordar.checked;
+
+      if (!email) {
+        alert('⚠️ Por favor, ingrese su email o usuario.');
+        inputEmail.focus();
+        return;
+      }
+
+      if (!password) {
+        alert('⚠️ Por favor, ingrese su contraseña.');
+        inputPassword.focus();
+        return;
+      }
+
+      const resultado = validarCredenciales(email, password);
+
+      if (!resultado.valido) {
+        alert('❌ Credenciales incorrectas.\n\nUsuario o contraseña no válidos. Intente nuevamente.');
+        inputPassword.value = '';
+        inputPassword.focus();
+        return;
+      }
+
+      // Guardar sesión
+      guardarSesion(email, resultado.rol, recordar);
+
+      // Mensaje de bienvenida
+      let mensaje = `✅ ¡Bienvenido/a!\n\n`;
+      mensaje += `Email: ${email}\n`;
+      mensaje += `Rol: ${resultado.rol.toUpperCase()}\n\n`;
+      mensaje += `Redirigiendo al panel principal...`;
+
+      alert(mensaje);
+
+      // Redirigir según el rol
+      // window.location.href = `panel_${resultado.rol}.html`;
+      
+      console.log(`Inicio de sesión exitoso: ${email} (${resultado.rol})`);
+    }
+
+    // Permitir iniciar sesión con Enter
+    function handleKeyPress(e) {
+      if (e.key === 'Enter') {
+        iniciarSesion();
+      }
+    }
+
+    // Eventos
+    btnIniciarSesion.addEventListener('click', iniciarSesion);
+    inputEmail.addEventListener('keypress', handleKeyPress);
+    inputPassword.addEventListener('keypress', handleKeyPress);
+
+    // Cargar email guardado si existe
+    const emailGuardado = localStorage.getItem('userEmail');
+    if (emailGuardado) {
+      inputEmail.value = emailGuardado;
+      chkRecordar.checked = true;
+    }
+
+    // Enfocar el primer campo
+    inputEmail.focus();
+  </script>
+
+</body>
+</html>

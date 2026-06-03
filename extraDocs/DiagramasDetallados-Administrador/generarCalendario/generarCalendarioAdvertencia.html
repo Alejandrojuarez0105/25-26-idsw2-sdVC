@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Generar Calendario de Exámenes - Advertencia</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .contenedor{
+      width: 700px;
+      background: #ececec;
+    }
+
+    .titulo{
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+    }
+
+    /* Panel de advertencia */
+    .panel-advertencia{
+      background: #fff3cd;
+      border: 2px solid #ffc107;
+      padding: 18px;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    .texto-advertencia{
+      font-size: 20px;
+      font-weight: bold;
+      color: #856404;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .texto-advertencia span{
+      font-size: 28px;
+    }
+
+    .panel{
+      border: 1px solid #cfcfcf;
+      padding: 18px;
+      margin-bottom: 28px;
+      background: #ededed;
+    }
+
+    .panel h3{
+      font-size: 20px;
+      margin-bottom: 15px;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    .info-grid{
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px 20px;
+      padding-left: 20px;
+    }
+
+    .info-label{
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .info-valor{
+      font-size: 16px;
+      color: #333;
+    }
+
+    .separador{
+      border: none;
+      border-top: 2px solid #cfcfcf;
+      margin: 20px 0;
+    }
+
+    .pregunta{
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .nota{
+      font-size: 14px;
+      color: #dc3545;
+      text-align: center;
+      margin-top: 15px;
+      font-style: italic;
+    }
+
+    .botones{
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    .btn{
+      min-width: 215px;
+      padding: 14px 25px;
+      border-radius: 4px;
+      font-size: 18px;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid #999;
+      font-weight: bold;
+    }
+
+    .btn-generar{
+      background: #dc3545;
+      color: white;
+      border: 1px solid #a71d2a;
+    }
+
+    .btn-generar:hover{
+      background: #c82333;
+    }
+
+    .btn-cancelar{
+      background: #f3f0ec;
+      color: black;
+    }
+
+    .btn-cancelar:hover{
+      background: #e3dfda;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1 class="titulo">GENERAR CALENDARIO DE EXÁMENES</h1>
+
+    <!-- Panel de advertencia -->
+    <div class="panel-advertencia">
+      <div class="texto-advertencia">
+        <span>⚠️</span>
+        <span>ADVERTENCIA: Calendario existente será reemplazado</span>
+        <span>⚠️</span>
+      </div>
+    </div>
+
+    <!-- Calendario actual -->
+    <div class="panel">
+      <h3>Calendario actual:</h3>
+      <div class="info-grid">
+        <div class="info-label">Generado:</div>
+        <div class="info-valor" id="fechaGeneracion">10/12/2025 11:15</div>
+        
+        <div class="info-label">Exámenes programados:</div>
+        <div class="info-valor" id="examenesProgramados">25</div>
+        
+        <div class="info-label">Profesores asignados:</div>
+        <div class="info-valor" id="profesoresAsignados">8</div>
+        
+        <div class="info-label">Aulas utilizadas:</div>
+        <div class="info-valor" id="aulasUtilizadas">6</div>
+        
+        <div class="info-label">Estudiantes afectados:</div>
+        <div class="info-valor" id="estudiantesAfectados">320</div>
+      </div>
+    </div>
+
+    <!-- Datos disponibles -->
+    <div class="panel">
+      <h3>Datos disponibles para nueva generación:</h3>
+      <div class="info-grid">
+        <div class="info-label">Grados configurados:</div>
+        <div class="info-valor" id="gradosConfigurados">3 grados</div>
+        
+        <div class="info-label">Asignaturas definidas:</div>
+        <div class="info-valor" id="asignaturasDefinidas">15 asignaturas</div>
+        
+        <div class="info-label">Profesores disponibles:</div>
+        <div class="info-valor" id="profesoresDisponibles">10 profesores</div>
+        
+        <div class="info-label">Aulas disponibles:</div>
+        <div class="info-valor" id="aulasDisponibles">8 aulas</div>
+        
+        <div class="info-label">Estudiantes matriculados:</div>
+        <div class="info-valor" id="estudiantesMatriculados">350 estudiantes</div>
+      </div>
+    </div>
+
+    <hr class="separador">
+
+    <div class="pregunta">
+      ¿Confirma generar nuevo calendario?
+    </div>
+
+    <div class="nota">
+      Esta acción reemplazará completamente el calendario actual.
+    </div>
+
+    <div class="botones">
+      <button class="btn btn-generar" id="btnGenerar">
+        Generar nuevo calendario
+      </button>
+      <button class="btn btn-cancelar" id="btnCancelar">
+        Cancelar
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    // Elementos del DOM
+    const btnGenerar = document.getElementById('btnGenerar');
+    const btnCancelar = document.getElementById('btnCancelar');
+    
+    // Elementos para mostrar datos (pueden actualizarse dinámicamente)
+    const fechaGeneracion = document.getElementById('fechaGeneracion');
+    const examenesProgramados = document.getElementById('examenesProgramados');
+    const profesoresAsignados = document.getElementById('profesoresAsignados');
+    const aulasUtilizadas = document.getElementById('aulasUtilizadas');
+    const estudiantesAfectados = document.getElementById('estudiantesAfectados');
+    
+    const gradosConfigurados = document.getElementById('gradosConfigurados');
+    const asignaturasDefinidas = document.getElementById('asignaturasDefinidas');
+    const profesoresDisponibles = document.getElementById('profesoresDisponibles');
+    const aulasDisponibles = document.getElementById('aulasDisponibles');
+    const estudiantesMatriculados = document.getElementById('estudiantesMatriculados');
+    
+    // Función para actualizar datos (simula carga desde servidor)
+    function cargarDatos() {
+      // Estos datos podrían venir de una API o base de datos
+      // Por ahora usamos los valores por defecto de la imagen
+      
+      // Calendario actual
+      fechaGeneracion.textContent = '10/12/2025 11:15';
+      examenesProgramados.textContent = '25';
+      profesoresAsignados.textContent = '8';
+      aulasUtilizadas.textContent = '6';
+      estudiantesAfectados.textContent = '320';
+      
+      // Datos disponibles
+      gradosConfigurados.textContent = '3 grados';
+      asignaturasDefinidas.textContent = '15 asignaturas';
+      profesoresDisponibles.textContent = '10 profesores';
+      aulasDisponibles.textContent = '8 aulas';
+      estudiantesMatriculados.textContent = '350 estudiantes';
+    }
+    
+    // Evento Generar nuevo calendario
+    btnGenerar.addEventListener('click', () => {
+      const confirmar = confirm('⚠️ ADVERTENCIA:\n\nEsta acción reemplazará completamente el calendario actual.\n\n¿Estás seguro de que deseas generar un nuevo calendario?');
+      
+      if (confirmar) {
+        // Aquí iría la lógica para generar el nuevo calendario
+        // Por ahora mostramos un mensaje de éxito
+        alert('✅ ¡Calendario generado exitosamente!\n\nSe ha creado un nuevo calendario de exámenes.');
+        
+        // Opcional: redirigir a la pantalla de éxito o actualizar datos
+        // window.location.href = 'calendario_generado.html';
+      }
+    });
+    
+    // Evento Cancelar
+    btnCancelar.addEventListener('click', () => {
+      const confirmar = confirm('¿Estás seguro de que deseas cancelar la generación del calendario?');
+      
+      if (confirmar) {
+        alert('🔄 Operación cancelada. El calendario actual no ha sido modificado.');
+        // Aquí podría redirigirse a otra pantalla o simplemente quedarse
+      }
+    });
+    
+    // Cargar datos al iniciar
+    cargarDatos();
+  </script>
+
+</body>
+</html>

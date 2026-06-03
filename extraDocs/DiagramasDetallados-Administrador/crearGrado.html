@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crear Nuevo Grado Académico</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .contenedor{
+      width: 550px;
+      background: #ececec;
+      padding: 25px;
+      border: 1px solid #cfcfcf;
+    }
+
+    .titulo{
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+
+    .campo{
+      margin-bottom: 20px;
+    }
+
+    .campo label{
+      display: block;
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .campo input{
+      width: 100%;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 16px;
+      border: 1px solid #bdbdbd;
+      background: white;
+    }
+
+    .campo textarea{
+      width: 100%;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 16px;
+      border: 1px solid #bdbdbd;
+      background: white;
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .campo input:focus,
+    .campo textarea:focus{
+      outline: none;
+      border-color: #2d89ef;
+    }
+
+    .botones{
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .btn{
+      min-width: 150px;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid #999;
+      font-weight: bold;
+    }
+
+    .btn-crear{
+      background: #28a745;
+      color: white;
+      border: 1px solid #1e7e34;
+    }
+
+    .btn-crear:hover{
+      background: #218838;
+    }
+
+    .btn-cancelar{
+      background: #f3f0ec;
+      color: black;
+    }
+
+    .btn-cancelar:hover{
+      background: #e3dfda;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1 class="titulo">CREAR NUEVO GRADO ACADÉMICO</h1>
+
+    <div class="campo">
+      <label for="codigo">Código:</label>
+      <input type="text" id="codigo" placeholder="Ej: GII, GIOI, GADE..." maxlength="10">
+    </div>
+
+    <div class="campo">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" placeholder="Ej: Ingeniería Informática">
+    </div>
+
+    <div class="campo">
+      <label for="descripcion">Descripción:</label>
+      <textarea id="descripcion" placeholder="Ej: Grado en Ingeniería Informática"></textarea>
+    </div>
+
+    <div class="botones">
+      <button class="btn btn-crear" id="btnCrear">Crear grado</button>
+      <button class="btn btn-cancelar" id="btnCancelar">Cancelar</button>
+    </div>
+
+  </div>
+
+  <script>
+    // Elementos del DOM
+    const inputCodigo = document.getElementById('codigo');
+    const inputNombre = document.getElementById('nombre');
+    const inputDescripcion = document.getElementById('descripcion');
+    const btnCrear = document.getElementById('btnCrear');
+    const btnCancelar = document.getElementById('btnCancelar');
+
+    // Función para validar el código
+    function validarCodigo(codigo) {
+      if (!codigo || codigo.trim() === '') {
+        alert('❌ El código es obligatorio.');
+        return false;
+      }
+      
+      if (codigo.trim().length < 2) {
+        alert('❌ El código debe tener al menos 2 caracteres.');
+        return false;
+      }
+      
+      // Verificar que solo contenga letras mayúsculas, números y guiones
+      const regex = /^[A-Z0-9-]+$/i;
+      if (!regex.test(codigo.trim())) {
+        alert('❌ El código solo puede contener letras, números y guiones.');
+        return false;
+      }
+      
+      return true;
+    }
+
+    // Función para validar el nombre
+    function validarNombre(nombre) {
+      if (!nombre || nombre.trim() === '') {
+        alert('❌ El nombre es obligatorio.');
+        return false;
+      }
+      
+      if (nombre.trim().length < 3) {
+        alert('❌ El nombre debe tener al menos 3 caracteres.');
+        return false;
+      }
+      
+      return true;
+    }
+
+    // Función para validar la descripción
+    function validarDescripcion(descripcion) {
+      if (!descripcion || descripcion.trim() === '') {
+        alert('❌ La descripción es obligatoria.');
+        return false;
+      }
+      
+      if (descripcion.trim().length < 5) {
+        alert('❌ La descripción debe tener al menos 5 caracteres.');
+        return false;
+      }
+      
+      return true;
+    }
+
+    // Función para verificar si el código ya existe (simulado)
+    function codigoExiste(codigo) {
+      // Aquí se consultaría a la base de datos
+      const gradosExistentes = ['GII', 'GIOI', 'GPOI', 'GADE', 'GIC'];
+      return gradosExistentes.includes(codigo.trim().toUpperCase());
+    }
+
+    // Función para crear el grado
+    function crearGrado() {
+      const codigo = inputCodigo.value;
+      const nombre = inputNombre.value;
+      const descripcion = inputDescripcion.value;
+      
+      // Validar código
+      if (!validarCodigo(codigo)) {
+        inputCodigo.focus();
+        return;
+      }
+      
+      // Validar nombre
+      if (!validarNombre(nombre)) {
+        inputNombre.focus();
+        return;
+      }
+      
+      // Validar descripción
+      if (!validarDescripcion(descripcion)) {
+        inputDescripcion.focus();
+        return;
+      }
+      
+      const codigoUpper = codigo.trim().toUpperCase();
+      
+      // Verificar si el código ya existe
+      if (codigoExiste(codigoUpper)) {
+        alert(`❌ El código "${codigoUpper}" ya existe.\n\nPor favor, use un código diferente.`);
+        inputCodigo.focus();
+        return;
+      }
+      
+      // Confirmar creación
+      const confirmar = confirm(`¿Desea crear el siguiente grado académico?\n\nCódigo: ${codigoUpper}\nNombre: ${nombre.trim()}\nDescripción: ${descripcion.trim()}`);
+      
+      if (confirmar) {
+        // Aquí se guardaría en la base de datos
+        alert(`✅ ¡Grado académico creado exitosamente!\n\nCódigo: ${codigoUpper}\nNombre: ${nombre.trim()}\nDescripción: ${descripcion.trim()}`);
+        
+        // Limpiar campos
+        inputCodigo.value = '';
+        inputNombre.value = '';
+        inputDescripcion.value = '';
+        inputCodigo.focus();
+      }
+    }
+
+    // Función para cancelar
+    function cancelar() {
+      const confirmar = confirm('¿Estás seguro de que deseas cancelar?\n\nLos datos ingresados se perderán.');
+      if (confirmar) {
+        // Limpiar campos
+        inputCodigo.value = '';
+        inputNombre.value = '';
+        inputDescripcion.value = '';
+        alert('🔄 Operación cancelada.');
+      }
+    }
+
+    // Eventos
+    btnCrear.addEventListener('click', crearGrado);
+    btnCancelar.addEventListener('click', cancelar);
+    
+    // Permitir crear con Ctrl+Enter en el textarea
+    inputDescripcion.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && e.ctrlKey) {
+        crearGrado();
+      }
+    });
+    
+    // Navegación con Enter
+    inputCodigo.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        inputNombre.focus();
+      }
+    });
+    
+    inputNombre.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        inputDescripcion.focus();
+      }
+    });
+    
+    // Enfocar el primer campo al cargar
+    inputCodigo.focus();
+  </script>
+
+</body>
+</html>

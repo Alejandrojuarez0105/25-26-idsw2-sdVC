@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Administración de Asignaturas</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .contenedor{
+      width: 1100px;
+      background: #ececec;
+      padding: 20px;
+    }
+
+    .titulo{
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+    }
+
+    /* Tabla de asignaturas */
+    .tabla-asignaturas{
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 25px;
+      background: white;
+    }
+
+    .tabla-asignaturas th,
+    .tabla-asignaturas td{
+      border: 1px solid #bdbdbd;
+      padding: 12px 10px;
+      text-align: left;
+    }
+
+    .tabla-asignaturas th{
+      background: #dfe7ef;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .tabla-asignaturas td{
+      font-size: 14px;
+    }
+
+    .tabla-asignaturas tr{
+      transition: background 0.2s;
+    }
+
+    .tabla-asignaturas tr:hover{
+      background: #f0f0f0;
+    }
+
+    .tabla-asignaturas tr.seleccionado{
+      background: #b8d4f0;
+    }
+
+    .btn-editar{
+      background: #2d89ef;
+      color: white;
+      border: none;
+      padding: 5px 15px;
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    .btn-editar:hover{
+      background: #1e6bc7;
+    }
+
+    /* Checkbox de selección */
+    .checkbox-asignatura{
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    /* Fila de búsqueda */
+    .fila-busqueda{
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .label-buscar{
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .input-buscar{
+      padding: 8px 12px;
+      font-family: inherit;
+      font-size: 14px;
+      border: 1px solid #bdbdbd;
+      background: white;
+      width: 250px;
+    }
+
+    .btn-filtrar{
+      background: #2d89ef;
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      font-family: inherit;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    .btn-filtrar:hover{
+      background: #1e6bc7;
+    }
+
+    /* Botones de acción */
+    .botones-accion{
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    .btn{
+      min-width: 180px;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-size: 15px;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid #999;
+      font-weight: bold;
+    }
+
+    .btn-crear{
+      background: #28a745;
+      color: white;
+      border: 1px solid #1e7e34;
+    }
+
+    .btn-crear:hover{
+      background: #218838;
+    }
+
+    .btn-importar{
+      background: #2d89ef;
+      color: white;
+      border: 1px solid #1d5faa;
+    }
+
+    .btn-importar:hover{
+      background: #1e6bc7;
+    }
+
+    .btn-eliminar{
+      background: #dc3545;
+      color: white;
+      border: 1px solid #a71d2a;
+    }
+
+    .btn-eliminar:hover{
+      background: #c82333;
+    }
+
+    .btn-salir{
+      background: #f3f0ec;
+      color: black;
+    }
+
+    .btn-salir:hover{
+      background: #e3dfda;
+    }
+
+    hr{
+      border: none;
+      border-top: 2px solid #cfcfcf;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1 class="titulo">ADMINISTRACIÓN DE ASIGNATURAS</h1>
+
+    <!-- Tabla de asignaturas -->
+    <table class="tabla-asignaturas" id="tablaAsignaturas">
+      <thead>
+        <tr>
+          <th style="width: 40px;"><input type="checkbox" id="chkSeleccionarTodos"></th>
+          <th>CÓDIGO</th>
+          <th>NOMBRE</th>
+          <th style="width: 80px;">CRÉDITOS</th>
+          <th style="width: 80px;">GRADO</th>
+          <th style="width: 100px;">ACCIÓN</th>
+        </tr>
+      </thead>
+      <tbody id="cuerpoTabla">
+        <!-- Datos dinámicos -->
+      </tbody>
+    </table>
+
+    <!-- Fila de búsqueda -->
+    <div class="fila-busqueda">
+      <span class="label-buscar">🔍 BUSCAR:</span>
+      <input type="text" id="inputBuscar" class="input-buscar" placeholder="Código o nombre...">
+      <button class="btn-filtrar" id="btnFiltrar">Filtrar</button>
+    </div>
+
+    <!-- Botones de acción -->
+    <div class="botones-accion">
+      <button class="btn btn-crear" id="btnCrear">➕ Crear nueva</button>
+      <button class="btn btn-importar" id="btnImportar">📎 Importar asignaturas</button>
+      <button class="btn btn-eliminar" id="btnEliminar">🗑️ Eliminar seleccionada</button>
+      <button class="btn btn-salir" id="btnSalir">🚪 Salir</button>
+    </div>
+
+  </div>
+
+  <script>
+    // Datos de grados disponibles
+    const gradosDisponibles = ['GII', 'GIOI', 'GPOI', 'GADE'];
+
+    // Datos de asignaturas
+    let asignaturas = [
+      { id: 1, codigo: 'IYA003', nombre: 'Programación I', creditos: 6, grado: 'GII', seleccionado: false },
+      { id: 2, codigo: 'IYA023', nombre: 'Bases de Datos I', creditos: 6, grado: 'GII', seleccionado: false },
+      { id: 3, codigo: 'IYA025', nombre: 'Estructuras de Datos I', creditos: 6, grado: 'GII', seleccionado: false },
+      { id: 4, codigo: 'IYA016', nombre: 'Expresión Gráfica', creditos: 6, grado: 'GIOI', seleccionado: false }
+    ];
+
+    let asignaturasOriginales = JSON.parse(JSON.stringify(asignaturas));
+    let filtroActivo = '';
+
+    // Elementos del DOM
+    const cuerpoTabla = document.getElementById('cuerpoTabla');
+    const chkSeleccionarTodos = document.getElementById('chkSeleccionarTodos');
+    const inputBuscar = document.getElementById('inputBuscar');
+    const btnFiltrar = document.getElementById('btnFiltrar');
+
+    // Función para renderizar la tabla
+    function renderizarTabla() {
+      cuerpoTabla.innerHTML = '';
+      
+      let asignaturasMostrar = asignaturas;
+      if (filtroActivo) {
+        const filtroLower = filtroActivo.toLowerCase();
+        asignaturasMostrar = asignaturas.filter(asig => 
+          asig.codigo.toLowerCase().includes(filtroLower) || 
+          asig.nombre.toLowerCase().includes(filtroLower)
+        );
+      }
+      
+      if (asignaturasMostrar.length === 0) {
+        const fila = document.createElement('tr');
+        fila.innerHTML = `<td colspan="6" style="text-align: center;">No hay asignaturas disponibles</td>`;
+        cuerpoTabla.appendChild(fila);
+        return;
+      }
+      
+      asignaturasMostrar.forEach(asignatura => {
+        const fila = document.createElement('tr');
+        if (asignatura.seleccionado) {
+          fila.classList.add('seleccionado');
+        }
+        
+        fila.innerHTML = `
+          <td style="text-align: center;">
+            <input type="checkbox" class="checkbox-asignatura" data-id="${asignatura.id}" ${asignatura.seleccionado ? 'checked' : ''}>
+           </td>
+          <td><strong>${asignatura.codigo}</strong></td>
+          <td>${asignatura.nombre}</td>
+          <td>${asignatura.creditos}</td>
+          <td>${asignatura.grado}</td>
+          <td>
+            <button class="btn-editar" data-id="${asignatura.id}">Editar</button>
+          </td>
+        `;
+        
+        cuerpoTabla.appendChild(fila);
+      });
+      
+      // Agregar event listeners a los checkboxes
+      document.querySelectorAll('.checkbox-asignatura').forEach(chk => {
+        chk.addEventListener('change', (e) => {
+          const id = parseInt(e.target.getAttribute('data-id'));
+          const asignatura = asignaturas.find(a => a.id === id);
+          if (asignatura) {
+            asignatura.seleccionado = e.target.checked;
+            actualizarSeleccionarTodos();
+            renderizarTabla();
+          }
+        });
+      });
+      
+      // Agregar event listeners a los botones editar
+      document.querySelectorAll('.btn-editar').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const id = parseInt(e.target.getAttribute('data-id'));
+          editarAsignatura(id);
+        });
+      });
+    }
+    
+    // Actualizar checkbox "Seleccionar todos"
+    function actualizarSeleccionarTodos() {
+      const asignaturasFiltradas = filtroActivo ? 
+        asignaturas.filter(a => a.codigo.toLowerCase().includes(filtroActivo.toLowerCase()) || 
+                          a.nombre.toLowerCase().includes(filtroActivo.toLowerCase())) : asignaturas;
+      
+      const todosSeleccionados = asignaturasFiltradas.length > 0 && asignaturasFiltradas.every(a => a.seleccionado);
+      chkSeleccionarTodos.checked = todosSeleccionados;
+    }
+    
+    // Seleccionar/Deseleccionar todos
+    function seleccionarTodos() {
+      const seleccionar = chkSeleccionarTodos.checked;
+      
+      let asignaturasAAfectar = asignaturas;
+      if (filtroActivo) {
+        const filtroLower = filtroActivo.toLowerCase();
+        asignaturasAAfectar = asignaturas.filter(a => 
+          a.codigo.toLowerCase().includes(filtroLower) || 
+          a.nombre.toLowerCase().includes(filtroLower)
+        );
+      }
+      
+      asignaturasAAfectar.forEach(asignatura => {
+        asignatura.seleccionado = seleccionar;
+      });
+      
+      renderizarTabla();
+    }
+    
+    // Editar asignatura
+    function editarAsignatura(id) {
+      const asignatura = asignaturas.find(a => a.id === id);
+      if (asignatura) {
+        const nuevoNombre = prompt('Editar nombre de la asignatura:', asignatura.nombre);
+        if (nuevoNombre && nuevoNombre.trim()) {
+          asignatura.nombre = nuevoNombre.trim();
+          
+          const nuevosCreditos = prompt('Editar créditos (número entero):', asignatura.creditos);
+          if (nuevosCreditos && !isNaN(parseInt(nuevosCreditos)) && parseInt(nuevosCreditos) > 0) {
+            asignatura.creditos = parseInt(nuevosCreditos);
+          }
+          
+          const nuevoGrado = prompt('Editar grado (GII, GIOI, GPOI, GADE):', asignatura.grado);
+          if (nuevoGrado && nuevoGrado.trim() && gradosDisponibles.includes(nuevoGrado.trim().toUpperCase())) {
+            asignatura.grado = nuevoGrado.trim().toUpperCase();
+          } else if (nuevoGrado && nuevoGrado.trim()) {
+            alert(`⚠️ El grado "${nuevoGrado}" no es válido. Los grados disponibles son: ${gradosDisponibles.join(', ')}`);
+          }
+          
+          renderizarTabla();
+          alert(`✅ Asignatura "${asignatura.codigo}" actualizada correctamente.`);
+        }
+      }
+    }
+    
+    // Filtrar asignaturas
+    function filtrarAsignaturas() {
+      filtroActivo = inputBuscar.value.trim();
+      // Limpiar selecciones al filtrar
+      asignaturas.forEach(a => a.seleccionado = false);
+      chkSeleccionarTodos.checked = false;
+      renderizarTabla();
+      
+      if (filtroActivo) {
+        const resultados = asignaturas.filter(a => 
+          a.codigo.toLowerCase().includes(filtroActivo.toLowerCase()) || 
+          a.nombre.toLowerCase().includes(filtroActivo.toLowerCase())
+        );
+        alert(`🔍 Filtro aplicado: "${filtroActivo}"\n\nSe encontraron ${resultados.length} resultado(s).`);
+      }
+    }
+    
+    // Crear nueva asignatura
+    function crearNueva() {
+      const nuevoCodigo = prompt('Ingrese el código de la nueva asignatura (ej: IYA999):');
+      if (!nuevoCodigo || !nuevoCodigo.trim()) return;
+      
+      // Verificar si el código ya existe
+      if (asignaturas.some(a => a.codigo.toLowerCase() === nuevoCodigo.trim().toLowerCase())) {
+        alert(`❌ El código "${nuevoCodigo}" ya existe. Por favor, use otro código.`);
+        return;
+      }
+      
+      const nuevoNombre = prompt('Ingrese el nombre de la nueva asignatura:');
+      if (!nuevoNombre || !nuevoNombre.trim()) return;
+      
+      const nuevosCreditos = prompt('Ingrese los créditos (número entero):');
+      if (!nuevosCreditos || isNaN(parseInt(nuevosCreditos)) || parseInt(nuevosCreditos) <= 0) {
+        alert('❌ Los créditos deben ser un número entero positivo.');
+        return;
+      }
+      
+      const nuevoGrado = prompt('Ingrese el grado (GII, GIOI, GPOI, GADE):');
+      if (!nuevoGrado || !nuevoGrado.trim()) return;
+      
+      const gradoUpper = nuevoGrado.trim().toUpperCase();
+      if (!gradosDisponibles.includes(gradoUpper)) {
+        alert(`⚠️ El grado "${nuevoGrado}" no es válido. Los grados disponibles son: ${gradosDisponibles.join(', ')}`);
+        return;
+      }
+      
+      const nuevoId = Math.max(...asignaturas.map(a => a.id), 0) + 1;
+      
+      asignaturas.push({
+        id: nuevoId,
+        codigo: nuevoCodigo.trim().toUpperCase(),
+        nombre: nuevoNombre.trim(),
+        creditos: parseInt(nuevosCreditos),
+        grado: gradoUpper,
+        seleccionado: false
+      });
+      
+      asignaturasOriginales = JSON.parse(JSON.stringify(asignaturas));
+      renderizarTabla();
+      alert(`✅ Asignatura "${nuevoCodigo}" creada correctamente.`);
+    }
+    
+    // Importar asignaturas
+    function importarAsignaturas() {
+      alert('📎 Función de importación de asignaturas\n\nSe abrirá el asistente para importar asignaturas desde archivo CSV o Excel.');
+    }
+    
+    // Eliminar seleccionada
+    function eliminarSeleccionada() {
+      const seleccionadas = asignaturas.filter(a => a.seleccionado);
+      
+      if (seleccionadas.length === 0) {
+        alert('⚠️ No hay ninguna asignatura seleccionada para eliminar.');
+        return;
+      }
+      
+      let mensaje = '¿Estás seguro de que deseas eliminar las siguientes asignaturas?\n\n';
+      seleccionadas.forEach(a => {
+        mensaje += `• ${a.codigo} - ${a.nombre}\n`;
+      });
+      mensaje += `\n⚠️ Esta acción no se puede deshacer.`;
+      
+      const confirmar = confirm(mensaje);
+      if (confirmar) {
+        asignaturas = asignaturas.filter(a => !a.seleccionado);
+        asignaturasOriginales = JSON.parse(JSON.stringify(asignaturas));
+        chkSeleccionarTodos.checked = false;
+        renderizarTabla();
+        alert(`✅ ${seleccionadas.length} asignatura(s) eliminada(s) correctamente.`);
+      }
+    }
+    
+    // Salir
+    function salir() {
+      const confirmar = confirm('¿Estás seguro de que deseas salir?');
+      if (confirmar) {
+        alert('👋 Saliendo del administrador de asignaturas...');
+      }
+    }
+    
+    // Eventos
+    chkSeleccionarTodos.addEventListener('change', seleccionarTodos);
+    btnFiltrar.addEventListener('click', filtrarAsignaturas);
+    document.getElementById('btnCrear').addEventListener('click', crearNueva);
+    document.getElementById('btnImportar').addEventListener('click', importarAsignaturas);
+    document.getElementById('btnEliminar').addEventListener('click', eliminarSeleccionada);
+    document.getElementById('btnSalir').addEventListener('click', salir);
+    
+    // Permitir filtrar con Enter
+    inputBuscar.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        filtrarAsignaturas();
+      }
+    });
+    
+    // Inicializar
+    renderizarTabla();
+  </script>
+
+</body>
+</html>

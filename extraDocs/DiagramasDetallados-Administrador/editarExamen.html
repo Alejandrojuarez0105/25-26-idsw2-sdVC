@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Editar Examen</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .contenedor{
+      width: 650px;
+      background: #ececec;
+      padding: 25px;
+      border: 1px solid #cfcfcf;
+    }
+
+    .titulo{
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+
+    .subtitulo{
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    .campo{
+      margin-bottom: 20px;
+    }
+
+    .campo label{
+      display: block;
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .campo input{
+      width: 100%;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 16px;
+      border: 1px solid #bdbdbd;
+      background: #f5f5f5;
+    }
+
+    .campo input:focus{
+      outline: none;
+      border-color: #2d89ef;
+      background: white;
+    }
+
+    .campo select{
+      width: 100%;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 16px;
+      border: 1px solid #bdbdbd;
+      background: #f5f5f5;
+      cursor: pointer;
+    }
+
+    .campo select:focus{
+      outline: none;
+      border-color: #2d89ef;
+      background: white;
+    }
+
+    .campo textarea{
+      width: 100%;
+      padding: 12px;
+      font-family: inherit;
+      font-size: 14px;
+      border: 1px solid #bdbdbd;
+      background: #f5f5f5;
+      resize: vertical;
+      min-height: 80px;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .campo textarea:focus{
+      outline: none;
+      border-color: #2d89ef;
+      background: white;
+    }
+
+    .codigo-disabled{
+      background: #e9ecef;
+      color: #666;
+      cursor: not-allowed;
+    }
+
+    .fila-doble{
+      display: flex;
+      gap: 20px;
+    }
+
+    .fila-doble .campo{
+      flex: 1;
+    }
+
+    .info-adicional{
+      background: #e7f3ff;
+      padding: 12px 15px;
+      margin: 20px 0;
+      border-left: 4px solid #2d89ef;
+      font-size: 14px;
+      font-style: italic;
+      color: #2c3e50;
+    }
+
+    hr{
+      border: none;
+      border-top: 2px solid #cfcfcf;
+      margin: 25px 0 20px 0;
+    }
+
+    .botones{
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn{
+      min-width: 150px;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 15px;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid #999;
+      font-weight: bold;
+    }
+
+    .btn-guardar{
+      background: #28a745;
+      color: white;
+      border: 1px solid #1e7e34;
+    }
+
+    .btn-guardar:hover{
+      background: #218838;
+    }
+
+    .btn-continuar{
+      background: #2d89ef;
+      color: white;
+      border: 1px solid #1d5faa;
+    }
+
+    .btn-continuar:hover{
+      background: #1e6bc7;
+    }
+
+    .btn-cancelar{
+      background: #f3f0ec;
+      color: black;
+    }
+
+    .btn-cancelar:hover{
+      background: #e3dfda;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1 class="titulo">EDITAR EXAMEN</h1>
+
+    <div class="subtitulo">📝 Datos del examen:</div>
+
+    <div class="campo">
+      <label for="codigo">Código:</label>
+      <input type="text" id="codigo" value="EX001" class="codigo-disabled" readonly disabled>
+    </div>
+
+    <div class="campo">
+      <label for="asignatura">Asignatura:</label>
+      <select id="asignatura">
+        <option value="Programación I" selected>Programación I</option>
+        <option value="Bases de Datos I">Bases de Datos I</option>
+        <option value="Estructuras de Datos I">Estructuras de Datos I</option>
+        <option value="Expresión Gráfica">Expresión Gráfica</option>
+        <option value="Redes de Ordenadores">Redes de Ordenadores</option>
+        <option value="Matemáticas Avanzadas">Matemáticas Avanzadas</option>
+        <option value="Estadística">Estadística</option>
+      </select>
+    </div>
+
+    <div class="fila-doble">
+      <div class="campo">
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" value="2026-01-15">
+      </div>
+      <div class="campo">
+        <label for="hora">Hora:</label>
+        <select id="hora">
+          <option value="08:30" selected>08:30</option>
+          <option value="11:30">11:30</option>
+          <option value="14:30">14:30</option>
+          <option value="17:30">17:30</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="campo">
+      <label for="duracion">Duración:</label>
+      <select id="duracion">
+        <option value="1 hora">1 hora</option>
+        <option value="1.5 horas">1.5 horas</option>
+        <option value="2 horas" selected>2 horas</option>
+        <option value="2.5 horas">2.5 horas</option>
+        <option value="3 horas">3 horas</option>
+      </select>
+    </div>
+
+    <div class="fila-doble">
+      <div class="campo">
+        <label for="aula">Aula:</label>
+        <select id="aula">
+          <option value="-2.6" selected>Aula -2.6</option>
+          <option value="-2.4">Aula -2.4</option>
+          <option value="-2.2">Aula -2.2</option>
+          <option value="1.2">Aula 1.2</option>
+          <option value="C301">Aula C301</option>
+          <option value="A102">Aula A102</option>
+          <option value="D401">Aula D401</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="profesor">Profesor:</label>
+        <select id="profesor">
+          <option value="Manuel Masías" selected>Manuel Masías</option>
+          <option value="Lázaro Hernández">Lázaro Hernández</option>
+          <option value="Carlos Galiano">Carlos Galiano</option>
+          <option value="Jorge Crespo">Jorge Crespo</option>
+          <option value="Javier Bel">Javier Bel</option>
+          <option value="Daniel Iglesias">Daniel Iglesias</option>
+          <option value="Juan Pérez">Juan Pérez</option>
+          <option value="María Gómez">María Gómez</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="campo">
+      <label for="observaciones">Observaciones:</label>
+      <textarea id="observaciones">Examen teórico-práctico, se permite una hoja de fórmulas</textarea>
+    </div>
+
+    <div class="info-adicional">
+      📌 El examen está programado en el aula -2.6 con una duración de 2 horas.
+    </div>
+
+    <hr>
+
+    <div class="botones">
+      <button class="btn btn-guardar" id="btnGuardar">💾 Guardar cambios</button>
+      <button class="btn btn-continuar" id="btnContinuar">📌 Continuar editando</button>
+      <button class="btn btn-cancelar" id="btnCancelar">❌ Cancelar</button>
+    </div>
+
+  </div>
+
+  <script>
+    // Elementos del DOM
+    const inputCodigo = document.getElementById('codigo');
+    const selectAsignatura = document.getElementById('asignatura');
+    const inputFecha = document.getElementById('fecha');
+    const selectHora = document.getElementById('hora');
+    const selectDuracion = document.getElementById('duracion');
+    const selectAula = document.getElementById('aula');
+    const selectProfesor = document.getElementById('profesor');
+    const textareaObservaciones = document.getElementById('observaciones');
+    const btnGuardar = document.getElementById('btnGuardar');
+    const btnContinuar = document.getElementById('btnContinuar');
+    const btnCancelar = document.getElementById('btnCancelar');
+
+    // Datos originales (simulados)
+    const datosOriginales = {
+      codigo: 'EX001',
+      asignatura: 'Programación I',
+      fecha: '2026-01-15',
+      hora: '08:30',
+      duracion: '2 horas',
+      aula: '-2.6',
+      profesor: 'Manuel Masías',
+      observaciones: 'Examen teórico-práctico, se permite una hoja de fórmulas'
+    };
+
+    // Formatear fecha para mostrar
+    function formatearFecha(fecha) {
+      const partes = fecha.split('-');
+      return `${partes[2]}/${partes[1]}/${partes[0]}`;
+    }
+
+    // Verificar si hay cambios
+    function hayCambios() {
+      const asignaturaActual = selectAsignatura.value;
+      const fechaActual = inputFecha.value;
+      const horaActual = selectHora.value;
+      const duracionActual = selectDuracion.value;
+      const aulaActual = selectAula.value;
+      const profesorActual = selectProfesor.value;
+      const observacionesActual = textareaObservaciones.value.trim();
+      
+      return asignaturaActual !== datosOriginales.asignatura ||
+             fechaActual !== datosOriginales.fecha ||
+             horaActual !== datosOriginales.hora ||
+             duracionActual !== datosOriginales.duracion ||
+             aulaActual !== datosOriginales.aula ||
+             profesorActual !== datosOriginales.profesor ||
+             observacionesActual !== datosOriginales.observaciones;
+    }
+
+    // Obtener datos actuales
+    function getDatosActuales() {
+      return {
+        codigo: inputCodigo.value,
+        asignatura: selectAsignatura.value,
+        fecha: inputFecha.value,
+        hora: selectHora.value,
+        duracion: selectDuracion.value,
+        aula: selectAula.value,
+        profesor: selectProfesor.value,
+        observaciones: textareaObservaciones.value.trim()
+      };
+    }
+
+    // Validar fecha
+    function validarFecha(fecha) {
+      if (!fecha) {
+        alert('❌ La fecha es obligatoria.');
+        return false;
+      }
+      return true;
+    }
+
+    // Validar observaciones
+    function validarObservaciones(observaciones) {
+      if (!observaciones || observaciones === '') {
+        alert('❌ Las observaciones no pueden estar vacías.');
+        return false;
+      }
+      
+      if (observaciones.length < 5) {
+        alert('❌ Las observaciones deben tener al menos 5 caracteres.');
+        return false;
+      }
+      
+      return true;
+    }
+
+    // Guardar cambios
+    function guardarCambios() {
+      const fecha = inputFecha.value;
+      const observaciones = textareaObservaciones.value;
+      
+      if (!validarFecha(fecha)) {
+        inputFecha.focus();
+        return;
+      }
+      
+      if (!validarObservaciones(observaciones)) {
+        textareaObservaciones.focus();
+        return;
+      }
+      
+      if (!hayCambios()) {
+        alert('ℹ️ No se detectaron cambios para guardar.');
+        return;
+      }
+      
+      const datosActuales = getDatosActuales();
+      const fechaFormateada = formatearFecha(datosActuales.fecha);
+      
+      const confirmar = confirm(`¿Guardar los cambios del examen "${datosOriginales.codigo}"?\n\nAsignatura: ${datosActuales.asignatura}\nFecha: ${fechaFormateada}\nHora: ${datosActuales.hora}\nDuración: ${datosActuales.duracion}\nAula: ${datosActuales.aula}\nProfesor: ${datosActuales.profesor}\n\nObservaciones: ${datosActuales.observaciones}`);
+      
+      if (confirmar) {
+        // Actualizar datos originales
+        datosOriginales.asignatura = datosActuales.asignatura;
+        datosOriginales.fecha = datosActuales.fecha;
+        datosOriginales.hora = datosActuales.hora;
+        datosOriginales.duracion = datosActuales.duracion;
+        datosOriginales.aula = datosActuales.aula;
+        datosOriginales.profesor = datosActuales.profesor;
+        datosOriginales.observaciones = datosActuales.observaciones;
+        
+        alert(`✅ Cambios guardados exitosamente.\n\nExamen: ${datosOriginales.codigo}\nAsignatura: ${datosOriginales.asignatura}\nFecha: ${fechaFormateada} ${datosOriginales.hora}`);
+      }
+    }
+
+    // Continuar editando
+    function continuarEditando() {
+      if (hayCambios()) {
+        alert('📌 Continuando con la edición...\n\nLos cambios no guardados se mantendrán en el formulario.');
+      } else {
+        alert('📌 No hay cambios pendientes. Puede seguir editando el examen.');
+      }
+    }
+
+    // Cancelar
+    function cancelar() {
+      if (hayCambios()) {
+        const confirmar = confirm('⚠️ Hay cambios sin guardar.\n\n¿Estás seguro de que deseas cancelar? Los cambios se perderán.');
+        if (confirmar) {
+          // Restaurar valores originales
+          selectAsignatura.value = datosOriginales.asignatura;
+          inputFecha.value = datosOriginales.fecha;
+          selectHora.value = datosOriginales.hora;
+          selectDuracion.value = datosOriginales.duracion;
+          selectAula.value = datosOriginales.aula;
+          selectProfesor.value = datosOriginales.profesor;
+          textareaObservaciones.value = datosOriginales.observaciones;
+          alert('🔄 Edición cancelada. Los datos han sido restaurados.');
+        }
+      } else {
+        const confirmar = confirm('¿Estás seguro de que deseas salir del editor?');
+        if (confirmar) {
+          alert('👋 Saliendo del editor de exámenes...');
+        }
+      }
+    }
+
+    // Eventos
+    btnGuardar.addEventListener('click', guardarCambios);
+    btnContinuar.addEventListener('click', continuarEditando);
+    btnCancelar.addEventListener('click', cancelar);
+    
+    // Enfocar el primer campo editable
+    selectAsignatura.focus();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Descargar Mi Calendario - Alumno</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .contenedor{
+      width: 650px;
+      background: #ececec;
+      padding: 25px;
+      border: 1px solid #cfcfcf;
+    }
+
+    .titulo{
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .subtitulo{
+      text-align: center;
+      font-size: 14px;
+      margin-bottom: 25px;
+      color: #555;
+    }
+
+    .panel{
+      border: 1px solid #cfcfcf;
+      padding: 18px;
+      margin-bottom: 25px;
+      background: #ededed;
+    }
+
+    .panel h3{
+      font-size: 18px;
+      margin-bottom: 15px;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    /* Formato */
+    .formato-item{
+      margin-bottom: 15px;
+    }
+
+    .formato-titulo{
+      font-weight: bold;
+      font-size: 15px;
+      margin-bottom: 3px;
+    }
+
+    .formato-descripcion{
+      font-size: 12px;
+      color: #666;
+      margin-left: 25px;
+      margin-bottom: 5px;
+    }
+
+    .opcion-radio{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 5px;
+    }
+
+    .opcion-radio input{
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .opcion-radio label{
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: normal;
+    }
+
+    /* Rango de períodos */
+    .opciones-lista{
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-left: 10px;
+    }
+
+    /* Checkboxes */
+    .opcion-checkbox{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .opcion-checkbox input{
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+    }
+
+    .opcion-checkbox label{
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .sub-opcion{
+      margin-left: 25px;
+      margin-top: 5px;
+      margin-bottom: 8px;
+      padding-left: 10px;
+      border-left: 2px dashed #bdbdbd;
+    }
+
+    .sub-opcion .opcion-checkbox label{
+      font-size: 12px;
+      color: #555;
+    }
+
+    .nota-formato{
+      background: #e7f3ff;
+      padding: 8px 12px;
+      margin-top: 10px;
+      font-size: 11px;
+      color: #2c3e50;
+      border-left: 3px solid #2d89ef;
+    }
+
+    hr{
+      border: none;
+      border-top: 2px solid #cfcfcf;
+      margin: 20px 0;
+    }
+
+    .info-final{
+      background: #e9ecef;
+      padding: 10px 15px;
+      text-align: center;
+      font-size: 12px;
+      color: #555;
+      margin-bottom: 20px;
+      border-radius: 4px;
+    }
+
+    .botones{
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    .btn{
+      min-width: 180px;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid #999;
+      font-weight: bold;
+    }
+
+    .btn-descargar{
+      background: #28a745;
+      color: white;
+      border: 1px solid #1e7e34;
+    }
+
+    .btn-descargar:hover{
+      background: #218838;
+    }
+
+    .btn-cancelar{
+      background: #f3f0ec;
+      color: black;
+    }
+
+    .btn-cancelar:hover{
+      background: #e3dfda;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1 class="titulo">DESCARGAR MI CALENDARIO</h1>
+    <div class="subtitulo">Opciones de descarga personal:</div>
+
+    <!-- Formato -->
+    <div class="panel">
+      <h3>📄 Formato:</h3>
+      <div class="formato-item">
+        <div class="opcion-radio">
+          <input type="radio" name="formato" id="formatoPDF" value="pdf" checked>
+          <label for="formatoPDF"><strong>PDF para imprimir</strong></label>
+        </div>
+        <div class="formato-descripcion">Para llevar en papel o consultar offline</div>
+      </div>
+
+      <div class="formato-item">
+        <div class="opcion-radio">
+          <input type="radio" name="formato" id="formatoICS" value="ics">
+          <label for="formatoICS"><strong>Calendario digital (.ics)</strong></label>
+        </div>
+        <div class="formato-descripcion">Para importar a Google Calendar, Outlook, etc.</div>
+      </div>
+
+      <div class="formato-item">
+        <div class="opcion-radio">
+          <input type="radio" name="formato" id="formatoLista" value="lista">
+          <label for="formatoLista"><strong>Lista simple</strong></label>
+        </div>
+        <div class="formato-descripcion">Texto plano para apuntes rápidos</div>
+      </div>
+    </div>
+
+    <!-- Período -->
+    <div class="panel">
+      <h3>📆 Período:</h3>
+      <div class="opciones-lista">
+        <div class="opcion-radio">
+          <input type="radio" name="periodo" id="periodoPendientes" value="pendientes" checked>
+          <label for="periodoPendientes">Solo exámenes pendientes</label>
+        </div>
+        <div class="opcion-radio">
+          <input type="radio" name="periodo" id="periodoSemestre" value="semestre">
+          <label for="periodoSemestre">Todo el semestre</label>
+        </div>
+        <div class="opcion-radio">
+          <input type="radio" name="periodo" id="periodoSemanas" value="semanas">
+          <label for="periodoSemanas">Próximas 2 semanas</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Incluir en el archivo -->
+    <div class="panel">
+      <h3>📋 Incluir en el archivo:</h3>
+      <div class="opcion-checkbox">
+        <input type="checkbox" id="chkFechas" checked>
+        <label for="chkFechas">Fechas y horarios exactos</label>
+      </div>
+      <div class="opcion-checkbox">
+        <input type="checkbox" id="chkAulas" checked>
+        <label for="chkAulas">Aulas asignadas</label>
+      </div>
+      <div class="opcion-checkbox">
+        <input type="checkbox" id="chkProfesores" checked>
+        <label for="chkProfesores">Profesores</label>
+      </div>
+      <div class="opcion-checkbox">
+        <input type="checkbox" id="chkMaterial">
+        <label for="chkMaterial">Material de estudio recomendado</label>
+      </div>
+      <div class="sub-opcion">
+        <div class="opcion-checkbox">
+          <input type="checkbox" id="chkEnlaces">
+          <label for="chkEnlaces">Incluye enlaces a recursos de estudio</label>
+        </div>
+      </div>
+      <div class="opcion-checkbox">
+        <input type="checkbox" id="chkRecordatorio">
+        <label for="chkRecordatorio">Recordatorio automático (24h antes)</label>
+      </div>
+      <div class="nota-formato">
+        ℹ️ Recordatorio automático solo disponible en formato .ics
+      </div>
+    </div>
+
+    <div class="info-final">
+      📌 Tu calendario se generará con las opciones seleccionadas y estará listo en segundos.
+    </div>
+
+    <div class="botones">
+      <button class="btn btn-descargar" id="btnDescargar">📎 Descargar ahora</button>
+      <button class="btn btn-cancelar" id="btnCancelar">❌ Cancelar</button>
+    </div>
+
+  </div>
+
+  <script>
+    // Elementos del DOM
+    const btnDescargar = document.getElementById('btnDescargar');
+    const btnCancelar = document.getElementById('btnCancelar');
+    
+    // Checkboxes
+    const chkRecordatorio = document.getElementById('chkRecordatorio');
+    const formatoICS = document.getElementById('formatoICS');
+    const formatoPDF = document.getElementById('formatoPDF');
+    const formatoLista = document.getElementById('formatoLista');
+
+    // Deshabilitar recordatorio si no es formato ICS
+    function actualizarRecordatorio() {
+      if (!formatoICS.checked) {
+        chkRecordatorio.checked = false;
+        chkRecordatorio.disabled = true;
+      } else {
+        chkRecordatorio.disabled = false;
+      }
+    }
+
+    // Eventos de formato
+    formatoICS.addEventListener('change', actualizarRecordatorio);
+    formatoPDF.addEventListener('change', actualizarRecordatorio);
+    formatoLista.addEventListener('change', actualizarRecordatorio);
+
+    // Obtener formato seleccionado
+    function getFormatoSeleccionado() {
+      if (formatoPDF.checked) return 'PDF para imprimir';
+      if (formatoICS.checked) return 'Calendario digital (.ics)';
+      if (formatoLista.checked) return 'Lista simple';
+      return 'PDF para imprimir';
+    }
+
+    // Obtener período seleccionado
+    function getPeriodoSeleccionado() {
+      if (document.getElementById('periodoPendientes').checked) return 'Solo exámenes pendientes';
+      if (document.getElementById('periodoSemestre').checked) return 'Todo el semestre';
+      if (document.getElementById('periodoSemanas').checked) return 'Próximas 2 semanas';
+      return 'Solo exámenes pendientes';
+    }
+
+    // Obtener información a incluir
+    function getInformacionIncluir() {
+      const items = [];
+      if (document.getElementById('chkFechas').checked) items.push('Fechas y horarios exactos');
+      if (document.getElementById('chkAulas').checked) items.push('Aulas asignadas');
+      if (document.getElementById('chkProfesores').checked) items.push('Profesores');
+      if (document.getElementById('chkMaterial').checked) items.push('Material de estudio recomendado');
+      if (document.getElementById('chkEnlaces').checked) items.push('Enlaces a recursos de estudio');
+      if (document.getElementById('chkRecordatorio').checked && formatoICS.checked) items.push('Recordatorio automático (24h antes)');
+      return items;
+    }
+
+    // Validar que al menos un elemento de información esté seleccionado
+    function validarInformacion() {
+      const tieneFechas = document.getElementById('chkFechas').checked;
+      const tieneAulas = document.getElementById('chkAulas').checked;
+      const tieneProfesores = document.getElementById('chkProfesores').checked;
+      
+      if (!tieneFechas && !tieneAulas && !tieneProfesores) {
+        alert('⚠️ Debes seleccionar al menos un elemento de información básica (Fechas, Aulas o Profesores).');
+        return false;
+      }
+      return true;
+    }
+
+    // Descargar calendario
+    function descargarCalendario() {
+      if (!validarInformacion()) return;
+      
+      const formato = getFormatoSeleccionado();
+      const periodo = getPeriodoSeleccionado();
+      const informacion = getInformacionIncluir();
+      
+      let mensaje = '📥 GENERANDO CALENDARIO PERSONAL\n\n';
+      mensaje += `Alumna: Ana García López\n`;
+      mensaje += `Grado: GII - 3° Curso\n\n`;
+      mensaje += `Formato: ${formato}\n`;
+      mensaje += `Período: ${periodo}\n`;
+      mensaje += `Información a incluir: ${informacion.length} elementos\n`;
+      mensaje += `- ${informacion.join('\n- ')}\n\n`;
+      
+      if (formato === 'Calendario digital (.ics)' && chkRecordatorio.checked) {
+        mensaje += `🔔 Se añadirán recordatorios 24 horas antes de cada examen.\n\n`;
+      }
+      
+      mensaje += `✅ La descarga comenzará en breve.`;
+      
+      alert(mensaje);
+      console.log('Descargando calendario alumno:', { formato, periodo, informacion });
+    }
+
+    // Cancelar
+    function cancelar() {
+      const confirmar = confirm('¿Estás seguro de que deseas cancelar la descarga?');
+      if (confirmar) {
+        alert('🔄 Descarga cancelada.');
+      }
+    }
+
+    // Eventos
+    btnDescargar.addEventListener('click', descargarCalendario);
+    btnCancelar.addEventListener('click', cancelar);
+    
+    // Inicializar recordatorio
+    actualizarRecordatorio();
+  </script>
+
+</body>
+</html>

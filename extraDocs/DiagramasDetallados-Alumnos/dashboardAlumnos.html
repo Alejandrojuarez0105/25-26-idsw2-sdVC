@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - Alumno</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      padding: 20px;
+    }
+
+    .contenedor{
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header{
+      background: #ececec;
+      padding: 20px;
+      border: 1px solid #cfcfcf;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo h1{
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .logo .universidad{
+      font-size: 11px;
+      color: #555;
+    }
+
+    .usuario-info{
+      text-align: right;
+    }
+
+    .usuario-nombre{
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .usuario-rol{
+      font-size: 12px;
+      color: #2d89ef;
+    }
+
+    .btn-cerrar{
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 6px 15px;
+      font-family: inherit;
+      font-size: 12px;
+      cursor: pointer;
+      margin-top: 5px;
+      border-radius: 3px;
+    }
+
+    .stats-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+
+    .stat-card{
+      background: #ededed;
+      border: 1px solid #cfcfcf;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .stat-numero{
+      font-size: 32px;
+      font-weight: bold;
+      color: #2d89ef;
+    }
+
+    .stat-label{
+      font-size: 13px;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    .panel-doble{
+      display: flex;
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+
+    .panel{
+      flex: 1;
+      background: #ededed;
+      border: 1px solid #cfcfcf;
+      padding: 18px;
+    }
+
+    .panel h3{
+      font-size: 18px;
+      margin-bottom: 15px;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    .lista-items{
+      list-style: none;
+    }
+
+    .lista-items li{
+      padding: 8px 0;
+      border-bottom: 1px solid #cfcfcf;
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .lista-items li:last-child{
+      border-bottom: none;
+    }
+
+    .examen-fecha{
+      font-size: 11px;
+      color: #666;
+    }
+
+    .ver-todos{
+      margin-top: 12px;
+      text-align: right;
+    }
+
+    .ver-todos a{
+      color: #2d89ef;
+      text-decoration: none;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .accesos-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .acceso-card{
+      background: #dfe7ef;
+      border: 1px solid #7ea0c0;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .acceso-card:hover{
+      background: #b8d4f0;
+    }
+
+    .acceso-icono{
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .acceso-nombre{
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .footer{
+      text-align: center;
+      font-size: 11px;
+      color: #666;
+      padding: 15px;
+      border-top: 1px solid #cfcfcf;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">
+        <h1>UE</h1>
+        <div class="universidad">Universidad Europea del Atlántico</div>
+      </div>
+      <div class="usuario-info">
+        <div class="usuario-nombre">Ana García López</div>
+        <div class="usuario-rol">GII - 3° Curso</div>
+        <button class="btn-cerrar" id="btnCerrar">🚪 Cerrar sesión</button>
+      </div>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-numero">6</div>
+        <div class="stat-label">Asignaturas matriculadas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-numero">4</div>
+        <div class="stat-label">Exámenes pendientes</div>
+      </div>
+    </div>
+
+    <!-- Panel de próximos exámenes -->
+    <div class="panel-doble">
+      <div class="panel">
+        <h3>📅 Próximos exámenes</h3>
+        <ul class="lista-items">
+          <li><span>Programación I</span><span class="examen-fecha">15/01 08:30 - Aula -2.6</span></li>
+          <li><span>Bases de Datos</span><span class="examen-fecha">16/01 11:30 - Aula -2.4</span></li>
+          <li><span>Estructuras de Datos</span><span class="examen-fecha">19/01 14:30 - Aula -2.6</span></li>
+          <li><span>Redes</span><span class="examen-fecha">20/01 17:30 - Aula D-401</span></li>
+        </ul>
+        <div class="ver-todos">
+          <a id="verCalendario">Ver mi calendario →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accesos rápidos -->
+    <div class="accesos-grid">
+      <div class="acceso-card" data-modulo="calendario">
+        <div class="acceso-icono">📅</div>
+        <div class="acceso-nombre">Mis Exámenes</div>
+      </div>
+      <div class="acceso-card" data-modulo="descargar">
+        <div class="acceso-icono">📎</div>
+        <div class="acceso-nombre">Descargar Calendario</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      Sistema de gestión académica - Versión 1.0 · © 2025
+    </div>
+
+  </div>
+
+  <script>
+    function mostrarAlerta(modulo) {
+      alert(`🔍 Navegando a: ${modulo}\n\nFuncionalidad en desarrollo.`);
+    }
+
+    document.querySelectorAll('.acceso-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const modulo = card.getAttribute('data-modulo');
+        mostrarAlerta(modulo);
+      });
+    });
+
+    document.getElementById('verCalendario').addEventListener('click', () => {
+      alert('📅 Consultando mi calendario de exámenes');
+    });
+
+    document.getElementById('btnCerrar').addEventListener('click', () => {
+      alert('👋 Cerrando sesión...');
+    });
+  </script>
+
+</body>
+</html>

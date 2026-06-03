@@ -10,8 +10,25 @@ participant "GradosService\n(Logic)" as BService <<Service>>
 database "PostgreSQL" as DB
 
 Administrador -> UI : Click en eliminar grado
-UI -> UI : Mostrar confirmación
+
+== Verificación de impacto ==
+
+UI -> Hook : verificarImpacto(id)
+Hook -> FService : verificarImpacto(id)
+FService -> Controller : GET /grados/:id/impacto
+Controller -> BService : countDependencies(id)
+BService -> DB : SELECT COUNT(*) ...
+DB --> BService : totalAsignaturas
+BService --> Controller : totalAsignaturas
+Controller --> FService : 200 OK (totalAsignaturas)
+FService --> Hook : totalAsignaturas
+Hook --> UI : totalAsignaturas
+UI --> Administrador : Mostrar confirmación(totalAsignaturas)
+
 Administrador -> UI : Confirma eliminación
+
+== Ejecución ==
+
 UI -> Hook : deleteGrado(id)
 Hook -> FService : deleteGrado(id)
 FService -> Controller : DELETE /grados/:id
@@ -23,4 +40,5 @@ Controller --> FService : OK
 FService --> Hook : OK
 Hook --> UI : Quita grado de la lista local
 UI --> Administrador : Muestra mensaje de éxito
+
 @enduml

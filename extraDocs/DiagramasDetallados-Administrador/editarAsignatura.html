@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Editar Asignatura</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .contenedor{
+      width: 600px;
+      background: #ececec;
+      padding: 25px;
+      border: 1px solid #cfcfcf;
+    }
+
+    .titulo{
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+
+    .subtitulo{
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    .campo{
+      margin-bottom: 20px;
+    }
+
+    .campo label{
+      display: block;
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .campo input{
+      width: 100%;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 16px;
+      border: 1px solid #bdbdbd;
+      background: #f5f5f5;
+    }
+
+    .campo input:focus{
+      outline: none;
+      border-color: #2d89ef;
+      background: white;
+    }
+
+    .campo select{
+      width: 100%;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 16px;
+      border: 1px solid #bdbdbd;
+      background: #f5f5f5;
+      cursor: pointer;
+    }
+
+    .campo select:focus{
+      outline: none;
+      border-color: #2d89ef;
+      background: white;
+    }
+
+    .campo textarea{
+      width: 100%;
+      padding: 12px;
+      font-family: inherit;
+      font-size: 14px;
+      border: 1px solid #bdbdbd;
+      background: #f5f5f5;
+      resize: vertical;
+      min-height: 100px;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .campo textarea:focus{
+      outline: none;
+      border-color: #2d89ef;
+      background: white;
+    }
+
+    .codigo-disabled{
+      background: #e9ecef;
+      color: #666;
+      cursor: not-allowed;
+    }
+
+    .info-adicional{
+      background: #e7f3ff;
+      padding: 12px 15px;
+      margin: 20px 0;
+      border-left: 4px solid #2d89ef;
+      font-size: 14px;
+      font-style: italic;
+      color: #2c3e50;
+    }
+
+    .info-adicional p{
+      margin-top: 5px;
+      font-style: normal;
+      font-weight: normal;
+    }
+
+    hr{
+      border: none;
+      border-top: 2px solid #cfcfcf;
+      margin: 25px 0 20px 0;
+    }
+
+    .botones{
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn{
+      min-width: 150px;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 15px;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid #999;
+      font-weight: bold;
+    }
+
+    .btn-guardar{
+      background: #28a745;
+      color: white;
+      border: 1px solid #1e7e34;
+    }
+
+    .btn-guardar:hover{
+      background: #218838;
+    }
+
+    .btn-continuar{
+      background: #2d89ef;
+      color: white;
+      border: 1px solid #1d5faa;
+    }
+
+    .btn-continuar:hover{
+      background: #1e6bc7;
+    }
+
+    .btn-cancelar{
+      background: #f3f0ec;
+      color: black;
+    }
+
+    .btn-cancelar:hover{
+      background: #e3dfda;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1 class="titulo">EDITAR ASIGNATURA</h1>
+
+    <div class="subtitulo">📚 Datos de la asignatura:</div>
+
+    <div class="campo">
+      <label for="codigo">Código:</label>
+      <input type="text" id="codigo" value="IYA003" class="codigo-disabled" readonly disabled>
+    </div>
+
+    <div class="campo">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" value="Programación I">
+    </div>
+
+    <div class="campo">
+      <label for="creditos">Créditos:</label>
+      <input type="number" id="creditos" value="6" min="1" max="12" step="1">
+    </div>
+
+    <div class="campo">
+      <label for="grado">Grado:</label>
+      <select id="grado">
+        <option value="GII">GII - Ingeniería Informática</option>
+        <option value="GIOI">GIOI - Ingeniería Industrial</option>
+        <option value="GPOI">GPOI - Psicología</option>
+        <option value="GADE">GADE - Administración de Empresas</option>
+        <option value="GIC">GIC - Ingeniería Civil</option>
+      </select>
+    </div>
+
+    <div class="campo">
+      <label for="descripcion">Descripción:</label>
+      <textarea id="descripcion">Introducción a la programación estructurada y algoritmos fundamentales utilizando lenguaje Java</textarea>
+    </div>
+
+    <div class="info-adicional">
+      💡 La asignatura pertenece al grado de Ingeniería Informática y tiene una carga de 6 créditos ECTS.
+    </div>
+
+    <hr>
+
+    <div class="botones">
+      <button class="btn btn-guardar" id="btnGuardar">💾 Guardar cambios</button>
+      <button class="btn btn-continuar" id="btnContinuar">📌 Continuar editando</button>
+      <button class="btn btn-cancelar" id="btnCancelar">❌ Cancelar</button>
+    </div>
+
+  </div>
+
+  <script>
+    // Elementos del DOM
+    const inputCodigo = document.getElementById('codigo');
+    const inputNombre = document.getElementById('nombre');
+    const inputCreditos = document.getElementById('creditos');
+    const selectGrado = document.getElementById('grado');
+    const textareaDescripcion = document.getElementById('descripcion');
+    const btnGuardar = document.getElementById('btnGuardar');
+    const btnContinuar = document.getElementById('btnContinuar');
+    const btnCancelar = document.getElementById('btnCancelar');
+
+    // Datos originales (simulados)
+    const datosOriginales = {
+      codigo: 'IYA003',
+      nombre: 'Programación I',
+      creditos: 6,
+      grado: 'GII',
+      descripcion: 'Introducción a la programación estructurada y algoritmos fundamentales utilizando lenguaje Java'
+    };
+
+    // Obtener texto del grado seleccionado
+    function getGradoTexto(gradoValue) {
+      const option = Array.from(selectGrado.options).find(opt => opt.value === gradoValue);
+      return option ? option.text : gradoValue;
+    }
+
+    // Verificar si hay cambios
+    function hayCambios() {
+      const nombreActual = inputNombre.value.trim();
+      const creditosActual = parseInt(inputCreditos.value);
+      const gradoActual = selectGrado.value;
+      const descripcionActual = textareaDescripcion.value.trim();
+      
+      return nombreActual !== datosOriginales.nombre ||
+             creditosActual !== datosOriginales.creditos ||
+             gradoActual !== datosOriginales.grado ||
+             descripcionActual !== datosOriginales.descripcion;
+    }
+
+    // Obtener datos actuales
+    function getDatosActuales() {
+      return {
+        codigo: inputCodigo.value,
+        nombre: inputNombre.value.trim(),
+        creditos: parseInt(inputCreditos.value),
+        grado: selectGrado.value,
+        gradoTexto: getGradoTexto(selectGrado.value),
+        descripcion: textareaDescripcion.value.trim()
+      };
+    }
+
+    // Validar nombre
+    function validarNombre(nombre) {
+      if (!nombre || nombre === '') {
+        alert('❌ El nombre no puede estar vacío.');
+        return false;
+      }
+      
+      if (nombre.length < 3) {
+        alert('❌ El nombre debe tener al menos 3 caracteres.');
+        return false;
+      }
+      
+      return true;
+    }
+
+    // Validar créditos
+    function validarCreditos(creditos) {
+      if (isNaN(creditos) || creditos === '') {
+        alert('❌ Los créditos son obligatorios.');
+        return false;
+      }
+      
+      if (creditos < 1 || creditos > 12) {
+        alert('❌ Los créditos deben estar entre 1 y 12.');
+        return false;
+      }
+      
+      return true;
+    }
+
+    // Validar descripción
+    function validarDescripcion(descripcion) {
+      if (!descripcion || descripcion === '') {
+        alert('❌ La descripción no puede estar vacía.');
+        return false;
+      }
+      
+      if (descripcion.length < 10) {
+        alert('❌ La descripción debe tener al menos 10 caracteres.');
+        return false;
+      }
+      
+      return true;
+    }
+
+    // Guardar cambios
+    function guardarCambios() {
+      const nombre = inputNombre.value;
+      const creditos = inputCreditos.value;
+      const descripcion = textareaDescripcion.value;
+      
+      if (!validarNombre(nombre)) {
+        inputNombre.focus();
+        return;
+      }
+      
+      if (!validarCreditos(parseInt(creditos))) {
+        inputCreditos.focus();
+        return;
+      }
+      
+      if (!validarDescripcion(descripcion)) {
+        textareaDescripcion.focus();
+        return;
+      }
+      
+      if (!hayCambios()) {
+        alert('ℹ️ No se detectaron cambios para guardar.');
+        return;
+      }
+      
+      const datosActuales = getDatosActuales();
+      const gradoTexto = getGradoTexto(datosActuales.grado);
+      
+      const confirmar = confirm(`¿Guardar los cambios de la asignatura "${datosOriginales.codigo}"?\n\nNombre: ${datosActuales.nombre}\nCréditos: ${datosActuales.creditos}\nGrado: ${gradoTexto}\n\nDescripción: ${datosActuales.descripcion}`);
+      
+      if (confirmar) {
+        // Actualizar datos originales
+        datosOriginales.nombre = datosActuales.nombre;
+        datosOriginales.creditos = datosActuales.creditos;
+        datosOriginales.grado = datosActuales.grado;
+        datosOriginales.descripcion = datosActuales.descripcion;
+        
+        alert(`✅ Cambios guardados exitosamente.\n\nAsignatura: ${datosOriginales.codigo}\nNombre: ${datosOriginales.nombre}\nCréditos: ${datosOriginales.creditos}`);
+      }
+    }
+
+    // Continuar editando
+    function continuarEditando() {
+      if (hayCambios()) {
+        alert('📌 Continuando con la edición...\n\nLos cambios no guardados se mantendrán en el formulario.');
+      } else {
+        alert('📌 No hay cambios pendientes. Puede seguir editando la asignatura.');
+      }
+    }
+
+    // Cancelar
+    function cancelar() {
+      if (hayCambios()) {
+        const confirmar = confirm('⚠️ Hay cambios sin guardar.\n\n¿Estás seguro de que deseas cancelar? Los cambios se perderán.');
+        if (confirmar) {
+          // Restaurar valores originales
+          inputNombre.value = datosOriginales.nombre;
+          inputCreditos.value = datosOriginales.creditos;
+          selectGrado.value = datosOriginales.grado;
+          textareaDescripcion.value = datosOriginales.descripcion;
+          alert('🔄 Edición cancelada. Los datos han sido restaurados.');
+        }
+      } else {
+        const confirmar = confirm('¿Estás seguro de que deseas salir del editor?');
+        if (confirmar) {
+          alert('👋 Saliendo del editor de asignaturas...');
+        }
+      }
+    }
+
+    // Eventos
+    btnGuardar.addEventListener('click', guardarCambios);
+    btnContinuar.addEventListener('click', continuarEditando);
+    btnCancelar.addEventListener('click', cancelar);
+    
+    // Enfocar el primer campo editable
+    inputNombre.focus();
+  </script>
+
+</body>
+</html>

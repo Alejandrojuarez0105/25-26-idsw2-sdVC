@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Consultar Calendario de Exámenes - Profesor</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .contenedor{
+      width: 1100px;
+      background: #ececec;
+      padding: 20px;
+    }
+
+    .titulo{
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .subtitulo{
+      text-align: center;
+      font-size: 16px;
+      margin-bottom: 25px;
+      color: #555;
+    }
+
+    /* Tabla de calendario */
+    .tabla-calendario{
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      background: white;
+    }
+
+    .tabla-calendario th,
+    .tabla-calendario td{
+      border: 2px solid #bdbdbd;
+      padding: 12px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .tabla-calendario th{
+      background: #dfe7ef;
+      font-weight: bold;
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .tabla-calendario td{
+      font-size: 13px;
+      background: white;
+    }
+
+    .celda-vacia{
+      background: #f0f0f0;
+      color: #999;
+      text-align: center;
+      font-style: italic;
+    }
+
+    .hora-fila{
+      background: #dfe7ef;
+      font-weight: bold;
+      width: 110px;
+      text-align: center;
+    }
+
+    .examen-item{
+      margin-bottom: 5px;
+    }
+
+    .examen-nombre{
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .examen-aula{
+      font-size: 12px;
+      color: #555;
+    }
+
+    .examen-estudiantes{
+      font-size: 11px;
+      color: #28a745;
+      margin-top: 3px;
+    }
+
+    /* Resumen */
+    .resumen{
+      border: 2px solid #7ea0c0;
+      background: #dfe7ef;
+      padding: 15px 20px;
+      margin-bottom: 25px;
+    }
+
+    .resumen h3{
+      font-size: 18px;
+      margin-bottom: 12px;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    .resumen-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .resumen-item{
+      text-align: center;
+    }
+
+    .resumen-label{
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .resumen-valor{
+      font-size: 20px;
+      font-weight: bold;
+      color: #2d89ef;
+    }
+
+    /* Botones */
+    .botones{
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    .btn{
+      min-width: 180px;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid #999;
+      font-weight: bold;
+    }
+
+    .btn-reportar{
+      background: #dc3545;
+      color: white;
+      border: 1px solid #a71d2a;
+    }
+
+    .btn-reportar:hover{
+      background: #c82333;
+    }
+
+    .btn-descargar{
+      background: #2d89ef;
+      color: white;
+      border: 1px solid #1d5faa;
+    }
+
+    .btn-descargar:hover{
+      background: #1e6bc7;
+    }
+
+    .btn-volver{
+      background: #f3f0ec;
+      color: black;
+    }
+
+    .btn-volver:hover{
+      background: #e3dfda;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1 class="titulo">CONSULTAR CALENDARIO DE EXÁMENES</h1>
+    <div class="subtitulo">Calendario personal - Dr. Manuel Masías</div>
+
+    <!-- Tabla de calendario -->
+    <table class="tabla-calendario">
+      <thead>
+        <tr>
+          <th>HORARIO</th>
+          <th>LUN 13</th>
+          <th>MAR 14</th>
+          <th>MIÉ 15</th>
+          <th>JUE 16</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="hora-fila">08:30-10:30</td>
+          <td>
+            <div class="examen-item">
+              <div class="examen-nombre">📖 Prog. I</div>
+              <div class="examen-aula">📍 Aula -2.6</div>
+              <div class="examen-estudiantes">🎓 50 estudiantes</div>
+            </div>
+          </td>
+          <td class="celda-vacia">— Sin exámenes —</td>
+          <td>
+            <div class="examen-item">
+              <div class="examen-nombre">📖 Est. Datos</div>
+              <div class="examen-aula">📍 Aula -2.6</div>
+              <div class="examen-estudiantes">🎓 45 estudiantes</div>
+            </div>
+          </td>
+          <td class="celda-vacia">— Sin exámenes —</td>
+        </tr>
+        <tr>
+          <td class="hora-fila">11:30-13:30</td>
+          <td class="celda-vacia">— Sin exámenes —</td>
+          <td>
+            <div class="examen-item">
+              <div class="examen-nombre">📖 Prog. I</div>
+              <div class="examen-aula">📍 Aula -2.4</div>
+              <div class="examen-estudiantes">🎓 50 estudiantes</div>
+            </div>
+          </td>
+          <td class="celda-vacia">— Sin exámenes —</td>
+          <td class="celda-vacia">— Sin exámenes —</td>
+        </tr>
+        <tr>
+          <td class="hora-fila">14:30-16:30</td>
+          <td class="celda-vacia">— Sin exámenes —</td>
+          <td class="celda-vacia">— Sin exámenes —</td>
+          <td class="celda-vacia">— Sin exámenes —</td>
+          <td class="celda-vacia">— Sin exámenes —</td>
+        </tr>
+        <tr>
+          <td class="hora-fila">17:30-19:30</td>
+          <td>
+            <div class="examen-item">
+              <div class="examen-nombre">📖 IDSW 1</div>
+              <div class="examen-aula">📍 Aula 1.7</div>
+              <div class="examen-estudiantes">🎓 60 estudiantes</div>
+            </div>
+          </td>
+          <td class="celda-vacia">— Sin exámenes —</td>
+          <td class="celda-vacia">— Sin exámenes —</td>
+          <td class="celda-vacia">— Sin exámenes —</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Resumen -->
+    <div class="resumen">
+      <h3>📊 Resumen:</h3>
+      <div class="resumen-grid">
+        <div class="resumen-item">
+          <div class="resumen-label">Exámenes asignados:</div>
+          <div class="resumen-valor">4</div>
+        </div>
+        <div class="resumen-item">
+          <div class="resumen-label">Total estudiantes:</div>
+          <div class="resumen-valor">205</div>
+        </div>
+        <div class="resumen-item">
+          <div class="resumen-label">Período:</div>
+          <div class="resumen-valor" style="font-size: 14px;">13-16 Enero 2025</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="botones">
+      <button class="btn btn-reportar" id="btnReportar">⚠️ Reportar incidencia</button>
+      <button class="btn btn-descargar" id="btnDescargar">📎 Descargar calendario</button>
+      <button class="btn btn-volver" id="btnVolver">🔙 Volver</button>
+    </div>
+
+  </div>
+
+  <script>
+    // Elementos del DOM
+    const btnReportar = document.getElementById('btnReportar');
+    const btnDescargar = document.getElementById('btnDescargar');
+    const btnVolver = document.getElementById('btnVolver');
+
+    // Reportar incidencia
+    function reportarIncidencia() {
+      const incidencia = prompt('📝 Reportar incidencia\n\nDescriba el problema con el calendario de exámenes:');
+      if (incidencia && incidencia.trim()) {
+        alert(`✅ Incidencia reportada correctamente.\n\nSu reporte ha sido enviado al administrador.\n\nMensaje: "${incidencia.trim()}"`);
+      } else if (incidencia !== null) {
+        alert('❌ No se puede enviar un reporte vacío.');
+      }
+    }
+
+    // Descargar calendario
+    function descargarCalendario() {
+      alert(`📥 Descargando calendario personal del Dr. Manuel Masías...\n\nFormato: PDF\nPeríodo: 13-16 Enero 2025\nExámenes: 4\nTotal estudiantes: 205\n\n✅ La descarga comenzará en breve.`);
+      console.log('Descargando calendario profesor...');
+    }
+
+    // Volver
+    function volver() {
+      const confirmar = confirm('¿Estás seguro de que deseas volver al menú principal?');
+      if (confirmar) {
+        alert('🔙 Volviendo al menú principal...');
+        // window.location.href = 'menu_profesor.html';
+      }
+    }
+
+    // Eventos
+    btnReportar.addEventListener('click', reportarIncidencia);
+    btnDescargar.addEventListener('click', descargarCalendario);
+    btnVolver.addEventListener('click', volver);
+  </script>
+
+</body>
+</html>

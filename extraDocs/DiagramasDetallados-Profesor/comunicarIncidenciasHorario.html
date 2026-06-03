@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Comunicar Incidencia de Horario - Profesor</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .contenedor{
+      width: 600px;
+      background: #ececec;
+      padding: 25px;
+      border: 1px solid #cfcfcf;
+    }
+
+    .titulo{
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+
+    .campo{
+      margin-bottom: 20px;
+    }
+
+    .campo label{
+      display: block;
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .campo select{
+      width: 100%;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 15px;
+      border: 1px solid #bdbdbd;
+      background: white;
+      cursor: pointer;
+    }
+
+    .campo select:focus{
+      outline: none;
+      border-color: #2d89ef;
+    }
+
+    .campo textarea{
+      width: 100%;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 14px;
+      border: 1px solid #bdbdbd;
+      background: white;
+      resize: vertical;
+      min-height: 100px;
+      line-height: 1.5;
+    }
+
+    .campo textarea:focus{
+      outline: none;
+      border-color: #2d89ef;
+    }
+
+    /* Tipo de incidencia */
+    .tipo-incidencia{
+      margin-bottom: 15px;
+    }
+
+    .tipo-incidencia h4{
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .opciones-incidencia{
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-left: 10px;
+    }
+
+    .opcion-checkbox{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .opcion-checkbox input{
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .opcion-checkbox label{
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    /* Adjuntar archivo */
+    .archivo-adjunto{
+      background: #f5f5f5;
+      border: 1px solid #bdbdbd;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .fila-archivo{
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn-examinar{
+      padding: 8px 20px;
+      background: #2d89ef;
+      color: white;
+      border: none;
+      font-family: inherit;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    .btn-examinar:hover{
+      background: #1e6bc7;
+    }
+
+    .nombre-archivo{
+      font-size: 13px;
+      color: #666;
+      font-style: italic;
+    }
+
+    /* Info adicional */
+    .info-ayuda{
+      background: #e7f3ff;
+      padding: 10px 15px;
+      margin-bottom: 25px;
+      border-left: 4px solid #2d89ef;
+      font-size: 12px;
+      color: #2c3e50;
+    }
+
+    hr{
+      border: none;
+      border-top: 2px solid #cfcfcf;
+      margin: 20px 0;
+    }
+
+    .botones{
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    .btn{
+      min-width: 160px;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid #999;
+      font-weight: bold;
+    }
+
+    .btn-enviar{
+      background: #28a745;
+      color: white;
+      border: 1px solid #1e7e34;
+    }
+
+    .btn-enviar:hover{
+      background: #218838;
+    }
+
+    .btn-cancelar{
+      background: #f3f0ec;
+      color: black;
+    }
+
+    .btn-cancelar:hover{
+      background: #e3dfda;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1 class="titulo">COMUNICAR INCIDENCIA DE HORARIO</h1>
+
+    <!-- Seleccionar examen -->
+    <div class="campo">
+      <label for="examen">📋 Seleccionar examen con incidencia:</label>
+      <select id="examen">
+        <option value="">-- Seleccionar examen --</option>
+        <option value="EX001 - Programación I - 2026-01-15 08:30 - Aula -2.6">EX001 - Programación I - 2026-01-15 08:30 - Aula -2.6</option>
+        <option value="EX003 - Estructuras de Datos I - 2026-01-19 14:30 - Aula -2.4">EX003 - Estructuras de Datos I - 2026-01-19 14:30 - Aula -2.4</option>
+        <option value="IDSW001 - IDSW 1 - 2026-01-13 17:30 - Aula 1.7">IDSW001 - IDSW 1 - 2026-01-13 17:30 - Aula 1.7</option>
+      </select>
+    </div>
+
+    <!-- Tipo de incidencia -->
+    <div class="tipo-incidencia">
+      <h4>⚠️ Tipo de incidencia:</h4>
+      <div class="opciones-incidencia">
+        <div class="opcion-checkbox">
+          <input type="radio" name="tipoIncidencia" id="tipoConflicto" value="conflicto" checked>
+          <label for="tipoConflicto">Conflicto de horario personal</label>
+        </div>
+        <div class="opcion-checkbox">
+          <input type="radio" name="tipoIncidencia" id="tipoAula" value="aula">
+          <label for="tipoAula">Problema con aula asignada</label>
+        </div>
+        <div class="opcion-checkbox">
+          <input type="radio" name="tipoIncidencia" id="tipoDisponibilidad" value="disponibilidad">
+          <label for="tipoDisponibilidad">Disponibilidad cambiada</label>
+        </div>
+        <div class="opcion-checkbox">
+          <input type="radio" name="tipoIncidencia" id="tipoOtro" value="otro">
+          <label for="tipoOtro">Otro</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Descripción -->
+    <div class="campo">
+      <label for="descripcion">📝 Descripción de la incidencia:</label>
+      <textarea id="descripcion" placeholder="Describa detalladamente la incidencia..."></textarea>
+    </div>
+
+    <!-- Adjuntar evidencia -->
+    <div class="archivo-adjunto">
+      <label style="display: block; margin-bottom: 10px; font-weight: bold;">📎 Adjuntar evidencia (opcional)</label>
+      <div class="fila-archivo">
+        <button class="btn-examinar" id="btnExaminar">Examinar...</button>
+        <span class="nombre-archivo" id="nombreArchivo">No file selected</span>
+      </div>
+    </div>
+
+    <div class="info-ayuda">
+      💡 Los reportes de incidencia serán revisados por el departamento de administración. 
+      Se le notificará cualquier cambio en su horario.
+    </div>
+
+    <div class="botones">
+      <button class="btn btn-enviar" id="btnEnviar">📨 Enviar reporte</button>
+      <button class="btn btn-cancelar" id="btnCancelar">❌ Cancelar</button>
+    </div>
+
+  </div>
+
+  <script>
+    // Elementos del DOM
+    const selectExamen = document.getElementById('examen');
+    const textareaDescripcion = document.getElementById('descripcion');
+    const btnEnviar = document.getElementById('btnEnviar');
+    const btnCancelar = document.getElementById('btnCancelar');
+    const btnExaminar = document.getElementById('btnExaminar');
+    const nombreArchivoSpan = document.getElementById('nombreArchivo');
+
+    // Simular selección de archivo
+    let archivoSeleccionado = null;
+    
+    // Crear input de archivo oculto
+    const inputArchivoOculto = document.createElement('input');
+    inputArchivoOculto.type = 'file';
+    inputArchivoOculto.accept = '.pdf,.jpg,.png,.doc,.docx';
+    inputArchivoOculto.style.display = 'none';
+    document.body.appendChild(inputArchivoOculto);
+    
+    // Evento para examinar archivo
+    btnExaminar.addEventListener('click', () => {
+      inputArchivoOculto.click();
+    });
+    
+    // Evento cuando se selecciona un archivo
+    inputArchivoOculto.addEventListener('change', (e) => {
+      if (e.target.files.length > 0) {
+        archivoSeleccionado = e.target.files[0];
+        nombreArchivoSpan.textContent = archivoSeleccionado.name;
+      } else {
+        archivoSeleccionado = null;
+        nombreArchivoSpan.textContent = 'No file selected';
+      }
+    });
+
+    // Obtener tipo de incidencia seleccionado
+    function getTipoIncidencia() {
+      if (document.getElementById('tipoConflicto').checked) return 'Conflicto de horario personal';
+      if (document.getElementById('tipoAula').checked) return 'Problema con aula asignada';
+      if (document.getElementById('tipoDisponibilidad').checked) return 'Disponibilidad cambiada';
+      if (document.getElementById('tipoOtro').checked) return 'Otro';
+      return 'No especificado';
+    }
+
+    // Validar formulario
+    function validarFormulario() {
+      if (!selectExamen.value) {
+        alert('⚠️ Debe seleccionar un examen.');
+        selectExamen.focus();
+        return false;
+      }
+      
+      const descripcion = textareaDescripcion.value.trim();
+      if (!descripcion) {
+        alert('⚠️ Debe escribir una descripción de la incidencia.');
+        textareaDescripcion.focus();
+        return false;
+      }
+      
+      if (descripcion.length < 10) {
+        alert('⚠️ La descripción debe tener al menos 10 caracteres.');
+        textareaDescripcion.focus();
+        return false;
+      }
+      
+      return true;
+    }
+
+    // Enviar reporte
+    function enviarReporte() {
+      if (!validarFormulario()) return;
+      
+      const examen = selectExamen.value;
+      const tipoIncidencia = getTipoIncidencia();
+      const descripcion = textareaDescripcion.value.trim();
+      const archivo = archivoSeleccionado ? archivoSeleccionado.name : 'No se adjuntó archivo';
+      
+      const confirmar = confirm(`📨 CONFIRMAR ENVÍO DE REPORTE\n\nExamen: ${examen}\nTipo de incidencia: ${tipoIncidencia}\nDescripción: ${descripcion}\nArchivo adjunto: ${archivo}\n\n¿Desea enviar este reporte al departamento de administración?`);
+      
+      if (confirmar) {
+        let mensaje = `✅ Reporte enviado exitosamente.\n\n`;
+        mensaje += `Se ha notificado al departamento de administración sobre la incidencia.\n\n`;
+        mensaje += `Número de seguimiento: INC-${Math.floor(Math.random() * 10000)}-${new Date().getFullYear()}\n\n`;
+        mensaje += `Recibirá una respuesta en un plazo máximo de 48 horas hábiles.`;
+        
+        alert(mensaje);
+        
+        // Limpiar formulario
+        selectExamen.value = '';
+        textareaDescripcion.value = '';
+        document.getElementById('tipoConflicto').checked = true;
+        archivoSeleccionado = null;
+        nombreArchivoSpan.textContent = 'No file selected';
+        inputArchivoOculto.value = '';
+        
+        console.log('Reporte enviado:', { examen, tipoIncidencia, descripcion, archivo: archivoSeleccionado });
+      }
+    }
+
+    // Cancelar
+    function cancelar() {
+      const confirmar = confirm('¿Estás seguro de que deseas cancelar?\n\nLos datos ingresados se perderán.');
+      if (confirmar) {
+        // Limpiar formulario
+        selectExamen.value = '';
+        textareaDescripcion.value = '';
+        document.getElementById('tipoConflicto').checked = true;
+        archivoSeleccionado = null;
+        nombreArchivoSpan.textContent = 'No file selected';
+        inputArchivoOculto.value = '';
+        alert('🔄 Operación cancelada.');
+      }
+    }
+
+    // Eventos
+    btnEnviar.addEventListener('click', enviarReporte);
+    btnCancelar.addEventListener('click', cancelar);
+    
+    // Enfocar primer campo
+    selectExamen.focus();
+  </script>
+
+</body>
+</html>

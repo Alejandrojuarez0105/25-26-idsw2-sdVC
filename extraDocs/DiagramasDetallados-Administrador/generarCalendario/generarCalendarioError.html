@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Generar Calendario de Exámenes - Datos Insuficientes</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .contenedor{
+      width: 650px;
+      background: #ececec;
+    }
+
+    .titulo{
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+    }
+
+    /* Panel de error */
+    .panel-error{
+      background: #f8d7da;
+      border: 2px solid #dc3545;
+      padding: 18px;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    .texto-error{
+      font-size: 24px;
+      font-weight: bold;
+      color: #721c24;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .texto-error span{
+      font-size: 32px;
+    }
+
+    .panel{
+      border: 1px solid #cfcfcf;
+      padding: 18px;
+      margin-bottom: 28px;
+      background: #ededed;
+    }
+
+    .panel h3{
+      font-size: 20px;
+      margin-bottom: 15px;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    .requisitos{
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-left: 20px;
+    }
+
+    .requisito{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 16px;
+    }
+
+    .requisito .estado{
+      font-size: 20px;
+      min-width: 30px;
+    }
+
+    .requisito .estado.ok{
+      color: #28a745;
+    }
+
+    .requisito .estado.error{
+      color: #dc3545;
+    }
+
+    .requisito .texto{
+      flex: 1;
+    }
+
+    .requisito .texto strong{
+      font-weight: bold;
+    }
+
+    .requisito .texto .minimo{
+      font-size: 13px;
+      color: #666;
+      font-style: italic;
+    }
+
+    .separador{
+      border: none;
+      border-top: 2px solid #cfcfcf;
+      margin: 20px 0;
+    }
+
+    .acciones{
+      background: #e7f3ff;
+      border-left: 4px solid #2d89ef;
+      padding: 15px 18px;
+      margin-bottom: 20px;
+    }
+
+    .acciones h4{
+      font-size: 18px;
+      margin-bottom: 12px;
+      font-weight: bold;
+    }
+
+    .acciones ul{
+      margin-left: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .acciones li{
+      font-size: 15px;
+    }
+
+    .mensaje-informativo{
+      background: #e9ecef;
+      padding: 12px;
+      text-align: center;
+      font-size: 13px;
+      color: #555;
+      font-style: italic;
+      margin-bottom: 20px;
+      border-radius: 4px;
+    }
+
+    .botones{
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    .btn{
+      min-width: 215px;
+      padding: 14px 25px;
+      border-radius: 4px;
+      font-size: 18px;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid #999;
+      font-weight: bold;
+    }
+
+    .btn-entendido{
+      background: #2d89ef;
+      color: white;
+      border: 1px solid #1d5faa;
+    }
+
+    .btn-entendido:hover{
+      background: #1e6bc7;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1 class="titulo">GENERAR CALENDARIO DE EXÁMENES</h1>
+
+    <!-- Panel de error -->
+    <div class="panel-error">
+      <div class="texto-error">
+        <span>❌</span>
+        <span>DATOS INSUFICIENTES</span>
+        <span>❌</span>
+      </div>
+    </div>
+
+    <!-- Panel de requisitos -->
+    <div class="panel">
+      <h3>📋 Requisitos mínimos del sistema:</h3>
+      <div class="requisitos">
+        <div class="requisito" id="reqGrados">
+          <div class="estado ok">✅</div>
+          <div class="texto">
+            <strong>Grados:</strong> 2 configurados <span class="minimo">(mínimo: 1)</span>
+          </div>
+        </div>
+
+        <div class="requisito" id="reqAsignaturas">
+          <div class="estado error">❌</div>
+          <div class="texto">
+            <strong>Asignaturas:</strong> 3 definidas <span class="minimo">(mínimo: 5)</span>
+          </div>
+        </div>
+
+        <div class="requisito" id="reqProfesores">
+          <div class="estado ok">✅</div>
+          <div class="texto">
+            <strong>Profesores:</strong> 4 disponibles <span class="minimo">(mínimo: 3)</span>
+          </div>
+        </div>
+
+        <div class="requisito" id="reqAulas">
+          <div class="estado ok">✅</div>
+          <div class="texto">
+            <strong>Aulas:</strong> 3 disponibles <span class="minimo">(mínimo: 2)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Acciones recomendadas -->
+    <div class="acciones">
+      <h4>📌 Acciones recomendadas:</h4>
+      <ul>
+        <li>Configure al menos 5 asignaturas en el sistema</li>
+        <li>Verifique que las asignaturas tengan grado asignado</li>
+        <li>Asegúrese de que hay aulas disponibles con capacidad suficiente</li>
+      </ul>
+    </div>
+
+    <div class="mensaje-informativo">
+      💡 Este mensaje desaparecerá cuando cumpla los requisitos mínimos.
+    </div>
+
+    <div class="botones">
+      <button class="btn btn-entendido" id="btnEntendido">
+        Entendido
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    // Elementos del DOM
+    const btnEntendido = document.getElementById('btnEntendido');
+    
+    // Elementos de requisitos
+    const reqGrados = document.getElementById('reqGrados');
+    const reqAsignaturas = document.getElementById('reqAsignaturas');
+    const reqProfesores = document.getElementById('reqProfesores');
+    const reqAulas = document.getElementById('reqAulas');
+    
+    // Función para verificar y actualizar requisitos (simula validación dinámica)
+    function verificarRequisitos() {
+      // Estos valores podrían venir de una API o base de datos
+      // Por ahora usamos los valores de ejemplo de la imagen
+      
+      const datosActuales = {
+        grados: { actual: 2, minimo: 1 },
+        asignaturas: { actual: 3, minimo: 5 },
+        profesores: { actual: 4, minimo: 3 },
+        aulas: { actual: 3, minimo: 2 }
+      };
+      
+      // Actualizar UI según datos
+      actualizarRequisito(reqGrados, datosActuales.grados.actual, datosActuales.grados.minimo);
+      actualizarRequisito(reqAsignaturas, datosActuales.asignaturas.actual, datosActuales.asignaturas.minimo);
+      actualizarRequisito(reqProfesores, datosActuales.profesores.actual, datosActuales.profesores.minimo);
+      actualizarRequisito(reqAulas, datosActuales.aulas.actual, datosActuales.aulas.minimo);
+      
+      // Verificar si todos los requisitos se cumplen
+      const todosOk = (
+        datosActuales.grados.actual >= datosActuales.grados.minimo &&
+        datosActuales.asignaturas.actual >= datosActuales.asignaturas.minimo &&
+        datosActuales.profesores.actual >= datosActuales.profesores.minimo &&
+        datosActuales.aulas.actual >= datosActuales.aulas.minimo
+      );
+      
+      return todosOk;
+    }
+    
+    function actualizarRequisito(elemento, actual, minimo) {
+      const estadoDiv = elemento.querySelector('.estado');
+      const textoDiv = elemento.querySelector('.texto strong');
+      const minimoSpan = elemento.querySelector('.texto .minimo');
+      
+      const cumple = actual >= minimo;
+      
+      if (cumple) {
+        estadoDiv.textContent = '✅';
+        estadoDiv.className = 'estado ok';
+      } else {
+        estadoDiv.textContent = '❌';
+        estadoDiv.className = 'estado error';
+      }
+      
+      // Actualizar texto
+      textoDiv.textContent = textoDiv.textContent.split(':')[0] + ':';
+      const textoCompleto = elemento.querySelector('.texto');
+      textoCompleto.innerHTML = `<strong>${textoDiv.textContent.split(':')[0]}:</strong> ${actual} definidas <span class="minimo">(mínimo: ${minimo})</span>`;
+    }
+    
+    // Evento Entendido
+    btnEntendido.addEventListener('click', () => {
+      // Verificar si los requisitos se cumplen
+      const todosOk = verificarRequisitos();
+      
+      if (todosOk) {
+        alert('✅ ¡Requisitos cumplidos! Ahora puede generar el calendario.');
+        // Aquí podría redirigir a la pantalla de generación exitosa
+        // window.location.href = 'generar_calendario_exito.html';
+      } else {
+        alert('⚠️ Aún no se cumplen todos los requisitos mínimos.\n\nConfigure los datos faltantes e intente nuevamente.');
+        // Aquí podría cerrar el mensaje o redirigir a configuración
+      }
+    });
+    
+    // Verificar requisitos al cargar la página
+    verificarRequisitos();
+  </script>
+
+</body>
+</html>

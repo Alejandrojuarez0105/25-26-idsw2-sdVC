@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crear Nueva Aula</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .contenedor{
+      width: 600px;
+      background: #ececec;
+      padding: 25px;
+      border: 1px solid #cfcfcf;
+    }
+
+    .titulo{
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+
+    .campo{
+      margin-bottom: 20px;
+    }
+
+    .campo label{
+      display: block;
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .campo input,
+    .campo select{
+      width: 100%;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 16px;
+      border: 1px solid #bdbdbd;
+      background: white;
+    }
+
+    .campo input:focus,
+    .campo select:focus{
+      outline: none;
+      border-color: #2d89ef;
+    }
+
+    .fila-doble{
+      display: flex;
+      gap: 20px;
+    }
+
+    .fila-doble .campo{
+      flex: 1;
+    }
+
+    hr{
+      border: none;
+      border-top: 2px solid #cfcfcf;
+      margin: 25px 0 20px 0;
+    }
+
+    .botones{
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    .btn{
+      min-width: 150px;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid #999;
+      font-weight: bold;
+    }
+
+    .btn-crear{
+      background: #28a745;
+      color: white;
+      border: 1px solid #1e7e34;
+    }
+
+    .btn-crear:hover{
+      background: #218838;
+    }
+
+    .btn-cancelar{
+      background: #f3f0ec;
+      color: black;
+    }
+
+    .btn-cancelar:hover{
+      background: #e3dfda;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1 class="titulo">CREAR NUEVA AULA</h1>
+
+    <div class="fila-doble">
+      <div class="campo">
+        <label for="codigo">Código:</label>
+        <input type="text" id="codigo" placeholder="Ej: D-401" maxlength="10">
+      </div>
+      <div class="campo">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" placeholder="Ej: Aula 2.0">
+      </div>
+    </div>
+
+    <div class="fila-doble">
+      <div class="campo">
+        <label for="capacidad">Capacidad:</label>
+        <input type="number" id="capacidad" placeholder="Ej: 50" min="1" max="500" step="1">
+      </div>
+      <div class="campo">
+        <label for="edificio">Edificio:</label>
+        <select id="edificio">
+          <option value="">-- Seleccionar edificio --</option>
+          <option value="Edif. A">Edif. A</option>
+          <option value="Edif. B">Edif. B</option>
+          <option value="Edif. C">Edif. C</option>
+          <option value="Edif. D">Edif. D</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="fila-doble">
+      <div class="campo">
+        <label for="tipo">Tipo:</label>
+        <select id="tipo">
+          <option value="">-- Seleccionar tipo --</option>
+          <option value="Teoría">Teoría</option>
+          <option value="Práctica">Práctica</option>
+          <option value="Laboratorio">Laboratorio</option>
+          <option value="Seminario">Seminario</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="recursos">Recursos:</label>
+        <input type="text" id="recursos" placeholder="Ej: Proyector, Pizarra, Ordenadores">
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="botones">
+      <button class="btn btn-crear" id="btnCrear">Crear aula</button>
+      <button class="btn btn-cancelar" id="btnCancelar">Cancelar</button>
+    </div>
+
+  </div>
+
+  <script>
+    // Aulas existentes para validación de código
+    const aulasExistentes = ['A-101', 'A-102', 'B-201', 'C-301'];
+
+    // Elementos del DOM
+    const inputCodigo = document.getElementById('codigo');
+    const inputNombre = document.getElementById('nombre');
+    const inputCapacidad = document.getElementById('capacidad');
+    const selectEdificio = document.getElementById('edificio');
+    const selectTipo = document.getElementById('tipo');
+    const inputRecursos = document.getElementById('recursos');
+    const btnCrear = document.getElementById('btnCrear');
+    const btnCancelar = document.getElementById('btnCancelar');
+
+    // Validar código
+    function validarCodigo(codigo) {
+      if (!codigo || codigo.trim() === '') {
+        alert('❌ El código es obligatorio.');
+        return false;
+      }
+      
+      if (codigo.trim().length < 3) {
+        alert('❌ El código debe tener al menos 3 caracteres.');
+        return false;
+      }
+      
+      const regex = /^[A-Z0-9-]+$/i;
+      if (!regex.test(codigo.trim())) {
+        alert('❌ El código solo puede contener letras, números y guiones.');
+        return false;
+      }
+      
+      return true;
+    }
+
+    // Validar nombre
+    function validarNombre(nombre) {
+      if (!nombre || nombre.trim() === '') {
+        alert('❌ El nombre es obligatorio.');
+        return false;
+      }
+      
+      if (nombre.trim().length < 3) {
+        alert('❌ El nombre debe tener al menos 3 caracteres.');
+        return false;
+      }
+      
+      return true;
+    }
+
+    // Validar capacidad
+    function validarCapacidad(capacidad) {
+      if (!capacidad || capacidad === '') {
+        alert('❌ La capacidad es obligatoria.');
+        return false;
+      }
+      
+      const capacidadNum = parseInt(capacidad);
+      if (isNaN(capacidadNum)) {
+        alert('❌ La capacidad debe ser un número válido.');
+        return false;
+      }
+      
+      if (capacidadNum < 1) {
+        alert('❌ La capacidad debe ser al menos 1.');
+        return false;
+      }
+      
+      if (capacidadNum > 500) {
+        alert('❌ La capacidad no puede superar los 500.');
+        return false;
+      }
+      
+      return true;
+    }
+
+    // Validar edificio
+    function validarEdificio(edificio) {
+      if (!edificio || edificio === '') {
+        alert('❌ Debe seleccionar un edificio.');
+        return false;
+      }
+      return true;
+    }
+
+    // Validar tipo
+    function validarTipo(tipo) {
+      if (!tipo || tipo === '') {
+        alert('❌ Debe seleccionar un tipo de aula.');
+        return false;
+      }
+      return true;
+    }
+
+    // Validar recursos
+    function validarRecursos(recursos) {
+      if (!recursos || recursos.trim() === '') {
+        alert('❌ Los recursos son obligatorios.');
+        return false;
+      }
+      
+      if (recursos.trim().length < 3) {
+        alert('❌ Los recursos deben tener al menos 3 caracteres.');
+        return false;
+      }
+      
+      return true;
+    }
+
+    // Verificar si el código ya existe
+    function codigoExiste(codigo) {
+      return aulasExistentes.includes(codigo.trim().toUpperCase());
+    }
+
+    // Crear aula
+    function crearAula() {
+      const codigo = inputCodigo.value;
+      const nombre = inputNombre.value;
+      const capacidad = inputCapacidad.value;
+      const edificio = selectEdificio.value;
+      const tipo = selectTipo.value;
+      const recursos = inputRecursos.value;
+      
+      // Validaciones
+      if (!validarCodigo(codigo)) {
+        inputCodigo.focus();
+        return;
+      }
+      
+      if (!validarNombre(nombre)) {
+        inputNombre.focus();
+        return;
+      }
+      
+      if (!validarCapacidad(capacidad)) {
+        inputCapacidad.focus();
+        return;
+      }
+      
+      if (!validarEdificio(edificio)) {
+        selectEdificio.focus();
+        return;
+      }
+      
+      if (!validarTipo(tipo)) {
+        selectTipo.focus();
+        return;
+      }
+      
+      if (!validarRecursos(recursos)) {
+        inputRecursos.focus();
+        return;
+      }
+      
+      const codigoUpper = codigo.trim().toUpperCase();
+      const capacidadNum = parseInt(capacidad);
+      const nombreTrim = nombre.trim();
+      const recursosTrim = recursos.trim();
+      
+      // Verificar código duplicado
+      if (codigoExiste(codigoUpper)) {
+        alert(`❌ El código "${codigoUpper}" ya existe.\n\nPor favor, use un código diferente.`);
+        inputCodigo.focus();
+        return;
+      }
+      
+      // Confirmar creación
+      const confirmar = confirm(`¿Desea crear la siguiente aula?\n\nCódigo: ${codigoUpper}\nNombre: ${nombreTrim}\nCapacidad: ${capacidadNum}\nEdificio: ${edificio}\nTipo: ${tipo}\nRecursos: ${recursosTrim}`);
+      
+      if (confirmar) {
+        alert(`✅ ¡Aula creada exitosamente!\n\nCódigo: ${codigoUpper}\nNombre: ${nombreTrim}\nCapacidad: ${capacidadNum}\nEdificio: ${edificio}\nTipo: ${tipo}\nRecursos: ${recursosTrim}`);
+        
+        // Limpiar campos
+        inputCodigo.value = '';
+        inputNombre.value = '';
+        inputCapacidad.value = '';
+        selectEdificio.value = '';
+        selectTipo.value = '';
+        inputRecursos.value = '';
+        inputCodigo.focus();
+      }
+    }
+
+    // Cancelar
+    function cancelar() {
+      const confirmar = confirm('¿Estás seguro de que deseas cancelar?\n\nLos datos ingresados se perderán.');
+      if (confirmar) {
+        inputCodigo.value = '';
+        inputNombre.value = '';
+        inputCapacidad.value = '';
+        selectEdificio.value = '';
+        selectTipo.value = '';
+        inputRecursos.value = '';
+        alert('🔄 Operación cancelada.');
+      }
+    }
+
+    // Eventos
+    btnCrear.addEventListener('click', crearAula);
+    btnCancelar.addEventListener('click', cancelar);
+    
+    // Navegación con Enter
+    inputCodigo.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') inputNombre.focus();
+    });
+    
+    inputNombre.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') inputCapacidad.focus();
+    });
+    
+    inputCapacidad.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') selectEdificio.focus();
+    });
+    
+    selectEdificio.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') selectTipo.focus();
+    });
+    
+    selectTipo.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') inputRecursos.focus();
+    });
+    
+    inputRecursos.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') crearAula();
+    });
+    
+    // Enfocar primer campo
+    inputCodigo.focus();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - Administrador</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      padding: 20px;
+    }
+
+    .contenedor{
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header{
+      background: #ececec;
+      padding: 20px;
+      border: 1px solid #cfcfcf;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo h1{
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .logo .universidad{
+      font-size: 11px;
+      color: #555;
+    }
+
+    .usuario-info{
+      text-align: right;
+    }
+
+    .usuario-nombre{
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .usuario-rol{
+      font-size: 12px;
+      color: #2d89ef;
+    }
+
+    .btn-cerrar{
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 6px 15px;
+      font-family: inherit;
+      font-size: 12px;
+      cursor: pointer;
+      margin-top: 5px;
+      border-radius: 3px;
+    }
+
+    /* Grid de estadísticas */
+    .stats-grid{
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+
+    .stat-card{
+      background: #ededed;
+      border: 1px solid #cfcfcf;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .stat-numero{
+      font-size: 32px;
+      font-weight: bold;
+      color: #2d89ef;
+    }
+
+    .stat-label{
+      font-size: 13px;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    /* Panel doble */
+    .panel-doble{
+      display: flex;
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+
+    .panel{
+      flex: 1;
+      background: #ededed;
+      border: 1px solid #cfcfcf;
+      padding: 18px;
+    }
+
+    .panel h3{
+      font-size: 18px;
+      margin-bottom: 15px;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    .lista-items{
+      list-style: none;
+    }
+
+    .lista-items li{
+      padding: 8px 0;
+      border-bottom: 1px solid #cfcfcf;
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .lista-items li:last-child{
+      border-bottom: none;
+    }
+
+    .badge-pendiente{
+      color: #dc3545;
+      font-weight: bold;
+    }
+
+    .badge-resuelto{
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    .ver-todos{
+      margin-top: 12px;
+      text-align: right;
+    }
+
+    .ver-todos a{
+      color: #2d89ef;
+      text-decoration: none;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    /* Accesos rápidos */
+    .accesos-grid{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .acceso-card{
+      background: #dfe7ef;
+      border: 1px solid #7ea0c0;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .acceso-card:hover{
+      background: #b8d4f0;
+    }
+
+    .acceso-icono{
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .acceso-nombre{
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    /* Footer */
+    .footer{
+      text-align: center;
+      font-size: 11px;
+      color: #666;
+      padding: 15px;
+      border-top: 1px solid #cfcfcf;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">
+        <h1>UE</h1>
+        <div class="universidad">Universidad Europea del Atlántico</div>
+      </div>
+      <div class="usuario-info">
+        <div class="usuario-nombre">Administrador</div>
+        <div class="usuario-rol">admin@uneatlantico.es</div>
+        <button class="btn-cerrar" id="btnCerrar">🚪 Cerrar sesión</button>
+      </div>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-numero">4</div>
+        <div class="stat-label">Grados Académicos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-numero">15</div>
+        <div class="stat-label">Asignaturas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-numero">8</div>
+        <div class="stat-label">Profesores</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-numero">12</div>
+        <div class="stat-label">Aulas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-numero">350</div>
+        <div class="stat-label">Alumnos</div>
+      </div>
+    </div>
+
+    <!-- Paneles de actividad -->
+    <div class="panel-doble">
+      <div class="panel">
+        <h3>📋 Conflictos recientes</h3>
+        <ul class="lista-items">
+          <li><span>Profesor Dr. Pérez - 2 exámenes 08:30</span><span class="badge-pendiente">Pendiente</span></li>
+          <li><span>Aula -2.6 usada por 2 exámenes</span><span class="badge-resuelto">Resuelto</span></li>
+          <li><span>15 estudiantes con 3 exámenes mismo día</span><span class="badge-pendiente">Pendiente</span></li>
+        </ul>
+        <div class="ver-todos"><a id="verConflictos">Ver todos los conflictos →</a></div>
+      </div>
+      <div class="panel">
+        <h3>📅 Próximos exámenes</h3>
+        <ul class="lista-items">
+          <li><span>Programación I</span><span>15/01 08:30</span></li>
+          <li><span>Bases de Datos I</span><span>16/01 11:30</span></li>
+          <li><span>Estructuras de Datos</span><span>19/01 14:30</span></li>
+          <li><span>Expresión Gráfica</span><span>20/01 17:30</span></li>
+        </ul>
+        <div class="ver-todos"><a id="verExamenes">Ver todos los exámenes →</a></div>
+      </div>
+    </div>
+
+    <!-- Accesos rápidos -->
+    <div class="accesos-grid">
+      <div class="acceso-card" data-modulo="grados">
+        <div class="acceso-icono">🎓</div>
+        <div class="acceso-nombre">Grados</div>
+      </div>
+      <div class="acceso-card" data-modulo="asignaturas">
+        <div class="acceso-icono">📚</div>
+        <div class="acceso-nombre">Asignaturas</div>
+      </div>
+      <div class="acceso-card" data-modulo="profesores">
+        <div class="acceso-icono">👨‍🏫</div>
+        <div class="acceso-nombre">Profesores</div>
+      </div>
+      <div class="acceso-card" data-modulo="aulas">
+        <div class="acceso-icono">🏛️</div>
+        <div class="acceso-nombre">Aulas</div>
+      </div>
+      <div class="acceso-card" data-modulo="alumnos">
+        <div class="acceso-icono">👨‍🎓</div>
+        <div class="acceso-nombre">Alumnos</div>
+      </div>
+      <div class="acceso-card" data-modulo="examenes">
+        <div class="acceso-icono">📝</div>
+        <div class="acceso-nombre">Exámenes</div>
+      </div>
+      <div class="acceso-card" data-modulo="calendario">
+        <div class="acceso-icono">📅</div>
+        <div class="acceso-nombre">Calendario</div>
+      </div>
+      <div class="acceso-card" data-modulo="reportes">
+        <div class="acceso-icono">📊</div>
+        <div class="acceso-nombre">Reportes</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      Sistema de gestión académica - Versión 1.0 · © 2025
+    </div>
+
+  </div>
+
+  <script>
+    function mostrarAlerta(modulo) {
+      alert(`🔍 Navegando a: ${modulo}\n\nFuncionalidad en desarrollo.`);
+    }
+
+    document.querySelectorAll('.acceso-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const modulo = card.getAttribute('data-modulo');
+        mostrarAlerta(modulo);
+      });
+    });
+
+    document.getElementById('verConflictos').addEventListener('click', () => {
+      alert('📋 Lista de conflictos de exámenes');
+    });
+
+    document.getElementById('verExamenes').addEventListener('click', () => {
+      alert('📅 Calendario de exámenes');
+    });
+
+    document.getElementById('btnCerrar').addEventListener('click', () => {
+      alert('👋 Cerrando sesión...');
+    });
+  </script>
+
+</body>
+</html>

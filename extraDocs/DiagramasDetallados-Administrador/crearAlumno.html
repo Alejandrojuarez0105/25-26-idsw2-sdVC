@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crear Nuevo Alumno</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .contenedor{
+      width: 550px;
+      background: #ececec;
+      padding: 25px;
+      border: 1px solid #cfcfcf;
+    }
+
+    .titulo{
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+
+    .campo{
+      margin-bottom: 20px;
+    }
+
+    .campo label{
+      display: block;
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .campo input,
+    .campo select{
+      width: 100%;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 16px;
+      border: 1px solid #bdbdbd;
+      background: white;
+    }
+
+    .campo input:focus,
+    .campo select:focus{
+      outline: none;
+      border-color: #2d89ef;
+    }
+
+    .fila-doble{
+      display: flex;
+      gap: 20px;
+    }
+
+    .fila-doble .campo{
+      flex: 1;
+    }
+
+    .botones{
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .btn{
+      min-width: 150px;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid #999;
+      font-weight: bold;
+    }
+
+    .btn-crear{
+      background: #28a745;
+      color: white;
+      border: 1px solid #1e7e34;
+    }
+
+    .btn-crear:hover{
+      background: #218838;
+    }
+
+    .btn-cancelar{
+      background: #f3f0ec;
+      color: black;
+    }
+
+    .btn-cancelar:hover{
+      background: #e3dfda;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1 class="titulo">CREAR NUEVO ALUMNO</h1>
+
+    <div class="campo">
+      <label for="matricula">Matrícula:</label>
+      <input type="text" id="matricula" placeholder="Ej: AL005678" maxlength="10">
+    </div>
+
+    <div class="campo">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" placeholder="Ej: María González López">
+    </div>
+
+    <div class="campo">
+      <label for="email">Email:</label>
+      <input type="email" id="email" placeholder="Ej: nombre.apellido@estudiante.es">
+    </div>
+
+    <div class="fila-doble">
+      <div class="campo">
+        <label for="grado">Grado:</label>
+        <select id="grado">
+          <option value="">-- Seleccionar grado --</option>
+          <option value="GII">GII - Ingeniería Informática</option>
+          <option value="GIOI">GIOI - Ingeniería Industrial</option>
+          <option value="GPOI">GPOI - Psicología</option>
+          <option value="GADE">GADE - Administración de Empresas</option>
+          <option value="GIC">GIC - Ingeniería Civil</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="curso">Curso:</label>
+        <select id="curso">
+          <option value="">-- Seleccionar curso --</option>
+          <option value="1°">1°</option>
+          <option value="2°">2°</option>
+          <option value="3°">3°</option>
+          <option value="4°">4°</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="botones">
+      <button class="btn btn-crear" id="btnCrear">Crear alumno</button>
+      <button class="btn btn-cancelar" id="btnCancelar">Cancelar</button>
+    </div>
+
+  </div>
+
+  <script>
+    // Alumnos existentes para validación de matrícula
+    const alumnosExistentes = ['AL001234', 'AL002345', 'AL003456', 'AL004567'];
+
+    // Grados disponibles
+    const gradosDisponibles = ['GII', 'GIOI', 'GPOI', 'GADE', 'GIC'];
+
+    // Cursos disponibles
+    const cursosDisponibles = ['1°', '2°', '3°', '4°'];
+
+    // Elementos del DOM
+    const inputMatricula = document.getElementById('matricula');
+    const inputNombre = document.getElementById('nombre');
+    const inputEmail = document.getElementById('email');
+    const selectGrado = document.getElementById('grado');
+    const selectCurso = document.getElementById('curso');
+    const btnCrear = document.getElementById('btnCrear');
+    const btnCancelar = document.getElementById('btnCancelar');
+
+    // Validar matrícula
+    function validarMatricula(matricula) {
+      if (!matricula || matricula.trim() === '') {
+        alert('❌ La matrícula es obligatoria.');
+        return false;
+      }
+      
+      if (matricula.trim().length < 8) {
+        alert('❌ La matrícula debe tener al menos 8 caracteres.');
+        return false;
+      }
+      
+      const regex = /^[A-Z0-9]+$/i;
+      if (!regex.test(matricula.trim())) {
+        alert('❌ La matrícula solo puede contener letras y números.');
+        return false;
+      }
+      
+      return true;
+    }
+
+    // Validar nombre
+    function validarNombre(nombre) {
+      if (!nombre || nombre.trim() === '') {
+        alert('❌ El nombre es obligatorio.');
+        return false;
+      }
+      
+      if (nombre.trim().length < 3) {
+        alert('❌ El nombre debe tener al menos 3 caracteres.');
+        return false;
+      }
+      
+      return true;
+    }
+
+    // Validar email
+    function validarEmail(email) {
+      if (!email || email.trim() === '') {
+        alert('❌ El email es obligatorio.');
+        return false;
+      }
+      
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!regex.test(email.trim())) {
+        alert('❌ El email no es válido.\n\nEjemplo: nombre.apellido@estudiante.es');
+        return false;
+      }
+      
+      return true;
+    }
+
+    // Validar grado
+    function validarGrado(grado) {
+      if (!grado || grado === '') {
+        alert('❌ Debe seleccionar un grado.');
+        return false;
+      }
+      
+      if (!gradosDisponibles.includes(grado)) {
+        alert('❌ El grado seleccionado no es válido.');
+        return false;
+      }
+      
+      return true;
+    }
+
+    // Validar curso
+    function validarCurso(curso) {
+      if (!curso || curso === '') {
+        alert('❌ Debe seleccionar un curso.');
+        return false;
+      }
+      
+      if (!cursosDisponibles.includes(curso)) {
+        alert('❌ El curso seleccionado no es válido.');
+        return false;
+      }
+      
+      return true;
+    }
+
+    // Verificar si la matrícula ya existe
+    function matriculaExiste(matricula) {
+      return alumnosExistentes.includes(matricula.trim().toUpperCase());
+    }
+
+    // Obtener nombre del grado
+    function getNombreGrado(gradoValue) {
+      const option = Array.from(selectGrado.options).find(opt => opt.value === gradoValue);
+      return option ? option.text : gradoValue;
+    }
+
+    // Crear alumno
+    function crearAlumno() {
+      const matricula = inputMatricula.value;
+      const nombre = inputNombre.value;
+      const email = inputEmail.value;
+      const grado = selectGrado.value;
+      const curso = selectCurso.value;
+      
+      // Validaciones
+      if (!validarMatricula(matricula)) {
+        inputMatricula.focus();
+        return;
+      }
+      
+      if (!validarNombre(nombre)) {
+        inputNombre.focus();
+        return;
+      }
+      
+      if (!validarEmail(email)) {
+        inputEmail.focus();
+        return;
+      }
+      
+      if (!validarGrado(grado)) {
+        selectGrado.focus();
+        return;
+      }
+      
+      if (!validarCurso(curso)) {
+        selectCurso.focus();
+        return;
+      }
+      
+      const matriculaUpper = matricula.trim().toUpperCase();
+      const nombreTrim = nombre.trim();
+      const emailTrim = email.trim();
+      const nombreGrado = getNombreGrado(grado);
+      
+      // Verificar matrícula duplicada
+      if (matriculaExiste(matriculaUpper)) {
+        alert(`❌ La matrícula "${matriculaUpper}" ya existe.\n\nPor favor, use una matrícula diferente.`);
+        inputMatricula.focus();
+        return;
+      }
+      
+      // Confirmar creación
+      const confirmar = confirm(`¿Desea crear el siguiente alumno?\n\nMatrícula: ${matriculaUpper}\nNombre: ${nombreTrim}\nEmail: ${emailTrim}\nGrado: ${nombreGrado}\nCurso: ${curso}`);
+      
+      if (confirmar) {
+        alert(`✅ ¡Alumno creado exitosamente!\n\nMatrícula: ${matriculaUpper}\nNombre: ${nombreTrim}\nEmail: ${emailTrim}\nGrado: ${nombreGrado}\nCurso: ${curso}`);
+        
+        // Limpiar campos
+        inputMatricula.value = '';
+        inputNombre.value = '';
+        inputEmail.value = '';
+        selectGrado.value = '';
+        selectCurso.value = '';
+        inputMatricula.focus();
+      }
+    }
+
+    // Cancelar
+    function cancelar() {
+      const confirmar = confirm('¿Estás seguro de que deseas cancelar?\n\nLos datos ingresados se perderán.');
+      if (confirmar) {
+        inputMatricula.value = '';
+        inputNombre.value = '';
+        inputEmail.value = '';
+        selectGrado.value = '';
+        selectCurso.value = '';
+        alert('🔄 Operación cancelada.');
+      }
+    }
+
+    // Eventos
+    btnCrear.addEventListener('click', crearAlumno);
+    btnCancelar.addEventListener('click', cancelar);
+    
+    // Navegación con Enter
+    inputMatricula.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') inputNombre.focus();
+    });
+    
+    inputNombre.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') inputEmail.focus();
+    });
+    
+    inputEmail.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') selectGrado.focus();
+    });
+    
+    selectGrado.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') selectCurso.focus();
+    });
+    
+    selectCurso.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') crearAlumno();
+    });
+    
+    // Enfocar primer campo
+    inputMatricula.focus();
+  </script>
+
+</body>
+</html>

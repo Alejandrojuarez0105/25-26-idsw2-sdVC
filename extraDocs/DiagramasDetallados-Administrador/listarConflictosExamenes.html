@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Listar Conflictos de Exámenes</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .contenedor{
+      width: 1100px;
+      background: #ececec;
+      display: flex;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    /* Panel principal */
+    .panel-principal{
+      flex: 3;
+    }
+
+    /* Menú lateral */
+    .panel-lateral{
+      flex: 1;
+      background: #ededed;
+      border: 1px solid #cfcfcf;
+      padding: 18px;
+      height: fit-content;
+    }
+
+    .titulo{
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+
+    .subtitulo{
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 25px;
+      color: #555;
+    }
+
+    .panel{
+      border: 1px solid #cfcfcf;
+      padding: 18px;
+      margin-bottom: 28px;
+      background: #ededed;
+    }
+
+    .panel h3{
+      font-size: 20px;
+      margin-bottom: 15px;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    /* Tabla de conflictos */
+    .tabla-conflictos{
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 28px;
+    }
+
+    .tabla-conflictos th,
+    .tabla-conflictos td{
+      border: 1px solid #bdbdbd;
+      padding: 12px 10px;
+      text-align: left;
+    }
+
+    .tabla-conflictos th{
+      background: #dfe7ef;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .tabla-conflictos td{
+      font-size: 14px;
+    }
+
+    .tabla-conflictos tr{
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .tabla-conflictos tr:hover{
+      background: #d4e4f5;
+    }
+
+    .tabla-conflictos tr.seleccionado{
+      background: #b8d4f0;
+      border-left: 3px solid #2d89ef;
+    }
+
+    .estado-pendiente{
+      color: #dc3545;
+      font-weight: bold;
+    }
+
+    .estado-resuelto{
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    .estado-revision{
+      color: #e6a017;
+      font-weight: bold;
+    }
+
+    /* Detalle del conflicto */
+    .detalle-conflicto{
+      background: #f5f5f5;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-left: 4px solid #2d89ef;
+    }
+
+    .detalle-titulo{
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .detalle-info{
+      margin-left: 20px;
+      margin-bottom: 10px;
+    }
+
+    .detalle-info p{
+      margin-bottom: 8px;
+    }
+
+    .examen-item{
+      margin-left: 25px;
+      margin-bottom: 10px;
+      padding: 8px;
+      background: #e9ecef;
+    }
+
+    .estudiantes-afectados{
+      margin-top: 10px;
+      font-weight: bold;
+      color: #dc3545;
+    }
+
+    /* Opciones de resolución */
+    .opciones-resolucion{
+      background: #e7f3ff;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .opciones-resolucion h4{
+      margin-bottom: 10px;
+    }
+
+    .opciones-resolucion select{
+      width: 100%;
+      padding: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      border: 1px solid #bdbdbd;
+      background: white;
+    }
+
+    /* Botones laterales */
+    .botones-laterales{
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .btn-lateral{
+      padding: 12px;
+      color: white;
+      border: none;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .btn-lateral.azul{
+      background: #2d89ef;
+    }
+
+    .btn-lateral.azul:hover{
+      background: #1e6bc7;
+    }
+
+    .btn-lateral.rojo{
+      background: #dc3545;
+    }
+
+    .btn-lateral.rojo:hover{
+      background: #c82333;
+    }
+
+    .btn-lateral.verde{
+      background: #28a745;
+    }
+
+    .btn-lateral.verde:hover{
+      background: #218838;
+    }
+
+    .btn-lateral.secundario{
+      background: #6c757d;
+    }
+
+    .btn-lateral.secundario:hover{
+      background: #5a6268;
+    }
+
+    hr{
+      border: none;
+      border-top: 1px solid #cfcfcf;
+      margin: 15px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <!-- Panel principal -->
+    <div class="panel-principal">
+
+      <h1 class="titulo">LISTAR CONFLICTOS DE EXÁMENES</h1>
+      <div class="subtitulo">Conflictos detectados: <span id="totalConflictos">4</span> conflictos</div>
+
+      <!-- Tabla de conflictos -->
+      <table class="tabla-conflictos" id="tablaConflictos">
+        <thead>
+          <tr>
+            <th>TIPO</th>
+            <th>DETALLE</th>
+            <th>ESTADO</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpoTabla">
+          <!-- Los datos se llenan con JavaScript -->
+        </tbody>
+      </table>
+
+      <!-- Detalle del conflicto seleccionado -->
+      <div class="detalle-conflicto" id="detalleConflicto">
+        <div class="detalle-titulo" id="detalleTitulo">Conflicto: Profesor Dr. Pérez - 2 exámenes a las 11:30</div>
+        <div class="detalle-info" id="detalleInfo">
+          <!-- Contenido dinámico -->
+        </div>
+      </div>
+
+      <!-- Opciones de resolución -->
+      <div class="opciones-resolucion">
+        <h4>📌 Opciones de resolución:</h4>
+        <select id="opcionResolucion">
+          <option value="reasignar_horario">Reasignar horario Examen 1</option>
+        </select>
+      </div>
+
+    </div>
+
+    <!-- Menú lateral -->
+    <div class="panel-lateral">
+
+      <h3>⚙️ Acciones</h3>
+
+      <div class="botones-laterales">
+        <button class="btn-lateral azul" id="btnAplicarSolucion">🔧 Aplicar solución</button>
+        <button class="btn-lateral rojo" id="btnOmitirConflicto">⏭️ Omitir conflicto</button>
+        <button class="btn-lateral verde" id="btnMarcarRevisado">✅ Marcar como revisado</button>
+      </div>
+
+      <hr>
+
+      <div class="botones-laterales">
+        <button class="btn-lateral secundario" id="btnVerTodos">📋 Ver todos conflictos</button>
+        <button class="btn-lateral secundario" id="btnExportar">📎 Exportar reporte</button>
+        <button class="btn-lateral secundario" id="btnSalir">🚪 Salir</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    // Datos de conflictos
+    const conflictos = [
+      {
+        id: 1,
+        tipo: 'Horario',
+        detalle: 'Profesor Dr. Pérez - 2 exámenes a las 11:30',
+        estado: 'Pendiente',
+        estadoClase: 'pendiente',
+        detalles: {
+          examen1: 'Programación I - 2024-01-15 11:30 - Aula -2.6',
+          examen2: 'Bases de Datos - 2024-01-15 11:30 - Aula -2.4',
+          estudiantesAfectados: 110
+        }
+      },
+      {
+        id: 2,
+        tipo: 'Aula',
+        detalle: 'Aula -2.6 usada por 2 exámenes',
+        estado: 'Resuelto',
+        estadoClase: 'resuelto',
+        detalles: {
+          examen1: 'Programación I - 2024-01-15 08:30 - Aula -2.6',
+          examen2: 'Redes - 2024-01-15 08:30 - Aula -2.6',
+          estudiantesAfectados: 75
+        }
+      },
+      {
+        id: 3,
+        tipo: 'Estudiante',
+        detalle: '15 estudiantes con 3 exámenes mismo día',
+        estado: 'Pendiente',
+        estadoClase: 'pendiente',
+        detalles: {
+          examen1: 'Cálculo I - 2024-01-20 10:00 - Aula 101',
+          examen2: 'Física I - 2024-01-20 12:00 - Aula 102',
+          examen3: 'Química - 2024-01-20 15:00 - Aula 103',
+          estudiantesAfectados: 15
+        }
+      },
+      {
+        id: 4,
+        tipo: 'Profesor',
+        detalle: 'Dra. Gómez no disponible 16/01',
+        estado: 'En revisión',
+        estadoClase: 'revision',
+        detalles: {
+          examen1: 'Matemáticas Avanzadas - 2024-01-16 09:00 - Aula 201',
+          examen2: 'Estadística - 2024-01-16 11:00 - Aula 202',
+          estudiantesAfectados: 85
+        }
+      }
+    ];
+
+    let conflictoSeleccionado = conflictos[0];
+
+    // Elementos del DOM
+    const cuerpoTabla = document.getElementById('cuerpoTabla');
+    const totalConflictosSpan = document.getElementById('totalConflictos');
+    const detalleTitulo = document.getElementById('detalleTitulo');
+    const detalleInfo = document.getElementById('detalleInfo');
+    const opcionResolucion = document.getElementById('opcionResolucion');
+
+    // Función para obtener clase de estado
+    function getEstadoClase(estado) {
+      switch(estado) {
+        case 'Pendiente': return 'estado-pendiente';
+        case 'Resuelto': return 'estado-resuelto';
+        case 'En revisión': return 'estado-revision';
+        default: return '';
+      }
+    }
+
+    // Función para renderizar la tabla
+    function renderizarTabla() {
+      cuerpoTabla.innerHTML = '';
+      conflictos.forEach(conflicto => {
+        const fila = document.createElement('tr');
+        fila.setAttribute('data-id', conflicto.id);
+        if (conflictoSeleccionado && conflictoSeleccionado.id === conflicto.id) {
+          fila.classList.add('seleccionado');
+        }
+        
+        fila.innerHTML = `
+          <td><strong>${conflicto.tipo}</strong></td>
+          <td>${conflicto.detalle}</td>
+          <td class="${getEstadoClase(conflicto.estado)}">${conflicto.estado}</td>
+        `;
+        
+        fila.addEventListener('click', () => {
+          seleccionarConflicto(conflicto.id);
+        });
+        
+        cuerpoTabla.appendChild(fila);
+      });
+      totalConflictosSpan.textContent = conflictos.length;
+    }
+
+    // Función para renderizar el detalle del conflicto
+    function renderizarDetalle(conflicto) {
+      detalleTitulo.textContent = `Conflicto: ${conflicto.detalle}`;
+      
+      let examenesHtml = '';
+      let contador = 1;
+      for (let key in conflicto.detalles) {
+        if (key.startsWith('examen')) {
+          examenesHtml += `<div class="examen-item"><strong>Examen ${contador}:</strong> ${conflicto.detalles[key]}</div>`;
+          contador++;
+        }
+      }
+      
+      detalleInfo.innerHTML = `
+        ${examenesHtml}
+        <div class="estudiantes-afectados">
+          🧑‍🎓 Estudiantes afectados: ${conflicto.detalles.estudiantesAfectados} estudiantes
+        </div>
+      `;
+    }
+
+    // Función para seleccionar un conflicto
+    function seleccionarConflicto(id) {
+      const conflicto = conflictos.find(c => c.id === id);
+      if (conflicto) {
+        conflictoSeleccionado = conflicto;
+        renderizarTabla();
+        renderizarDetalle(conflicto);
+        
+        // Actualizar opciones de resolución según el tipo de conflicto
+        actualizarOpcionesResolucion(conflicto);
+      }
+    }
+
+    // Función para actualizar opciones según el tipo de conflicto
+    function actualizarOpcionesResolucion(conflicto) {
+      opcionResolucion.innerHTML = '';
+      
+      if (conflicto.tipo === 'Horario') {
+        opcionResolucion.innerHTML = `
+          <option value="reasignar_horario">Reasignar horario Examen 1</option>
+          <option value="cambiar_horario_examen2">Reasignar horario Examen 2</option>
+        `;
+      } else if (conflicto.tipo === 'Aula') {
+        opcionResolucion.innerHTML = `
+          <option value="reasignar_aula_examen1">Reasignar aula Examen 1</option>
+          <option value="reasignar_aula_examen2">Reasignar aula Examen 2</option>
+        `;
+      } else if (conflicto.tipo === 'Estudiante') {
+        opcionResolucion.innerHTML = `
+          <option value="distribuir_examenes">Distribuir exámenes en diferentes días</option>
+          <option value="ajustar_horarios">Ajustar horarios</option>
+        `;
+      } else if (conflicto.tipo === 'Profesor') {
+        opcionResolucion.innerHTML = `
+          <option value="reasignar_profesor">Reasignar profesor para el 16/01</option>
+          <option value="cambiar_fecha">Cambiar fecha de examen</option>
+        `;
+      }
+    }
+
+    // Aplicar solución -> Cambia el estado a "En revisión"
+    function aplicarSolucion() {
+      const opcion = opcionResolucion.value;
+      const nombreOpcion = opcionResolucion.options[opcionResolucion.selectedIndex].text;
+      
+      alert(`🔧 Solución aplicada: ${nombreOpcion}\n\nConflicto "${conflictoSeleccionado.detalle}" cambiado a estado EN REVISIÓN.`);
+      
+      // Actualizar estado del conflicto a "En revisión"
+      if (conflictoSeleccionado.estado !== 'Resuelto') {
+        conflictoSeleccionado.estado = 'En revisión';
+        renderizarTabla();
+        renderizarDetalle(conflictoSeleccionado);
+      } else {
+        alert(`⚠️ Este conflicto ya está resuelto. No se puede aplicar una solución.`);
+      }
+    }
+
+    // Omitir conflicto -> Se mantiene como "Pendiente" (rojo)
+    function omitirConflicto() {
+      const confirmar = confirm(`⚠️ ¿Estás seguro de que deseas omitir este conflicto?\n\n"${conflictoSeleccionado.detalle}"\n\nEl conflicto se mantendrá como PENDIENTE.`);
+      if (confirmar) {
+        // Solo cambia a Pendiente si no está ya Resuelto
+        if (conflictoSeleccionado.estado !== 'Resuelto') {
+          conflictoSeleccionado.estado = 'Pendiente';
+          renderizarTabla();
+          renderizarDetalle(conflictoSeleccionado);
+          alert(`⏭️ Conflicto omitido. Estado cambiado a PENDIENTE.`);
+        } else {
+          alert(`⚠️ Este conflicto ya está resuelto. No se puede omitir.`);
+        }
+      }
+    }
+
+    // Marcar como revisado -> Cambia el estado a "Resuelto" (verde)
+    function marcarRevisado() {
+      if (conflictoSeleccionado.estado === 'Resuelto') {
+        alert(`✅ Este conflicto ya está resuelto.`);
+      } else {
+        const confirmar = confirm(`✅ ¿Marcar "${conflictoSeleccionado.detalle}" como REVISADO y RESUELTO?`);
+        if (confirmar) {
+          conflictoSeleccionado.estado = 'Resuelto';
+          renderizarTabla();
+          renderizarDetalle(conflictoSeleccionado);
+          alert(`✅ Conflicto marcado como RESUELTO.`);
+        }
+      }
+    }
+
+    // Ver todos los conflictos
+    function verTodos() {
+      alert(`📋 Total de conflictos: ${conflictos.length}\n\n` + 
+        conflictos.map(c => `- ${c.tipo}: ${c.detalle} (${c.estado})`).join('\n'));
+    }
+
+    // Exportar reporte
+    function exportarReporte() {
+      let reporte = '=== REPORTE DE CONFLICTOS DE EXÁMENES ===\n\n';
+      reporte += `Fecha: ${new Date().toLocaleString()}\n`;
+      reporte += `Total conflictos: ${conflictos.length}\n\n`;
+      
+      conflictos.forEach(c => {
+        reporte += `[${c.tipo}] ${c.detalle}\n`;
+        reporte += `  Estado: ${c.estado}\n`;
+        reporte += `  Estudiantes afectados: ${c.detalles.estudiantesAfectados}\n\n`;
+      });
+      
+      alert(reporte);
+      console.log(reporte);
+    }
+
+    // Salir
+    function salir() {
+      const confirmar = confirm('¿Estás seguro de que deseas salir?');
+      if (confirmar) {
+        alert('👋 Saliendo del gestor de conflictos...');
+      }
+    }
+
+    // Eventos
+    document.getElementById('btnAplicarSolucion').addEventListener('click', aplicarSolucion);
+    document.getElementById('btnOmitirConflicto').addEventListener('click', omitirConflicto);
+    document.getElementById('btnMarcarRevisado').addEventListener('click', marcarRevisado);
+    document.getElementById('btnVerTodos').addEventListener('click', verTodos);
+    document.getElementById('btnExportar').addEventListener('click', exportarReporte);
+    document.getElementById('btnSalir').addEventListener('click', salir);
+
+    // Inicializar
+    renderizarTabla();
+    renderizarDetalle(conflictoSeleccionado);
+    actualizarOpcionesResolucion(conflictoSeleccionado);
+  </script>
+
+</body>
+</html>

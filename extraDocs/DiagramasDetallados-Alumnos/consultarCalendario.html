@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Consultar Mis Exámenes - Alumno</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .contenedor{
+      width: 900px;
+      background: #ececec;
+      padding: 20px;
+    }
+
+    .titulo{
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .info-alumno{
+      text-align: center;
+      font-size: 16px;
+      margin-bottom: 25px;
+      color: #555;
+      font-weight: bold;
+    }
+
+    /* Tabla de calendario */
+    .calendario-mes{
+      margin-bottom: 30px;
+    }
+
+    .mes-titulo{
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 15px;
+      text-decoration: underline;
+    }
+
+    .tabla-calendario{
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    .tabla-calendario th,
+    .tabla-calendario td{
+      border: 2px solid #bdbdbd;
+      padding: 12px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .tabla-calendario th{
+      background: #dfe7ef;
+      font-weight: bold;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .tabla-calendario td{
+      font-size: 13px;
+      background: white;
+      min-height: 120px;
+    }
+
+    .dia-vacio{
+      background: #f9f9f9;
+      color: #ccc;
+      text-align: center;
+      font-style: italic;
+    }
+
+    .examen-item{
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .examen-item:last-child{
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .examen-hora{
+      font-weight: bold;
+      font-size: 12px;
+      color: #2d89ef;
+      margin-bottom: 4px;
+    }
+
+    .examen-nombre{
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    .examen-aula{
+      font-size: 11px;
+      color: #555;
+    }
+
+    .examen-profesor{
+      font-size: 11px;
+      color: #666;
+      margin-top: 3px;
+    }
+
+    /* Resumen */
+    .resumen{
+      border: 2px solid #7ea0c0;
+      background: #dfe7ef;
+      padding: 15px 20px;
+      margin-bottom: 25px;
+    }
+
+    .resumen h3{
+      font-size: 18px;
+      margin-bottom: 12px;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    .resumen-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .resumen-item{
+      text-align: center;
+    }
+
+    .resumen-label{
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .resumen-valor{
+      font-size: 20px;
+      font-weight: bold;
+      color: #2d89ef;
+    }
+
+    .resumen-valor-small{
+      font-size: 14px;
+      font-weight: bold;
+      color: #2d89ef;
+    }
+
+    .proximo-examen{
+      font-size: 14px;
+      color: #dc3545;
+      font-weight: bold;
+    }
+
+    /* Botones */
+    .botones{
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    .btn{
+      min-width: 200px;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid #999;
+      font-weight: bold;
+    }
+
+    .btn-descargar{
+      background: #2d89ef;
+      color: white;
+      border: 1px solid #1d5faa;
+    }
+
+    .btn-descargar:hover{
+      background: #1e6bc7;
+    }
+
+    .btn-volver{
+      background: #f3f0ec;
+      color: black;
+    }
+
+    .btn-volver:hover{
+      background: #e3dfda;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1 class="titulo">CONSULTAR MIS EXÁMENES</h1>
+    <div class="info-alumno">👨‍🎓 Alumno: Ana García López - GII - 3° Curso</div>
+
+    <!-- Calendario Enero 2025 -->
+    <div class="calendario-mes">
+      <div class="mes-titulo">📅 ENERO 2025</div>
+      <table class="tabla-calendario">
+        <thead>
+          <tr>
+            <th>LUN 13</th>
+            <th>MAR 14</th>
+            <th>MIÉ 15</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <!-- Lunes 13 -->
+            <td>
+              <div class="examen-item">
+                <div class="examen-hora">🕒 08:30 - 10:30</div>
+                <div class="examen-nombre">📖 Programación I</div>
+                <div class="examen-aula">📍 Aula -2.6</div>
+                <div class="examen-profesor">👨‍🏫 Dr. Pérez</div>
+              </div>
+            </td>
+            <!-- Martes 14 -->
+            <td>
+              <div class="examen-item">
+                <div class="examen-hora">🕒 11:30 - 13:30</div>
+                <div class="examen-nombre">📖 Bases de Datos</div>
+                <div class="examen-aula">📍 Aula -2.4</div>
+                <div class="examen-profesor">👩‍🏫 Dra. Gómez</div>
+              </div>
+            </td>
+            <!-- Miércoles 15 -->
+            <td>
+              <div class="examen-item">
+                <div class="examen-hora">🕒 14:30 - 16:30</div>
+                <div class="examen-nombre">📖 Estructuras de Datos</div>
+                <div class="examen-aula">📍 Aula -2.6</div>
+                <div class="examen-profesor">👨‍🏫 Dr. Rodríguez</div>
+              </div>
+              <div class="examen-item" style="margin-top: 10px;">
+                <div class="examen-hora">🕒 17:30 - 19:30</div>
+                <div class="examen-nombre">📖 Redes</div>
+                <div class="examen-aula">📍 Aula D-401</div>
+                <div class="examen-profesor">👨‍🏫 Dr. López</div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Resumen -->
+    <div class="resumen">
+      <h3>📊 Resumen:</h3>
+      <div class="resumen-grid">
+        <div class="resumen-item">
+          <div class="resumen-label">Exámenes este mes:</div>
+          <div class="resumen-valor">4</div>
+        </div>
+        <div class="resumen-item">
+          <div class="resumen-label">Próximo examen:</div>
+          <div class="resumen-valor-small proximo-examen">📅 13 Enero - Programación I</div>
+        </div>
+        <div class="resumen-item">
+          <div class="resumen-label">Total asignaturas matriculadas:</div>
+          <div class="resumen-valor">6</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="botones">
+      <button class="btn btn-descargar" id="btnDescargar">📎 Descargar calendario</button>
+      <button class="btn btn-volver" id="btnVolver">🔙 Volver al menú</button>
+    </div>
+
+  </div>
+
+  <script>
+    // Datos del alumno
+    const alumno = {
+      nombre: 'Ana García López',
+      grado: 'GII',
+      curso: '3°',
+      examenProximo: '13 Enero - Programación I',
+      examenesMes: 4,
+      totalAsignaturas: 6
+    };
+
+    // Elementos del DOM
+    const btnDescargar = document.getElementById('btnDescargar');
+    const btnVolver = document.getElementById('btnVolver');
+
+    // Descargar calendario
+    function descargarCalendario() {
+      let mensaje = '📥 DESCARGANDO CALENDARIO DE EXÁMENES\n\n';
+      mensaje += `Alumno: ${alumno.nombre}\n`;
+      mensaje += `Grado: ${alumno.grado} - ${alumno.curso}\n\n`;
+      mensaje += `Período: Enero 2025\n`;
+      mensaje += `Exámenes programados: ${alumno.examenesMes}\n`;
+      mensaje += `Próximo examen: ${alumno.examenProximo}\n\n`;
+      mensaje += `✅ La descarga comenzará en breve.\n\n`;
+      mensaje += `Formato: PDF | Incluye: Fechas, horas, aulas y profesores.`;
+      
+      alert(mensaje);
+      console.log('Descargando calendario alumno...');
+    }
+
+    // Volver al menú
+    function volver() {
+      const confirmar = confirm('¿Estás seguro de que deseas volver al menú principal?');
+      if (confirmar) {
+        alert('🔙 Volviendo al menú principal...');
+        // window.location.href = 'menu_alumno.html';
+      }
+    }
+
+    // Eventos
+    btnDescargar.addEventListener('click', descargarCalendario);
+    btnVolver.addEventListener('click', volver);
+  </script>
+
+</body>
+</html>

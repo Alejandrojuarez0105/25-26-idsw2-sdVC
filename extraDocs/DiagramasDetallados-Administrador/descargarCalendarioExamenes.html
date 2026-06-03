@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Descargar Calendario de Exámenes</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .contenedor{
+      width: 700px;
+      background: #ececec;
+      padding: 20px;
+    }
+
+    .titulo{
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+    }
+
+    .panel{
+      border: 1px solid #cfcfcf;
+      padding: 18px;
+      margin-bottom: 28px;
+      background: #ededed;
+    }
+
+    .panel h3{
+      font-size: 18px;
+      margin-bottom: 15px;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    .info-calendario{
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-left: 10px;
+    }
+
+    .info-linea{
+      font-size: 15px;
+    }
+
+    .info-linea strong{
+      font-weight: bold;
+    }
+
+    /* Grupos de opciones */
+    .grupo-opciones{
+      margin-bottom: 20px;
+    }
+
+    .grupo-titulo{
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .opciones-lista{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-left: 25px;
+    }
+
+    .opcion-radio{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .opcion-radio input{
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .opcion-radio label{
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    /* Checkboxes anidados (para información a incluir) */
+    .sub-opciones{
+      margin-left: 25px;
+      margin-top: 8px;
+      margin-bottom: 5px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .opcion-checkbox{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .opcion-checkbox input{
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+    }
+
+    .opcion-checkbox label{
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    /* Fechas personalizadas */
+    .rango-fechas{
+      margin-left: 25px;
+      margin-top: 10px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .campo-fecha{
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .campo-fecha label{
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .campo-fecha input{
+      padding: 5px 8px;
+      font-family: inherit;
+      font-size: 13px;
+      border: 1px solid #bdbdbd;
+      background: white;
+    }
+
+    /* Mensaje de error de fechas */
+    .error-fechas{
+      margin-left: 25px;
+      margin-top: 8px;
+      font-size: 12px;
+      color: #dc3545;
+      display: none;
+    }
+
+    hr{
+      border: none;
+      border-top: 2px solid #cfcfcf;
+      margin: 20px 0;
+    }
+
+    .botones{
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .btn{
+      min-width: 200px;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid #999;
+      font-weight: bold;
+    }
+
+    .btn-descargar{
+      background: #2d89ef;
+      color: white;
+      border: 1px solid #1d5faa;
+    }
+
+    .btn-descargar:hover{
+      background: #1e6bc7;
+    }
+
+    .btn-cancelar{
+      background: #f3f0ec;
+      color: black;
+    }
+
+    .btn-cancelar:hover{
+      background: #e3dfda;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1 class="titulo">DESCARGAR CALENDARIO DE EXÁMENES</h1>
+
+    <!-- Calendario disponible -->
+    <div class="panel">
+      <h3>📅 Calendario disponible:</h3>
+      <div class="info-calendario">
+        <div class="info-linea"><strong>Generado:</strong> <span id="fechaGeneracion">17/12/2025 14:30</span></div>
+        <div class="info-linea"><strong>Exámenes programados:</strong> <span id="totalExamenes">25</span></div>
+        <div class="info-linea"><strong>Período:</strong> <span id="periodo">13/01/2025 – 17/01/2025</span></div>
+      </div>
+    </div>
+
+    <!-- Formato de archivo -->
+    <div class="panel">
+      <h3>📄 Formato de archivo:</h3>
+      <div class="opciones-lista">
+        <div class="opcion-radio">
+          <input type="radio" name="formato" id="formatoPDF" value="pdf" checked>
+          <label for="formatoPDF">PDF</label>
+        </div>
+        <div class="opcion-radio">
+          <input type="radio" name="formato" id="formatoExcel" value="excel">
+          <label for="formatoExcel">Excel</label>
+        </div>
+        <div class="opcion-radio">
+          <input type="radio" name="formato" id="formatoCSV" value="csv">
+          <label for="formatoCSV">CSV</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Período a exportar -->
+    <div class="panel">
+      <h3>📆 Período a exportar:</h3>
+      <div class="opciones-lista">
+        <div class="opcion-radio">
+          <input type="radio" name="periodo" id="periodoCompleto" value="completo" checked>
+          <label for="periodoCompleto">Completo</label>
+        </div>
+        <div class="opcion-radio">
+          <input type="radio" name="periodo" id="periodoEnero" value="enero">
+          <label for="periodoEnero">Enero 2025</label>
+        </div>
+        <div class="opcion-radio">
+          <input type="radio" name="periodo" id="periodoPersonalizado" value="personalizado">
+          <label for="periodoPersonalizado">Personalizado</label>
+        </div>
+      </div>
+      
+      <!-- Rango de fechas personalizado (visible solo cuando se selecciona Personalizado) -->
+      <div id="rangoFechas" style="display: none;">
+        <div class="rango-fechas">
+          <div class="campo-fecha">
+            <label>Desde:</label>
+            <input type="date" id="fechaDesde" value="2025-01-13">
+          </div>
+          <div class="campo-fecha">
+            <label>Hasta:</label>
+            <input type="date" id="fechaHasta" value="2025-01-17">
+          </div>
+        </div>
+        <div id="errorFechas" class="error-fechas">
+          ⚠️ La fecha inicial debe ser menor o igual a la fecha final
+        </div>
+      </div>
+    </div>
+
+    <!-- Información a incluir -->
+    <div class="panel">
+      <h3>📋 Información a incluir:</h3>
+      <div class="opciones-lista">
+        <div class="opcion-checkbox">
+          <input type="checkbox" id="chkBasicos" checked>
+          <label for="chkBasicos">Datos básicos (fecha, hora, asignatura)</label>
+        </div>
+        <div class="opcion-checkbox">
+          <input type="checkbox" id="chkAula" checked>
+          <label for="chkAula">Aula asignada</label>
+        </div>
+        <div class="opcion-checkbox">
+          <input type="checkbox" id="chkProfesor" checked>
+          <label for="chkProfesor">Profesor responsable</label>
+        </div>
+        <div class="opcion-checkbox">
+          <input type="checkbox" id="chkEstudiantes" checked>
+          <label for="chkEstudiantes">Estudiantes matriculados</label>
+        </div>
+        <div class="opcion-checkbox">
+          <input type="checkbox" id="chkObservaciones">
+          <label for="chkObservaciones">Observaciones adicionales</label>
+        </div>
+        <div class="opcion-checkbox">
+          <input type="checkbox" id="chkLogo">
+          <label for="chkLogo">Logotipo de la institución</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="botones">
+      <button class="btn btn-descargar" id="btnDescargar">📎 Descargar calendario</button>
+      <button class="btn btn-cancelar" id="btnCancelar">Cancelar</button>
+    </div>
+
+  </div>
+
+  <script>
+    // Elementos del DOM
+    const btnDescargar = document.getElementById('btnDescargar');
+    const btnCancelar = document.getElementById('btnCancelar');
+    
+    // Radios de período
+    const periodoCompleto = document.getElementById('periodoCompleto');
+    const periodoEnero = document.getElementById('periodoEnero');
+    const periodoPersonalizado = document.getElementById('periodoPersonalizado');
+    const rangoFechas = document.getElementById('rangoFechas');
+    
+    // Fechas personalizadas
+    const fechaDesde = document.getElementById('fechaDesde');
+    const fechaHasta = document.getElementById('fechaHasta');
+    const errorFechas = document.getElementById('errorFechas');
+    
+    // Función para validar las fechas
+    function validarFechas() {
+      if (!periodoPersonalizado.checked) {
+        return true;
+      }
+      
+      const desde = new Date(fechaDesde.value);
+      const hasta = new Date(fechaHasta.value);
+      
+      if (desde > hasta) {
+        errorFechas.style.display = 'block';
+        return false;
+      } else {
+        errorFechas.style.display = 'none';
+        return true;
+      }
+    }
+    
+    // Función para mostrar/ocultar el rango de fechas personalizado
+    function toggleRangoFechas() {
+      if (periodoPersonalizado.checked) {
+        rangoFechas.style.display = 'block';
+        validarFechas();
+      } else {
+        rangoFechas.style.display = 'none';
+        errorFechas.style.display = 'none';
+      }
+    }
+    
+    // Eventos de los radios de período
+    periodoCompleto.addEventListener('change', toggleRangoFechas);
+    periodoEnero.addEventListener('change', toggleRangoFechas);
+    periodoPersonalizado.addEventListener('change', toggleRangoFechas);
+    
+    // Validar fechas cuando cambian
+    fechaDesde.addEventListener('change', validarFechas);
+    fechaHasta.addEventListener('change', validarFechas);
+    
+    // Función para obtener el formato seleccionado
+    function getFormatoSeleccionado() {
+      if (document.getElementById('formatoPDF').checked) return 'PDF';
+      if (document.getElementById('formatoExcel').checked) return 'Excel';
+      if (document.getElementById('formatoCSV').checked) return 'CSV';
+      return 'PDF';
+    }
+    
+    // Función para obtener el período seleccionado
+    function getPeriodoSeleccionado() {
+      if (periodoCompleto.checked) return 'Completo';
+      if (periodoEnero.checked) return 'Enero 2025';
+      if (periodoPersonalizado.checked) {
+        return `Personalizado: ${fechaDesde.value} al ${fechaHasta.value}`;
+      }
+      return 'Completo';
+    }
+    
+    // Función para obtener la información a incluir
+    function getInformacionIncluir() {
+      const items = [];
+      if (document.getElementById('chkBasicos').checked) items.push('Datos básicos');
+      if (document.getElementById('chkAula').checked) items.push('Aula asignada');
+      if (document.getElementById('chkProfesor').checked) items.push('Profesor responsable');
+      if (document.getElementById('chkEstudiantes').checked) items.push('Estudiantes matriculados');
+      if (document.getElementById('chkObservaciones').checked) items.push('Observaciones adicionales');
+      if (document.getElementById('chkLogo').checked) items.push('Logotipo de la institución');
+      return items;
+    }
+    
+    // Función para descargar el calendario
+    function descargarCalendario() {
+      // Validar fechas si está seleccionado personalizado
+      if (periodoPersonalizado.checked && !validarFechas()) {
+        alert('⚠️ Error en el rango de fechas:\n\nLa fecha inicial debe ser menor o igual a la fecha final.\n\nPor favor, corrige las fechas seleccionadas.');
+        return;
+      }
+      
+      const formato = getFormatoSeleccionado();
+      const periodo = getPeriodoSeleccionado();
+      const informacion = getInformacionIncluir();
+      
+      let mensaje = '📥 DESCARGANDO CALENDARIO\n\n';
+      mensaje += `Formato: ${formato}\n`;
+      mensaje += `Período: ${periodo}\n`;
+      mensaje += `Información a incluir: ${informacion.length} elementos\n`;
+      mensaje += `- ${informacion.join('\n- ')}\n\n`;
+      mensaje += `✅ La descarga comenzará en breve.`;
+      
+      alert(mensaje);
+      console.log('Descargando calendario:', { formato, periodo, informacion });
+    }
+    
+    // Función para cancelar
+    function cancelar() {
+      const confirmar = confirm('¿Estás seguro de que deseas cancelar la descarga?');
+      if (confirmar) {
+        alert('🔄 Descarga cancelada.');
+      }
+    }
+    
+    // Validar que al menos un checkbox de información esté seleccionado
+    function validarInformacion() {
+      const informacion = getInformacionIncluir();
+      if (informacion.length === 0) {
+        alert('⚠️ Debes seleccionar al menos un elemento de información para incluir en el calendario.');
+        return false;
+      }
+      return true;
+    }
+    
+    // Evento de descarga con validación
+    btnDescargar.addEventListener('click', () => {
+      if (validarInformacion()) {
+        descargarCalendario();
+      }
+    });
+    
+    btnCancelar.addEventListener('click', cancelar);
+    
+    // Inicializar
+    toggleRangoFechas();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Consultar Calendario de Exámenes</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .contenedor{
+      width: 1200px;
+      background: #ececec;
+      padding: 20px;
+    }
+
+    .titulo{
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .info-calendario{
+      text-align: center;
+      font-size: 16px;
+      margin-bottom: 25px;
+      color: #555;
+    }
+
+    /* Tabla de calendario */
+    .tabla-calendario{
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      background: #f5f5f5;
+    }
+
+    .tabla-calendario th,
+    .tabla-calendario td{
+      border: 2px solid #bdbdbd;
+      padding: 10px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .tabla-calendario th{
+      background: #dfe7ef;
+      font-weight: bold;
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .tabla-calendario td{
+      font-size: 12px;
+      background: white;
+    }
+
+    .celda-vacia{
+      background: #f0f0f0;
+      color: #999;
+      text-align: center;
+    }
+
+    .hora-fila{
+      background: #dfe7ef;
+      font-weight: bold;
+      width: 100px;
+      text-align: center;
+    }
+
+    .examen-item{
+      margin-bottom: 8px;
+      padding-bottom: 5px;
+      border-bottom: 1px dashed #ccc;
+    }
+
+    .examen-item:last-child{
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .examen-nombre{
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .examen-detalle{
+      font-size: 11px;
+      color: #555;
+      margin-top: 3px;
+    }
+
+    /* Resumen */
+    .resumen{
+      border: 2px solid #7ea0c0;
+      background: #dfe7ef;
+      padding: 15px 20px;
+    }
+
+    .resumen h3{
+      font-size: 18px;
+      margin-bottom: 12px;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    .resumen-grid{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .resumen-item{
+      text-align: center;
+    }
+
+    .resumen-label{
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .resumen-valor{
+      font-size: 20px;
+      font-weight: bold;
+      color: #2d89ef;
+    }
+
+    hr{
+      border: none;
+      border-top: 2px solid #cfcfcf;
+      margin: 20px 0;
+    }
+
+    .botones{
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 25px;
+    }
+
+    .btn{
+      min-width: 180px;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid #999;
+      font-weight: bold;
+    }
+
+    .btn-exportar{
+      background: #2d89ef;
+      color: white;
+      border: 1px solid #1d5faa;
+    }
+
+    .btn-exportar:hover{
+      background: #1e6bc7;
+    }
+
+    .btn-cerrar{
+      background: #f3f0ec;
+      color: black;
+    }
+
+    .btn-cerrar:hover{
+      background: #e3dfda;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1 class="titulo">CONSULTAR CALENDARIO DE EXÁMENES</h1>
+    <div class="info-calendario">Calendario generado: <span id="fechaGeneracion">18/12/2025 14:30</span></div>
+
+    <!-- Tabla de calendario -->
+    <table class="tabla-calendario" id="tablaCalendario">
+      <thead id="cabeceraTabla">
+        <!-- Cabecera generada con JavaScript -->
+      </thead>
+      <tbody id="cuerpoTabla">
+        <!-- Cuerpo generado con JavaScript -->
+      </tbody>
+    </table>
+
+    <!-- Resumen del calendario -->
+    <div class="resumen">
+      <h3>📊 Resumen del calendario:</h3>
+      <div class="resumen-grid">
+        <div class="resumen-item">
+          <div class="resumen-label">Exámenes programados:</div>
+          <div class="resumen-valor" id="totalExamenes">8</div>
+        </div>
+        <div class="resumen-item">
+          <div class="resumen-label">Profesores asignados:</div>
+          <div class="resumen-valor" id="totalProfesores">4</div>
+        </div>
+        <div class="resumen-item">
+          <div class="resumen-label">Aulas utilizadas:</div>
+          <div class="resumen-valor" id="totalAulas">4</div>
+        </div>
+        <div class="resumen-item">
+          <div class="resumen-label">Estudiantes afectados:</div>
+          <div class="resumen-valor" id="totalEstudiantes">195</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="botones">
+      <button class="btn btn-exportar" id="btnExportar">📎 Exportar calendario</button>
+      <button class="btn btn-cerrar" id="btnCerrar">🚪 Cerrar</button>
+    </div>
+
+  </div>
+
+  <script>
+    // Datos del calendario
+    const fechaGeneracion = '18/12/2025 14:30';
+    
+    // Días de la semana (Enero 2026 - del 12 al 15)
+    const dias = [
+      { fecha: 'LUN 12', dia: 12 },
+      { fecha: 'MAR 13', dia: 13 },
+      { fecha: 'MIÉ 14', dia: 14 },
+      { fecha: 'JUE 15', dia: 15 }
+    ];
+    
+    // Horarios
+    const horarios = [
+      '08:30-10:30',
+      '11:30-13:30',
+      '14:30-16:30',
+      '17:30-19:30'
+    ];
+    
+    // Datos de exámenes por día y horario
+    // Estructura: [dia][horario] = examen o null
+    const examenes = {
+      12: { // LUN 12
+        '08:30-10:30': { nombre: 'Prog. I', aula: '-2.6', profesor: 'Dr. Masías', estudiantes: 50 },
+        '11:30-13:30': null,
+        '14:30-16:30': null,
+        '17:30-19:30': { nombre: 'B. Datos', aula: '-2.4', profesor: 'Dra. Gómez', estudiantes: 60 }
+      },
+      13: { // MAR 13
+        '08:30-10:30': null,
+        '11:30-13:30': { nombre: 'Prog. I', aula: '-2.2', profesor: 'Dr. Pérez', estudiantes: 50 },
+        '14:30-16:30': { nombre: 'Redes', aula: '-2.6', profesor: 'Dr. López', estudiantes: 50 },
+        '17:30-19:30': null
+      },
+      14: { // MIÉ 14
+        '08:30-10:30': { nombre: 'Est. Datos', aula: '-2.6', profesor: 'Dr. Rodríguez', estudiantes: 45 },
+        '11:30-13:30': null,
+        '14:30-16:30': null,
+        '17:30-19:30': null
+      },
+      15: { // JUE 15
+        '08:30-10:30': null,
+        '11:30-13:30': null,
+        '14:30-16:30': { nombre: 'Estadística', aula: '1.1', profesor: 'Dr. García', estudiantes: 80 },
+        '17:30-19:30': null
+      }
+    };
+    
+    // Calcular resumen
+    function calcularResumen() {
+      let totalExamenes = 0;
+      let profesores = new Set();
+      let aulas = new Set();
+      let totalEstudiantes = 0;
+      
+      for (let dia of [12, 13, 14, 15]) {
+        for (let horario of horarios) {
+          const examen = examenes[dia]?.[horario];
+          if (examen) {
+            totalExamenes++;
+            profesores.add(examen.profesor);
+            aulas.add(examen.aula);
+            totalEstudiantes += examen.estudiantes;
+          }
+        }
+      }
+      
+      return {
+        totalExamenes,
+        totalProfesores: profesores.size,
+        totalAulas: aulas.size,
+        totalEstudiantes
+      };
+    }
+    
+    // Renderizar cabecera de la tabla
+    function renderizarCabecera() {
+      const thead = document.getElementById('cabeceraTabla');
+      let html = '<tr><th>HORARIO</th>';
+      
+      for (let dia of dias) {
+        html += `<th>${dia.fecha}<br><small>ENERO 2026</small></th>`;
+      }
+      html += '</tr>';
+      thead.innerHTML = html;
+    }
+    
+    // Renderizar cuerpo de la tabla
+    function renderizarCuerpo() {
+      const tbody = document.getElementById('cuerpoTabla');
+      let html = '';
+      
+      for (let horario of horarios) {
+        html += '<tr>';
+        html += `<td class="hora-fila">${horario}</td>`;
+        
+        for (let dia of dias) {
+          const examen = examenes[dia.dia]?.[horario];
+          
+          if (examen) {
+            html += `
+              <td>
+                <div class="examen-item">
+                  <div class="examen-nombre">📖 ${examen.nombre}</div>
+                  <div class="examen-detalle">📍 Aula: ${examen.aula}</div>
+                  <div class="examen-detalle">👨‍🏫 ${examen.profesor}</div>
+                  <div class="examen-detalle">🎓 ${examen.estudiantes} est.</div>
+                </div>
+              </td>
+            `;
+          } else {
+            html += `<td class="celda-vacia">—</td>`;
+          }
+        }
+        html += '</tr>';
+      }
+      
+      tbody.innerHTML = html;
+    }
+    
+    // Actualizar resumen
+    function actualizarResumen() {
+      const resumen = calcularResumen();
+      document.getElementById('totalExamenes').textContent = resumen.totalExamenes;
+      document.getElementById('totalProfesores').textContent = resumen.totalProfesores;
+      document.getElementById('totalAulas').textContent = resumen.totalAulas;
+      document.getElementById('totalEstudiantes').textContent = resumen.totalEstudiantes;
+    }
+    
+    // Exportar calendario
+    function exportarCalendario() {
+      let reporte = '=== CALENDARIO DE EXÁMENES ===\n\n';
+      reporte += `Fecha de generación: ${fechaGeneracion}\n`;
+      reporte += `Período: Enero 2026 (12 al 15)\n\n`;
+      reporte += '=' .repeat(60) + '\n';
+      reporte += 'HORARIO\t\tLUN 12\t\tMAR 13\t\tMIÉ 14\t\tJUE 15\n';
+      reporte += '=' .repeat(60) + '\n';
+      
+      for (let horario of horarios) {
+        let linea = `${horario}\t`;
+        for (let dia of [12, 13, 14, 15]) {
+          const examen = examenes[dia]?.[horario];
+          if (examen) {
+            linea += `${examen.nombre} (${examen.aula})\t`;
+          } else {
+            linea += '—\t\t';
+          }
+        }
+        reporte += linea + '\n';
+      }
+      
+      reporte += '\n' + '=' .repeat(60) + '\n';
+      reporte += '📊 RESUMEN DEL CALENDARIO:\n';
+      const resumen = calcularResumen();
+      reporte += `- Exámenes programados: ${resumen.totalExamenes}\n`;
+      reporte += `- Profesores asignados: ${resumen.totalProfesores}\n`;
+      reporte += `- Aulas utilizadas: ${resumen.totalAulas}\n`;
+      reporte += `- Estudiantes afectados: ${resumen.totalEstudiantes}\n`;
+      
+      alert(reporte);
+      console.log(reporte);
+    }
+    
+    // Cerrar
+    function cerrar() {
+      const confirmar = confirm('¿Estás seguro de que deseas cerrar?');
+      if (confirmar) {
+        alert('👋 Cerrando consulta de calendario...');
+      }
+    }
+    
+    // Eventos
+    document.getElementById('btnExportar').addEventListener('click', exportarCalendario);
+    document.getElementById('btnCerrar').addEventListener('click', cerrar);
+    
+    // Inicializar
+    document.getElementById('fechaGeneracion').textContent = fechaGeneracion;
+    renderizarCabecera();
+    renderizarCuerpo();
+    actualizarResumen();
+  </script>
+
+</body>
+</html>

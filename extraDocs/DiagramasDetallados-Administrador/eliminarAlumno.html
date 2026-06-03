@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eliminar Alumno</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .contenedor{
+      width: 600px;
+      background: #ececec;
+      padding: 25px;
+      border: 1px solid #cfcfcf;
+    }
+
+    .titulo{
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+
+    .pregunta{
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .info-alumno{
+      background: #f5f5f5;
+      border: 1px solid #bdbdbd;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .info-linea{
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .info-linea strong{
+      font-weight: bold;
+    }
+
+    .info-descripcion{
+      background: #e9ecef;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 14px;
+      font-style: italic;
+      color: #555;
+      text-align: center;
+    }
+
+    .asignaturas-asociadas{
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .asignaturas-asociadas strong{
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .advertencia{
+      background: #f8d7da;
+      border: 2px solid #dc3545;
+      padding: 15px;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .advertencia-titulo{
+      font-size: 18px;
+      font-weight: bold;
+      color: #721c24;
+      margin-bottom: 10px;
+    }
+
+    .advertencia-mensaje{
+      font-size: 14px;
+      color: #721c24;
+    }
+
+    .advertencia-mensaje p{
+      margin-top: 5px;
+    }
+
+    .botones{
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    .btn{
+      min-width: 180px;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid #999;
+      font-weight: bold;
+    }
+
+    .btn-eliminar{
+      background: #dc3545;
+      color: white;
+      border: 1px solid #a71d2a;
+    }
+
+    .btn-eliminar:hover{
+      background: #c82333;
+    }
+
+    .btn-cancelar{
+      background: #f3f0ec;
+      color: black;
+    }
+
+    .btn-cancelar:hover{
+      background: #e3dfda;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1 class="titulo">ELIMINAR ALUMNO</h1>
+
+    <div class="pregunta">
+      ¿Está seguro de eliminar este alumno?
+    </div>
+
+    <div class="info-alumno">
+      <div class="info-linea">
+        <strong>Matrícula:</strong> AL001234
+      </div>
+      <div class="info-linea">
+        <strong>Nombre:</strong> Ana García López
+      </div>
+      <div class="info-linea">
+        <strong>Email:</strong> ana.garcia@estudiante.es
+      </div>
+      <div class="info-linea">
+        <strong>Grado:</strong> Ingeniería Informática
+      </div>
+      <div class="info-linea">
+        <strong>Curso:</strong> 3°
+      </div>
+      <div class="info-descripcion">
+        Alumna con todas las asignaturas aprobadas
+      </div>
+    </div>
+
+    <div class="asignaturas-asociadas">
+      <strong>📚 Asignaturas matriculadas:</strong>
+      6 asignaturas activas
+    </div>
+
+    <div class="advertencia">
+      <div class="advertencia-titulo">
+        ⚠️ ADVERTENCIA ⚠️
+      </div>
+      <div class="advertencia-mensaje">
+        Esta acción es irreversible<br>
+        El alumno y todo su historial serán eliminados permanentemente
+      </div>
+    </div>
+
+    <div class="botones">
+      <button class="btn btn-eliminar" id="btnConfirmar">🗑️ Confirmar eliminación</button>
+      <button class="btn btn-cancelar" id="btnCancelar">❌ Cancelar</button>
+    </div>
+
+  </div>
+
+  <script>
+    // Datos del alumno (simulados)
+    const alumno = {
+      matricula: 'AL001234',
+      nombre: 'Ana García López',
+      email: 'ana.garcia@estudiante.es',
+      grado: 'Ingeniería Informática',
+      curso: '3°',
+      descripcion: 'Alumna con todas las asignaturas aprobadas',
+      asignaturas: 6
+    };
+
+    // Elementos del DOM
+    const btnConfirmar = document.getElementById('btnConfirmar');
+    const btnCancelar = document.getElementById('btnCancelar');
+
+    // Confirmar eliminación
+    function confirmarEliminacion() {
+      const confirmar = confirm(`⚠️ ELIMINACIÓN PERMANENTE ⚠️\n\n¿Está ABSOLUTAMENTE seguro de que desea eliminar al alumno "${alumno.matricula} - ${alumno.nombre}"?\n\nDatos del alumno:\n- Email: ${alumno.email}\n- Grado: ${alumno.grado}\n- Curso: ${alumno.curso}\n- Asignaturas matriculadas: ${alumno.asignaturas}\n\nEsta acción:\n- Es IRREVERSIBLE\n- Eliminará todo el historial académico del alumno\n- Eliminará las ${alumno.asignaturas} asignaturas matriculadas\n- El alumno no podrá ser recuperado\n\nNo podrá recuperar los datos una vez eliminados.`);
+      
+      if (confirmar) {
+        // Segunda confirmación para mayor seguridad
+        const confirmarFinal = confirm(`ÚLTIMA ADVERTENCIA\n\n¿Realmente desea eliminar al alumno "${alumno.matricula} - ${alumno.nombre}"?\n\nEscriba "ELIMINAR" para confirmar.`);
+        
+        if (confirmarFinal) {
+          const texto = prompt('Escriba "ELIMINAR" para confirmar la eliminación:');
+          if (texto === 'ELIMINAR') {
+            alert(`✅ Alumno "${alumno.matricula} - ${alumno.nombre}" eliminado correctamente.\n\nSe han eliminado ${alumno.asignaturas} asignaturas del historial.`);
+            // Aquí redirigir a la lista de alumnos
+            // window.location.href = 'administracion_alumnos.html';
+          } else if (texto !== null) {
+            alert('❌ Texto incorrecto. Eliminación cancelada.');
+          }
+        } else {
+          alert('🔄 Eliminación cancelada.');
+        }
+      } else {
+        alert('🔄 Eliminación cancelada.');
+      }
+    }
+
+    // Cancelar
+    function cancelar() {
+      const confirmar = confirm('¿Estás seguro de que deseas cancelar la eliminación?');
+      if (confirmar) {
+        alert('🔄 Eliminación cancelada. El alumno no ha sido modificado.');
+      }
+    }
+
+    // Eventos
+    btnConfirmar.addEventListener('click', confirmarEliminacion);
+    btnCancelar.addEventListener('click', cancelar);
+  </script>
+
+</body>
+</html>

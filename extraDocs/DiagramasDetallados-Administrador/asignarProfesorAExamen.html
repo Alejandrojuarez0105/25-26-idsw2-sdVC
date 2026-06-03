@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Asignar Profesor a Examen</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .contenedor{
+      width: 1100px;
+      background: #ececec;
+      display: flex;
+      gap: 25px;
+      padding: 20px;
+    }
+
+    /* Panel izquierdo - Exámenes */
+    .panel-izquierdo{
+      flex: 1.5;
+    }
+
+    /* Panel derecho - Profesores */
+    .panel-derecho{
+      flex: 1.5;
+    }
+
+    /* Panel inferior - Resumen */
+    .panel-inferior{
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .titulo{
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+    }
+
+    .panel{
+      border: 1px solid #cfcfcf;
+      padding: 18px;
+      margin-bottom: 20px;
+      background: #ededed;
+    }
+
+    .panel h3{
+      font-size: 18px;
+      margin-bottom: 15px;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    /* Lista de exámenes */
+    .lista-examenes{
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .examen-item{
+      border: 1px solid #bdbdbd;
+      padding: 12px;
+      background: #f5f5f5;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .examen-item:hover{
+      background: #e3e3e3;
+    }
+
+    .examen-item.seleccionado{
+      background: #b8d4f0;
+      border-left: 4px solid #2d89ef;
+    }
+
+    .examen-item.asignado{
+      background: #d4edda;
+      border-left: 4px solid #28a745;
+    }
+
+    .examen-item.asignado.seleccionado{
+      background: #b8d4f0;
+      border-left: 4px solid #2d89ef;
+    }
+
+    .examen-codigo{
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .examen-detalle{
+      font-size: 12px;
+      color: #555;
+    }
+
+    .examen-profesor{
+      font-size: 12px;
+      color: #28a745;
+      margin-top: 5px;
+      font-weight: bold;
+    }
+
+    /* Lista de profesores */
+    .lista-profesores{
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .profesor-item{
+      border: 1px solid #bdbdbd;
+      padding: 12px;
+      background: #f5f5f5;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .profesor-item:hover{
+      background: #e3e3e3;
+    }
+
+    .profesor-item.seleccionado{
+      background: #b8d4f0;
+      border-left: 4px solid #2d89ef;
+    }
+
+    .profesor-nombre{
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .profesor-especialidad{
+      font-size: 12px;
+      color: #555;
+    }
+
+    .profesor-disponibilidad{
+      font-size: 11px;
+      color: #666;
+      margin-top: 3px;
+    }
+
+    /* Botones de asignación */
+    .botones-asignacion{
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .btn-asignacion{
+      min-width: 150px;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid #999;
+      font-weight: bold;
+      background: #f3f0ec;
+    }
+
+    .btn-asignacion:hover{
+      background: #e3dfda;
+    }
+
+    /* Resumen */
+    .resumen{
+      border: 2px solid #7ea0c0;
+      background: #dfe7ef;
+      padding: 15px 20px;
+      margin-bottom: 20px;
+    }
+
+    .resumen-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .resumen-item{
+      text-align: center;
+    }
+
+    .resumen-label{
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .resumen-valor{
+      font-size: 20px;
+      font-weight: bold;
+      color: #2d89ef;
+    }
+
+    .profesor-seleccionado{
+      text-align: center;
+      padding: 10px;
+      background: #e9ecef;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .profesor-seleccionado strong{
+      color: #2d89ef;
+    }
+
+    /* Botones principales */
+    .botones-principales{
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .btn{
+      min-width: 180px;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid #999;
+      font-weight: bold;
+    }
+
+    .btn-guardar{
+      background: #28a745;
+      color: white;
+      border: 1px solid #1e7e34;
+    }
+
+    .btn-guardar:hover{
+      background: #218838;
+    }
+
+    .btn-continuar{
+      background: #2d89ef;
+      color: white;
+      border: 1px solid #1d5faa;
+    }
+
+    .btn-continuar:hover{
+      background: #1e6bc7;
+    }
+
+    .btn-cancelar{
+      background: #f3f0ec;
+      color: black;
+    }
+
+    .btn-cancelar:hover{
+      background: #e3dfda;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div style="width: 100%; max-width: 1200px; margin: 0 auto;">
+
+    <h1 class="titulo">ASIGNAR PROFESOR A EXAMEN</h1>
+
+    <div style="display: flex; gap: 25px; flex-wrap: wrap;">
+
+      <!-- Panel izquierdo - Exámenes sin profesor -->
+      <div class="panel-izquierdo">
+        <div class="panel">
+          <h3>📋 Exámenes sin profesor:</h3>
+          <div class="lista-examenes" id="listaExamenes">
+            <!-- Datos dinámicos -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel derecho - Profesores disponibles -->
+      <div class="panel-derecho">
+        <div class="panel">
+          <h3>👨‍🏫 Profesores disponibles:</h3>
+          <div class="lista-profesores" id="listaProfesores">
+            <!-- Datos dinámicos -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Botones de asignación -->
+    <div class="botones-asignacion">
+      <button class="btn-asignacion" id="btnDesasignar">◀◀ Desasignar</button>
+      <button class="btn-asignacion" id="btnAsignar">Asignar ▶▶</button>
+    </div>
+
+    <!-- Panel inferior - Resumen -->
+    <div class="panel-inferior">
+      <div class="resumen">
+        <div class="resumen-grid">
+          <div class="resumen-item">
+            <div class="resumen-label">Total exámenes sin profesor:</div>
+            <div class="resumen-valor" id="totalExamenes">4</div>
+          </div>
+          <div class="resumen-item">
+            <div class="resumen-label">Total profesores disponibles:</div>
+            <div class="resumen-valor" id="totalProfesores">4</div>
+          </div>
+          <div class="resumen-item">
+            <div class="resumen-label">Profesor seleccionado:</div>
+            <div class="resumen-valor" id="profesorSeleccionadoNombre" style="font-size: 14px;">Ninguno</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="botones-principales">
+        <button class="btn btn-guardar" id="btnGuardar">💾 Guardar asignaciones</button>
+        <button class="btn btn-continuar" id="btnContinuar">📌 Continuar gestionando</button>
+        <button class="btn btn-cancelar" id="btnCancelar">❌ Cancelar</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Datos de exámenes
+    let examenes = [
+      { id: 1, codigo: 'EX001', nombre: 'Programación I', fecha: '2026-01-15', hora: '08:30', aula: '-2.6', profesor: null, profesorId: null },
+      { id: 2, codigo: 'EX002', nombre: 'Bases de Datos', fecha: '2026-01-16', hora: '11:30', aula: '-2.4', profesor: null, profesorId: null },
+      { id: 3, codigo: 'EX003', nombre: 'Estructuras de Datos', fecha: '2026-01-19', hora: '14:30', aula: '-2.2', profesor: null, profesorId: null },
+      { id: 4, codigo: 'EX004', nombre: 'Redes de Ordenadores', fecha: '2026-01-20', hora: '17:30', aula: '-2.6', profesor: null, profesorId: null }
+    ];
+
+    // Datos de profesores
+    let profesores = [
+      { id: 1, nombre: 'Juan Pérez', especialidad: 'Bases de Datos', disponibilidad: 'Mañanas' },
+      { id: 2, nombre: 'María Gómez', especialidad: 'Programación', disponibilidad: 'Completa' },
+      { id: 3, nombre: 'Carlos Rodríguez', especialidad: 'Sistemas', disponibilidad: 'Tardes' },
+      { id: 4, nombre: 'Luis López', especialidad: 'Redes', disponibilidad: 'Completa' }
+    ];
+
+    // Variables de selección
+    let examenSeleccionado = null;
+    let profesorSeleccionado = null;
+
+    // Elementos del DOM
+    const listaExamenesDiv = document.getElementById('listaExamenes');
+    const listaProfesoresDiv = document.getElementById('listaProfesores');
+    const totalExamenesSpan = document.getElementById('totalExamenes');
+    const totalProfesoresSpan = document.getElementById('totalProfesores');
+    const profesorSeleccionadoNombreSpan = document.getElementById('profesorSeleccionadoNombre');
+
+    // Renderizar lista de exámenes (todos seleccionables)
+    function renderizarExamenes() {
+      listaExamenesDiv.innerHTML = '';
+      examenes.forEach(examen => {
+        const div = document.createElement('div');
+        div.className = 'examen-item';
+        if (examenSeleccionado && examenSeleccionado.id === examen.id) {
+          div.classList.add('seleccionado');
+        }
+        if (examen.profesor) {
+          div.classList.add('asignado');
+        }
+        
+        div.innerHTML = `
+          <div class="examen-codigo">📖 ${examen.codigo} – ${examen.nombre}</div>
+          <div class="examen-detalle">${examen.fecha} ${examen.hora} Aula ${examen.aula}</div>
+          ${examen.profesor ? `<div class="examen-profesor">✅ Asignado: ${examen.profesor}</div>` : '<div class="examen-profesor" style="color:#dc3545;">⚠️ Sin profesor asignado</div>'}
+        `;
+        
+        // Ahora TODOS los exámenes son seleccionables, incluso los que ya tienen profesor
+        div.addEventListener('click', () => {
+          examenSeleccionado = examen;
+          renderizarExamenes();
+          actualizarResumen();
+        });
+        
+        listaExamenesDiv.appendChild(div);
+      });
+      totalExamenesSpan.textContent = examenes.filter(e => !e.profesor).length;
+    }
+
+    // Renderizar lista de profesores
+    function renderizarProfesores() {
+      listaProfesoresDiv.innerHTML = '';
+      profesores.forEach(profesor => {
+        const div = document.createElement('div');
+        div.className = 'profesor-item';
+        if (profesorSeleccionado && profesorSeleccionado.id === profesor.id) {
+          div.classList.add('seleccionado');
+        }
+        
+        div.innerHTML = `
+          <div class="profesor-nombre">👨‍🏫 ${profesor.nombre}</div>
+          <div class="profesor-especialidad">🎓 Especialidad: ${profesor.especialidad}</div>
+          <div class="profesor-disponibilidad">⏰ Disponibilidad: ${profesor.disponibilidad}</div>
+        `;
+        
+        div.addEventListener('click', () => {
+          profesorSeleccionado = profesor;
+          renderizarProfesores();
+          actualizarResumen();
+        });
+        
+        listaProfesoresDiv.appendChild(div);
+      });
+      totalProfesoresSpan.textContent = profesores.length;
+    }
+
+    // Actualizar resumen
+    function actualizarResumen() {
+      if (profesorSeleccionado) {
+        profesorSeleccionadoNombreSpan.textContent = profesorSeleccionado.nombre;
+        profesorSeleccionadoNombreSpan.style.fontSize = '14px';
+        profesorSeleccionadoNombreSpan.style.color = '#2d89ef';
+      } else {
+        profesorSeleccionadoNombreSpan.textContent = 'Ninguno';
+        profesorSeleccionadoNombreSpan.style.fontSize = '20px';
+        profesorSeleccionadoNombreSpan.style.color = '#2d89ef';
+      }
+    }
+
+    // Asignar profesor al examen
+    function asignarProfesor() {
+      if (!examenSeleccionado) {
+        alert('⚠️ Primero selecciona un examen.');
+        return;
+      }
+      
+      if (!profesorSeleccionado) {
+        alert('⚠️ Primero selecciona un profesor.');
+        return;
+      }
+      
+      // Verificar si el examen ya tiene profesor
+      if (examenSeleccionado.profesor) {
+        const confirmar = confirm(`⚠️ El examen "${examenSeleccionado.codigo} - ${examenSeleccionado.nombre}" ya tiene asignado al profesor "${examenSeleccionado.profesor}".\n\n¿Deseas reemplazarlo por "${profesorSeleccionado.nombre}"?`);
+        if (!confirmar) {
+          return;
+        }
+      }
+      
+      // Asignar profesor
+      examenSeleccionado.profesor = profesorSeleccionado.nombre;
+      examenSeleccionado.profesorId = profesorSeleccionado.id;
+      
+      // Limpiar selecciones
+      examenSeleccionado = null;
+      profesorSeleccionado = null;
+      
+      // Actualizar vistas
+      renderizarExamenes();
+      renderizarProfesores();
+      actualizarResumen();
+      
+      alert(`✅ Asignación realizada con éxito.`);
+    }
+
+    // Desasignar profesor
+    function desasignarProfesor() {
+      if (!examenSeleccionado) {
+        alert('⚠️ Primero selecciona un examen.');
+        return;
+      }
+      
+      if (!examenSeleccionado.profesor) {
+        alert(`⚠️ El examen "${examenSeleccionado.codigo} - ${examenSeleccionado.nombre}" no tiene profesor asignado.`);
+        return;
+      }
+      
+      const confirmar = confirm(`¿Desasignar al profesor "${examenSeleccionado.profesor}" del examen "${examenSeleccionado.codigo} - ${examenSeleccionado.nombre}"?`);
+      
+      if (confirmar) {
+        examenSeleccionado.profesor = null;
+        examenSeleccionado.profesorId = null;
+        
+        // Limpiar selección
+        examenSeleccionado = null;
+        
+        renderizarExamenes();
+        actualizarResumen();
+        
+        alert(`✅ Profesor desasignado del examen.`);
+      }
+    }
+
+    // Guardar asignaciones
+    function guardarAsignaciones() {
+      const asignaciones = examenes.filter(e => e.profesor);
+      
+      if (asignaciones.length === 0) {
+        alert('⚠️ No hay asignaciones para guardar.');
+        return;
+      }
+      
+      let mensaje = '💾 ASIGNACIONES GUARDADAS\n\n';
+      asignaciones.forEach(e => {
+        mensaje += `📖 ${e.codigo} - ${e.nombre}\n`;
+        mensaje += `   👨‍🏫 Profesor: ${e.profesor}\n`;
+        mensaje += `   📅 ${e.fecha} ${e.hora} - Aula ${e.aula}\n\n`;
+      });
+      mensaje += `✅ Total asignaciones guardadas: ${asignaciones.length}`;
+      
+      alert(mensaje);
+      console.log('Asignaciones guardadas:', asignaciones);
+    }
+
+    // Continuar gestionando
+    function continuarGestionando() {
+      alert('📌 Continuando con la gestión de asignaciones...\n\nPuedes seguir asignando profesores a los exámenes pendientes.');
+    }
+
+    // Cancelar
+    function cancelar() {
+      const confirmar = confirm('¿Estás seguro de que deseas cancelar?\n\nLos cambios no guardados se perderán.');
+      if (confirmar) {
+        alert('👋 Saliendo del gestor de asignaciones...');
+      }
+    }
+
+    // Eventos
+    document.getElementById('btnAsignar').addEventListener('click', asignarProfesor);
+    document.getElementById('btnDesasignar').addEventListener('click', desasignarProfesor);
+    document.getElementById('btnGuardar').addEventListener('click', guardarAsignaciones);
+    document.getElementById('btnContinuar').addEventListener('click', continuarGestionando);
+    document.getElementById('btnCancelar').addEventListener('click', cancelar);
+
+    // Inicializar
+    renderizarExamenes();
+    renderizarProfesores();
+    actualizarResumen();
+  </script>
+
+</body>
+</html>

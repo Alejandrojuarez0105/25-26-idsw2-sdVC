@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Generar Calendario de Exámenes - Generando</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: #e9e9e9;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .contenedor{
+      width: 650px;
+      background: #ececec;
+    }
+
+    .titulo{
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+    }
+
+    .panel{
+      border: 1px solid #cfcfcf;
+      padding: 18px;
+      margin-bottom: 28px;
+      background: #ededed;
+    }
+
+    .panel h3{
+      font-size: 20px;
+      margin-bottom: 15px;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    /* Estado de generación */
+    .estado-generacion{
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .estado-generacion h2{
+      font-size: 22px;
+      color: #2d89ef;
+      margin-bottom: 10px;
+    }
+
+    .spinner{
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 4px solid #e0e0e0;
+      border-top: 4px solid #2d89ef;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 15px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Datos procesados */
+    .info-grid{
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px 20px;
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    .info-label{
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .info-valor{
+      font-size: 16px;
+      color: #333;
+    }
+
+    /* Barras de progreso */
+    .progreso-item{
+      margin-bottom: 18px;
+    }
+
+    .progreso-header{
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    .progreso-nombre{
+      font-weight: bold;
+    }
+
+    .progreso-porcentaje{
+      font-family: monospace;
+    }
+
+    .barra-fondo{
+      background: #d4d4d4;
+      height: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .barra-lleno{
+      background: #2d89ef;
+      height: 100%;
+      width: 0%;
+      border-radius: 10px;
+      transition: width 0.3s ease;
+    }
+
+    /* Nota informativa */
+    .nota-informativa{
+      background: #e7f3ff;
+      border-left: 4px solid #2d89ef;
+      padding: 15px;
+      margin-top: 20px;
+      font-size: 13px;
+      color: #2c3e50;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .nota-informativa p{
+      margin-top: 8px;
+    }
+
+    .botones{
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .btn{
+      min-width: 215px;
+      padding: 14px 25px;
+      border-radius: 4px;
+      font-size: 18px;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid #999;
+      font-weight: bold;
+    }
+
+    .btn-cancelar{
+      background: #f3f0ec;
+      color: black;
+    }
+
+    .btn-cancelar:hover{
+      background: #e3dfda;
+    }
+
+    .btn-cancelar:disabled{
+      background: #cccccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1 class="titulo">GENERAR CALENDARIO DE EXÁMENES</h1>
+
+    <div class="panel">
+
+      <!-- Estado de generación -->
+      <div class="estado-generacion">
+        <div class="spinner"></div>
+        <h2>Generación en progreso...</h2>
+      </div>
+
+      <!-- Datos procesados -->
+      <h3>📊 Datos procesados:</h3>
+      <div class="info-grid">
+        <div class="info-label">Grados:</div>
+        <div class="info-valor" id="gradosProcesados">3 procesados</div>
+        
+        <div class="info-label">Asignaturas:</div>
+        <div class="info-valor" id="asignaturasProcesadas">15 procesadas</div>
+        
+        <div class="info-label">Profesores:</div>
+        <div class="info-valor" id="profesoresVerificados">10 verificados</div>
+        
+        <div class="info-label">Aulas:</div>
+        <div class="info-valor" id="aulasEvaluadas">8 evaluadas</div>
+        
+        <div class="info-label">Estudiantes:</div>
+        <div class="info-valor" id="estudiantesConsiderados">350 considerados</div>
+      </div>
+
+      <!-- Progreso -->
+      <h3>📈 Progreso:</h3>
+      
+      <div class="progreso-item">
+        <div class="progreso-header">
+          <span class="progreso-nombre">Asignando fechas:</span>
+          <span class="progreso-porcentaje" id="porcentajeFechas">70%</span>
+        </div>
+        <div class="barra-fondo">
+          <div class="barra-lleno" id="barraFechas" style="width: 70%"></div>
+        </div>
+      </div>
+
+      <div class="progreso-item">
+        <div class="progreso-header">
+          <span class="progreso-nombre">Asignando aulas:</span>
+          <span class="progreso-porcentaje" id="porcentajeAulas">40%</span>
+        </div>
+        <div class="barra-fondo">
+          <div class="barra-lleno" id="barraAulas" style="width: 40%"></div>
+        </div>
+      </div>
+
+      <div class="progreso-item">
+        <div class="progreso-header">
+          <span class="progreso-nombre">Asignando profesores:</span>
+          <span class="progreso-porcentaje" id="porcentajeProfesores">10%</span>
+        </div>
+        <div class="barra-fondo">
+          <div class="barra-lleno" id="barraProfesores" style="width: 10%"></div>
+        </div>
+      </div>
+
+      <div class="progreso-item">
+        <div class="progreso-header">
+          <span class="progreso-nombre">Resolviendo conflictos:</span>
+          <span class="progreso-porcentaje" id="porcentajeConflictos">100%</span>
+        </div>
+        <div class="barra-fondo">
+          <div class="barra-lleno" id="barraConflictos" style="width: 100%"></div>
+        </div>
+      </div>
+
+      <!-- Nota informativa -->
+      <div class="nota-informativa">
+        <strong>⚙️ Algoritmo de optimización ejecutándose</strong> para minimizar conflictos.
+        <p>Este proceso puede tomar varios minutos dependiendo de la cantidad de datos.</p>
+      </div>
+
+    </div>
+
+    <div class="botones">
+      <button class="btn btn-cancelar" id="btnCancelar" disabled>
+        Cancelar
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    // Elementos del DOM
+    const btnCancelar = document.getElementById('btnCancelar');
+    
+    // Elementos de progreso
+    const barraFechas = document.getElementById('barraFechas');
+    const porcentajeFechas = document.getElementById('porcentajeFechas');
+    const barraAulas = document.getElementById('barraAulas');
+    const porcentajeAulas = document.getElementById('porcentajeAulas');
+    const barraProfesores = document.getElementById('barraProfesores');
+    const porcentajeProfesores = document.getElementById('porcentajeProfesores');
+    const barraConflictos = document.getElementById('barraConflictos');
+    const porcentajeConflictos = document.getElementById('porcentajeConflictos');
+    
+    // Variables de simulación
+    let progresoActual = {
+      fechas: 70,
+      aulas: 40,
+      profesores: 10,
+      conflictos: 100
+    };
+    
+    let generacionCompletada = false;
+    let intervaloProgreso;
+    
+    // Función para actualizar las barras de progreso
+    function actualizarProgreso() {
+      barraFechas.style.width = progresoActual.fechas + '%';
+      porcentajeFechas.textContent = progresoActual.fechas + '%';
+      
+      barraAulas.style.width = progresoActual.aulas + '%';
+      porcentajeAulas.textContent = progresoActual.aulas + '%';
+      
+      barraProfesores.style.width = progresoActual.profesores + '%';
+      porcentajeProfesores.textContent = progresoActual.profesores + '%';
+      
+      barraConflictos.style.width = progresoActual.conflictos + '%';
+      porcentajeConflictos.textContent = progresoActual.conflictos + '%';
+    }
+    
+    // Función para simular el progreso de generación
+    function simularGeneracion() {
+      intervaloProgreso = setInterval(() => {
+        let cambiosRealizados = false;
+        
+        // Simular avance de "Asignando fechas" (hasta 100%)
+        if (progresoActual.fechas < 100) {
+          progresoActual.fechas = Math.min(100, progresoActual.fechas + Math.floor(Math.random() * 15) + 5);
+          cambiosRealizados = true;
+        }
+        
+        // Simular avance de "Asignando aulas" (hasta 100%)
+        if (progresoActual.aulas < 100 && progresoActual.fechas >= 60) {
+          progresoActual.aulas = Math.min(100, progresoActual.aulas + Math.floor(Math.random() * 12) + 3);
+          cambiosRealizados = true;
+        }
+        
+        // Simular avance de "Asignando profesores" (hasta 100%)
+        if (progresoActual.profesores < 100 && progresoActual.aulas >= 50) {
+          progresoActual.profesores = Math.min(100, progresoActual.profesores + Math.floor(Math.random() * 10) + 2);
+          cambiosRealizados = true;
+        }
+        
+        // Actualizar UI si hubo cambios
+        if (cambiosRealizados) {
+          actualizarProgreso();
+        }
+        
+        // Verificar si todo está completo
+        if (progresoActual.fechas >= 100 && 
+            progresoActual.aulas >= 100 && 
+            progresoActual.profesores >= 100 && 
+            !generacionCompletada) {
+          generacionCompletada = true;
+          clearInterval(intervaloProgreso);
+          finalizarGeneracion();
+        }
+      }, 800);
+    }
+    
+    // Función al finalizar la generación
+    function finalizarGeneracion() {
+      // Cambiar el mensaje de estado
+      const estadoDiv = document.querySelector('.estado-generacion h2');
+      const spinner = document.querySelector('.spinner');
+      
+      spinner.style.borderTopColor = '#28a745';
+      estadoDiv.innerHTML = '✅ ¡Calendario generado exitosamente!';
+      estadoDiv.style.color = '#28a745';
+      
+      // Habilitar botón cancelar (ahora puede cerrar)
+      btnCancelar.disabled = false;
+      btnCancelar.textContent = 'Finalizar';
+      btnCancelar.style.background = '#28a745';
+      btnCancelar.style.color = 'white';
+      btnCancelar.style.borderColor = '#1e7e34';
+      
+      // Mostrar alerta de éxito
+      setTimeout(() => {
+        alert('✅ ¡Generación completada!\n\nEl calendario de exámenes ha sido generado exitosamente.');
+      }, 500);
+    }
+    
+    // Evento Cancelar / Finalizar
+    btnCancelar.addEventListener('click', () => {
+      if (generacionCompletada) {
+        alert('🎉 Calendario guardado. Redirigiendo al panel principal...');
+        // Aquí redirigir a la página principal o mostrar resumen
+        // window.location.href = 'calendario_resumen.html';
+      } else {
+        const confirmar = confirm('¿Estás seguro de que deseas cancelar la generación?\n\nEl progreso actual se perderá.');
+        if (confirmar) {
+          clearInterval(intervaloProgreso);
+          alert('🔄 Generación cancelada. El calendario no ha sido modificado.');
+          // Aquí redirigir o resetear
+          // window.location.href = 'panel_principal.html';
+        }
+      }
+    });
+    
+    // Iniciar simulación al cargar la página
+    window.addEventListener('load', () => {
+      // Mostrar datos iniciales
+      actualizarProgreso();
+      // Iniciar simulación después de 1 segundo
+      setTimeout(simularGeneracion, 1000);
+    });
+  </script>
+
+</body>
+</html>
