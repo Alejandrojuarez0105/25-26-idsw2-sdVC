@@ -457,3 +457,16 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Sincronización de Índices:** Actualizados los archivos `RUP/03-desarrollo/README.md` y `RUP/03-desarrollo/casos-uso/README.md` para incluir el estado "Completado" de este caso de uso.
 
 **Decisión:** Se consolidó la gestión completa del ciclo de vida de la sesión (entrada y salida), asegurando la estabilidad del sistema y cumpliendo estrictamente con los prototipos visuales y funcionales establecidos por la universidad.
+
+## [03/06/2026 20:30] Sesión 35: Implementación de abrirGrados()
+
+**Prompt:** COMENZAMOS, Sesión 35: Implementación del caso de uso abrirGrados()... centrarse exclusivamente en la apertura y visualización de grados... no implementar todavía importar, crear, editar o eliminar... respetar la estructura funcional y visual definida en abrirGrados.html... actualizar RUP/03-desarrollo/README.md y crear informe detallado.
+
+**Resultado:**
+1. **Infraestructura de Backend:** Creado `GradosModule` en NestJS, incluyendo el controlador `GradosController` y el servicio `GradosService`. Se implementó el endpoint `GET /grados` utilizando Prisma para recuperar la lista ordenada de grados desde PostgreSQL.
+2. **Interfaz de Usuario (Frontend):** Desarrollado el componente `GradosView.tsx` en `src/frontend/src/features/admin/grados/`, replicando fielmente el prototipo visual (estilo Courier New, tablas bordeadas, barra de búsqueda local).
+3. **Gestión de Datos:** Implementado el custom hook `useGrados` y el servicio de API `grados.service.ts` para gestionar la carga asíncrona de datos y el manejo de estados de carga/error.
+4. **Navegación e Integración:** Registrada la ruta `/admin/grados` en `App.tsx` y vinculado el acceso rápido desde el dashboard del administrador.
+5. **Documentación Técnica:** Creado el informe de desarrollo en `RUP/03-desarrollo/casos-uso/0-Administrador/abrirGrados/README.md` y actualizados los índices globales de implementación.
+
+**Decisión:** Se completó satisfactoriamente el primer módulo de gestión de entidades, logrando la visualización funcional de los grados académicos y manteniendo la estabilidad y trazabilidad RUP del sistema Davidario.

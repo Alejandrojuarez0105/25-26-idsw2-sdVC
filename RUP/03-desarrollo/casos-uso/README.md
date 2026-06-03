@@ -14,7 +14,7 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 - [cerrarSesion](0-Administrador/cerrarSesion/README.md) - Implementación de la finalización de sesión.
 
 #### Apertura de entidades
-*(En desarrollo)*
+- [abrirGrados](0-Administrador/abrirGrados/README.md) - Implementación de la vista de listado de grados.
 
 #### Gestión de entidades
 *(En desarrollo)*

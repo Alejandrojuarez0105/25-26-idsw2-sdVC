@@ -47,7 +47,7 @@ A continuación se detallan las especificaciones de implementación por actor y 
 - [cerrarSesion](casos-uso/0-Administrador/cerrarSesion/README.md) - Implementación de la finalización de sesión y limpieza de tokens.
 
 #### Gestión de Entidades
-*(En desarrollo conforme se complete el diseño e implementación funcional)*
+- [abrirGrados](casos-uso/0-Administrador/abrirGrados/README.md) - Implementación de la vista de listado de grados académicos.
 
 ## Referencias
 
