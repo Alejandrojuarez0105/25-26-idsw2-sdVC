@@ -1,13 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 
 const ProfesorDashboard: React.FC = () => {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const handleCerrarSesion = () => {
-    if (window.confirm('👋 ¿Estás seguro de que deseas cerrar sesión?')) {
-      logout();
-    }
+    navigate('/logout');
   };
 
   const handleAccesoRapido = (modulo: string) => {

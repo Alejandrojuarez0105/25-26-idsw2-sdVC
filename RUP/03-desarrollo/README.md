@@ -44,6 +44,7 @@ A continuación se detallan las especificaciones de implementación por actor y 
 
 #### Gestión del Sistema
 - [iniciarSesion](casos-uso/0-Administrador/iniciarSesion/README.md) - Implementación del flujo de autenticación y redirección.
+- [cerrarSesion](casos-uso/0-Administrador/cerrarSesion/README.md) - Implementación de la finalización de sesión y limpieza de tokens.
 
 #### Gestión de Entidades
 *(En desarrollo conforme se complete el diseño e implementación funcional)*

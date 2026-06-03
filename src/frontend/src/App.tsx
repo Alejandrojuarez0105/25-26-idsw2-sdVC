@@ -4,12 +4,14 @@ import LoginView from './features/auth/login/LoginView';
 import AdminDashboard from './features/admin/AdminDashboard';
 import ProfesorDashboard from './features/profesor/ProfesorDashboard';
 import AlumnoDashboard from './features/alumno/AlumnoDashboard';
+import LogoutView from './features/auth/logout/LogoutView';
 
 const App: React.FC = () => {
   return (
     <Router>
       <Routes>
         <Route path="/login" element={<LoginView />} />
+        <Route path="/logout" element={<LogoutView />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/profesor" element={<ProfesorDashboard />} />
         <Route path="/alumno" element={<AlumnoDashboard />} />

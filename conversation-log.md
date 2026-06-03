@@ -445,3 +445,15 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Trazabilidad de Código:** Se estableció el mapeo directo entre los artefactos de diseño y los archivos de código fuente existentes en `/src`, asegurando la coherencia del proceso RUP.
 
 **Decisión:** Se formalizó la documentación de la fase de Desarrollo, logrando una representación fiel y técnica de la implementación actual del sistema, limitada exclusivamente a las funcionalidades operativas hasta la fecha.
+
+## [03/06/2026 20:00] Sesión 34: Implementación de cerrarSesion()
+
+**Prompt:** COMENZAMOS, Sesión 34: Implementación del caso de uso cerrarSesion()... centrarse exclusivamente en la implementación de: cerrarSesion()... Comportamiento esperado: eliminar token JWT, eliminar info de usuario, limpiar estado, redirigir al login... actualizar RUP/03-desarrollo/README.md y crear informe detallado... (Corrección posterior): Ajustar visualmente la confirmación de salida según el prototipo institucional.
+
+**Resultado:**
+1. **Implementación Funcional (Frontend):** Se aprovechó la arquitectura JWT stateless existente. Se validó que el método `logout()` en el hook `useAuth` y el servicio `authService` realizan correctamente la limpieza de `localStorage` (`token` y `user`).
+2. **Interfaz de Usuario (Fidelidad Visual):** Se creó el componente `LogoutView.tsx` en `src/frontend/src/features/auth/logout/`, replicando fielmente el prototipo HTML institucional. Se configuró la ruta `/logout` en `App.tsx` y se actualizaron los dashboards para redirigir a esta vista en lugar de usar diálogos nativos.
+3. **Documentación Técnica:** Creado `RUP/03-desarrollo/casos-uso/0-Administrador/cerrarSesion/README.md` (Versión 1.1) detallando el flujo de limpieza del cliente, la gestión de navegación y la justificación técnica de la arquitectura adoptada.
+4. **Sincronización de Índices:** Actualizados los archivos `RUP/03-desarrollo/README.md` y `RUP/03-desarrollo/casos-uso/README.md` para incluir el estado "Completado" de este caso de uso.
+
+**Decisión:** Se consolidó la gestión completa del ciclo de vida de la sesión (entrada y salida), asegurando la estabilidad del sistema y cumpliendo estrictamente con los prototipos visuales y funcionales establecidos por la universidad.

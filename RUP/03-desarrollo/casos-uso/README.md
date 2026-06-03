@@ -11,6 +11,7 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 
 #### Gestión del sistema
 - [iniciarSesion](0-Administrador/iniciarSesion/README.md) - Implementación del acceso seguro.
+- [cerrarSesion](0-Administrador/cerrarSesion/README.md) - Implementación de la finalización de sesión.
 
 #### Apertura de entidades
 *(En desarrollo)*
