@@ -35,6 +35,11 @@ Esta carpeta contiene el diseño detallado de los casos de uso, transformando la
 - [eliminarGrado](0-Administrador/eliminarGrado/README.md) - Diseño de borrado.
 - [crearGrado](0-Administrador/crearGrado/README.md) - Diseño de registro.
 - [editarGrado](0-Administrador/editarGrado/README.md) - Diseño de modificación.
+- [abrirAsignaturas](0-Administrador/abrirAsignaturas/README.md) - Diseño de vista de listado.
+- [importarAsignaturas](0-Administrador/importarAsignaturas/README.md) - Diseño de carga masiva.
+- [eliminarAsignatura](0-Administrador/eliminarAsignatura/README.md) - Diseño de borrado.
+- [crearAsignatura](0-Administrador/crearAsignatura/README.md) - Diseño de registro.
+- [editarAsignatura](0-Administrador/editarAsignatura/README.md) - Diseño de modificación.
 
 #### Procesos del sistema
 *(Vacío - En desarrollo)*

@@ -1,0 +1,44 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "AsignaturasListView\n(React)" as UI <<Component>>
+participant "useAsignaturas\n(Hook)" as Hook <<Hook>>
+participant "AsignaturasService\n(Axios)" as FService <<Service>>
+participant "AsignaturasController\n(NestJS)" as Controller <<Controller>>
+participant "AsignaturasService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+Administrador -> UI : Click en eliminar asignatura
+
+== Verificación de impacto ==
+
+UI -> Hook : verificarImpacto(id)
+Hook -> FService : verificarImpacto(id)
+FService -> Controller : GET /asignaturas/:id/impacto
+Controller -> BService : countExamenes(id)
+BService -> DB : SELECT COUNT(*) FROM examen...
+DB --> BService : totalExamenes
+BService --> Controller : totalExamenes
+Controller --> FService : 200 OK (totalExamenes)
+FService --> Hook : totalExamenes
+Hook --> UI : totalExamenes
+UI --> Administrador : Mostrar confirmación(totalExamenes)
+
+Administrador -> UI : Confirma eliminación
+
+== Ejecución ==
+
+UI -> Hook : removeAsignatura(id)
+Hook -> FService : remove(id)
+FService -> Controller : DELETE /asignaturas/:id
+Controller -> BService : remove(id)
+BService -> DB : DELETE FROM "Asignatura" WHERE id = :id
+DB --> BService : OK
+BService --> Controller : OK (204 No Content)
+Controller --> FService : OK
+FService --> Hook : OK
+Hook --> UI : Quita asignatura de la lista local
+UI --> Administrador : Muestra mensaje de éxito
+
+@enduml

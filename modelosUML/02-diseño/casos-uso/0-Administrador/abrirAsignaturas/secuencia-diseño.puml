@@ -1,0 +1,24 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "AsignaturasListView\n(React)" as UI <<Component>>
+participant "useAsignaturas\n(Hook)" as Hook <<Hook>>
+participant "AsignaturasService\n(Axios)" as FService <<Service>>
+participant "AsignaturasController\n(NestJS)" as Controller <<Controller>>
+participant "AsignaturasService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+Administrador -> UI : Accede a la gestión de asignaturas
+UI -> Hook : fetchAsignaturas(query)
+Hook -> FService : getAsignaturas(query)
+FService -> Controller : GET /asignaturas?search=...&gradoId=...
+Controller -> BService : findAll(query)
+BService -> DB : SELECT * FROM asignatura JOIN grado ...
+DB --> BService : [Asignaturas + Grado]
+BService --> Controller : PaginatedAsignaturasDTO
+Controller --> FService : JSON Response
+FService --> Hook : PaginatedAsignaturasDTO
+Hook --> UI : Actualiza estado (asignaturas)
+UI --> Administrador : Muestra tabla de asignaturas con información de Grado
+@enduml

@@ -530,3 +530,15 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Integridad del Sistema:** Se mantuvo la inmutabilidad del código del grado durante la edición según el diseño, asegurando la trazabilidad de los registros en PostgreSQL.
 
 **Decisión:** Se consolidó la capacidad de modificación de entidades para el módulo de grados, cerrando el ciclo de vida CRUD básico y cumpliendo con los estándares visuales y funcionales del proyecto Davidario.
+
+## [04/06/2026 19:45] Sesión 40: Diseño RUP - Rama Asignaturas
+
+**Prompt:** SESIÓN 40 – DISEÑO RUP – RAMA ASIGNATURAS. Muy bien, para la sesión 40 vamos a hacer el diseño de la rama Asignaturas, específicamente los siguientes casos de uso: abrirAsignaturas(), importarAsignaturas(), eliminarAsignatura(), crearAsignatura(), editarAsignatura()... Diseñar completamente la rama Asignaturas siguiendo exactamente la metodología utilizada previamente para la rama Grados.
+
+**Resultado:**
+1. **Diseño de Casos de Uso (Rama Asignaturas):** Generados los artefactos técnicos (`README.md`, `clases-diseño.puml`, `secuencia-diseño.puml`) para los 5 casos de uso de la rama de Asignaturas dentro de `RUP/02-diseño/casos-uso/0-Administrador/`.
+2. **Especificación Frontend/Backend:** Se detallaron los componentes React (AsignaturasListView, AsignaturaFormView, hooks como `useAsignaturas`) y los controladores/servicios de NestJS (`AsignaturasController`, `AsignaturasService`), incluyendo el manejo de la relación con la entidad `Grado` (gradoId).
+3. **Mapeo de Persistencia:** Se integró el esquema de base de datos PostgreSQL 16 utilizando Prisma, especificando consultas con `include` para recuperar la información del grado asociado.
+4. **Actualización de Índices:** Reflejado el avance en `RUP/02-diseño/README.md` y `RUP/02-diseño/casos-uso/README.md`, manteniendo la trazabilidad incremental con la fase de análisis.
+
+**Decisión:** Se completó satisfactoriamente el diseño técnico de la rama Asignaturas, estableciendo los planos técnicos para la implementación de la gestión académica de materias bajo la arquitectura NestJS + React.

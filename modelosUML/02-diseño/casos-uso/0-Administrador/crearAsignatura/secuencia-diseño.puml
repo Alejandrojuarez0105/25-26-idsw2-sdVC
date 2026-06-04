@@ -1,0 +1,25 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "AsignaturaCreateForm\n(React)" as UI <<Component>>
+participant "useAsignaturas\n(Hook)" as Hook <<Hook>>
+participant "AsignaturasService\n(Axios)" as FService <<Service>>
+participant "AsignaturasController\n(NestJS)" as Controller <<Controller>>
+participant "AsignaturasService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+Administrador -> UI : Rellena formulario y pulsa "Crear"
+UI -> Hook : submit(data)
+Hook -> FService : createAsignatura(data)
+FService -> Controller : POST /asignaturas (JSON Body)
+Controller -> BService : create(dto)
+BService -> BService : Validar código único
+BService -> DB : INSERT INTO "Asignatura" (...)
+DB --> BService : Asignatura Creada (with UUID)
+BService --> Controller : Asignatura Entity
+Controller --> FService : JSON Response (201 Created)
+FService --> Hook : Asignatura Object
+Hook --> UI : Redirigir a listado / Mostrar éxito
+UI --> Administrador : Muestra confirmación de creación
+@enduml

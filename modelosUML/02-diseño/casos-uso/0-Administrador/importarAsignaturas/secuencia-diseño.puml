@@ -1,0 +1,36 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "ImportAsignaturasDialog\n(React)" as UI <<Component>>
+participant "useAsignaturasImport\n(Hook)" as Hook <<Hook>>
+participant "AsignaturasService\n(Axios)" as FService <<Service>>
+participant "AsignaturasController\n(NestJS)" as Controller <<Controller>>
+participant "AsignaturasService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+Administrador -> UI : Selecciona archivo (CSV/Excel)
+Administrador -> UI : Click en "Importar"
+
+UI -> Hook : importAsignaturas(file)
+Hook -> FService : importAsignaturas(file)
+FService -> Controller : POST /asignaturas/import (Multipart/Form-Data)
+
+Controller -> BService : processImport(fileBuffer)
+
+loop Por cada fila del archivo
+    BService -> BService : Validar datos
+    alt Datos válidos
+        BService -> DB : INSERT INTO asignatura (...)
+    else Datos inválidos
+        BService -> BService : Registrar error
+    end
+end
+
+BService --> Controller : ImportResultDTO
+Controller --> FService : JSON Response
+FService --> Hook : ImportResultDTO
+Hook --> UI : Actualiza estado (resultados)
+UI --> Administrador : Muestra resumen de importación
+
+@enduml

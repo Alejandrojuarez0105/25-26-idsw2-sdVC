@@ -90,6 +90,11 @@ El diseño detallado de cada caso de uso se organiza en subcarpetas por actor de
 - [eliminarGrado](casos-uso/0-Administrador/eliminarGrado/README.md) - Diseño de borrado.
 - [crearGrado](casos-uso/0-Administrador/crearGrado/README.md) - Diseño de registro.
 - [editarGrado](casos-uso/0-Administrador/editarGrado/README.md) - Diseño de modificación.
+- [abrirAsignaturas](casos-uso/0-Administrador/abrirAsignaturas/README.md) - Diseño de vista de listado.
+- [importarAsignaturas](casos-uso/0-Administrador/importarAsignaturas/README.md) - Diseño de carga masiva.
+- [eliminarAsignatura](casos-uso/0-Administrador/eliminarAsignatura/README.md) - Diseño de borrado.
+- [crearAsignatura](casos-uso/0-Administrador/crearAsignatura/README.md) - Diseño de registro.
+- [editarAsignatura](casos-uso/0-Administrador/editarAsignatura/README.md) - Diseño de modificación.
 
 #### Procesos del sistema
 
