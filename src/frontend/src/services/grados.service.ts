@@ -14,8 +14,18 @@ export const gradosService = {
     return response.data;
   },
 
+  async findOne(id: string): Promise<Grado> {
+    const response = await api.get(`/grados/${id}`);
+    return response.data;
+  },
+
   async create(data: any): Promise<Grado> {
     const response = await api.post('/grados', data);
+    return response.data;
+  },
+
+  async update(id: string, data: any): Promise<Grado> {
+    const response = await api.put(`/grados/${id}`, data);
     return response.data;
   },
 

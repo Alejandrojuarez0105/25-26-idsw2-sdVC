@@ -515,3 +515,18 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Validación de Flujo:** Se aseguró la actualización automática del listado de grados tras la creación exitosa mediante redirección programática.
 
 **Decisión:** Se completó la funcionalidad de alta de entidades para el módulo de grados, manteniendo la coherencia arquitectónica NestJS + React y el rigor metodológico RUP del proyecto.
+
+## [04/06/2026 01:50] Sesión 39: Implementación de editarGrado()
+
+**Prompt:** Muy bien, para la sesión 39 vamos a hacer la implementación del caso de uso editarGrado... Permitir que un administrador pueda editar la información de un grado existente... Backend: Agregar endpoint PUT /grados/:id... Frontend: Botón Editar, Precarga de datos, Validación de campos... respetar el diseño del prototipo.
+
+**Resultado:**
+1. **Refinamiento del Backend:** Actualizado `GradosService` con los métodos `findOne` y `update`. Se implementó la validación de integridad para asegurar que el código no se duplique al editar y que el ID exista. Se habilitaron los endpoints `GET /grados/:id` y `PUT /grados/:id` en `GradosController`.
+2. **Implementación del Frontend:**
+   - Creado el componente `EditarGradoView.tsx` en `src/frontend/src/features/admin/grados/`, replicando fielmente el prototipo visual `editarGrado.html` (campos sombreados, botones estilizados y lógica de "Continuar editando").
+   - Implementada la precarga automática de datos mediante `useEffect` y la validación de cambios pendientes antes de permitir el guardado o la cancelación.
+   - Vinculada la ruta dinámica `/admin/grados/editar/:id` en `App.tsx` y el botón "Editar" en el listado principal.
+3. **Documentación Técnica:** Creado `RUP/03-desarrollo/casos-uso/0-Administrador/editarGrado/README.md` y actualizados los índices globales de construcción.
+4. **Integridad del Sistema:** Se mantuvo la inmutabilidad del código del grado durante la edición según el diseño, asegurando la trazabilidad de los registros en PostgreSQL.
+
+**Decisión:** Se consolidó la capacidad de modificación de entidades para el módulo de grados, cerrando el ciclo de vida CRUD básico y cumpliendo con los estándares visuales y funcionales del proyecto Davidario.

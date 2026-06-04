@@ -13,6 +13,12 @@ export class GradosService {
     });
   }
 
+  async findOne(id: string) {
+    return this.prisma.grado.findUnique({
+      where: { id },
+    });
+  }
+
   async create(data: any) {
     const existing = await this.prisma.grado.findUnique({
       where: { codigo: data.codigo },
@@ -23,6 +29,36 @@ export class GradosService {
     }
 
     return this.prisma.grado.create({
+      data: {
+        codigo: data.codigo,
+        nombre: data.nombre,
+        descripcion: data.descripcion,
+      },
+    });
+  }
+
+  async update(id: string, data: any) {
+    // Check if exists
+    const existing = await this.prisma.grado.findUnique({
+      where: { id },
+    });
+
+    if (!existing) {
+      throw new Error(`Grado con ID ${id} no encontrado`);
+    }
+
+    // Check code uniqueness if changing
+    if (data.codigo && data.codigo !== existing.codigo) {
+      const codeDuplicate = await this.prisma.grado.findUnique({
+        where: { codigo: data.codigo },
+      });
+      if (codeDuplicate) {
+        throw new Error(`El código ${data.codigo} ya está en uso por otro grado`);
+      }
+    }
+
+    return this.prisma.grado.update({
+      where: { id },
       data: {
         codigo: data.codigo,
         nombre: data.nombre,

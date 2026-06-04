@@ -1,5 +1,6 @@
 import {
   Body,
+  ConflictException,
   Controller,
   Delete,
   Get,
@@ -8,7 +9,7 @@ import {
   NotFoundException,
   Param,
   Post,
-  ConflictException,
+  Put,
 } from '@nestjs/common';
 import { GradosService } from './grados.service';
 
@@ -21,12 +22,34 @@ export class GradosController {
     return this.gradosService.findAll();
   }
 
+  @Get(':id')
+  async findOne(@Param('id') id: string) {
+    const grado = await this.gradosService.findOne(id);
+    if (!grado) {
+      throw new NotFoundException(`Grado con ID ${id} no encontrado`);
+    }
+    return grado;
+  }
+
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async create(@Body() data: any) {
     try {
       return await this.gradosService.create(data);
     } catch (err) {
+      throw new ConflictException(err.message);
+    }
+  }
+
+  @Put(':id')
+  async update(@Param('id') id: string, @Body() data: any) {
+    try {
+      const result = await this.gradosService.update(id, data);
+      return result;
+    } catch (err) {
+      if (err.message.includes('no encontrado')) {
+        throw new NotFoundException(err.message);
+      }
       throw new ConflictException(err.message);
     }
   }

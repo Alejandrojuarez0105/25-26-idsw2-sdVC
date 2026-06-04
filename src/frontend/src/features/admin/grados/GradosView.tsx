@@ -103,7 +103,7 @@ const GradosView: React.FC = () => {
                   <td style={{ padding: '12px 10px' }}>{grado.descripcion || '-'}</td>
                   <td style={{ padding: '12px 10px' }}>
                     <button 
-                      onClick={() => handleAccionNoImplementada('Editar')}
+                      onClick={() => navigate(`/admin/grados/editar/${grado.id}`)}
                       style={{ background: '#2d89ef', color: 'white', border: 'none', padding: '5px 15px', fontFamily: 'inherit', fontSize: '13px', cursor: 'pointer', borderRadius: '3px' }}
                     >
                       Editar
