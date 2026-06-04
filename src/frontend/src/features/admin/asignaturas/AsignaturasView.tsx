@@ -6,6 +6,7 @@ const AsignaturasView: React.FC = () => {
   const { asignaturas, loading, error } = useAsignaturas();
   const navigate = useNavigate();
   const [busqueda, setBusqueda] = useState('');
+  const [seleccionados, setSeleccionados] = useState<string[]>([]);
 
   const handleSalir = () => {
     navigate('/admin');
@@ -13,6 +14,29 @@ const AsignaturasView: React.FC = () => {
 
   const handleAccionNoImplementada = (accion: string) => {
     alert(`⚠️ La funcionalidad de "${accion}" no está implementada en esta sesión.`);
+  };
+
+  const toggleSeleccion = (id: string) => {
+    setSeleccionados(prev => 
+      prev.includes(id) ? prev.filter(item => item !== id) : [...prev, id]
+    );
+  };
+
+  const toggleSeleccionarTodos = () => {
+    if (seleccionados.length === asignaturasFiltradas.length) {
+      setSeleccionados([]);
+    } else {
+      setSeleccionados(asignaturasFiltradas.map(a => a.id));
+    }
+  };
+
+  const handleEliminar = () => {
+    if (seleccionados.length === 0) {
+      alert('⚠️ No hay ninguna asignatura seleccionada para eliminar.');
+      return;
+    }
+    const subjectsToDelete = asignaturas.filter(a => seleccionados.includes(a.id));
+    navigate('/admin/asignaturas/eliminar', { state: { subjects: subjectsToDelete } });
   };
 
   const asignaturasFiltradas = asignaturas.filter(asig => 
@@ -39,7 +63,13 @@ const AsignaturasView: React.FC = () => {
         <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '25px', background: 'white' }}>
           <thead>
             <tr style={{ background: '#dfe7ef' }}>
-              <th style={{ border: '1px solid #bdbdbd', padding: '12px 10px', width: '40px' }}><input type="checkbox" disabled /></th>
+              <th style={{ border: '1px solid #bdbdbd', padding: '12px 10px', width: '40px' }}>
+                <input 
+                  type="checkbox" 
+                  checked={asignaturasFiltradas.length > 0 && seleccionados.length === asignaturasFiltradas.length}
+                  onChange={toggleSeleccionarTodos}
+                />
+              </th>
               <th style={{ border: '1px solid #bdbdbd', padding: '12px 10px', textAlign: 'left' }}>CÓDIGO</th>
               <th style={{ border: '1px solid #bdbdbd', padding: '12px 10px', textAlign: 'left' }}>NOMBRE</th>
               <th style={{ border: '1px solid #bdbdbd', padding: '12px 10px', width: '80px' }}>CRÉDITOS</th>
@@ -54,8 +84,20 @@ const AsignaturasView: React.FC = () => {
               <tr><td colSpan={6} style={{ textAlign: 'center', padding: '20px' }}>No hay asignaturas disponibles</td></tr>
             ) : (
               asignaturasFiltradas.map((asig) => (
-                <tr key={asig.id} style={{ borderBottom: '1px solid #bdbdbd' }}>
-                  <td style={{ textAlign: 'center', padding: '12px 10px' }}><input type="checkbox" disabled /></td>
+                <tr 
+                  key={asig.id} 
+                  style={{ 
+                    borderBottom: '1px solid #bdbdbd',
+                    background: seleccionados.includes(asig.id) ? '#b8d4f0' : 'transparent'
+                  }}
+                >
+                  <td style={{ textAlign: 'center', padding: '12px 10px' }}>
+                    <input 
+                      type="checkbox" 
+                      checked={seleccionados.includes(asig.id)}
+                      onChange={() => toggleSeleccion(asig.id)}
+                    />
+                  </td>
                   <td style={{ padding: '12px 10px' }}><strong>{asig.codigo}</strong></td>
                   <td style={{ padding: '12px 10px' }}>{asig.nombre}</td>
                   <td style={{ padding: '12px 10px' }}>{asig.creditos}</td>
@@ -102,7 +144,7 @@ const AsignaturasView: React.FC = () => {
             📎 Importar asignaturas
           </button>
           <button 
-            onClick={() => handleAccionNoImplementada('Eliminar seleccionada')}
+            onClick={handleEliminar}
             style={{ minWidth: '180px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #999', fontWeight: 'bold', background: '#dc3545', color: 'white' }}
           >
             🗑️ Eliminar seleccionada

@@ -53,6 +53,7 @@ A continuación se detallan las especificaciones de implementación por actor y 
 - [crearGrado](casos-uso/0-Administrador/crearGrado/README.md) - Implementación del alta de nuevos grados académicos.
 - [editarGrado](casos-uso/0-Administrador/editarGrado/README.md) - Implementación de la edición de grados académicos.
 - [abrirAsignaturas](casos-uso/0-Administrador/abrirAsignaturas/README.md) - Implementación de la vista de listado de asignaturas académicas.
+- [eliminarAsignatura](casos-uso/0-Administrador/eliminarAsignatura/README.md) - Implementación del borrado seguro de materias.
 
 ## Referencias
 

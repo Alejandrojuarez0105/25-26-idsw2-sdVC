@@ -555,3 +555,19 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 5. **Documentación Técnica:** Creado el informe de desarrollo en `RUP/03-desarrollo/casos-uso/0-Administrador/abrirAsignaturas/README.md` y actualizados los índices globales.
 
 **Decisión:** Se completó satisfactoriamente la implementación del listado de asignaturas, logrando una integración relacional exitosa con el módulo de grados y manteniendo la coherencia visual UE.
+
+## [04/06/2026 22:00] Sesión 42: Implementación de eliminarAsignatura()
+
+**Prompt:** Muy bien, para la sesión 42 vamos a hacer la implementación del caso de uso eliminarAsignatura... Permitir que un administrador pueda eliminar una asignatura existente... Backend: endpoint DELETE /asignaturas/:id... Frontend: Botón Eliminar, Confirmación previa, Refresco automático... respetar el diseño del prototipo.
+
+**Resultado:**
+1. **Extensión del Backend:** Actualizado `AsignaturasService` con el método `remove` y `AsignaturasController` con el endpoint `DELETE /asignaturas/:id`. Se aseguró la validación de existencia previa mediante Prisma.
+2. **Implementación del Frontend:**
+   - Se actualizó `asignaturas.service.ts` con el método `remove`.
+   - Se creó el componente `EliminarAsignaturaView.tsx` en `src/frontend/src/features/admin/asignaturas/`, replicando el diseño del prototipo `eliminarAsignatura.html` (cuadros de información técnica, advertencias de impacto y botones estilizados).
+   - Se actualizó `AsignaturasView.tsx` para permitir la selección de materias y redirigir al flujo de confirmación.
+   - Configurada la ruta `/admin/asignaturas/eliminar` en `App.tsx`.
+3. **Documentación Técnica:** Creado `RUP/03-desarrollo/casos-uso/0-Administrador/eliminarAsignatura/README.md` y actualizados los índices globales de construcción.
+4. **Seguridad y Control:** Se implementó el flujo de validación en cascada (Confirmación -> Advertencia Final -> Prompt "ELIMINAR") para garantizar borrados conscientes.
+
+**Decisión:** Se consolidó la gestión destructiva para el módulo de asignaturas, integrando mecanismos de seguridad visual y técnica coherentes con la arquitectura RUP del proyecto.

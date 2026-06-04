@@ -20,6 +20,7 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 - [crearGrado](0-Administrador/crearGrado/README.md) - Implementación del registro de nuevos grados.
 - [editarGrado](0-Administrador/editarGrado/README.md) - Implementación de la edición de grados existentes.
 - [abrirAsignaturas](0-Administrador/abrirAsignaturas/README.md) - Implementación de la vista de listado de asignaturas.
+- [eliminarAsignatura](0-Administrador/eliminarAsignatura/README.md) - Implementación de la funcionalidad de borrado seguro.
 
 #### Gestión de entidades
 *(En desarrollo)*

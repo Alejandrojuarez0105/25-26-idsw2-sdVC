@@ -20,4 +20,32 @@ export class AsignaturasService {
       },
     });
   }
+
+  async findOne(id: string) {
+    return this.prisma.asignatura.findUnique({
+      where: { id },
+      include: {
+        grado: {
+          select: {
+            codigo: true,
+            nombre: true,
+          },
+        },
+      },
+    });
+  }
+
+  async remove(id: string) {
+    const existing = await this.prisma.asignatura.findUnique({
+      where: { id },
+    });
+
+    if (!existing) {
+      return null;
+    }
+
+    return this.prisma.asignatura.delete({
+      where: { id },
+    });
+  }
 }

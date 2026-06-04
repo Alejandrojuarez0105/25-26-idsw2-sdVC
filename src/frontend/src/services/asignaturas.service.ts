@@ -18,4 +18,13 @@ export const asignaturasService = {
     const response = await api.get('/asignaturas');
     return response.data;
   },
+
+  async findOne(id: string): Promise<Asignatura> {
+    const response = await api.get(`/asignaturas/${id}`);
+    return response.data;
+  },
+
+  async remove(id: string): Promise<void> {
+    await api.delete(`/asignaturas/${id}`);
+  },
 };
