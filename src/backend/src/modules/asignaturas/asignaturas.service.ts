@@ -122,6 +122,35 @@ export class AsignaturasService {
     return results;
   }
 
+  async update(id: string, data: any) {
+    const existing = await this.prisma.asignatura.findUnique({
+      where: { id },
+    });
+
+    if (!existing) {
+      throw new Error(`Asignatura con ID ${id} no encontrada`);
+    }
+
+    // Validate degree existence if gradoId is provided
+    if (data.gradoId) {
+      const grado = await this.prisma.grado.findUnique({
+        where: { id: data.gradoId },
+      });
+      if (!grado) {
+        throw new Error(`El grado seleccionado no existe.`);
+      }
+    }
+
+    return this.prisma.asignatura.update({
+      where: { id },
+      data: {
+        nombre: data.nombre,
+        creditos: data.creditos,
+        gradoId: data.gradoId,
+      },
+    });
+  }
+
   async remove(id: string) {
     const existing = await this.prisma.asignatura.findUnique({
       where: { id },

@@ -29,6 +29,11 @@ export const asignaturasService = {
     return response.data;
   },
 
+  async update(id: string, data: any): Promise<Asignatura> {
+    const response = await api.put(`/asignaturas/${id}`, data);
+    return response.data;
+  },
+
   async remove(id: string): Promise<void> {
     await api.delete(`/asignaturas/${id}`);
   },

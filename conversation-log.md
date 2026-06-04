@@ -589,7 +589,7 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 ## [04/06/2026 22:45] Sesión 44: Implementación de crearAsignatura()
 
-**Prompt:** Muy bien, para la sesión 38 vamos a hacer la implementación del caso de uso crearAsignatura... permitir que un administrador pueda crear nuevas asignaturas desde la interfaz de gestión... Backend: Agregar endpoint POST /asignaturas... Frontend: Botón Crear Asignatura, Formulario, Validación de campos... respetar el diseño del prototipo.
+**Prompt:** Muy bien, para la sesión 44 vamos a hacer la implementación del caso de uso crearAsignatura... permitir que un administrador pueda crear nuevas asignaturas desde la interfaz de gestión... Backend: Agregar endpoint POST /asignaturas... Frontend: Botón Crear Asignatura, Formulario, Validación de campos... respetar el diseño del prototipo.
 
 **Resultado:**
 1. **Extensión del Backend:** Actualizado `AsignaturasService` con el método `create` , que incluye validación de unicidad de código, y `AsignaturasController` con el endpoint `POST /asignaturas` (retornando `201 Created` o `409 Conflict`).
@@ -601,3 +601,18 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Validación de Flujo:** Se aseguró la actualización automática del listado de asignaturas tras la creación exitosa mediante redirección programática.
 
 **Decisión:** Se completó la funcionalidad de alta de entidades para el módulo de asignaturas, manteniendo la coherencia arquitectónica NestJS + React y el rigor metodológico RUP del proyecto.
+
+## [05/06/2026 23:00] Sesión 45: Implementación de editarAsignatura()
+
+**Prompt:** Muy bien, para la sesión 45 vamos a hacer la implementación del caso de uso editarAsignatura... Permitir que un administrador pueda editar una asignatura existente... Backend: endpoint PUT /asignaturas/:id... Frontend: Botón Editar, Precarga de datos, Validación de campos... respetar el diseño del prototipo.
+
+**Resultado:**
+1. **Extensión del Backend:** Actualizado `AsignaturasService` con el método `update` (validación de existencia y del grado asociado) y `AsignaturasController` con el endpoint `PUT /asignaturas/:id`. Se implementó el manejo de excepciones `404 NotFound` y `409 Conflict`.
+2. **Desarrollo del Frontend:**
+   - Se actualizó `asignaturas.service.ts` con el método `update`.
+   - Se creó el componente `EditarAsignaturaView.tsx` en `src/frontend/src/features/admin/asignaturas/`, replicando el diseño del prototipo `editarAsignatura.html` (campos precargados, selector de grado, botones estilizados).
+   - Se habilitó la acción del botón "Editar" en `AsignaturasView.tsx` y se configuró la ruta dinámica en `App.tsx`.
+3. **Documentación Técnica:** Creado `RUP/03-desarrollo/casos-uso/0-Administrador/editarAsignatura/README.md` y actualizados los índices globales de construcción.
+4. **Validación y Coherencia:** Se aseguró que la edición de asignaturas respete la inmutabilidad del código (readonly) y mantenga la integridad relacional con PostgreSQL.
+
+**Decisión:** Se consolidó la capacidad de modificación de asignaturas, completando el ciclo CRUD básico para este módulo y manteniendo la coherencia técnica y visual con el ramillete de grados.

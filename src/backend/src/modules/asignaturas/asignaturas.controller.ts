@@ -9,6 +9,7 @@ import {
   NotFoundException,
   Param,
   Post,
+  Put,
 } from '@nestjs/common';
 import { AsignaturasService } from './asignaturas.service';
 
@@ -44,6 +45,18 @@ export class AsignaturasController {
   @HttpCode(HttpStatus.OK)
   async import(@Body() data: any[]) {
     return this.asignaturasService.createMany(data);
+  }
+
+  @Put(':id')
+  async update(@Param('id') id: string, @Body() data: any) {
+    try {
+      return await this.asignaturasService.update(id, data);
+    } catch (err) {
+      if (err.message.includes('no encontrada')) {
+        throw new NotFoundException(err.message);
+      }
+      throw new ConflictException(err.message);
+    }
   }
 
   @Delete(':id')

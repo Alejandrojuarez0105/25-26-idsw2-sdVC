@@ -23,6 +23,7 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 - [importarAsignaturas](0-Administrador/importarAsignaturas/README.md) - Implementación de la carga masiva de materias.
 - [eliminarAsignatura](0-Administrador/eliminarAsignatura/README.md) - Implementación de la funcionalidad de borrado seguro.
 - [crearAsignatura](0-Administrador/crearAsignatura/README.md) - Implementación del registro de nuevas asignaturas.
+- [editarAsignatura](0-Administrador/editarAsignatura/README.md) - Implementación de la edición de asignaturas existentes.
 
 #### Gestión de entidades
 *(En desarrollo)*

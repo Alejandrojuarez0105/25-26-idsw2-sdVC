@@ -10,6 +10,7 @@ import AsignaturasView from './features/admin/asignaturas/AsignaturasView';
 import EliminarAsignaturaView from './features/admin/asignaturas/EliminarAsignaturaView';
 import ImportarAsignaturasView from './features/admin/asignaturas/ImportarAsignaturasView';
 import CrearAsignaturaView from './features/admin/asignaturas/CrearAsignaturaView';
+import EditarAsignaturaView from './features/admin/asignaturas/EditarAsignaturaView';
 import AlumnoDashboard from './features/alumno/AlumnoDashboard';
 import LoginView from './features/auth/login/LoginView';
 import LogoutView from './features/auth/logout/LogoutView';
@@ -31,6 +32,7 @@ const App: React.FC = () => {
         <Route path="/admin/asignaturas/eliminar" element={<EliminarAsignaturaView />} />
         <Route path="/admin/asignaturas/importar" element={<ImportarAsignaturasView />} />
         <Route path="/admin/asignaturas/crear" element={<CrearAsignaturaView />} />
+        <Route path="/admin/asignaturas/editar/:id" element={<EditarAsignaturaView />} />
         <Route path="/profesor" element={<ProfesorDashboard />} />
         <Route path="/alumno" element={<AlumnoDashboard />} />
         <Route path="/" element={<Navigate to="/login" replace />} />
