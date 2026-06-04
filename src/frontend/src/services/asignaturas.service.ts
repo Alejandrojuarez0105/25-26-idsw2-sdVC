@@ -27,4 +27,9 @@ export const asignaturasService = {
   async remove(id: string): Promise<void> {
     await api.delete(`/asignaturas/${id}`);
   },
+
+  async importAsignaturas(data: any[]): Promise<any> {
+    const response = await api.post('/asignaturas/import', data);
+    return response.data;
+  },
 };

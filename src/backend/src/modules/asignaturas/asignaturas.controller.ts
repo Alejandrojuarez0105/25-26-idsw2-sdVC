@@ -1,4 +1,14 @@
-import { Controller, Get, Delete, Param, HttpCode, HttpStatus, NotFoundException } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  HttpStatus,
+  NotFoundException,
+  Param,
+  Post
+} from '@nestjs/common';
 import { AsignaturasService } from './asignaturas.service';
 
 @Controller('asignaturas')
@@ -17,6 +27,12 @@ export class AsignaturasController {
       throw new NotFoundException(`Asignatura con ID ${id} no encontrada`);
     }
     return asignatura;
+  }
+
+  @Post('import')
+  @HttpCode(HttpStatus.OK)
+  async import(@Body() data: any[]) {
+    return this.asignaturasService.createMany(data);
   }
 
   @Delete(':id')

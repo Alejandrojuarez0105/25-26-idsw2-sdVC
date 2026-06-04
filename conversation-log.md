@@ -571,3 +571,18 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Seguridad y Control:** Se implementó el flujo de validación en cascada (Confirmación -> Advertencia Final -> Prompt "ELIMINAR") para garantizar borrados conscientes.
 
 **Decisión:** Se consolidó la gestión destructiva para el módulo de asignaturas, integrando mecanismos de seguridad visual y técnica coherentes con la arquitectura RUP del proyecto.
+
+## [04/06/2026 22:15] Sesión 43: Implementación de importarAsignaturas()
+
+**Prompt:** Muy bien, para la sesión 43 vamos a hacer la implementación del caso de uso importarAsignaturas... Permitir que un administrador pueda importar múltiples asignaturas desde un archivo... Backend: endpoint POST /asignaturas/import... Frontend: Botón Importar asignaturas, Selector de archivo CSV, Feedback de éxito/error... respetar el diseño de importarAsignaturas.html.
+
+**Resultado:**
+1. **Extensión del Backend:** Actualizado `AsignaturasService` con el método `createMany`, permitiendo la validación relacional con `Grado` (vía `gradoCodigo`) y la inserción masiva controlada. Se añadió el endpoint `POST /asignaturas/import` en `AsignaturasController`.
+2. **Desarrollo del Frontend:**
+   - Creado el componente `ImportarAsignaturasView.tsx` en `src/frontend/src/features/admin/asignaturas/`, replicando fielmente el prototipo visual y funcional (estilo Courier New, selectores de archivo y opciones de créditos).
+   - Implementado el parser CSV reactivo en el cliente para transformar datos locales antes del envío a la API.
+   - Configurada la ruta `/admin/asignaturas/importar` en `App.tsx` y vinculado el acceso desde la vista principal de asignaturas.
+3. **Documentación Técnica:** Creado `RUP/03-desarrollo/casos-uso/0-Administrador/importarAsignaturas/README.md` y actualizados los índices globales de implementación.
+4. **Validación Relacional:** Se aseguró que la importación masiva verifique la existencia de los grados correspondientes, evitando la creación de materias huérfanas en PostgreSQL.
+
+**Decisión:** Se completó satisfactoriamente la funcionalidad de carga masiva para el módulo de asignaturas, reforzando la integración relacional del sistema Davidario y manteniendo la consistencia con el patrón de importación de grados.

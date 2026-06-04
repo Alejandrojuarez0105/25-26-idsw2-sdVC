@@ -35,6 +35,64 @@ export class AsignaturasService {
     });
   }
 
+  async createMany(data: any[]) {
+    const results = {
+      success: 0,
+      failed: 0,
+      errors: [],
+    };
+
+    for (const item of data) {
+      try {
+        // Validate degree existence if gradoCodigo is provided
+        let gradoId = item.gradoId;
+        if (item.gradoCodigo) {
+          const grado = await this.prisma.grado.findUnique({
+            where: { codigo: item.gradoCodigo },
+          });
+          if (!grado) {
+            results.failed++;
+            results.errors.push(`Error en ${item.codigo}: El grado ${item.gradoCodigo} no existe.`);
+            continue;
+          }
+          gradoId = grado.id;
+        }
+
+        if (!gradoId) {
+          results.failed++;
+          results.errors.push(`Error en ${item.codigo}: Se requiere gradoId o gradoCodigo.`);
+          continue;
+        }
+
+        // Validate uniqueness of code
+        const existing = await this.prisma.asignatura.findUnique({
+          where: { codigo: item.codigo },
+        });
+
+        if (existing) {
+          results.failed++;
+          results.errors.push(`Error en ${item.codigo}: El código ya existe.`);
+          continue;
+        }
+
+        await this.prisma.asignatura.create({
+          data: {
+            codigo: item.codigo,
+            nombre: item.nombre,
+            creditos: item.creditos || 6,
+            gradoId: gradoId,
+          },
+        });
+        results.success++;
+      } catch (err) {
+        results.failed++;
+        results.errors.push(`Error en ${item.codigo}: ${err.message}`);
+      }
+    }
+
+    return results;
+  }
+
   async remove(id: string) {
     const existing = await this.prisma.asignatura.findUnique({
       where: { id },
