@@ -49,5 +49,23 @@ VALUES
 ('ADE', 'Administración de Empresas', 'Grado ADE'),
 ('DER', 'Derecho', 'Grado Derecho');
 
+-- 8. Tabla de Asignaturas
+CREATE TABLE "Asignatura" (
+    "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    "codigo" VARCHAR(20) UNIQUE NOT NULL,
+    "nombre" VARCHAR(100) NOT NULL,
+    "creditos" INT NOT NULL CHECK ("creditos" > 0),
+    "gradoId" UUID NOT NULL REFERENCES "Grado"("id") ON DELETE CASCADE,
+    "fechaCreacion" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 9. Datos Iniciales de Asignaturas
+-- Obtenemos IDs de grados para insertar (Esto es ilustrativo para manual, en setup real se usarían variables o subconsultas)
+INSERT INTO "Asignatura" ("codigo", "nombre", "creditos", "gradoId")
+SELECT 'IYA003', 'Programación I', 6, id FROM "Grado" WHERE codigo = 'INF' UNION ALL
+SELECT 'IYA023', 'Bases de Datos I', 6, id FROM "Grado" WHERE codigo = 'INF' UNION ALL
+SELECT 'IYA025', 'Estructuras de Datos I', 6, id FROM "Grado" WHERE codigo = 'INF' UNION ALL
+SELECT 'IYA016', 'Expresión Gráfica', 6, id FROM "Grado" WHERE codigo = 'ADE'; -- Solo como ejemplo para el setup inicial
+
 -- Nota: Los usuarios y grados iniciales se usan para pruebas locales.
 -- Los passwords deben mantenerse sincronizados con el script de seed de backend.

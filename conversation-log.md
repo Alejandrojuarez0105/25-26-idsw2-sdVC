@@ -542,3 +542,16 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Actualización de Índices:** Reflejado el avance en `RUP/02-diseño/README.md` y `RUP/02-diseño/casos-uso/README.md`, manteniendo la trazabilidad incremental con la fase de análisis.
 
 **Decisión:** Se completó satisfactoriamente el diseño técnico de la rama Asignaturas, estableciendo los planos técnicos para la implementación de la gestión académica de materias bajo la arquitectura NestJS + React.
+
+## [04/06/2026 21:40] Sesión 41: Implementación de abrirAsignaturas()
+
+**Prompt:** Muy bien, para la sesión 41 vamos a hacer la implementación del caso de uso abrirAsignaturas... Permitir que un administrador visualice el listado de asignaturas registradas... Backend: endpoint GET /asignaturas... Frontend: Pantalla de apertura, Visualizar listado... actualizar database-setup.sql...
+
+**Resultado:**
+1. **Infraestructura de Backend:** Creado `AsignaturasModule` en NestJS, incluyendo el controlador `AsignaturasController` y el servicio `AsignaturasService`. Se implementó el endpoint `GET /asignaturas` utilizando Prisma con la instrucción `include` para recuperar la relación con la entidad `Grado`.
+2. **Interfaz de Usuario (Frontend):** Desarrollado el componente `AsignaturasView.tsx` en `src/frontend/src/features/admin/asignaturas/`, replicando el diseño del prototipo `abrirAsignaturas.html` (tipografía Courier New, tabla relacional y barra de búsqueda).
+3. **Gestión de Datos y API:** Implementado el custom hook `useAsignaturas` y el servicio de API `asignaturas.service.ts` para orquestar la recuperación de datos desde el backend.
+4. **Persistencia y Navegación:** Actualizado `src/database-setup.sql` con la definición física de la tabla `Asignatura` y datos iniciales. Vinculada la ruta `/admin/asignaturas` y el acceso desde el dashboard.
+5. **Documentación Técnica:** Creado el informe de desarrollo en `RUP/03-desarrollo/casos-uso/0-Administrador/abrirAsignaturas/README.md` y actualizados los índices globales.
+
+**Decisión:** Se completó satisfactoriamente la implementación del listado de asignaturas, logrando una integración relacional exitosa con el módulo de grados y manteniendo la coherencia visual UE.

@@ -13,6 +13,8 @@ const AdminDashboard: React.FC = () => {
   const handleAccesoRapido = (modulo: string) => {
     if (modulo === 'grados') {
       navigate('/admin/grados');
+    } else if (modulo === 'asignaturas') {
+      navigate('/admin/asignaturas');
     } else {
       alert(`🔍 Navegando a: ${modulo}\n\nFuncionalidad en desarrollo.`);
     }
