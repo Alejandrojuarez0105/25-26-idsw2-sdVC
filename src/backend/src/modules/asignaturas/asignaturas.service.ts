@@ -35,6 +35,35 @@ export class AsignaturasService {
     });
   }
 
+  async create(data: any) {
+    // Validate uniqueness of code
+    const existing = await this.prisma.asignatura.findUnique({
+      where: { codigo: data.codigo },
+    });
+
+    if (existing) {
+      throw new Error(`El código ${data.codigo} ya existe.`);
+    }
+
+    // Validate degree existence
+    const grado = await this.prisma.grado.findUnique({
+      where: { id: data.gradoId },
+    });
+
+    if (!grado) {
+      throw new Error(`El grado seleccionado no existe.`);
+    }
+
+    return this.prisma.asignatura.create({
+      data: {
+        codigo: data.codigo,
+        nombre: data.nombre,
+        creditos: data.creditos,
+        gradoId: data.gradoId,
+      },
+    });
+  }
+
   async createMany(data: any[]) {
     const results = {
       success: 0,

@@ -1,5 +1,6 @@
 import {
   Body,
+  ConflictException,
   Controller,
   Delete,
   Get,
@@ -7,7 +8,7 @@ import {
   HttpStatus,
   NotFoundException,
   Param,
-  Post
+  Post,
 } from '@nestjs/common';
 import { AsignaturasService } from './asignaturas.service';
 
@@ -27,6 +28,16 @@ export class AsignaturasController {
       throw new NotFoundException(`Asignatura con ID ${id} no encontrada`);
     }
     return asignatura;
+  }
+
+  @Post()
+  @HttpCode(HttpStatus.CREATED)
+  async create(@Body() data: any) {
+    try {
+      return await this.asignaturasService.create(data);
+    } catch (err) {
+      throw new ConflictException(err.message);
+    }
   }
 
   @Post('import')

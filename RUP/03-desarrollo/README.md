@@ -55,6 +55,7 @@ A continuación se detallan las especificaciones de implementación por actor y 
 - [abrirAsignaturas](casos-uso/0-Administrador/abrirAsignaturas/README.md) - Implementación de la vista de listado de asignaturas académicas.
 - [eliminarAsignatura](casos-uso/0-Administrador/eliminarAsignatura/README.md) - Implementación del borrado seguro de materias.
 - [importarAsignaturas](casos-uso/0-Administrador/importarAsignaturas/README.md) - Implementación de la carga masiva de materias vinculadas a grados.
+- [crearAsignatura](casos-uso/0-Administrador/crearAsignatura/README.md) - Implementación del alta de nuevas asignaturas vinculadas a grados.
 
 ## Referencias
 

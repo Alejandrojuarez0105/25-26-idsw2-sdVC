@@ -586,3 +586,18 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Validación Relacional:** Se aseguró que la importación masiva verifique la existencia de los grados correspondientes, evitando la creación de materias huérfanas en PostgreSQL.
 
 **Decisión:** Se completó satisfactoriamente la funcionalidad de carga masiva para el módulo de asignaturas, reforzando la integración relacional del sistema Davidario y manteniendo la consistencia con el patrón de importación de grados.
+
+## [04/06/2026 22:45] Sesión 44: Implementación de crearAsignatura()
+
+**Prompt:** Muy bien, para la sesión 38 vamos a hacer la implementación del caso de uso crearAsignatura... permitir que un administrador pueda crear nuevas asignaturas desde la interfaz de gestión... Backend: Agregar endpoint POST /asignaturas... Frontend: Botón Crear Asignatura, Formulario, Validación de campos... respetar el diseño del prototipo.
+
+**Resultado:**
+1. **Extensión del Backend:** Actualizado `AsignaturasService` con el método `create` , que incluye validación de unicidad de código, y `AsignaturasController` con el endpoint `POST /asignaturas` (retornando `201 Created` o `409 Conflict`).
+2. **Desarrollo del Frontend:**
+   - Creado el componente `CrearAsignaturaView.tsx` en `src/frontend/src/features/admin/asignaturas/`, replicando fielmente el prototipo visual `crearAsignatura.html` (campos de texto, textarea, botones estilizados y tipografía Courier New).
+   - Implementada la validación de campos obligatorios y formato de código (letras, números y guiones).
+   - Configurada la ruta `/admin/asignaturas/crear` en `App.tsx` y vinculado el botón correspondiente en el listado principal.
+3. **Documentación Técnica:** Creado `RUP/03-desarrollo/casos-uso/0-Administrador/crearAsignatura/README.md` y actualizados los índices globales de implementación.
+4. **Validación de Flujo:** Se aseguró la actualización automática del listado de asignaturas tras la creación exitosa mediante redirección programática.
+
+**Decisión:** Se completó la funcionalidad de alta de entidades para el módulo de asignaturas, manteniendo la coherencia arquitectónica NestJS + React y el rigor metodológico RUP del proyecto.

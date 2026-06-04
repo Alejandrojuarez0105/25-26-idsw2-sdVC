@@ -24,6 +24,11 @@ export const asignaturasService = {
     return response.data;
   },
 
+  async create(data: any): Promise<Asignatura> {
+    const response = await api.post('/asignaturas', data);
+    return response.data;
+  },
+
   async remove(id: string): Promise<void> {
     await api.delete(`/asignaturas/${id}`);
   },
