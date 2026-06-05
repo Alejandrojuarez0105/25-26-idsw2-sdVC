@@ -10,7 +10,7 @@
 
 **Decisión:** Se aceptó la tarea de migración para establecer la base documental del proyecto siguiendo la metodología RUP.
 
-## [21/05/2026 12:45] Sesión 1: Corrección de migración y refactorización de enlaces
+## [21/05/2026 12:45] Sesión 2: Corrección de migración y refactorización de enlaces
 
 **Prompt:** Perfecto, ahora corrige la migración anterior: la carpeta 02-imágenes de C:\Data\Davidario\Davidario\documentos no fue copiada correctamente dentro de la carpeta images del nuevo repositorio, así que copia todo su contenido manteniendo la estructura original, además, revisa y corrige todos los links y referencias dentro de la documentación RUP, modelos y casos de uso para que apunten correctamente a las rutas e imágenes del NUEVO repositorio y no al repositorio anterior, actualiza rutas relativas, referencias Markdown, imágenes embebidas y cualquier enlace roto detectado, verificando que todo funcione correctamente dentro de la nueva estructura del proyecto.
 
@@ -20,7 +20,7 @@
 
 **Decisión:** Se corrigió la estructura de imágenes y se aseguraron todos los enlaces internos para mantener la integridad de la documentación en la nueva estructura.
 
-## [22/05/2026 18:05] Sesión 2: Centralización de recursos y reorganización estructural
+## [22/05/2026 18:05] Sesión 3: Centralización de recursos y reorganización estructural
 
 **Prompt:** Sí, está bien, pero ahora quiero reorganizar completamente la estructura del proyecto para mantener un orden centralizado de recursos, mueve TODAS las imágenes existentes dentro de cualquier carpeta del proyecto hacia la carpeta global images, y TODOS los archivos .puml hacia la carpeta global modelosUML, antes de moverlos, crea dentro de ambas carpetas una subcarpeta llamada 00-requisitos, y dentro de ella replica la estructura original de directorios para mantener trazabilidad y organización, deja únicamente los archivos README.md en sus carpetas originales dentro de RUP/00-requisitos, moviendo cualquier otro recurso visual o UML fuera de allí, después de reorganizar, actualiza automáticamente todas las rutas relativas, referencias Markdown, imágenes embebidas, includes de PlantUML y cualquier enlace roto o potencialmente inconsistente para que todo siga funcionando correctamente dentro de la nueva estructura del proyecto, finalmente, verifica que no existan referencias inválidas ni archivos duplicados innecesarios y resume claramente los cambios estructurales realizados.
 
@@ -33,7 +33,7 @@
 
 **Decisión:** Se centralizaron los recursos visuales y UML para mejorar la organización del repositorio, manteniendo la documentación (READMEs) en sus carpetas originales de la metodología RUP.
 
-## [23/05/2026 14:00] Sesión 3: Fase de Análisis e iniciarSesion()
+## [23/05/2026 14:00] Sesión 4: Fase de Análisis e iniciarSesion()
 
 **Prompt:** Iniciar fase de Análisis RUP (Davidario). Crear estructura `RUP/01-analisis`, `images/01-analisis` y `modelosUML/01-analisis`. Generar `README.md` de disciplina y casos de uso basados en plantilla `pySigHor`. Realizar análisis MVC de `iniciarSesion()`. Corregir layouts para coincidir con estilo del proyecto (badges azules) y layouts del profesor (tablas de navegación). Asegurar consistencia con actor Administrador y jerarquía de breadcrumbs.
 
@@ -47,7 +47,7 @@
 
 **Decisión:** Se estableció la base de la disciplina de Análisis y se completó satisfactoriamente el primer caso de uso, priorizando la coherencia con el modelo del profesor y la identidad del proyecto Davidario.
 
-## [23/05/2026 23:55] Sesión 4: Análisis de cerrarSesion()
+## [23/05/2026 23:55] Sesión 5: Análisis de cerrarSesion()
 
 **Prompt:** Continuar la fase de análisis con el caso de uso `cerrarSesion()`. Seguir estrictamente el orden del diagrama de contexto del Administrador. Mantener la estructura del proyecto Davidario y el layout del profesor. Asegurar consistencia con `iniciarSesion()`, breadcrumbs correctos y validación de enlaces/referencias UML.
 
@@ -59,9 +59,9 @@
 
 **Decisión:** Se completó el análisis de `cerrarSesion()` manteniendo la trazabilidad con los requisitos y la consistencia visual del proyecto. El usuario realizó ajustes manuales en el diagrama UML y la sección de cobertura para optimizar la referencia técnica.
 
-## [24/05/2026 11:30] Sesión 5: Análisis RUP - abrirGrados()
+## [24/05/2026 11:30] Sesión 6: Análisis RUP - abrirGrados()
 
-**Prompt:** Continuación de Análisis RUP. Consolidación de todos los prompts de la sesión 5 (inicio + correcciones + ajustes estructurales) para el análisis del caso de uso abrirGrados() siguiendo el actor Administrador, referencias a pySigHor, reglas de consistencia, estructura RUP y estandarización del formato de análisis en tablas Markdown.
+**Prompt:** Continuación de Análisis RUP. Consolidación de todos los prompts de la sesión 6 (inicio + correcciones + ajustes estructurales) para el análisis del caso de uso abrirGrados() siguiendo el actor Administrador, referencias a pySigHor, reglas de consistencia, estructura RUP y estandarización del formato de análisis en tablas Markdown.
 
 **Resultado:**
 1. **Creación del caso de uso abrirGrados():** Generado `README.md` en `RUP/01-analisis/casos-uso/abrirGrados/` con la nueva estructura de tabla estandarizada.
@@ -73,7 +73,7 @@
 
 **Decisión:** Se consolida la fase de análisis del caso de uso abrirGrados(), estableciendo el formato estándar de análisis definitivo para el proyecto y cerrando la sesión 5 como base para la siguiente etapa.
 
-## [24/05/2026 13:30] Sesión 6: Análisis RUP - importarGrados()
+## [24/05/2026 13:30] Sesión 7: Análisis RUP - importarGrados()
 
 **Prompt:** Continuación del análisis RUP del actor Administrador siguiendo el diagrama de contexto. Desarrollo del caso de uso `importarGrados()` como “apertura de entidad”, sin referencia directa en el profesor, tomando como base estructural `abrirGrados()` y manteniendo consistencia con `iniciarSesion()` y `cerrarSesion()`. Se solicitó generación completa de artefactos (README, diagrama UML `.puml`, imágenes) y actualización de cobertura en el sistema RUP.
 
@@ -87,7 +87,7 @@
 
 **Decisión:** Se consolida la implementación del caso de uso `importarGrados()` como extensión del patrón de gestión de entidades, quedando alineado con la arquitectura RUP del sistema y estableciendo continuidad para futuros casos de uso del actor Administrador.
 
-## [24/05/2026 15:45] Sesión 7: Análisis RUP - eliminarGrado()
+## [24/05/2026 15:45] Sesión 8: Análisis RUP - eliminarGrado()
 
 **Prompt:** Continuación de la fase de análisis del actor Administrador siguiendo estrictamente el diagrama de contexto. Desarrollo del caso de uso `eliminarGrado()` como "gestión de entidad". Se tomó como base estructural la metodología y patrones aplicados en casos de uso previos (abrirGrados, importarGrados). Se incluyó la validación de dependencias (uso de AsignaturaRepository) a petición del usuario, reflejando el cambio en el diagrama `colaboracion.puml`. Se actualizaron los índices de cobertura del proyecto.
 
@@ -100,7 +100,7 @@
 
 **Decisión:** Se finalizó el análisis de `eliminarGrado()` integrando la validación necesaria de dependencias, cumpliendo con la estructura RUP establecida y actualizando la documentación global del proyecto.
 
-## [24/05/2026 17:50] Sesión 8: Análisis RUP - crearGrado()
+## [24/05/2026 17:50] Sesión 9: Análisis RUP - crearGrado()
 
 **Prompt:** Continuación de la fase de análisis del actor Administrador siguiendo el diagrama de contexto. Desarrollo del caso de uso `crearGrado()` como "gestión de entidad". Se tomó como base estructural la metodología aplicada en sesiones anteriores, garantizando coherencia MVC y el estilo documental. Se solicitó generación de README, diagrama de colaboración PlantUML y actualización de índices.
 
@@ -113,7 +113,7 @@
 
 **Decisión:** Se consolidó el caso de uso `crearGrado()` como un componente clave en la gestión de entidades, respetando la estructura RUP y las normas de estilo del proyecto Davidario.
 
-## [25/05/2026 01:10] Sesión 9: Análisis RUP - editarGrado()
+## [25/05/2026 01:10] Sesión 10: Análisis RUP - editarGrado()
 
 **Prompt:** Continuación de la fase de análisis del actor Administrador siguiendo el diagrama de contexto. Desarrollo del caso de uso `editarGrado()` como "gestión de entidad". Se tomó como base estructural la metodología aplicada en sesiones anteriores, garantizando coherencia MVC y el estilo documental. Se solicitó generación de README, diagrama de colaboración PlantUML y actualización de índices.
 
@@ -126,7 +126,7 @@
 
 **Decisión:** Se consolidó el caso de uso `editarGrado()` como un componente clave en la gestión de entidades, respetando la estructura RUP y las normas de estilo del proyecto Davidario.
 
-## [25/05/2026 10:45] Sesión 10: Análisis RUP - abrirAsignaturas()
+## [25/05/2026 10:45] Sesión 11: Análisis RUP - abrirAsignaturas()
 
 **Prompt:** Continuación de la fase de análisis del actor Administrador siguiendo el diagrama de contexto. Desarrollo del caso de uso `abrirAsignaturas()` como "apertura de entidad". Se tomó como base estructural la metodología aplicada en sesiones anteriores, garantizando coherencia MVC y el estilo documental. Se solicitó generación de README, diagrama de colaboración PlantUML y actualización de índices.
 
@@ -139,7 +139,7 @@
 
 **Decisión:** Se consolidó el caso de uso `abrirAsignaturas()` como una funcionalidad de lectura fundamental, respetando la estructura RUP y las normas de estilo del proyecto Davidario.
 
-## [25/05/2026 11:00] Sesión 11: Análisis RUP - importarAsignaturas()
+## [25/05/2026 11:00] Sesión 12: Análisis RUP - importarAsignaturas()
 
 **Prompt:** Continuación de la fase de análisis del actor Administrador siguiendo el diagrama de contexto. Desarrollo del caso de uso `importarAsignaturas()` como "apertura de entidad". Se tomó como base estructural la metodología aplicada en sesiones anteriores (específicamente siguiendo el patrón de `importarGrados`), garantizando coherencia MVC y el estilo documental. Se solicitó generación de README, diagrama de colaboración PlantUML y actualización de índices.
 
@@ -152,7 +152,7 @@
 
 **Decisión:** Se consolidó el caso de uso `importarAsignaturas()` como una extensión del patrón de gestión de entidades, respetando la estructura RUP y las normas de estilo del proyecto Davidario.
 
-## [25/05/2026 12:00] Sesión 12: Análisis RUP - eliminarAsignatura()
+## [25/05/2026 12:00] Sesión 13: Análisis RUP - eliminarAsignatura()
 
 **Prompt:** Continuación de la fase de análisis del actor Administrador siguiendo el diagrama de contexto. Desarrollo del caso de uso `eliminarAsignatura()` como "gestión de entidad". Se tomó como base estructural la metodología aplicada en sesiones anteriores (específicamente siguiendo el patrón de `eliminarGrado`), garantizando coherencia MVC y el estilo documental. Se solicitó generación de README, diagrama de colaboración PlantUML y actualización de índices.
 
@@ -165,7 +165,7 @@
 
 **Decisión:** Se consolidó el caso de uso `eliminarAsignatura()` como una funcionalidad de gestión necesaria, respetando la estructura RUP y las normas de estilo del proyecto Davidario.
 
-## [25/05/2026 13:30] Sesión 13: Análisis RUP - crearAsignatura()
+## [25/05/2026 13:30] Sesión 14: Análisis RUP - crearAsignatura()
 
 **Prompt:** Continuación de la fase de análisis del actor Administrador siguiendo el diagrama de contexto. Desarrollo del caso de uso `crearAsignatura()` como "gestión de entidad". Se tomó como base estructural la metodología aplicada en sesiones anteriores (específicamente siguiendo el patrón de `crearGrado`), garantizando coherencia MVC y el estilo documental. Se solicitó generación de README, diagrama de colaboración PlantUML y actualización de índices.
 
@@ -178,7 +178,7 @@
 
 **Decisión:** Se consolidó el caso de uso `crearAsignatura()` como una funcionalidad de gestión necesaria, respetando la estructura RUP y las normas de estilo del proyecto Davidario.
 
-## [25/05/2026 13:45] Sesión 14: Análisis RUP - editarAsignatura()
+## [25/05/2026 13:45] Sesión 15: Análisis RUP - editarAsignatura()
 
 **Prompt:** Continuación de la fase de análisis del actor Administrador siguiendo el diagrama de contexto. Desarrollo del caso de uso `editarAsignatura()` como "gestión de entidad". Se tomó como base estructural la metodología aplicada en sesiones anteriores (específicamente siguiendo el patrón de `editarGrado`), garantizando coherencia MVC y el estilo documental. Se solicitó generación de README, diagrama de colaboración PlantUML y actualización de índices.
 
@@ -191,7 +191,7 @@
 
 **Decisión:** Se consolidó el caso de uso `editarAsignatura()` como una funcionalidad de gestión necesaria, respetando la estructura RUP y las normas de estilo del proyecto Davidario.
 
-## [25/05/2026 15:15] Sesión 15: Análisis RUP - abrirExamenes()
+## [25/05/2026 15:15] Sesión 16: Análisis RUP - abrirExamenes()
 
 **Prompt:** Continuación de la fase de análisis del actor Administrador siguiendo el diagrama de contexto. Desarrollo del caso de uso `abrirExamenes()` como "apertura de entidad". Se tomó como base estructural la metodología aplicada en sesiones anteriores (específicamente siguiendo el patrón de `abrirGrados`), garantizando coherencia MVC y el estilo documental. Se solicitó generación de README, diagrama de colaboración PlantUML y actualización de índices.
 
@@ -204,7 +204,7 @@
 
 **Decisión:** Se consolidó el caso de uso `abrirExamenes()` como una funcionalidad de lectura fundamental, respetando la estructura RUP y las normas de estilo del proyecto Davidario.
 
-## [25/05/2026 16:00] Sesión 16: Análisis RUP - eliminarExamen()
+## [25/05/2026 16:00] Sesión 17: Análisis RUP - eliminarExamen()
 
 **Prompt:** Continuación de la fase de análisis del actor Administrador siguiendo el diagrama de contexto. Desarrollo del caso de uso `eliminarExamen()` como "gestión de entidad". Se tomó como base estructural la metodología aplicada en sesiones anteriores (específicamente siguiendo el patrón de `eliminarAsignatura`), garantizando coherencia MVC y el estilo documental. Se solicitó generación de README, diagrama de colaboración PlantUML y actualización de índices.
 
@@ -217,7 +217,7 @@
 
 **Decisión:** Se consolidó el caso de uso `eliminarExamen()` como una funcionalidad de gestión necesaria, respetando la estructura RUP y las normas de estilo del proyecto Davidario.
 
-## [25/05/2026 17:00] Sesión 17: Análisis RUP - crearExamen() y expansión no solicitada de casos de uso
+## [25/05/2026 17:00] Sesión 18: Análisis RUP - crearExamen() y expansión no solicitada de casos de uso
 
 **Prompt:** Continuación de la fase de análisis del actor Administrador siguiendo el diagrama de contexto. Desarrollo del caso de uso `crearExamen()` como "gestión de entidad". Se tomó como base estructural la metodología aplicada en sesiones anteriores (específicamente siguiendo el patrón de `crearGrado` y `crearAsignatura`), garantizando coherencia MVC y el estilo documental. Se solicitó generación de README, diagrama de colaboración PlantUML y actualización de índices.
 
@@ -234,9 +234,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se consolida el caso de uso `crearExamen()` como resultado válido de la sesión. Se registra la desviación de alcance ocurrida durante la generación automática de casos de uso adicionales, así como su corrección manual posterior, manteniendo la integridad del proyecto Davidario y su estructura RUP.
 
-## [28/05/2026 21:30] Sesión 18: Análisis RUP - Rama Aulas
+## [28/05/2026 21:30] Sesión 19: Análisis RUP - Rama Aulas
 
-**Prompt:** COMENZAMOS, Sesión 18: Continuación de Análisis RUP. Continuaremos con el análisis de casos de uso del actor Administrador siguiendo estrictamente el orden definido en el diagrama de contexto... En esta sesión se desarrollará de forma controlada toda la rama correspondiente a Aulas, incluyendo los siguientes casos de uso: abrirAulas(), importarAulas(), eliminarAula(), crearAula(), editarAula()... Debes mantener coherencia total con la estructura ya estabilizada del proyecto Davidario... Vamos a reestructurar los `importar` y los `abrir` debido a que no seguían un mismo patrón
+**Prompt:** COMENZAMOS, Sesión 19: Continuación de Análisis RUP. Continuaremos con el análisis de casos de uso del actor Administrador siguiendo estrictamente el orden definido en el diagrama de contexto... En esta sesión se desarrollará de forma controlada toda la rama correspondiente a Aulas, incluyendo los siguientes casos de uso: abrirAulas(), importarAulas(), eliminarAula(), crearAula(), editarAula()... Debes mantener coherencia total con la estructura ya estabilizada del proyecto Davidario... Vamos a reestructurar los `importar` y los `abrir` debido a que no seguían un mismo patrón
 
 **Resultado:**
 1. **Creación del caso de uso abrirAulas():** Generado `README.md` en `RUP/01-analisis/casos-uso/abrirAulas/` y `colaboracion.puml` en `modelosUML/01-analisis/casos-uso/abrirAulas/` siguiendo el patrón MVC y el actor Administrador.
@@ -250,9 +250,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se completó satisfactoriamente el análisis de la rama Aulas, manteniendo la coherencia metodológica y visual con el resto del proyecto Davidario y cerrando la sesión de forma controlada según lo solicitado.
 
-## [30/05/2026 01:30] Sesión 19: Análisis RUP - Rama Profesores
+## [30/05/2026 01:30] Sesión 20: Análisis RUP - Rama Profesores
 
-**Prompt:** COMENZAMOS, Sesión 19: Continuación de Análisis RUP. Continuaremos con el análisis de casos de uso del actor Administrador siguiendo estrictamente el orden definido en el diagrama de contexto... En esta sesión se desarrollará de forma controlada toda la rama correspondiente a Profesores, incluyendo los siguientes casos de uso: abrirProfesores(), importarProfesores(), eliminarProfesor(), crearProfesor(), editarProfesor(), listarConflictosExamenes(), asignarProfesorAExamen()... Debes mantener coherencia total con la estructura ya estabilizada del proyecto Davidario.
+**Prompt:** COMENZAMOS, Sesión 20: Continuación de Análisis RUP. Continuaremos con el análisis de casos de uso del actor Administrador siguiendo estrictamente el orden definido en el diagrama de contexto... En esta sesión se desarrollará de forma controlada toda la rama correspondiente a Profesores, incluyendo los siguientes casos de uso: abrirProfesores(), importarProfesores(), eliminarProfesor(), crearProfesor(), editarProfesor(), listarConflictosExamenes(), asignarProfesorAExamen()... Debes mantener coherencia total con la estructura ya estabilizada del proyecto Davidario.
 
 **Resultado:**
 1. **Creación del caso de uso abrirProfesores():** Generado `README.md` en `RUP/01-analisis/casos-uso/abrirProfesores/` y `colaboracion.puml` en `modelosUML/01-analisis/casos-uso/abrirProfesores/` siguiendo el patrón MVC y el actor Administrador.
@@ -267,9 +267,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se completó satisfactoriamente el análisis de la rama Profesores, integrando funcionalidades clave de gestión y asignación, manteniendo la coherencia metodológica con el resto del proyecto Davidario.
 
-## [31/05/2026 16:35] Sesión 20: Análisis RUP - Rama Calendario
+## [31/05/2026 16:35] Sesión 21: Análisis RUP - Rama Calendario
 
-**Prompt:** COMENZAMOS, Sesión 20: Continuación de Análisis RUP. Continuaremos con el análisis de casos de uso del actor Administrador siguiendo estrictamente el orden definido en el diagrama de contexto... En esta sesión se desarrollará de forma controlada toda la rama correspondiente a Calendario, incluyendo los siguientes casos de uso: generarCalendario(), completarProceso()... Debes mantener coherencia total con la estructura ya estabilizada del proyecto Davidario.
+**Prompt:** COMENZAMOS, Sesión 21: Continuación de Análisis RUP. Continuaremos con el análisis de casos de uso del actor Administrador siguiendo estrictamente el orden definido en el diagrama de contexto... En esta sesión se desarrollará de forma controlada toda la rama correspondiente a Calendario, incluyendo los siguientes casos de uso: generarCalendario(), completarProceso()... Debes mantener coherencia total con la estructura ya estabilizada del proyecto Davidario.
 
 **Resultado:**
 1. **Creación del caso de uso generarCalendario():** Generado `README.md` en `RUP/01-analisis/casos-uso/generarCalendario/` y `colaboracion.puml` en `modelosUML/01-analisis/casos-uso/generarCalendario/` siguiendo el patrón MVC para procesos algorítmicos.
@@ -279,9 +279,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se completó satisfactoriamente el análisis de la rama Calendario, estableciendo el patrón para procesos de negocio complejos y cerrando la sesión de forma controlada.
 
-## [31/05/2026 18:30] Sesión 21: Análisis RUP - Rama Consulta de Calendario
+## [31/05/2026 18:30] Sesión 22: Análisis RUP - Rama Consulta de Calendario
 
-**Prompt:** COMENZAMOS, Sesión 21: Continuación de Análisis RUP. Continuaremos con el análisis de casos de uso del actor Administrador siguiendo estrictamente el orden definido en el diagrama de contexto... En esta sesión se desarrollará de forma controlada la extensión de la rama Consultar Calendario, incorporando funcionalidades de consulta y gestión del calendario de exámenes, incluyendo los siguientes casos de uso: consultarCalendario(), descargarCalendarioExamenes(), completarConsulta()... Debes mantener coherencia total con la estructura ya estabilizada del proyecto Davidario.
+**Prompt:** COMENZAMOS, Sesión 22: Continuación de Análisis RUP. Continuaremos con el análisis de casos de uso del actor Administrador siguiendo estrictamente el orden definido en el diagrama de contexto... En esta sesión se desarrollará de forma controlada la extensión de la rama Consultar Calendario, incorporando funcionalidades de consulta y gestión del calendario de exámenes, incluyendo los siguientes casos de uso: consultarCalendario(), descargarCalendarioExamenes(), completarConsulta()... Debes mantener coherencia total con la estructura ya estabilizada del proyecto Davidario.
 
 **Resultado:**
 1. **Creación del caso de uso consultarCalendario():** Generado `README.md` en `RUP/01-analisis/casos-uso/consultarCalendario/` y `colaboracion.puml` en `modelosUML/01-analisis/casos-uso/consultarCalendario/` permitiendo la visualización y filtrado de la programación.
@@ -292,9 +292,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se completó satisfactoriamente la extensión de la rama Calendario, cerrando el ciclo de vida de programación y consulta para el actor Administrador y manteniendo la integridad metodológica RUP.
 
-## [31/05/2026 22:30] Sesión 22: Análisis RUP - completarGestion()
+## [31/05/2026 22:30] Sesión 23: Análisis RUP - completarGestion()
 
-**Prompt:** COMENZAMOS, Sesión 22: Continuación de Análisis RUP. Continuaremos con el análisis de casos de uso del actor Administrador siguiendo estrictamente el orden definido en el diagrama de contexto... En esta sesión se desarrollará el caso de uso común de finalización de gestión dentro del sistema, correspondiente a: completarGestion()... Debes mantener coherencia total con la estructura ya estabilizada del proyecto Davidario.
+**Prompt:** COMENZAMOS, Sesión 23: Continuación de Análisis RUP. Continuaremos con el análisis de casos de uso del actor Administrador siguiendo estrictamente el orden definido en el diagrama de contexto... En esta sesión se desarrollará el caso de uso común de finalización de gestión dentro del sistema, correspondiente a: completarGestion()... Debes mantener coherencia total con la estructura ya estabilizada del proyecto Davidario.
 
 **Resultado:**
 1. **Creación del caso de uso completarGestion():** Generado `README.md` en `RUP/01-analisis/casos-uso/completarGestion/` y `colaboracion.puml` en `modelosUML/01-analisis/casos-uso/completarGestion/` siguiendo el patrón MVC para la finalización de contextos administrativos.
@@ -303,9 +303,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se consolidó el análisis del caso de uso común de finalización, completando la infraestructura de navegación administrativa para el Administrador según los estándares RUP del proyecto.
 
-## [01/06/2026 15:55] Sesión 23: Reorganización estructural - Actor Administrador
+## [01/06/2026 15:55] Sesión 24: Reorganización estructural - Actor Administrador
 
-**Prompt:** COMENZAMOS, Sesión 23: Reorganización estructural del análisis del actor Administrador... todos los casos de uso pertenecientes al actor Administrador deben agruparse dentro de una carpeta específica: RUP/01-analisis/casos-uso/0-Administrador/, modelosUML/01-analisis/casos-uso/0-Administrador/, images/01-analisis/casos-uso/0-Administrador/... actualizar todas las referencias afectadas...
+**Prompt:** COMENZAMOS, Sesión 24: Reorganización estructural del análisis del actor Administrador... todos los casos de uso pertenecientes al actor Administrador deben agruparse dentro de una carpeta específica: RUP/01-analisis/casos-uso/0-Administrador/, modelosUML/01-analisis/casos-uso/0-Administrador/, images/01-analisis/casos-uso/0-Administrador/... actualizar todas las referencias afectadas...
 
 **Resultado:**
 1. **Reubicación de artefactos:** Movidos los 39 casos de uso consolidados del actor Administrador a las nuevas subcarpetas `0-Administrador/` en las ramas de RUP, modelosUML e imágenes.
@@ -315,9 +315,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se completó con éxito la reorganización estructural de la disciplina de Análisis, mejorando la escalabilidad del repositorio para futuros actores y manteniendo el rigor metodológico RUP del proyecto Davidario.
 
-## [01/06/2026 17:15] Sesión 24: Análisis RUP - Actor Profesor
+## [01/06/2026 17:15] Sesión 25: Análisis RUP - Actor Profesor
 
-**Prompt:** COMENZAMOS, Sesión 23: Continuación de Análisis RUP. Continuaremos con el análisis de casos de uso del nuevo actor Profesor siguiendo estrictamente el orden definido en el diagrama de contexto... En esta sesión se realizará la creación de la estructura de análisis completa del actor Profesor, reutilizando cuando corresponda los casos de uso ya consolidados del actor Administrador...
+**Prompt:** COMENZAMOS, Sesión 25: Continuación de Análisis RUP. Continuaremos con el análisis de casos de uso del nuevo actor Profesor siguiendo estrictamente el orden definido en el diagrama de contexto... En esta sesión se realizará la creación de la estructura de análisis completa del actor Profesor, reutilizando cuando corresponda los casos de uso ya consolidados del actor Administrador...
 
 **Resultado:**
 1. **Creación de estructura:** Generadas subcarpetas `1-Profesor/` en `RUP/01-analisis/casos-uso/`, `modelosUML/01-analisis/casos-uso/` e `images/01-analisis/casos-uso/`.
@@ -328,9 +328,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se consolidó la base de análisis para el actor Profesor, completando todas las funcionalidades definidas en su diagrama de contexto y manteniendo la integridad documental del proyecto.
 
-## [01/06/2026 21:15] Sesión 25: Análisis RUP - Actor Alumno
+## [01/06/2026 21:15] Sesión 26: Análisis RUP - Actor Alumno
 
-**Prompt:** COMENZAMOS, Sesión 25: Continuación de Análisis RUP. Continuaremos con el análisis de casos de uso del actor Alumno siguiendo estrictamente el orden definido en el diagrama de contexto... En esta sesión se desarrollará de forma controlada toda la rama correspondiente al actor Alumno, incluyendo los siguientes casos de uso: iniciarSesion(), cerrarSesion(), consultarCalendario(), descargarCalendarioExamenes(), completarConsulta()...
+**Prompt:** COMENZAMOS, Sesión 26: Continuación de Análisis RUP. Continuaremos con el análisis de casos de uso del actor Alumno siguiendo estrictamente el orden definido en el diagrama de contexto... En esta sesión se desarrollará de forma controlada toda la rama correspondiente al actor Alumno, incluyendo los siguientes casos de uso: iniciarSesion(), cerrarSesion(), consultarCalendario(), descargarCalendarioExamenes(), completarConsulta()...
 
 **Resultado:**
 1. **Creación de estructura:** Generadas subcarpetas `2-Alumno/` en `RUP/01-analisis/casos-uso/`, `modelosUML/01-analisis/casos-uso/` e `images/01-analisis/casos-uso/`.
@@ -340,9 +340,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se completó satisfactoriamente el análisis para el actor Alumno, cerrando el ciclo de análisis para todos los actores principales del sistema Davidario.
 
-## [02/06/2026 00:30] Sesión 26: Inicio de la fase de Diseño RUP
+## [02/06/2026 00:30] Sesión 27: Inicio de la fase de Diseño RUP
 
-**Prompt:** COMENZAMOS, Sesión 26: Inicio de la fase de Diseño RUP. A partir de este punto se da inicio formal a la fase de diseño del proyecto Davidario... establecer la estructura base del diseño del sistema, incluyendo la organización de carpetas, preparación del entorno y creación del documento inicial de diseño... Stack: React + TS + Vite (Frontend), NestJS + TS (Backend), PostgreSQL 16 (DB).
+**Prompt:** COMENZAMOS, Sesión 27: Inicio de la fase de Diseño RUP. A partir de este punto se da inicio formal a la fase de diseño del proyecto Davidario... establecer la estructura base del diseño del sistema, incluyendo la organización de carpetas, preparación del entorno y creación del documento inicial de diseño... Stack: React + TS + Vite (Frontend), NestJS + TS (Backend), PostgreSQL 16 (DB).
 
 **Resultado:**
 1. **Creación de estructura:** Generadas las carpetas base `02-diseño` en `RUP/`, `modelosUML/` e `images/`, incluyendo la subcarpeta `casos-uso/0-Administrador/`.
@@ -352,9 +352,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se dio inicio formal a la fase de Diseño del proyecto Davidario, estableciendo los cimientos técnicos y estructurales para la transformación de los requisitos analíticos en especificaciones de implementación.
 
-## [02/06/2026 00:45] Sesión 27: Refinamiento de la Documentación de Diseño
+## [02/06/2026 00:45] Sesión 28: Refinamiento de la Documentación de Diseño
 
-**Prompt:** COMENZAMOS, Sesión 27: Continuación de la fase de Diseño RUP. Haremos algunas correcciones al README puesto en RUP\02-diseño... agregar Ventajas y Rol al Stack Tecnológico... crear arquitectura.puml y clases-diseño.puml... crear apartado de Configuración y estructura... crear README dentro de RUP/02-diseño/casos-uso.
+**Prompt:** COMENZAMOS, Sesión 28: Continuación de la fase de Diseño RUP. Haremos algunas correcciones al README puesto en RUP\02-diseño... agregar Ventajas y Rol al Stack Tecnológico... crear arquitectura.puml y clases-diseño.puml... crear apartado de Configuración y estructura... crear README dentro de RUP/02-diseño/casos-uso.
 
 **Resultado:**
 1. **Modelado Global de Diseño:** Creados `arquitectura.puml` (detallando la interacción Frontend-Backend-DB) y `clases-diseño.puml` (especificando tipos de datos técnicos, UUIDs y DTOs iniciales) en `modelosUML/02-diseño/`.
@@ -364,9 +364,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se consolidó la base documental y técnica de la fase de Diseño, estableciendo los patrones de arquitectura y persistencia que regirán el desarrollo detallado del sistema.
 
-## [02/06/2026 19:10] Sesión 28: Configuración y Scaffolding del Proyecto
+## [02/06/2026 19:10] Sesión 29: Configuración y Scaffolding del Proyecto
 
-**Prompt:** COMENZAMOS, sesión 28: Añadiendo la configuración del proyecto al README. Dentro de la misma carpeta de RUP/02-diseño/ vas a crear un archivo llamado configuración-proyecto.md... definir estructura de directorios, configuraciones técnicas y esquema de base de datos... mapeo de diseño a código.
+**Prompt:** COMENZAMOS, sesión 29: Añadiendo la configuración del proyecto al README. Dentro de la misma carpeta de RUP/02-diseño/ vas a crear un archivo llamado configuración-proyecto.md... definir estructura de directorios, configuraciones técnicas y esquema de base de datos... mapeo de diseño a código.
 
 **Resultado:**
 1. **Documentación Técnica:** Creado `RUP/02-diseño/configuración-proyecto.md` detallando el scaffolding para el stack React/NestJS/PostgreSQL, las estrategias de seguridad (JWT, Argon2) y la persistencia (Prisma/TypeORM).
@@ -376,9 +376,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se completó la especificación técnica de infraestructura del proyecto Davidario, proporcionando la hoja de ruta para la organización del código y la configuración del entorno de desarrollo.
 
-## [02/06/2026 19:50] Sesión 29: Diseño RUP - Autenticación
+## [02/06/2026 19:50] Sesión 30: Diseño RUP - Autenticación
 
-**Prompt:** COMENZAMOS, Sesión 29: Inicio de la fase de Diseño RUP (Casos de uso base de autenticación)... se trabajará exclusivamente sobre: Actor Administrador: iniciarSesion(), cerrarSesion()... RUP/02-diseño/casos-uso/0-Administrador/iniciarSesion/README.md... RUP/02-diseño/casos-uso/0-Administrador/cerrarSesion/README.md.
+**Prompt:** COMENZAMOS, Sesión 30: Inicio de la fase de Diseño RUP (Casos de uso base de autenticación)... se trabajará exclusivamente sobre: Actor Administrador: iniciarSesion(), cerrarSesion()... RUP/02-diseño/casos-uso/0-Administrador/iniciarSesion/README.md... RUP/02-diseño/casos-uso/0-Administrador/cerrarSesion/README.md.
 
 **Resultado:**
 1. **Diseño de iniciarSesion():** Generado `README.md`, `clases-diseño.puml` y `secuencia-diseño.puml` en `RUP/02-diseño/casos-uso/0-Administrador/iniciarSesion/`. Se modeló el flujo completo desde el componente React `LoginView`, pasando por el controlador NestJS, hasta la validación en PostgreSQL y devolución de JWT.
@@ -388,9 +388,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se consolidó el diseño técnico de la infraestructura de seguridad del sistema, estableciendo los patrones para la comunicación cliente-servidor y la gestión de sesiones.
 
-## [03/06/2026 00:15] Sesión 30: Diseño RUP - Rama Grados
+## [03/06/2026 00:15] Sesión 31: Diseño RUP - Rama Grados
 
-**Prompt:** ## COMENZAMOS, Sesión 30: Continuación de Diseño RUP. Continuaremos con la fase de diseño del sistema... se desarrollará el diseño completo de la rama correspondiente a: abrirGrados(), importarGrados(), eliminarGrado(), crearGrado(), editarGrado()... adaptarlo completamente a la arquitectura y stack definido... React, NestJS, PostgreSQL 16.
+**Prompt:** ## COMENZAMOS, Sesión 31: Continuación de Diseño RUP. Continuaremos con la fase de diseño del sistema... se desarrollará el diseño completo de la rama correspondiente a: abrirGrados(), importarGrados(), eliminarGrado(), crearGrado(), editarGrado()... adaptarlo completamente a la arquitectura y stack definido... React, NestJS, PostgreSQL 16.
 
 **Resultado:**
 1. **Diseño de Casos de Uso (Rama Grados):** Generados los artefactos técnicos (`README.md`, `clases-diseño.puml`, `secuencia-diseño.puml`) para los 5 casos de uso de la rama de Grados dentro de `RUP/02-diseño/casos-uso/0-Administrador/`.
@@ -400,9 +400,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se completó satisfactoriamente el diseño técnico de la rama Grados, estableciendo los patrones de implementación para las operaciones CRUD y de importación masiva bajo la arquitectura NestJS + React.
 
-## [03/06/2026 17:15] Sesión 31: Inicio de Implementación RUP - iniciarSesion()
+## [03/06/2026 17:15] Sesión 32: Inicio de Implementación RUP - iniciarSesion()
 
-**Prompt:** COMENZAMOS, Sesión 31: Inicio de Implementación RUP. Hemos iniciado la fase de Implementación... trabajaremos exclusivamente sobre el caso de uso: iniciarSesion()... crear toda la infraestructura mínima necesaria para que el sistema pueda ejecutarse localmente... Backend (NestJS), Frontend (React), PostgreSQL 16.
+**Prompt:** COMENZAMOS, Sesión 32: Inicio de Implementación RUP. Hemos iniciado la fase de Implementación... trabajaremos exclusivamente sobre el caso de uso: iniciarSesion()... crear toda la infraestructura mínima necesaria para que el sistema pueda ejecutarse localmente... Backend (NestJS), Frontend (React), PostgreSQL 16.
 
 **Resultado:**
 1. **Infraestructura de Backend (NestJS):**
@@ -419,9 +419,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se estableció la base técnica funcional del proyecto Davidario, logrando la implementación incremental del primer ramillete de autenticación y asegurando la coherencia entre el diseño técnico y el código ejecutable.
 
-## [03/06/2026 18:30] Sesión 32: Ajuste de Dashboards según Prototipos
+## [03/06/2026 18:30] Sesión 33: Ajuste de Dashboards según Prototipos
 
-**Prompt:** COMENZAMOS, Sesión 32: Ajuste de Dashboards según Prototipos... ÚNICAMENTE actualizar los dashboards para que reflejen visualmente los prototipos existentes... Administrador, Profesor y Alumno... mantenerse en React + TypeScript... respetar la arquitectura actual... no modificar login ni backend.
+**Prompt:** COMENZAMOS, Sesión 33: Ajuste de Dashboards según Prototipos... ÚNICAMENTE actualizar los dashboards para que reflejen visualmente los prototipos existentes... Administrador, Profesor y Alumno... mantenerse en React + TypeScript... respetar la arquitectura actual... no modificar login ni backend.
 
 **Resultado:**
 1. **Desarrollo de Componentes de Dashboard:**
@@ -434,9 +434,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se mejoró significativamente la experiencia de usuario y la fidelidad visual del sistema Davidario, alineando la implementación con los prototipos aprobados sin comprometer la estabilidad de los módulos de autenticación y backend.
 
-## [03/06/2026 19:30] Sesión 33: Inicio de la fase de Desarrollo (Documentación)
+## [03/06/2026 19:30] Sesión 34: Inicio de la fase de Desarrollo (Documentación)
 
-**Prompt:** COMENZAMOS, Sesión 33: Inicio de la fase de Desarrollo. Hemos concluido las fases de Análisis y Diseño necesarias para comenzar la implementación incremental... iniciaremos formalmente la documentación de la fase: RUP/03-desarrollo... Trabajar únicamente sobre: RUP/03-desarrollo/README.md, casos-uso/iniciarSesion/README.md... no crear documentación de casos de uso no implementados.
+**Prompt:** COMENZAMOS, Sesión 34: Inicio de la fase de Desarrollo. Hemos concluido las fases de Análisis y Diseño necesarias para comenzar la implementación incremental... iniciaremos formalmente la documentación de la fase: RUP/03-desarrollo... Trabajar únicamente sobre: RUP/03-desarrollo/README.md, casos-uso/iniciarSesion/README.md... no crear documentación de casos de uso no implementados.
 
 **Resultado:**
 1. **Disciplina de Implementación:** Creada la carpeta `RUP/03-desarrollo` y su `README.md` principal, detallando el stack tecnológico oficial (React, NestJS, Prisma, PostgreSQL 16) y la estructura de la solución desacoplada.
@@ -446,9 +446,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se formalizó la documentación de la fase de Desarrollo, logrando una representación fiel y técnica de la implementación actual del sistema, limitada exclusivamente a las funcionalidades operativas hasta la fecha.
 
-## [03/06/2026 20:00] Sesión 34: Implementación de cerrarSesion()
+## [03/06/2026 20:00] Sesión 35: Implementación de cerrarSesion()
 
-**Prompt:** COMENZAMOS, Sesión 34: Implementación del caso de uso cerrarSesion()... centrarse exclusivamente en la implementación de: cerrarSesion()... Comportamiento esperado: eliminar token JWT, eliminar info de usuario, limpiar estado, redirigir al login... actualizar RUP/03-desarrollo/README.md y crear informe detallado... (Corrección posterior): Ajustar visualmente la confirmación de salida según el prototipo institucional.
+**Prompt:** COMENZAMOS, Sesión 35: Implementación del caso de uso cerrarSesion()... centrarse exclusivamente en la implementación de: cerrarSesion()... Comportamiento esperado: eliminar token JWT, eliminar info de usuario, limpiar estado, redirigir al login... actualizar RUP/03-desarrollo/README.md y crear informe detallado... (Corrección posterior): Ajustar visualmente la confirmación de salida según el prototipo institucional.
 
 **Resultado:**
 1. **Implementación Funcional (Frontend):** Se aprovechó la arquitectura JWT stateless existente. Se validó que el método `logout()` en el hook `useAuth` y el servicio `authService` realizan correctamente la limpieza de `localStorage` (`token` y `user`).
@@ -458,9 +458,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se consolidó la gestión completa del ciclo de vida de la sesión (entrada y salida), asegurando la estabilidad del sistema y cumpliendo estrictamente con los prototipos visuales y funcionales establecidos por la universidad.
 
-## [03/06/2026 20:30] Sesión 35: Implementación de abrirGrados()
+## [03/06/2026 20:30] Sesión 36: Implementación de abrirGrados()
 
-**Prompt:** COMENZAMOS, Sesión 35: Implementación del caso de uso abrirGrados()... centrarse exclusivamente en la apertura y visualización de grados... no implementar todavía importar, crear, editar o eliminar... respetar la estructura funcional y visual definida en abrirGrados.html... actualizar RUP/03-desarrollo/README.md y crear informe detallado.
+**Prompt:** COMENZAMOS, Sesión 36: Implementación del caso de uso abrirGrados()... centrarse exclusivamente en la apertura y visualización de grados... no implementar todavía importar, crear, editar o eliminar... respetar la estructura funcional y visual definida en abrirGrados.html... actualizar RUP/03-desarrollo/README.md y crear informe detallado.
 
 **Resultado:**
 1. **Infraestructura de Backend:** Creado `GradosModule` en NestJS, incluyendo el controlador `GradosController` y el servicio `GradosService`. Se implementó el endpoint `GET /grados` utilizando Prisma para recuperar la lista ordenada de grados desde PostgreSQL.
@@ -471,9 +471,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se completó satisfactoriamente el primer módulo de gestión de entidades, logrando la visualización funcional de los grados académicos y manteniendo la estabilidad y trazabilidad RUP del sistema Davidario.
 
-## [04/06/2026 00:05] Sesión 36: Implementación de eliminarGrado()
+## [04/06/2026 00:05] Sesión 37: Implementación de eliminarGrado()
 
-**Prompt:** Muy bien, para la sesión 36 vamos a hacer la implementación del caso de uso eliminarGrado... Permitir que un administrador elimine un grado existente desde la interfaz de abrirGrados... Backend: Agregar endpoint DELETE /grados/:id... Frontend: Agregar Botón Eliminar, Confirmación previa, Refresco automático... No modificar estructura de base de datos.
+**Prompt:** Muy bien, para la sesión 37 vamos a hacer la implementación del caso de uso eliminarGrado... Permitir que un administrador elimine un grado existente desde la interfaz de abrirGrados... Backend: Agregar endpoint DELETE /grados/:id... Frontend: Agregar Botón Eliminar, Confirmación previa, Refresco automático... No modificar estructura de base de datos.
 
 **Resultado:**
 1. **Extensión del Backend:** Actualizado `GradosService` con el método `remove` (usando Prisma) y `GradosController` con el endpoint `DELETE /grados/:id`. Se implementó el manejo de excepciones `404 NotFound`.
@@ -486,9 +486,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se consolidó la funcionalidad de gestión destructiva controlada para el módulo de grados, cumpliendo con los estándares de seguridad y fidelidad visual establecidos para el actor Administrador.
 
-## [04/06/2026 00:50] Sesión 37: Implementación de importarGrados()
+## [04/06/2026 00:50] Sesión 38: Implementación de importarGrados()
 
-**Prompt:** Muy bien, para la sesión 37 vamos a hacer la implementación del caso de uso importarGrados... Permitir que un administrador pueda importar múltiples grados de forma masiva desde la interfaz de gestión de grados... Backend: Agregar endpoint POST /grados/import... Frontend: Botón Importar, Interfaz para cargar o pegar datos, Validación básica... respetar el diseño del prototipo.
+**Prompt:** Muy bien, para la sesión 38 vamos a hacer la implementación del caso de uso importarGrados... Permitir que un administrador pueda importar múltiples grados de forma masiva desde la interfaz de gestión de grados... Backend: Agregar endpoint POST /grados/import... Frontend: Botón Importar, Interfaz para cargar o pegar datos, Validación básica... respetar el diseño del prototipo.
 
 **Resultado:**
 1. **Extensión del Backend:** Actualizado `GradosService` con el método `createMany`, el cual procesa una lista de objetos, valida la unicidad del código y retorna estadísticas de éxito/error. Se añadió el endpoint `POST /grados/import` en el `GradosController`.
@@ -501,9 +501,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se completó satisfactoriamente la funcionalidad de importación masiva para el módulo de grados, proporcionando al Administrador una herramienta eficiente para la carga inicial de datos bajo los estándares institucionales.
 
-## [04/06/2026 01:30] Sesión 38: Implementación de crearGrado()
+## [04/06/2026 01:30] Sesión 39: Implementación de crearGrado()
 
-**Prompt:** Muy bien, para la sesión 38 vamos a hacer la implementación del caso de uso crearGrado... permitir que un administrador pueda crear nuevos grados desde la interfaz de gestión... Backend: Agregar endpoint POST /grados... Frontend: Botón Crear Grado, Formulario, Validación de campos... respetar el diseño del prototipo.
+**Prompt:** Muy bien, para la sesión 39 vamos a hacer la implementación del caso de uso crearGrado... permitir que un administrador pueda crear nuevos grados desde la interfaz de gestión... Backend: Agregar endpoint POST /grados... Frontend: Botón Crear Grado, Formulario, Validación de campos... respetar el diseño del prototipo.
 
 **Resultado:**
 1. **Extensión del Backend:** Actualizado `GradosService` con el método `create`, que incluye validación de unicidad de código, y `GradosController` con el endpoint `POST /grados` (retornando `201 Created` o `409 Conflict`).
@@ -516,9 +516,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se completó la funcionalidad de alta de entidades para el módulo de grados, manteniendo la coherencia arquitectónica NestJS + React y el rigor metodológico RUP del proyecto.
 
-## [04/06/2026 01:50] Sesión 39: Implementación de editarGrado()
+## [04/06/2026 01:50] Sesión 40: Implementación de editarGrado()
 
-**Prompt:** Muy bien, para la sesión 39 vamos a hacer la implementación del caso de uso editarGrado... Permitir que un administrador pueda editar la información de un grado existente... Backend: Agregar endpoint PUT /grados/:id... Frontend: Botón Editar, Precarga de datos, Validación de campos... respetar el diseño del prototipo.
+**Prompt:** Muy bien, para la sesión 40 vamos a hacer la implementación del caso de uso editarGrado... Permitir que un administrador pueda editar la información de un grado existente... Backend: Agregar endpoint PUT /grados/:id... Frontend: Botón Editar, Precarga de datos, Validación de campos... respetar el diseño del prototipo.
 
 **Resultado:**
 1. **Refinamiento del Backend:** Actualizado `GradosService` con los métodos `findOne` y `update`. Se implementó la validación de integridad para asegurar que el código no se duplique al editar y que el ID exista. Se habilitaron los endpoints `GET /grados/:id` y `PUT /grados/:id` en `GradosController`.
@@ -531,9 +531,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se consolidó la capacidad de modificación de entidades para el módulo de grados, cerrando el ciclo de vida CRUD básico y cumpliendo con los estándares visuales y funcionales del proyecto Davidario.
 
-## [04/06/2026 19:45] Sesión 40: Diseño RUP - Rama Asignaturas
+## [04/06/2026 19:45] Sesión 41: Diseño RUP - Rama Asignaturas
 
-**Prompt:** SESIÓN 40 – DISEÑO RUP – RAMA ASIGNATURAS. Muy bien, para la sesión 40 vamos a hacer el diseño de la rama Asignaturas, específicamente los siguientes casos de uso: abrirAsignaturas(), importarAsignaturas(), eliminarAsignatura(), crearAsignatura(), editarAsignatura()... Diseñar completamente la rama Asignaturas siguiendo exactamente la metodología utilizada previamente para la rama Grados.
+**Prompt:** SESIÓN 41 – DISEÑO RUP – RAMA ASIGNATURAS. Muy bien, para la sesión 41 vamos a hacer el diseño de la rama Asignaturas, específicamente los siguientes casos de uso: abrirAsignaturas(), importarAsignaturas(), eliminarAsignatura(), crearAsignatura(), editarAsignatura()... Diseñar completamente la rama Asignaturas siguiendo exactamente la metodología utilizada previamente para la rama Grados.
 
 **Resultado:**
 1. **Diseño de Casos de Uso (Rama Asignaturas):** Generados los artefactos técnicos (`README.md`, `clases-diseño.puml`, `secuencia-diseño.puml`) para los 5 casos de uso de la rama de Asignaturas dentro de `RUP/02-diseño/casos-uso/0-Administrador/`.
@@ -543,9 +543,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se completó satisfactoriamente el diseño técnico de la rama Asignaturas, estableciendo los planos técnicos para la implementación de la gestión académica de materias bajo la arquitectura NestJS + React.
 
-## [04/06/2026 21:40] Sesión 41: Implementación de abrirAsignaturas()
+## [04/06/2026 21:40] Sesión 42: Implementación de abrirAsignaturas()
 
-**Prompt:** Muy bien, para la sesión 41 vamos a hacer la implementación del caso de uso abrirAsignaturas... Permitir que un administrador visualice el listado de asignaturas registradas... Backend: endpoint GET /asignaturas... Frontend: Pantalla de apertura, Visualizar listado... actualizar database-setup.sql...
+**Prompt:** Muy bien, para la sesión 42 vamos a hacer la implementación del caso de uso abrirAsignaturas... Permitir que un administrador visualice el listado de asignaturas registradas... Backend: endpoint GET /asignaturas... Frontend: Pantalla de apertura, Visualizar listado... actualizar database-setup.sql...
 
 **Resultado:**
 1. **Infraestructura de Backend:** Creado `AsignaturasModule` en NestJS, incluyendo el controlador `AsignaturasController` y el servicio `AsignaturasService`. Se implementó el endpoint `GET /asignaturas` utilizando Prisma con la instrucción `include` para recuperar la relación con la entidad `Grado`.
@@ -556,9 +556,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se completó satisfactoriamente la implementación del listado de asignaturas, logrando una integración relacional exitosa con el módulo de grados y manteniendo la coherencia visual UE.
 
-## [04/06/2026 22:00] Sesión 42: Implementación de eliminarAsignatura()
+## [04/06/2026 22:00] Sesión 43: Implementación de eliminarAsignatura()
 
-**Prompt:** Muy bien, para la sesión 42 vamos a hacer la implementación del caso de uso eliminarAsignatura... Permitir que un administrador pueda eliminar una asignatura existente... Backend: endpoint DELETE /asignaturas/:id... Frontend: Botón Eliminar, Confirmación previa, Refresco automático... respetar el diseño del prototipo.
+**Prompt:** Muy bien, para la sesión 43 vamos a hacer la implementación del caso de uso eliminarAsignatura... Permitir que un administrador pueda eliminar una asignatura existente... Backend: endpoint DELETE /asignaturas/:id... Frontend: Botón Eliminar, Confirmación previa, Refresco automático... respetar el diseño del prototipo.
 
 **Resultado:**
 1. **Extensión del Backend:** Actualizado `AsignaturasService` con el método `remove` y `AsignaturasController` con el endpoint `DELETE /asignaturas/:id`. Se aseguró la validación de existencia previa mediante Prisma.
@@ -572,9 +572,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se consolidó la gestión destructiva para el módulo de asignaturas, integrando mecanismos de seguridad visual y técnica coherentes con la arquitectura RUP del proyecto.
 
-## [04/06/2026 22:15] Sesión 43: Implementación de importarAsignaturas()
+## [04/06/2026 22:15] Sesión 44: Implementación de importarAsignaturas()
 
-**Prompt:** Muy bien, para la sesión 43 vamos a hacer la implementación del caso de uso importarAsignaturas... Permitir que un administrador pueda importar múltiples asignaturas desde un archivo... Backend: endpoint POST /asignaturas/import... Frontend: Botón Importar asignaturas, Selector de archivo CSV, Feedback de éxito/error... respetar el diseño de importarAsignaturas.html.
+**Prompt:** Muy bien, para la sesión 44 vamos a hacer la implementación del caso de uso importarAsignaturas... Permitir que un administrador pueda importar múltiples asignaturas desde un archivo... Backend: endpoint POST /asignaturas/import... Frontend: Botón Importar asignaturas, Selector de archivo CSV, Feedback de éxito/error... respetar el diseño de importarAsignaturas.html.
 
 **Resultado:**
 1. **Extensión del Backend:** Actualizado `AsignaturasService` con el método `createMany`, permitiendo la validación relacional con `Grado` (vía `gradoCodigo`) y la inserción masiva controlada. Se añadió el endpoint `POST /asignaturas/import` en `AsignaturasController`.
@@ -587,9 +587,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se completó satisfactoriamente la funcionalidad de carga masiva para el módulo de asignaturas, reforzando la integración relacional del sistema Davidario y manteniendo la consistencia con el patrón de importación de grados.
 
-## [04/06/2026 22:45] Sesión 44: Implementación de crearAsignatura()
+## [04/06/2026 22:45] Sesión 45: Implementación de crearAsignatura()
 
-**Prompt:** Muy bien, para la sesión 44 vamos a hacer la implementación del caso de uso crearAsignatura... permitir que un administrador pueda crear nuevas asignaturas desde la interfaz de gestión... Backend: Agregar endpoint POST /asignaturas... Frontend: Botón Crear Asignatura, Formulario, Validación de campos... respetar el diseño del prototipo.
+**Prompt:** Muy bien, para la sesión 45 vamos a hacer la implementación del caso de uso crearAsignatura... permitir que un administrador pueda crear nuevas asignaturas desde la interfaz de gestión... Backend: Agregar endpoint POST /asignaturas... Frontend: Botón Crear Asignatura, Formulario, Validación de campos... respetar el diseño del prototipo.
 
 **Resultado:**
 1. **Extensión del Backend:** Actualizado `AsignaturasService` con el método `create` , que incluye validación de unicidad de código, y `AsignaturasController` con el endpoint `POST /asignaturas` (retornando `201 Created` o `409 Conflict`).
@@ -602,9 +602,9 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se completó la funcionalidad de alta de entidades para el módulo de asignaturas, manteniendo la coherencia arquitectónica NestJS + React y el rigor metodológico RUP del proyecto.
 
-## [05/06/2026 23:00] Sesión 45: Implementación de editarAsignatura()
+## [05/06/2026 23:00] Sesión 46: Implementación de editarAsignatura()
 
-**Prompt:** Muy bien, para la sesión 45 vamos a hacer la implementación del caso de uso editarAsignatura... Permitir que un administrador pueda editar una asignatura existente... Backend: endpoint PUT /asignaturas/:id... Frontend: Botón Editar, Precarga de datos, Validación de campos... respetar el diseño del prototipo.
+**Prompt:** Muy bien, para la sesión 46 vamos a hacer la implementación del caso de uso editarAsignatura... Permitir que un administrador pueda editar una asignatura existente... Backend: endpoint PUT /asignaturas/:id... Frontend: Botón Editar, Precarga de datos, Validación de campos... respetar el diseño del prototipo.
 
 **Resultado:**
 1. **Extensión del Backend:** Actualizado `AsignaturasService` con el método `update` (validación de existencia y del grado asociado) y `AsignaturasController` con el endpoint `PUT /asignaturas/:id`. Se implementó el manejo de excepciones `404 NotFound` y `409 Conflict`.
@@ -616,3 +616,15 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Validación y Coherencia:** Se aseguró que la edición de asignaturas respete la inmutabilidad del código (readonly) y mantenga la integridad relacional con PostgreSQL.
 
 **Decisión:** Se consolidó la capacidad de modificación de asignaturas, completando el ciclo CRUD básico para este módulo y manteniendo la coherencia técnica y visual con el ramillete de grados.
+
+## [05/06/2026 17:45] Sesión 47: Diseño RUP - Rama Examenes
+
+**Prompt:** SESIÓN 47 – DISEÑO RUP – RAMA EXAMENES. Muy bien, para la sesión 47 vamos a hacer el diseño de la rama Examenes, específicamente los siguientes casos de uso: abrirExamenes(), eliminarExamen(), crearExamen(), editarExamen()... Diseñar completamente la rama Examenes siguiendo exactamente la metodología utilizada previamente para las ramas Grados y Asignaturas.
+
+**Resultado:**
+1. **Diseño de Casos de Uso (Rama Examenes):** Generados los artefactos técnicos (`README.md`, `clases-diseño.puml`, `secuencia-diseño.puml`) para los 4 casos de uso de la rama de Examenes dentro de `RUP/02-diseño/casos-uso/0-Administrador/`.
+2. **Especificación Frontend/Backend:** Se detallaron los componentes React (ExamenesListView, ExamenFormView, hooks como `useExamen`) y los controladores/servicios de NestJS (`ExamenesController`, `ExamenesService`), incluyendo el manejo de la relación con la entidad `Grado` (gradoId) y  `Asignatura` (asignaturaId).
+3. **Mapeo de Persistencia:** Se integró el esquema de base de datos PostgreSQL 16 utilizando Prisma, especificando consultas con `include` para recuperar la información del grado y asignatura asociada.
+4. **Actualización de Índices:** Reflejado el avance en `RUP/02-diseño/README.md` y `RUP/02-diseño/casos-uso/README.md`, manteniendo la trazabilidad incremental con la fase de análisis.
+
+**Decisión:** Se completó satisfactoriamente el diseño técnico de la rama Examenes, estableciendo los planos técnicos para la implementación de la gestión académica de materias bajo la arquitectura NestJS + React.

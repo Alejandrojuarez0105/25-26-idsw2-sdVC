@@ -41,6 +41,12 @@ Esta carpeta contiene el diseño detallado de los casos de uso, transformando la
 - [crearAsignatura](0-Administrador/crearAsignatura/README.md) - Diseño de registro.
 - [editarAsignatura](0-Administrador/editarAsignatura/README.md) - Diseño de modificación.
 
+#### Gestión de Exámenes
+- [abrirExamenes](0-Administrador/abrirExamenes/README.md) - Diseño de vista de listado.
+- [crearExamen](0-Administrador/crearExamen/README.md) - Diseño de registro.
+- [editarExamen](0-Administrador/editarExamen/README.md) - Diseño de modificación.
+- [eliminarExamen](0-Administrador/eliminarExamen/README.md) - Diseño de borrado.
+
 #### Procesos del sistema
 *(Vacío - En desarrollo)*
 

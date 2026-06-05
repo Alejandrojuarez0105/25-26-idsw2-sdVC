@@ -1,0 +1,28 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "ExamenListView\n(React)" as UI <<Component>>
+participant "useExamenes\n(Hook)" as Hook <<Hook>>
+participant "ExamenesService\n(Axios)" as FService <<Service>>
+participant "ExamenesController\n(NestJS)" as Controller <<Controller>>
+participant "ExamenesService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+Administrador -> UI : Accede a la gestión de exámenes
+UI -> Hook : fetchExamenes(query)
+Hook -> FService : getExamenes(query)
+FService -> Controller : GET /examenes?search=...&page=...
+Controller -> BService : findAll(query)
+
+BService -> DB : SELECT * FROM examen JOIN asignatura ...
+DB --> BService : [Exámenes + Asignatura]
+
+BService --> Controller : PaginatedExamenesDTO
+Controller --> FService : JSON Response
+FService --> Hook : PaginatedExamenesDTO
+Hook --> UI : Actualiza estado (exámenes)
+
+UI --> Administrador : Muestra calendario/listado de exámenes
+
+@enduml

@@ -1,0 +1,35 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "ExamenDeleteView\n(React)" as UI <<Component>>
+participant "useExamenDelete\n(Hook)" as Hook <<Hook>>
+participant "ExamenesService\n(Axios)" as FService <<Service>>
+participant "ExamenesController\n(NestJS)" as Controller <<Controller>>
+participant "ExamenesService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+== Confirmación de eliminación ==
+
+Administrador -> UI : Selecciona examen a eliminar
+Administrador -> UI : Click en "Eliminar"
+UI -> UI : Muestra confirmación
+Administrador -> UI : Confirma eliminación
+
+== Ejecución ==
+
+UI -> Hook : removeExamen(id)
+Hook -> FService : deleteExamen(id)
+FService -> Controller : DELETE /examenes/:id
+Controller -> BService : remove(id)
+
+BService -> DB : DELETE FROM "Examen" WHERE id = :id
+DB --> BService : OK
+
+BService --> Controller : OK
+Controller --> FService : JSON Response (200 OK)
+FService --> Hook : Success
+Hook --> UI : Redirigir / Mostrar éxito
+UI --> Administrador : Muestra confirmación de borrado
+
+@enduml

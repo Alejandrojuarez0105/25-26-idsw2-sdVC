@@ -1,0 +1,42 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "ExamenEditView\n(React)" as UI <<Component>>
+participant "useExamenEditForm\n(Hook)" as Hook <<Hook>>
+participant "ExamenesService\n(Axios)" as FService <<Service>>
+participant "ExamenesController\n(NestJS)" as Controller <<Controller>>
+participant "ExamenesService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+== Carga de Datos ==
+
+Administrador -> UI : Accede a editar examen
+UI -> Hook : loadExamen(id)
+Hook -> FService : getExamenById(id)
+FService -> Controller : GET /examenes/:id
+Controller -> BService : findOne(id)
+BService -> DB : SELECT * FROM "Examen" WHERE id = :id
+DB --> BService : Examen Data
+BService --> Controller : Examen Entity
+Controller --> FService : JSON Response
+FService --> Hook : Examen Object
+Hook --> UI : Rellena formulario
+
+== Edición ==
+
+Administrador -> UI : Modifica campos
+Administrador -> UI : Click en "Guardar"
+UI -> Hook : update(id, data)
+Hook -> FService : updateExamen(id, data)
+FService -> Controller : PUT /examenes/:id (JSON Body)
+Controller -> BService : update(id, dto)
+BService -> DB : UPDATE "Examen" SET ... WHERE id = :id
+DB --> BService : Examen actualizado
+BService --> Controller : Updated Examen Entity
+Controller --> FService : JSON Response (200 OK)
+FService --> Hook : Success
+Hook --> UI : Redirigir / Mostrar éxito
+UI --> Administrador : Muestra mensaje de éxito
+
+@enduml
