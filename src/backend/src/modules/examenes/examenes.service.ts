@@ -13,12 +13,60 @@ export class ExamenesService {
     });
   }
 
-  async remove(id: string) {
-    const examen = await this.prisma.examen.findUnique({
+  async findOne(id: string) {
+    return this.prisma.examen.findUnique({
+      where: { id },
+    });
+  }
+
+  async create(data: any) {
+    const existing = await this.prisma.examen.findUnique({
+      where: { codigo: data.codigo },
+    });
+
+    if (existing) {
+      throw new Error(`El código ${data.codigo} ya existe.`);
+    }
+
+    return this.prisma.examen.create({
+      data: {
+        codigo: data.codigo,
+        asignatura: data.asignatura,
+        fecha: new Date(data.fecha),
+        hora: data.hora,
+        aula: data.aula,
+        profesor: data.profesor,
+      },
+    });
+  }
+
+  async update(id: string, data: any) {
+    const existing = await this.prisma.examen.findUnique({
       where: { id },
     });
 
-    if (!examen) {
+    if (!existing) {
+      throw new Error(`Examen con ID ${id} no encontrado`);
+    }
+
+    return this.prisma.examen.update({
+      where: { id },
+      data: {
+        asignatura: data.asignatura,
+        fecha: data.fecha ? new Date(data.fecha) : undefined,
+        hora: data.hora,
+        aula: data.aula,
+        profesor: data.profesor,
+      },
+    });
+  }
+
+  async remove(id: string) {
+    const existing = await this.prisma.examen.findUnique({
+      where: { id },
+    });
+
+    if (!existing) {
       return null;
     }
 

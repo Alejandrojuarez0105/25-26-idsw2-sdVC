@@ -123,7 +123,7 @@ const ExamenesView: React.FC = () => {
                   <td style={{ padding: '12px 10px' }}>{examen.profesor}</td>
                   <td style={{ padding: '12px 10px' }}>
                     <button 
-                      onClick={() => handleAccionNoImplementada('Editar')}
+                      onClick={() => navigate(`/admin/examenes/editar/${examen.id}`)}
                       style={{ background: '#2d89ef', color: 'white', border: 'none', padding: '5px 15px', fontFamily: 'inherit', fontSize: '13px', cursor: 'pointer', borderRadius: '3px' }}
                     >
                       Editar
@@ -151,7 +151,7 @@ const ExamenesView: React.FC = () => {
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '25px', flexWrap: 'wrap' }}>
           <button 
-            onClick={() => handleAccionNoImplementada('Crear nuevo')}
+            onClick={() => navigate('/admin/examenes/crear')}
             style={{ minWidth: '180px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #999', fontWeight: 'bold', background: '#28a745', color: 'white' }}
           >
             ➕ Crear nuevo

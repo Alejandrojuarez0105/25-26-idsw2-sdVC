@@ -657,3 +657,36 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Seguridad y Control:** Se implementó el flujo de validación en cascada (Confirmación -> Advertencia Final -> Prompt "ELIMINAR") para garantizar borrados conscientes, siguiendo el patrón de gestión de entidades.
 
 **Decisión:** Se consolidó la gestión destructiva para el módulo de exámenes, integrando mecanismos de seguridad visual y técnica coherentes con la arquitectura RUP del proyecto Davidario.
+
+## [06/06/2026 14:20] Sesión 50: Implementación de crearExamen()
+
+**Prompt:** Muy bien, para la sesión 50 vamos a hacer la implementación del caso de uso crearExamen... Permitir que un administrador pueda crear nuevos exámenes desde la interfaz del sistema... La funcionalidad debe ser consistente con el comportamiento de crearGrado y crearAsignatura... No modificar estructura de base de datos... No crear nuevas tablas.
+
+**Resultado:**
+1. **Extensión del Backend:** Actualizado `ExamenesService` con el método `create` (incluyendo validación de unicidad de código) y `ExamenesController` con el endpoint `POST /examenes` (manejando `ConflictException`).
+2. **Desarrollo del Frontend:**
+   - Se actualizó `examenes.service.ts` con el método `create`.
+   - Se creó el componente `CrearExamenView.tsx` en `src/frontend/src/features/admin/examenes/`, replicando fielmente el formulario del prototipo `crearExamen.html` (Courier New, selects para aula/profesor/hora).
+   - Se integró la carga dinámica de asignaturas reales del sistema en el formulario de creación.
+   - Se actualizó `ExamenesView.tsx` para vincular el botón "➕ Crear nuevo" y se registró la ruta en `App.tsx`.
+3. **Documentación Técnica:** Creado `RUP/03-desarrollo/casos-uso/0-Administrador/crearExamen/README.md` y actualizados los índices globales de construcción.
+4. **Validación y Estabilidad:** Se implementaron validaciones de campos obligatorios, formato de código y restricción de fechas pasadas, manteniendo la integridad relacional y visual del ramillete de exámenes.
+
+**Decisión:** Se completó satisfactoriamente la funcionalidad de alta para el módulo de exámenes, permitiendo la programación de evaluaciones bajo los estándares institucionales del proyecto Davidario.
+
+## [06/06/2026 14:30] Sesión 51: Implementación de editarExamen()
+
+**Prompt:** Muy bien, para la sesión 51 vamos a hacer la implementación del caso de uso editarExamen... Permitir que un administrador pueda editar exámenes existentes desde la interfaz del sistema... La funcionalidad debe ser consistente con el comportamiento de editarGrado y editarAsignatura... No modificar estructura de base de datos... No crear nuevas tablas.
+
+**Resultado:**
+1. **Extensión del Backend:** Actualizado `ExamenesService` con los métodos `findOne` y `update`, y `ExamenesController` con los endpoints `GET /examenes/:id` y `PUT /examenes/:id`.
+2. **Desarrollo del Frontend:**
+   - Se actualizaron `examenes.service.ts` con los métodos de consulta y actualización.
+   - Se creó el componente `EditarExamenView.tsx` en `src/frontend/src/features/admin/examenes/`, replicando fielmente el diseño del prototipo `editarExamen.html` (campos sombreados, botones estilizados y lógica de "Continuar editando").
+   - Se implementó la precarga automática de datos y la validación de cambios pendientes.
+   - Se actualizó `ExamenesView.tsx` para vincular el botón "Editar" de cada fila con la nueva vista de edición.
+   - Se registró la ruta dinámica en `App.tsx`.
+3. **Documentación Técnica:** Creado `RUP/03-desarrollo/casos-uso/0-Administrador/editarExamen/README.md` y actualizados los índices globales de construcción.
+4. **Integridad del Sistema:** Se aseguró que la edición de exámenes respete la inmutabilidad del código identificador y mantenga la coherencia visual con el resto de la aplicación.
+
+**Decisión:** Se consolidó la capacidad de modificación de exámenes, completando el ciclo CRUD básico para este ramillete y manteniendo la estabilidad del sistema Davidario.

@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, HttpCode, HttpStatus, NotFoundException, Param } from '@nestjs/common';
+import { Body, ConflictException, Controller, Delete, Get, HttpCode, HttpStatus, NotFoundException, Param, Post, Put } from '@nestjs/common';
 import { ExamenesService } from './examenes.service';
 
 @Controller('examenes')
@@ -8,6 +8,41 @@ export class ExamenesController {
   @Get()
   async findAll() {
     return this.examenesService.findAll();
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id: string) {
+    const examen = await this.examenesService.findOne(id);
+    if (!examen) {
+      throw new NotFoundException(`Examen con ID ${id} no encontrado`);
+    }
+    return examen;
+  }
+
+  @Post()
+  async create(@Body() data: any) {
+    try {
+      return await this.examenesService.create(data);
+    } catch (err) {
+      if (err.message.includes('ya existe')) {
+        throw new ConflictException(err.message);
+      }
+      throw err;
+    }
+  }
+
+  @Put(':id')
+  async update(@Param('id') id: string, @Body() data: any) {
+    try {
+      const result = await this.examenesService.update(id, data);
+      if (!result) {
+        throw new NotFoundException(`Examen con ID ${id} no encontrado`);
+      }
+      return result;
+    } catch (err) {
+      if (err instanceof NotFoundException) throw err;
+      throw new ConflictException(err.message);
+    }
   }
 
   @Delete(':id')
