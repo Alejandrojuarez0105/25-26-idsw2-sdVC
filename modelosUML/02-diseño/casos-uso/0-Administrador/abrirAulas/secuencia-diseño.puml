@@ -1,0 +1,28 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "AulasListView\n(React)" as UI <<Component>>
+participant "useAulas\n(Hook)" as Hook <<Hook>>
+participant "AulasService\n(Axios)" as FService <<Service>>
+participant "AulasController\n(NestJS)" as Controller <<Controller>>
+participant "AulasService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+Administrador -> UI : Accede a la gestión de aulas
+UI -> Hook : fetchAulas(query)
+Hook -> FService : getAulas(query)
+FService -> Controller : GET /aulas?search=...&page=...
+Controller -> BService : findAll(query)
+
+BService -> DB : SELECT * FROM aula WHERE ... LIMIT ... OFFSET ...
+DB --> BService : Listado de Aulas + Total
+
+BService --> Controller : PaginatedAulasDTO
+Controller --> FService : JSON Response
+FService --> Hook : PaginatedAulasDTO
+Hook --> UI : Actualiza estado (aulas)
+
+UI --> Administrador : Muestra tabla de aulas
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "AulaCreateView\n(React)" as UI <<Component>>
+participant "useAulaForm\n(Hook)" as Hook <<Hook>>
+participant "AulasService\n(Axios)" as FService <<Service>>
+participant "AulasController\n(NestJS)" as Controller <<Controller>>
+participant "AulasService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+Administrador -> UI : Rellena formulario de nueva aula
+Administrador -> UI : Click en "Guardar"
+UI -> Hook : submit(data)
+Hook -> FService : createAula(data)
+FService -> Controller : POST /aulas (JSON Body)
+Controller -> BService : create(dto)
+BService -> BService : Validar código único
+BService -> DB : INSERT INTO "Aula" (...)
+DB --> BService : Aula Creada (with UUID)
+BService --> Controller : Aula Entity
+Controller --> FService : JSON Response (201 Created)
+FService --> Hook : Aula Object
+Hook --> UI : Redirigir a listado / Mostrar éxito
+UI --> Administrador : Muestra confirmación de creación
+@enduml

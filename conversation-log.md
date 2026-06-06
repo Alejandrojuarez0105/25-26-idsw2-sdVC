@@ -690,3 +690,15 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Integridad del Sistema:** Se aseguró que la edición de exámenes respete la inmutabilidad del código identificador y mantenga la coherencia visual con el resto de la aplicación.
 
 **Decisión:** Se consolidó la capacidad de modificación de exámenes, completando el ciclo CRUD básico para este ramillete y manteniendo la estabilidad del sistema Davidario.
+
+## [06/06/2026 21:30] Sesión 52: Diseño RUP - Rama Aulas
+
+**Prompt:** Continuaremos con la fase de diseño del sistema... se desarrollará el diseño completo de la rama correspondiente a: abrirAulas(), importarAulas(), eliminarAula(), crearAula(), editarAula()... adaptarlo completamente a la arquitectura y stack definido... React, NestJS, PostgreSQL 16.
+
+**Resultado:**
+1. **Diseño de Casos de Uso (Rama Aulas):** Generados los artefactos técnicos (`README.md` y `secuencia-diseño.puml`) para los 5 casos de uso de la rama de Aulas dentro de `RUP/02-diseño/casos-uso/0-Administrador/`.
+2. **Especificación Frontend/Backend:** Se detallaron los componentes React (AulasListView, AulaCreateView, AulaEditView, hooks y servicios) y los controladores/servicios de NestJS, siguiendo el patrón de arquitectura limpia.
+3. **Modelado UML:** Creados los diagramas de secuencia de diseño en `modelosUML/02-diseño/casos-uso/0-Administrador/` para cada funcionalidad, detallando el flujo entre capas y la interacción con Prisma.
+4. **Actualización de Índices:** Reflejado el avance en `RUP/02-diseño/README.md` y `RUP/02-diseño/casos-uso/README.md`, manteniendo la trazabilidad incremental con la fase de análisis.
+
+**Decisión:** Se completó satisfactoriamente el diseño técnico de la rama Aulas, estableciendo los planos técnicos para la futura implementación de la gestión de espacios físicos bajo el stack NestJS + React.
