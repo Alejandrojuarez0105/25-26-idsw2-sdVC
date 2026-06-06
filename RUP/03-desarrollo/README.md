@@ -58,6 +58,9 @@ A continuación se detallan las especificaciones de implementación por actor y 
 - [crearAsignatura](casos-uso/0-Administrador/crearAsignatura/README.md) - Implementación del alta de nuevas asignaturas vinculadas a grados.
 - [editarAsignatura](casos-uso/0-Administrador/editarAsignatura/README.md) - Implementación de la edición de asignaturas existentes.
 
+#### Gestión de Exámenes
+- [abrirExamenes](casos-uso/0-Administrador/abrirExamenes/README.md) - Implementación de la visualización del listado de exámenes.
+
 ## Referencias
 
 - [Guía de Configuración y Scaffolding](/RUP/02-diseño/configuración-proyecto.md)

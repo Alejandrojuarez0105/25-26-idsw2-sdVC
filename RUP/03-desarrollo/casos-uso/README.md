@@ -25,8 +25,8 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 - [crearAsignatura](0-Administrador/crearAsignatura/README.md) - Implementación del registro de nuevas asignaturas.
 - [editarAsignatura](0-Administrador/editarAsignatura/README.md) - Implementación de la edición de asignaturas existentes.
 
-#### Gestión de entidades
-*(En desarrollo)*
+#### Gestión de Exámenes
+- [abrirExamenes](0-Administrador/abrirExamenes/README.md) - Implementación de la vista de listado de exámenes.
 
 ### Actor Profesor
 *(En desarrollo)*

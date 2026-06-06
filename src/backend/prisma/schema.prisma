@@ -86,6 +86,18 @@ model Profesor {
   asignaturas  ProfesorAsignatura[]
 }
 
+model Examen {
+  id            String     @id @default(uuid()) @db.Uuid
+  codigo        String     @unique @db.VarChar(20)
+  asignatura    String     @db.VarChar(100)
+  fecha         DateTime   @db.Date
+  hora          String     @db.VarChar(5)
+  aula          String     @db.VarChar(50)
+  profesor      String     @db.VarChar(100)
+  
+  fechaCreacion DateTime   @default(now()) @db.Timestamptz
+}
+
 model ProfesorAsignatura {
   profesorId   String     @db.Uuid
   profesor     Profesor   @relation(fields: [profesorId], references: [id], onDelete: Cascade)

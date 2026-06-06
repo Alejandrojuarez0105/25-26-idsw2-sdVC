@@ -67,5 +67,24 @@ SELECT 'IYA023', 'Bases de Datos I', 6, id FROM "Grado" WHERE codigo = 'INF' UNI
 SELECT 'IYA025', 'Estructuras de Datos I', 6, id FROM "Grado" WHERE codigo = 'INF' UNION ALL
 SELECT 'IYA016', 'Expresión Gráfica', 6, id FROM "Grado" WHERE codigo = 'ADE'; -- Solo como ejemplo para el setup inicial
 
+-- 10. Tabla de Exámenes
+CREATE TABLE "Examen" (
+    "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    "codigo" VARCHAR(20) UNIQUE NOT NULL,
+    "asignatura" VARCHAR(100) NOT NULL,
+    "fecha" DATE NOT NULL,
+    "hora" VARCHAR(5) NOT NULL,
+    "aula" VARCHAR(50) NOT NULL,
+    "profesor" VARCHAR(100) NOT NULL,
+    "fechaCreacion" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 11. Datos Iniciales de Exámenes
+INSERT INTO "Examen"("codigo","asignatura","fecha","hora","aula","profesor")
+VALUES('EX001','Programación I','2026-01-15','08:30','-2.6','Manuel Masías'),
+('EX002','Bases de Datos I','2026-01-16','11:30','-2.2','Lázaro Hernández'),
+('EX003','Estructuras de Datos I','2026-01-19','14:30','-2.4','Manuel Masías'),
+('EX004','Expresión Gráfica','2026-01-20','17:30','1.2','Carlos Galiano');
+
 -- Nota: Los usuarios y grados iniciales se usan para pruebas locales.
 -- Los passwords deben mantenerse sincronizados con el script de seed de backend.
