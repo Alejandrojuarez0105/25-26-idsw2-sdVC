@@ -88,3 +88,20 @@ VALUES('EX001','Programación I','2026-01-15','08:30','-2.6','Manuel Masías'),
 
 -- Nota: Los usuarios y grados iniciales se usan para pruebas locales.
 -- Los passwords deben mantenerse sincronizados con el script de seed de backend.
+
+-- 12. Tabla de Aulas
+CREATE TABLE "Aula" (
+    "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    "codigo" VARCHAR(20) UNIQUE NOT NULL,
+    "nombre" VARCHAR(100) NOT NULL,
+    "capacidad" INT NOT NULL CHECK ("capacidad" > 0),
+    "ubicacion" VARCHAR(100) NOT NULL,
+    "fechaCreacion" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 13. Datos Iniciales de Aulas
+INSERT INTO "Aula"("codigo","nombre","capacidad","ubicacion")
+VALUES('-2.6','Laboratorio -2.6',30,'Planta -2'),
+('-2.2','Aula Magna',150,'Planta -2'),
+('-2.4','Aula Informática -2.4',40,'Planta -2'),
+('1.2','Aula 1.2',60,'Planta 1');

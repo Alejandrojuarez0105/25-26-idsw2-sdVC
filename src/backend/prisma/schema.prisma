@@ -131,3 +131,12 @@ model Nota {
 
   @@index([matriculaId])
 }
+
+model Aula {
+  id            String   @id @default(uuid()) @db.Uuid
+  codigo        String   @unique @db.VarChar(20)
+  nombre        String   @db.VarChar(100)
+  capacidad     Int
+  ubicacion     String   @db.VarChar(100)
+  fechaCreacion DateTime @default(now()) @db.Timestamptz
+}

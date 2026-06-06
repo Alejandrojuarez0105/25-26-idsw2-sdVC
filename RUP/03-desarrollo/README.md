@@ -64,6 +64,9 @@ A continuación se detallan las especificaciones de implementación por actor y 
 - [crearExamen](casos-uso/0-Administrador/crearExamen/README.md) - Implementación del alta de nuevos exámenes.
 - [editarExamen](casos-uso/0-Administrador/editarExamen/README.md) - Implementación de la edición de exámenes existentes.
 
+#### Gestión de Aulas
+- [abrirAulas](casos-uso/0-Administrador/abrirAulas/README.md) - Implementación de la visualización del listado de aulas.
+
 ## Referencias
 
 - [Guía de Configuración y Scaffolding](/RUP/02-diseño/configuración-proyecto.md)

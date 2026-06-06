@@ -31,6 +31,9 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 - [crearExamen](0-Administrador/crearExamen/README.md) - Implementación del registro de nuevos exámenes.
 - [editarExamen](0-Administrador/editarExamen/README.md) - Implementación de la edición de exámenes existentes.
 
+#### Gestión de Aulas
+- [abrirAulas](0-Administrador/abrirAulas/README.md) - Implementación de la vista de listado de aulas.
+
 ### Actor Profesor
 *(En desarrollo)*
 
