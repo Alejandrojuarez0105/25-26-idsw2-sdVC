@@ -1,0 +1,28 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "AlumnosListView\n(React)" as UI <<Component>>
+participant "useAlumnos\n(Hook)" as Hook <<Hook>>
+participant "AlumnosService\n(Axios)" as FService <<Service>>
+participant "AlumnosController\n(NestJS)" as Controller <<Controller>>
+participant "AlumnosService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+Administrador -> UI : Accede a la gestión de alumnos
+UI -> Hook : fetchAlumnos(query)
+Hook -> FService : getAlumnos(query)
+FService -> Controller : GET /alumnos?search=...&page=...
+Controller -> BService : findAll(query)
+
+BService -> DB : SELECT * FROM alumno WHERE ... LIMIT ... OFFSET ...
+DB --> BService : Listado de Alumnos + Total
+
+BService --> Controller : PaginatedAlumnosDTO
+Controller --> FService : JSON Response
+FService --> Hook : PaginatedAlumnosDTO
+Hook --> UI : Actualiza estado (alumnos)
+
+UI --> Administrador : Muestra tabla de alumnos
+
+@enduml

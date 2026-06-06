@@ -702,3 +702,15 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 4. **Actualización de Índices:** Reflejado el avance en `RUP/02-diseño/README.md` y `RUP/02-diseño/casos-uso/README.md`, manteniendo la trazabilidad incremental con la fase de análisis.
 
 **Decisión:** Se completó satisfactoriamente el diseño técnico de la rama Aulas, estableciendo los planos técnicos para la futura implementación de la gestión de espacios físicos bajo el stack NestJS + React.
+
+## [06/06/2026 23:07] Sesión 53: Diseño RUP - Rama Alumnos - Cambio de Agente (Gemini CLI -> Antigravity CLI)
+
+**Prompt:** Continuaremos con la fase de diseño del sistema siguiendo la transición desde la fase de análisis ya consolidada... En esta sesión se desarrollará el diseño completo de la rama correspondiente a: abrirAlumnos(), importarAlumnos(), eliminarAlumno(), crearAlumno(), editarAlumno()... Trabajar únicamente sobre la rama Alumnos en fase de diseño... Todos siguiendo el formato utilizado, pero adaptados al stack tecnológico del proyecto: React + NestJS + PostgreSQL 16.
+
+**Resultado:**
+1. **Diseño de Casos de Uso (Rama Alumnos):** Generados los artefactos técnicos (`README.md` y `secuencia-diseño.puml`) para los 5 casos de uso de la rama de Alumnos dentro de `RUP/02-diseño/casos-uso/0-Administrador/`.
+2. **Especificación Frontend/Backend:** Se detallaron los componentes React (AlumnosListView, CrearAlumnoView, EditarAlumnoView, hooks y servicios) y los controladores/servicios de NestJS.
+3. **Modelado UML:** Creados los diagramas de secuencia de diseño para cada funcionalidad, detallando el flujo entre capas y la persistencia en PostgreSQL con Prisma.
+4. **Actualización de Índices:** Reflejado el avance en `RUP/02-diseño/README.md` y `RUP/02-diseño/casos-uso/README.md`, manteniendo la trazabilidad con la fase de análisis.
+
+**Decisión:** Se completó satisfactoriamente el diseño técnico de la rama Alumnos, consolidando los requerimientos de gestión de estudiantes dentro de la arquitectura técnica establecida.

@@ -54,6 +54,13 @@ Esta carpeta contiene el diseño detallado de los casos de uso, transformando la
 - [crearAula](0-Administrador/crearAula/README.md) - Diseño de registro.
 - [editarAula](0-Administrador/editarAula/README.md) - Diseño de modificación.
 
+#### Gestión de Alumnos
+- [abrirAlumnos](0-Administrador/abrirAlumnos/README.md) - Diseño de vista de listado.
+- [importarAlumnos](0-Administrador/importarAlumnos/README.md) - Diseño de carga masiva.
+- [eliminarAlumno](0-Administrador/eliminarAlumno/README.md) - Diseño de borrado.
+- [crearAlumno](0-Administrador/crearAlumno/README.md) - Diseño de registro.
+- [editarAlumno](0-Administrador/editarAlumno/README.md) - Diseño de modificación.
+
 #### Procesos del sistema
 *(Vacío - En desarrollo)*
 

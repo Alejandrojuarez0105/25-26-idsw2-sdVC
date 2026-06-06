@@ -1,0 +1,31 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "ImportarAlumnosView\n(React)" as UI <<Component>>
+participant "useAlumnosImport\n(Hook)" as Hook <<Hook>>
+participant "AlumnosService\n(Axios)" as FService <<Service>>
+participant "AlumnosController\n(NestJS)" as Controller <<Controller>>
+participant "AlumnosService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+Administrador -> UI : Selecciona archivo (CSV/XLSX) y confirma
+UI -> Hook : importAlumnos(file)
+Hook -> FService : uploadAlumnos(file)
+FService -> Controller : POST /alumnos/importar (multipart)
+Controller -> BService : procesarImportacion(file)
+
+BService -> BService : Parsear y validar datos
+
+BService -> DB : BEGIN TRANSACTION
+BService -> DB : INSERT INTO alumno (batch)
+DB --> BService : Confirmación
+
+BService --> Controller : ImportacionResultDTO (Éxitos/Errores)
+Controller --> FService : JSON Response
+FService --> Hook : ImportacionResultDTO
+Hook --> UI : Resultado de importación
+
+UI --> Administrador : Muestra resumen de registros creados
+
+@enduml

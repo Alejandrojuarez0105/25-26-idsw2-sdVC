@@ -104,6 +104,11 @@ El diseño detallado de cada caso de uso se organiza en subcarpetas por actor de
 - [eliminarAula](casos-uso/0-Administrador/eliminarAula/README.md) - Diseño de borrado.
 - [crearAula](casos-uso/0-Administrador/crearAula/README.md) - Diseño de registro.
 - [editarAula](casos-uso/0-Administrador/editarAula/README.md) - Diseño de modificación.
+- [abrirAlumnos](casos-uso/0-Administrador/abrirAlumnos/README.md) - Diseño de vista de listado.
+- [importarAlumnos](casos-uso/0-Administrador/importarAlumnos/README.md) - Diseño de carga masiva.
+- [eliminarAlumno](casos-uso/0-Administrador/eliminarAlumno/README.md) - Diseño de borrado.
+- [crearAlumno](casos-uso/0-Administrador/crearAlumno/README.md) - Diseño de registro.
+- [editarAlumno](casos-uso/0-Administrador/editarAlumno/README.md) - Diseño de modificación.
 
 #### Procesos del sistema
 

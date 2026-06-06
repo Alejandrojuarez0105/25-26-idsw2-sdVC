@@ -1,0 +1,33 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "CrearAlumnoView\n(React)" as UI <<Component>>
+participant "AlumnosService\n(Axios)" as FService <<Service>>
+participant "AlumnosController\n(NestJS)" as Controller <<Controller>>
+participant "AlumnosService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+Administrador -> UI : Completa datos del alumno y envía
+UI -> UI : Validaciones frontend (React Hook Form)
+UI -> FService : createAlumno(CreateAlumnoDTO)
+FService -> Controller : POST /alumnos (body)
+Controller -> BService : create(dto)
+
+BService -> DB : SELECT 1 FROM alumno WHERE codigo = dto.codigo OR email = dto.email
+DB --> BService : Resultado
+
+alt Duplicado detectado
+    BService --> Controller : ConflictException
+    Controller --> FService : 409 Conflict
+    FService --> UI : Muestra error (Código o email ya existe)
+else Datos válidos
+    BService -> DB : INSERT INTO alumno (...) VALUES (...)
+    DB --> BService : Alumno creado
+    BService --> Controller : AlumnoDTO
+    Controller --> FService : 201 Created (AlumnoDTO)
+    FService --> UI : Éxito
+    UI --> Administrador : Redirige al listado
+end
+
+@enduml
