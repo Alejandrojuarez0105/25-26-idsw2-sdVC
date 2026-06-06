@@ -27,6 +27,7 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 
 #### Gestión de Exámenes
 - [abrirExamenes](0-Administrador/abrirExamenes/README.md) - Implementación de la vista de listado de exámenes.
+- [eliminarExamen](0-Administrador/eliminarExamen/README.md) - Implementación de la funcionalidad de borrado seguro.
 
 ### Actor Profesor
 *(En desarrollo)*

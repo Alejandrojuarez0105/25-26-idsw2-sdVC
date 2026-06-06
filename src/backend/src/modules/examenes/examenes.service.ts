@@ -12,4 +12,18 @@ export class ExamenesService {
       },
     });
   }
+
+  async remove(id: string) {
+    const examen = await this.prisma.examen.findUnique({
+      where: { id },
+    });
+
+    if (!examen) {
+      return null;
+    }
+
+    return this.prisma.examen.delete({
+      where: { id },
+    });
+  }
 }

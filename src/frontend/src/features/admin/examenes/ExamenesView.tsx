@@ -30,6 +30,15 @@ const ExamenesView: React.FC = () => {
     }
   };
 
+  const handleEliminar = () => {
+    if (seleccionados.length === 0) {
+      alert('⚠️ No hay ningún examen seleccionado para eliminar.');
+      return;
+    }
+    const examsToDelete = examenes.filter(e => seleccionados.includes(e.id));
+    navigate('/admin/examenes/eliminar', { state: { exams: examsToDelete } });
+  };
+
   const examenesFiltrados = examenes.filter(examen => 
     examen.codigo.toLowerCase().includes(busqueda.toLowerCase()) || 
     examen.asignatura.toLowerCase().includes(busqueda.toLowerCase()) ||
@@ -148,7 +157,7 @@ const ExamenesView: React.FC = () => {
             ➕ Crear nuevo
           </button>
           <button 
-            onClick={() => handleAccionNoImplementada('Eliminar seleccionado')}
+            onClick={handleEliminar}
             style={{ minWidth: '180px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #999', fontWeight: 'bold', background: '#dc3545', color: 'white' }}
           >
             🗑️ Eliminar seleccionado

@@ -60,6 +60,7 @@ A continuación se detallan las especificaciones de implementación por actor y 
 
 #### Gestión de Exámenes
 - [abrirExamenes](casos-uso/0-Administrador/abrirExamenes/README.md) - Implementación de la visualización del listado de exámenes.
+- [eliminarExamen](casos-uso/0-Administrador/eliminarExamen/README.md) - Implementación del borrado seguro de registros de exámenes.
 
 ## Referencias
 

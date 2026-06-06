@@ -15,4 +15,8 @@ export const examenesService = {
     const response = await api.get('/examenes');
     return response.data;
   },
+
+  async remove(id: string): Promise<void> {
+    await api.delete(`/examenes/${id}`);
+  },
 };

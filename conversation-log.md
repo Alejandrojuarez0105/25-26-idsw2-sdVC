@@ -305,7 +305,7 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 ## [01/06/2026 15:55] Sesión 24: Reorganización estructural - Actor Administrador
 
-**Prompt:** COMENZAMOS, Sesión 24: Reorganización estructural del análisis del actor Administrador... todos los casos de uso pertenecientes al actor Administrador deben agruparse dentro de una carpeta específica: RUP/01-analisis/casos-uso/0-Administrador/, modelosUML/01-analisis/casos-uso/0-Administrador/, images/01-analisis/casos-uso/0-Administrador/... actualizar todas las referencias afectadas...
+**Prompt:** COMENZAMOS, Sesión 24: Reorganización estructural del análisis del actor Administrador... todos los casos de uso pertenecientes al actor Administrador deben agrupas dentro de una carpeta específica: RUP/01-analisis/casos-uso/0-Administrador/, modelosUML/01-analisis/casos-uso/0-Administrador/, images/01-analisis/casos-uso/0-Administrador/... actualizar todas las referencias afectadas...
 
 **Resultado:**
 1. **Reubicación de artefactos:** Movidos los 39 casos de uso consolidados del actor Administrador a las nuevas subcarpetas `0-Administrador/` en las ramas de RUP, modelosUML e imágenes.
@@ -641,3 +641,19 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 5. **Documentación Técnica:** Creado el informe de desarrollo en `RUP/03-desarrollo/casos-uso/0-Administrador/abrirExamenes/README.md` y actualizados los índices globales.
 
 **Decisión:** Se completó satisfactoriamente la implementación del listado de exámenes, adaptando el modelo de datos a la estructura simplificada solicitada y manteniendo la coherencia técnica y visual con el resto del proyecto Davidario.
+
+## [06/06/2026 14:00] Sesión 49: Implementación de eliminarExamen()
+
+**Prompt:** Muy bien, para la sesión 49 vamos a hacer la implementación del caso de uso eliminarExamen... Permitir que un administrador pueda eliminar exámenes existentes desde la interfaz del sistema... La funcionalidad debe ser consistente con el comportamiento de eliminarGrado y eliminarAsignatura... No modificar estructura de base de datos... No crear nuevas tablas.
+
+**Resultado:**
+1. **Extensión del Backend:** Actualizado `ExamenesService` con el método `remove` y `ExamenesController` con el endpoint `DELETE /examenes/:id`. Se aseguró la validación de existencia previa mediante Prisma.
+2. **Implementación del Frontend:**
+   - Se actualizó `examenes.service.ts` con el método `remove`.
+   - Se creó el componente `EliminarExamenView.tsx` en `src/frontend/src/features/admin/examenes/`, replicando el diseño del prototipo `eliminarExamen.html` (cuadros de información técnica, advertencias de impacto y botones estilizados).
+   - Se actualizó `ExamenesView.tsx` para permitir la selección de exámenes y redirigir al flujo de confirmación.
+   - Configurada la ruta `/admin/examenes/eliminar` en `App.tsx`.
+3. **Documentación Técnica:** Creado `RUP/03-desarrollo/casos-uso/0-Administrador/eliminarExamen/README.md` y actualizados los índices globales de construcción.
+4. **Seguridad y Control:** Se implementó el flujo de validación en cascada (Confirmación -> Advertencia Final -> Prompt "ELIMINAR") para garantizar borrados conscientes, siguiendo el patrón de gestión de entidades.
+
+**Decisión:** Se consolidó la gestión destructiva para el módulo de exámenes, integrando mecanismos de seguridad visual y técnica coherentes con la arquitectura RUP del proyecto Davidario.
