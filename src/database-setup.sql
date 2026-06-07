@@ -105,3 +105,98 @@ VALUES('-2.6','Laboratorio -2.6',30,'Planta -2'),
 ('-2.2','Aula Magna',150,'Planta -2'),
 ('-2.4','Aula Informática -2.4',40,'Planta -2'),
 ('1.2','Aula 1.2',60,'Planta 1');
+
+-- 14. Tabla de Alumnos
+CREATE TABLE IF NOT EXISTS "Alumno" (
+    "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    "usuarioId" UUID NOT NULL UNIQUE REFERENCES "Usuario"("id") ON DELETE CASCADE,
+    "matricula" VARCHAR(20) UNIQUE NOT NULL,
+    "gradoId" UUID NOT NULL REFERENCES "Grado"("id")
+);
+
+-- 15. Datos Iniciales de Alumnos
+INSERT INTO "Usuario"
+("nombre", "apellido", "email", "password", "rol")
+VALUES
+(
+  'Ana',
+  'García López',
+  'ana.garcia@alumnos.uneatlantico.es',
+  '$2b$10$z0h.Nl4czmUaQRxlFaCReeNUbXNJ2Iq7rXRmg4.VU8jhD50jsKfFC',
+  'Alumno'
+)
+ON CONFLICT (email) DO NOTHING;
+
+INSERT INTO "Usuario"
+("nombre", "apellido", "email", "password", "rol")
+VALUES
+(
+  'Carlos',
+  'Martín Ruiz',
+  'carlos.martin@alumnos.uneatlantico.es',
+  '$2b$10$zkmRwRMCbv8VSNWUm0tQGeDJJkfk5JD.Dh5EuyyW0.oNDeM2z8gP6',
+  'Alumno'
+)
+ON CONFLICT (email) DO NOTHING;
+
+INSERT INTO "Usuario"
+("nombre", "apellido", "email", "password", "rol")
+VALUES
+(
+  'Laura',
+  'Sánchez Pérez',
+  'laura.sanchez@alumnos.uneatlantico.es',
+  '$2b$10$rzONB9TpBYIiDkmDuPmbsO7.3iGFwc6qyB64ZFvj5okow/J6fjGA.',
+  'Alumno'
+)
+ON CONFLICT (email) DO NOTHING;
+
+INSERT INTO "Usuario"
+("nombre", "apellido", "email", "password", "rol")
+VALUES
+(
+  'Alumno',
+  'Demo',
+  'alumno@davidario.edu',
+  '$2b$10$YSacLgcTppKBzdh.6nhnc.qIF96l9TiGJM.uO.l5mZR45wVmMZvzC',
+  'Alumno'
+)
+ON CONFLICT (email) DO NOTHING;
+
+-- 16. Colocar a los alumnos en los grados
+
+INSERT INTO "Alumno"
+("usuarioId", "matricula", "gradoId")
+VALUES
+(
+  '35f566f4-3795-4bdd-8f9b-3c6d5112306a',
+  'AL001234',
+  '0a0322e4-9c6b-4869-9e46-d20f69cd114c'
+);
+
+INSERT INTO "Alumno"
+("usuarioId", "matricula", "gradoId")
+VALUES
+(
+  '27041df9-9f8b-4319-ac61-7cf5a8f925ff',
+  'AL002345',
+  'b3cb524c-5837-446f-ba10-21b5cecebe7c'
+);
+
+INSERT INTO "Alumno"
+("usuarioId", "matricula", "gradoId")
+VALUES
+(
+  '6976f68d-e66f-4458-9c92-8c6f07f2dcc4',
+  'AL003456',
+  '0a0322e4-9c6b-4869-9e46-d20f69cd114c'
+);
+
+INSERT INTO "Alumno"
+("usuarioId", "matricula", "gradoId")
+VALUES
+(
+  '6ac3ad3a-f106-4396-80eb-6e4d69c6dc41',
+  'AL000001',
+  '0a0322e4-9c6b-4869-9e46-d20f69cd114c'
+);

@@ -38,6 +38,9 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 - [crearAula](0-Administrador/crearAula/README.md) - Implementación del registro de nuevas aulas.
 - [editarAula](0-Administrador/editarAula/README.md) - Implementación de la edición de aulas existentes.
 
+#### Gestión de Alumnos
+- [abrirAlumnos](0-Administrador/abrirAlumnos/README.md) - Implementación de la vista de listado de alumnos.
+
 ### Actor Profesor
 *(En desarrollo)*
 

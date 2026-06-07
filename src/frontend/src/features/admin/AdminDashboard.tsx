@@ -19,6 +19,8 @@ const AdminDashboard: React.FC = () => {
       navigate('/admin/examenes');
     } else if (modulo === 'aulas') {
       navigate('/admin/aulas');
+    } else if (modulo === 'alumnos') {
+      navigate('/admin/alumnos');
     } else {
       alert(`🔍 Navegando a: ${modulo}\n\nFuncionalidad en desarrollo.`);
     }

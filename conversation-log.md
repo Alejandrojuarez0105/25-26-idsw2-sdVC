@@ -787,5 +787,22 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se completó satisfactoriamente la implementación y documentación de la edición de aulas (`editarAula`), respetando la nomenclatura en español (`EditarAulaView`), gestionando las validaciones y el estado dentro de la vista, y manteniendo la consistencia visual y técnica del proyecto.
 
+## [07/06/2026 12:27] Sesión 59: Implementación de abrirAlumnos()
+
+**Prompt:** Muy bien, para la sesión 59, quiero que hagas la implementación y documentación del caso de uso abrirAlumnos.
+
+**Resultado:**
+1. **Backend — Módulo de Alumnos:** Creados `AlumnosService` (recuperando registros ordenados por matrícula e incluyendo relaciones de `usuario` y `grado`), `AlumnosController` (mapeando `GET /alumnos`), y `AlumnosModule` en NestJS, registrándolo dentro de `AppModule`.
+2. **Frontend — Componentes y Rutas:**
+   - Creado `alumnos.service.ts` definiendo la interfaz `Alumno` y la llamada HTTP Axios `findAll()`.
+   - Creado hook `useAlumnos` para gestionar el listado y sus estados (cargando, error, refresco).
+   - Desarrollado `AlumnosView.tsx` en `src/frontend/src/features/admin/alumnos/` que implementa la tabla con las columnas de Checkbox, Matrícula, Nombre, Email, Grado, Curso, y Acción (Editar) en estilo retro Courier New de Davidario, con filtros de búsqueda interactivos y control de alertas para funciones CRUD aún no implementadas.
+   - Modificado `AdminDashboard.tsx` para habilitar el enlace hacia alumnos y `App.tsx` para registrar la ruta `/admin/alumnos`.
+3. **Base de Datos:** Actualizado `database-setup.sql` al final agregando la creación de la tabla `Alumno` e inserts de prueba congruentes con el prototipo.
+4. **Documentación RUP:** Creado el informe técnico del caso de uso en `RUP/03-desarrollo/casos-uso/0-Administrador/abrirAlumnos/README.md` y actualizados los índices globales `RUP/03-desarrollo/README.md` y `RUP/03-desarrollo/casos-uso/README.md`.
+
+**Decisión:** Se implementó y documentó con éxito el caso de uso `abrirAlumnos` siguiendo las directrices del proyecto y el patrón de las ramas previas de administración, consolidando la visualización del listado de estudiantes en la plataforma Davidario.
+
+
 
 
