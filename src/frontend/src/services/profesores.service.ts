@@ -27,4 +27,9 @@ export const profesoresService = {
   async remove(id: string): Promise<void> {
     await api.delete(`/profesores/${id}`);
   },
+
+  async create(data: any): Promise<Profesor> {
+    const response = await api.post('/profesores', data);
+    return response.data;
+  },
 };

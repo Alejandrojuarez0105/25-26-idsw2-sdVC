@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, NotFoundException, Param, Post } from '@nestjs/common';
+import { Body, ConflictException, Controller, Delete, Get, HttpCode, HttpStatus, NotFoundException, Param, Post } from '@nestjs/common';
 import { ProfesoresService } from './profesores.service';
 
 @Controller('profesores')
@@ -8,6 +8,16 @@ export class ProfesoresController {
   @Get()
   findAll() {
     return this.profesoresService.findAll();
+  }
+
+  @Post()
+  @HttpCode(HttpStatus.CREATED)
+  async create(@Body() data: any) {
+    try {
+      return await this.profesoresService.create(data);
+    } catch (err: any) {
+      throw new ConflictException(err.message);
+    }
   }
 
   @Post('import')

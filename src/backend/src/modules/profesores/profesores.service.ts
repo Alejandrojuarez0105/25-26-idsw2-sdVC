@@ -20,6 +20,70 @@ export class ProfesoresService {
     });
   }
 
+  async create(data: any) {
+    if (!data.nombre || !data.email) {
+      throw new Error('Los campos nombre y email son obligatorios.');
+    }
+
+    const existingEmail = await this.prisma.usuario.findUnique({
+      where: { email: data.email },
+    });
+    if (existingEmail) {
+      throw new Error(`El email ${data.email} ya está registrado.`);
+    }
+
+    let codigo = (data.codigo || '').toString().trim().toUpperCase();
+    if (codigo) {
+      const existingCodigo = await this.prisma.profesor.findUnique({
+        where: { codigo },
+      });
+      if (existingCodigo) {
+        throw new Error(`El código ${codigo} ya existe.`);
+      }
+    } else {
+      const next = await this.getNextCodigoSequence();
+      codigo = `PROF${String(next).padStart(3, '0')}`;
+    }
+
+    const defaultPassword = await bcrypt.hash('profesor123', 10);
+
+    let nombre = '';
+    let apellido = '';
+    if (data.apellido) {
+      nombre = String(data.nombre).trim();
+      apellido = String(data.apellido).trim();
+    } else {
+      const parts = String(data.nombre).trim().split(/\s+/);
+      nombre = parts[0] || 'Profesor';
+      apellido = parts.slice(1).join(' ') || 'Demo';
+    }
+
+    const departamento = data.departamento ? String(data.departamento).trim() : null;
+
+    return this.prisma.$transaction(async (tx) => {
+      const usuario = await tx.usuario.create({
+        data: {
+          nombre,
+          apellido,
+          email: data.email,
+          password: defaultPassword,
+          rol: 'Profesor',
+          activo: true,
+        },
+      });
+
+      const profesor = await tx.profesor.create({
+        data: {
+          usuarioId: usuario.id,
+          codigo,
+          departamento,
+        },
+      });
+
+      return profesor;
+    });
+  }
+
   async findAll() {
     return this.prisma.profesor.findMany({
       include: {
