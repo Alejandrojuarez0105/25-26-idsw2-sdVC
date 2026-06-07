@@ -55,36 +55,43 @@ const ImportarAlumnosView: React.FC = () => {
       let nombre = '';
       let email = '';
       let grado = '';
+      let curso = '';
 
-      if (parts.length >= 5) {
-        // Format: Matricula, Nombre, Apellido, Email, Grado, [Curso]
-        // Check if index 3 is email to identify split name layout
-        const isEmail = (val: string) => val.includes('@');
-        
+      const isEmail = (val: string) => val.includes('@');
+
+      if (parts.length >= 6) {
+        // Format: Matricula, Nombre, Apellido, Email, Grado, Curso
+        matricula = parts[0];
+        nombre = `${parts[1]} ${parts[2]}`;
+        email = parts[3];
+        grado = parts[4];
+        curso = parts[5];
+      } else if (parts.length === 5) {
         if (isEmail(parts[3])) {
+          // Format: Matricula, Nombre, Apellido, Email, Grado
           matricula = parts[0];
           nombre = `${parts[1]} ${parts[2]}`;
           email = parts[3];
-          grado = parts[4] || '';
+          grado = parts[4];
         } else if (isEmail(parts[2])) {
-          // Format: Matricula, Nombre, Email, Grado, [Curso]
+          // Format: Matricula, Nombre, Email, Grado, Curso
           matricula = parts[0];
           nombre = parts[1];
           email = parts[2];
-          grado = parts[3] || '';
-        } else {
-          // Fallback guess
-          matricula = parts[0];
-          nombre = `${parts[1]} ${parts[2]}`;
-          email = parts[3] || '';
-          grado = parts[4] || '';
+          grado = parts[3];
+          curso = parts[4];
         }
-      } else if (parts.length >= 4) {
+      } else if (parts.length === 4) {
         // Format: Matricula, Nombre, Email, Grado
         matricula = parts[0];
         nombre = parts[1];
         email = parts[2];
         grado = parts[3];
+      }
+
+      if (curso) {
+        // Normalize course (e.g. 4 -> 4°, 4° -> 4°)
+        curso = curso.replace(/°/g, '') + '°';
       }
 
       return {
@@ -93,6 +100,7 @@ const ImportarAlumnosView: React.FC = () => {
         email,
         grado: grado,
         gradoCodigo: grado,
+        curso: curso || undefined
       };
     }).filter(item => item.matricula && item.nombre && item.email);
 

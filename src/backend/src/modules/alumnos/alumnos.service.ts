@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
 import { PrismaService } from '../../common/prisma.service';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AlumnosService {
@@ -32,6 +32,182 @@ export class AlumnosService {
     });
   }
 
+  async findOne(id: string) {
+    const alumno = await this.prisma.alumno.findUnique({
+      where: { id },
+      include: {
+        usuario: {
+          select: {
+            id: true,
+            nombre: true,
+            apellido: true,
+            email: true,
+            activo: true,
+          },
+        },
+        grado: {
+          select: {
+            id: true,
+            codigo: true,
+            nombre: true,
+          },
+        },
+        matriculas: {
+          include: {
+            asignatura: {
+              select: {
+                id: true,
+                codigo: true,
+                nombre: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    if (!alumno) {
+      throw new NotFoundException(`Alumno con ID ${id} no encontrado`);
+    }
+
+    return alumno;
+  }
+
+  async create(data: any) {
+    const existingMatricula = await this.prisma.alumno.findUnique({
+      where: { matricula: data.matricula },
+    });
+    if (existingMatricula) {
+      throw new Error(`La matrícula ${data.matricula} ya existe.`);
+    }
+
+    const existingEmail = await this.prisma.usuario.findUnique({
+      where: { email: data.email },
+    });
+    if (existingEmail) {
+      throw new Error(`El email ${data.email} ya está registrado.`);
+    }
+
+    const defaultPassword = await bcrypt.hash('alumno123', 10);
+    const parts = data.nombre.trim().split(/\s+/);
+    const nombre = parts[0] || 'Alumno';
+    const apellido = parts.slice(1).join(' ') || 'Demo';
+
+    return this.prisma.$transaction(async (tx) => {
+      const usuario = await tx.usuario.create({
+        data: {
+          nombre,
+          apellido,
+          email: data.email,
+          password: defaultPassword,
+          rol: 'Alumno',
+          activo: true,
+        },
+      });
+
+      const alumno = await tx.alumno.create({
+        data: {
+          usuarioId: usuario.id,
+          matricula: data.matricula,
+          gradoId: data.gradoId,
+          curso: data.curso || '1°',
+        },
+      });
+
+      if (data.asignaturas && Array.isArray(data.asignaturas)) {
+        for (const aid of data.asignaturas) {
+          await tx.matricula.create({
+            data: {
+              alumnoId: alumno.id,
+              asignaturaId: aid,
+            },
+          });
+        }
+      }
+
+      return alumno;
+    });
+  }
+
+  async update(id: string, data: any) {
+    const alumno = await this.prisma.alumno.findUnique({
+      where: { id },
+      include: { usuario: true },
+    });
+
+    if (!alumno) {
+      throw new NotFoundException(`Alumno con ID ${id} no encontrado`);
+    }
+
+    if (data.email && data.email !== alumno.usuario.email) {
+      const existingEmail = await this.prisma.usuario.findUnique({
+        where: { email: data.email },
+      });
+      if (existingEmail) {
+        throw new Error(`El email ${data.email} ya está en uso por otro usuario.`);
+      }
+    }
+
+    let nombre = alumno.usuario.nombre;
+    let apellido = alumno.usuario.apellido;
+    if (data.nombre) {
+      const parts = data.nombre.trim().split(/\s+/);
+      nombre = parts[0] || 'Alumno';
+      apellido = parts.slice(1).join(' ') || 'Demo';
+    }
+
+    return this.prisma.$transaction(async (tx) => {
+      await tx.usuario.update({
+        where: { id: alumno.usuarioId },
+        data: {
+          nombre,
+          apellido,
+          email: data.email,
+        },
+      });
+
+      const updatedAlumno = await tx.alumno.update({
+        where: { id },
+        data: {
+          gradoId: data.gradoId,
+          curso: data.curso,
+        },
+      });
+
+      if (data.asignaturas && Array.isArray(data.asignaturas)) {
+        const newAsignaturaIds: string[] = data.asignaturas;
+
+        const currentMatriculas = await tx.matricula.findMany({
+          where: { alumnoId: id },
+        });
+        const currentAsignaturaIds = currentMatriculas.map(m => m.asignaturaId);
+
+        const toDelete = currentMatriculas.filter(
+          m => !newAsignaturaIds.includes(m.asignaturaId)
+        );
+        for (const m of toDelete) {
+          await tx.matricula.delete({
+            where: { id: m.id },
+          });
+        }
+
+        const toAdd = newAsignaturaIds.filter(
+          aid => !currentAsignaturaIds.includes(aid)
+        );
+        for (const aid of toAdd) {
+          await tx.matricula.create({
+            data: {
+              alumnoId: id,
+              asignaturaId: aid,
+            },
+          });
+        }
+      }
+
+      return updatedAlumno;
+    });
+  }
+
   async remove(id: string): Promise<void> {
     const alumno = await this.prisma.alumno.findUnique({
       where: { id },
@@ -41,7 +217,6 @@ export class AlumnosService {
       throw new NotFoundException(`Alumno con ID ${id} no encontrado`);
     }
 
-    // Delete the Usuario, which will cascade delete the Alumno automatically
     await this.prisma.usuario.delete({
       where: { id: alumno.usuarioId },
     });
@@ -64,7 +239,6 @@ export class AlumnosService {
           continue;
         }
 
-        // 1. Check if student already exists by matricula
         const existingAlumno = await this.prisma.alumno.findUnique({
           where: { matricula: item.matricula },
         });
@@ -75,7 +249,6 @@ export class AlumnosService {
           continue;
         }
 
-        // 2. Check if user already exists by email
         const existingUsuario = await this.prisma.usuario.findUnique({
           where: { email: item.email },
         });
@@ -86,18 +259,16 @@ export class AlumnosService {
           continue;
         }
 
-        // 3. Find grade by code
         let grado = await this.prisma.grado.findFirst({
           where: {
             OR: [
-              { codigo: { equals: item.gradoCodigo, mode: 'insensitive' } },
-              { nombre: { contains: item.gradoCodigo, mode: 'insensitive' } }
+              { codigo: { equals: item.grado, mode: 'insensitive' } },
+              { nombre: { contains: item.grado, mode: 'insensitive' } }
             ]
           }
         });
 
         if (!grado) {
-          // Fallback to first grade
           grado = await this.prisma.grado.findFirst();
         }
 
@@ -107,12 +278,10 @@ export class AlumnosService {
           continue;
         }
 
-        // 4. Split full name
         const nameParts = item.nombre.trim().split(/\s+/);
         const nombre = nameParts[0] || 'Alumno';
         const apellido = nameParts.slice(1).join(' ') || 'Demo';
 
-        // 5. Create user and student in a Prisma transaction
         await this.prisma.$transaction(async (tx) => {
           const usuario = await tx.usuario.create({
             data: {
@@ -130,6 +299,7 @@ export class AlumnosService {
               usuarioId: usuario.id,
               matricula: item.matricula,
               gradoId: grado.id,
+              curso: item.curso || '1°',
             },
           });
         });

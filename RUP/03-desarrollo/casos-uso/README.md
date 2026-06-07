@@ -42,6 +42,8 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 - [abrirAlumnos](0-Administrador/abrirAlumnos/README.md) - Implementación de la vista de listado de alumnos.
 - [importarAlumnos](0-Administrador/importarAlumnos/README.md) - Implementación de la carga masiva de alumnos.
 - [eliminarAlumno](0-Administrador/eliminarAlumno/README.md) - Implementación de la funcionalidad de borrado seguro.
+- [crearAlumno](0-Administrador/crearAlumno/README.md) - Implementación del registro de nuevos alumnos.
+- [editarAlumno](0-Administrador/editarAlumno/README.md) - Implementación de la edición de alumnos existentes.
 
 ### Actor Profesor
 *(En desarrollo)*

@@ -821,6 +821,28 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se implementaron y documentaron satisfactoriamente los casos de uso `importarAlumnos` y `eliminarAlumno` dentro de la disciplina de implementación RUP, ampliando de forma consistente y robusta el CRUD básico de administración de estudiantes.
 
+## [07/06/2026 15:51] Sesión 61: Implementación de crearAlumno() y editarAlumno() (Corrección de errores)
+
+**Prompt:** Muy bien, para la sesión 61 quiero que realices la implementación y documentación de los casos de uso crearAlumno y editarAlumno por favor. Cuando termines recuerda modificar el conversation-log.md.
+
+**Resultado:**
+1. **Backend — Módulo de Alumnos:**
+   - Actualizado `AlumnosService` agregando el método `findOne(id)` (que incluye `usuario`, `grado` y `matriculas` con asignaturas), `create(data)` (que valida matrícula/email únicos, hashea claves por defecto y procesa la creación atómica transaccional y asignación de materias iniciales), y `update(id, data)` (que actualiza `Usuario`, `Alumno` y realiza un análisis de diferencias en matrículas para dar de alta/baja asignaturas en cascada).
+   - Actualizado `AlumnosController` agregando los endpoints `GET /alumnos/:id`, `POST /alumnos` y `PUT /alumnos/:id`.
+   - **Corrección de Error 1 (Curso incorrecto):** Se añadió el campo `curso` a la base de datos (modelo `Alumno` en `schema.prisma` y `database-setup.sql`) y se adaptaron los métodos `create`, `update` e `importAlumnos` para persistir el curso seleccionado por el usuario en lugar de calcularlo mediante una fórmula simulada.
+   - **Corrección de Error 2 (Error al Editar / Faltaban Tablas):** Se agregaron a `database-setup.sql` las definiciones de las tablas relacionales (`Matricula`, `Nota`, `Profesor` y `ProfesorAsignatura`) que se eliminaban en la cabecera pero no se volvían a crear, y se sincronizó la base de datos con `npx prisma db push` para que el método `findOne` no falle al incluir la relación `matriculas`.
+2. **Frontend — Componentes y Rutas:**
+   - Actualizado `alumnos.service.ts` con los métodos `findOne`, `create` y `update`.
+   - Creado `CrearAlumnoView.tsx` en `src/frontend/src/features/admin/alumnos/` que implementa el formulario con inputs para matrícula, nombre, email, y combos para grados y cursos, con validación local y confirmación.
+   - Creado `EditarAlumnoView.tsx` en `src/frontend/src/features/admin/alumnos/` que precarga la ficha del alumno (cargando el curso real guardado en la base de datos), permite la edición de sus datos y proporciona un gestor interactivo en caliente de asignaturas matriculadas (añadir y remover de forma dinámica). Se mejoró la captura del bloque `catch` para reportar el error exacto en consola e interfaz de usuario.
+   - Modificado `AlumnosView.tsx` vinculando el botón "➕ Crear nuevo" y los botones individuales "Editar" de las filas con las nuevas vistas, mostrando el curso real de la base de datos.
+   - Modificado `ImportarAlumnosView.tsx` mejorando el parser CSV para extraer y normalizar de forma robusta la columna `curso` y pasarla al backend.
+   - Modificado `App.tsx` registrando las rutas `/admin/alumnos/crear` y `/admin/alumnos/editar/:id`.
+3. **Documentación RUP:** Creados los informes técnicos del caso de uso en `RUP/03-desarrollo/casos-uso/0-Administrador/crearAlumno/README.md` y `RUP/03-desarrollo/casos-uso/0-Administrador/editarAlumno/README.md`. Actualizados los índices de construcción global y de casos de uso.
+
+**Decisión:** Se implementaron y documentaron de forma satisfactoria los casos de uso `crearAlumno` y `editarAlumno`, y se corrigieron los dos errores críticos (mapeo de curso y falta de tablas relacionales en la base de datos) para garantizar el correcto funcionamiento del módulo de alumnos y su alineación con el diseño RUP y la base de datos relacional PostgreSQL.
+
+
 
 
 

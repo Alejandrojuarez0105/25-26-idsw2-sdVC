@@ -73,6 +73,7 @@ model Alumno {
   matricula  String   @unique @db.VarChar(20)
   gradoId    String   @db.Uuid
   grado      Grado    @relation(fields: [gradoId], references: [id])
+  curso      String   @default("1°") @db.VarChar(10)
 
   matriculas Matricula[]
 }

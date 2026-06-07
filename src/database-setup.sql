@@ -82,13 +82,30 @@ CREATE TABLE "Asignatura" (
     "fechaCreacion" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- 9. Datos Iniciales de Asignaturas
--- Obtenemos IDs de grados para insertar (Esto es ilustrativo para manual, en setup real se usarían variables o subconsultas)
 INSERT INTO "Asignatura" ("codigo", "nombre", "creditos", "gradoId")
 SELECT 'IYA003', 'Programación I', 6, id FROM "Grado" WHERE codigo = 'INF' UNION ALL
 SELECT 'IYA023', 'Bases de Datos I', 6, id FROM "Grado" WHERE codigo = 'INF' UNION ALL
 SELECT 'IYA025', 'Estructuras de Datos I', 6, id FROM "Grado" WHERE codigo = 'INF' UNION ALL
-SELECT 'IYA016', 'Expresión Gráfica', 6, id FROM "Grado" WHERE codigo = 'ADE'; -- Solo como ejemplo para el setup inicial
+SELECT 'IYA016', 'Expresión Gráfica', 6, id FROM "Grado" WHERE codigo = 'ADE';
+
+-- 9b. Tabla de Profesores
+CREATE TABLE IF NOT EXISTS "Profesor" (
+    "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    "usuarioId" UUID UNIQUE NOT NULL REFERENCES "Usuario"("id") ON DELETE CASCADE,
+    "departamento" VARCHAR(100)
+);
+
+-- 9c. Tabla de ProfesorAsignatura (Relación N:M)
+CREATE TABLE IF NOT EXISTS "ProfesorAsignatura" (
+    "profesorId" UUID NOT NULL REFERENCES "Profesor"("id") ON DELETE CASCADE,
+    "asignaturaId" UUID NOT NULL REFERENCES "Asignatura"("id") ON DELETE CASCADE,
+    PRIMARY KEY ("profesorId", "asignaturaId")
+);
+
+-- Datos Iniciales de Profesores
+INSERT INTO "Profesor" ("usuarioId", "departamento")
+SELECT id, 'Informática' FROM "Usuario" WHERE email = 'profesor@davidario.edu';
+ -- Solo como ejemplo para el setup inicial
 
 -- 10. Tabla de Exámenes
 CREATE TABLE "Examen" (
@@ -134,8 +151,28 @@ CREATE TABLE IF NOT EXISTS "Alumno" (
     "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     "usuarioId" UUID NOT NULL UNIQUE REFERENCES "Usuario"("id") ON DELETE CASCADE,
     "matricula" VARCHAR(20) UNIQUE NOT NULL,
-    "gradoId" UUID NOT NULL REFERENCES "Grado"("id")
+    "gradoId" UUID NOT NULL REFERENCES "Grado"("id"),
+    "curso" VARCHAR(10) NOT NULL DEFAULT '1°'
 );
+
+-- 14b. Tabla de Matrículas
+CREATE TABLE IF NOT EXISTS "Matricula" (
+    "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    "alumnoId" UUID NOT NULL REFERENCES "Alumno"("id") ON DELETE CASCADE,
+    "asignaturaId" UUID NOT NULL REFERENCES "Asignatura"("id") ON DELETE CASCADE,
+    "fechaMatricula" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE ("alumnoId", "asignaturaId")
+);
+
+-- 14c. Tabla de Notas
+CREATE TABLE IF NOT EXISTS "Nota" (
+    "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    "matriculaId" UUID NOT NULL REFERENCES "Matricula"("id") ON DELETE CASCADE,
+    "nota" DECIMAL(4, 2) NOT NULL,
+    "convocatoria" VARCHAR(20),
+    "fechaRegistro" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 
 -- 15. Datos Iniciales de Alumnos
 INSERT INTO "Usuario"
@@ -204,22 +241,22 @@ WHERE "email" = 'alumno@davidario.edu';
 
 -- 16. Insertar alumnos
 
-INSERT INTO "Alumno" ("usuarioId", "matricula", "gradoId")
-SELECT u.id, 'AL001234', g.id
+INSERT INTO "Alumno" ("usuarioId", "matricula", "gradoId", "curso")
+SELECT u.id, 'AL001234', g.id, '1°'
 FROM "Usuario" u, "Grado" g
 WHERE u.email = 'ana.garcia@alumnos.uneatlantico.es' AND g.codigo = 'INF';
 
-INSERT INTO "Alumno" ("usuarioId", "matricula", "gradoId")
-SELECT u.id, 'AL002345', g.id
+INSERT INTO "Alumno" ("usuarioId", "matricula", "gradoId", "curso")
+SELECT u.id, 'AL002345', g.id, '2°'
 FROM "Usuario" u, "Grado" g
 WHERE u.email = 'carlos.martin@alumnos.uneatlantico.es' AND g.codigo = 'ADE';
 
-INSERT INTO "Alumno" ("usuarioId", "matricula", "gradoId")
-SELECT u.id, 'AL003456', g.id
+INSERT INTO "Alumno" ("usuarioId", "matricula", "gradoId", "curso")
+SELECT u.id, 'AL003456', g.id, '3°'
 FROM "Usuario" u, "Grado" g
 WHERE u.email = 'laura.sanchez@alumnos.uneatlantico.es' AND g.codigo = 'INF';
 
-INSERT INTO "Alumno" ("usuarioId", "matricula", "gradoId")
-SELECT u.id, 'AL000001', g.id
+INSERT INTO "Alumno" ("usuarioId", "matricula", "gradoId", "curso")
+SELECT u.id, 'AL000001', g.id, '4°'
 FROM "Usuario" u, "Grado" g
 WHERE u.email = 'alumno@davidario.edu' AND g.codigo = 'INF';

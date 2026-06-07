@@ -122,10 +122,10 @@ const AlumnosView: React.FC = () => {
                   <td style={{ padding: '12px 10px' }}>{`${alumno.usuario?.nombre || ''} ${alumno.usuario?.apellido || ''}`}</td>
                   <td style={{ padding: '12px 10px' }}>{alumno.usuario?.email}</td>
                   <td style={{ padding: '12px 10px' }}>{alumno.grado?.codigo || 'N/A'}</td>
-                  <td style={{ padding: '12px 10px', textAlign: 'center' }}>{getCurso(alumno.matricula)}</td>
+                  <td style={{ padding: '12px 10px', textAlign: 'center' }}>{alumno.curso || getCurso(alumno.matricula)}</td>
                   <td style={{ padding: '12px 10px' }}>
                     <button 
-                      onClick={() => handleAccionNoImplementada('Editar alumno')}
+                      onClick={() => navigate(`/admin/alumnos/editar/${alumno.id}`)}
                       style={{ background: '#2d89ef', color: 'white', border: 'none', padding: '5px 15px', fontFamily: 'inherit', fontSize: '13px', cursor: 'pointer', borderRadius: '3px' }}
                     >
                       Editar
@@ -153,7 +153,7 @@ const AlumnosView: React.FC = () => {
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '25px', flexWrap: 'wrap' }}>
           <button 
-            onClick={() => handleAccionNoImplementada('Crear alumno')}
+            onClick={() => navigate('/admin/alumnos/crear')}
             style={{ minWidth: '180px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #999', fontWeight: 'bold', background: '#28a745', color: 'white' }}
           >
             ➕ Crear nuevo
