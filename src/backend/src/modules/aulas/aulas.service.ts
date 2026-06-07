@@ -12,4 +12,41 @@ export class AulasService {
       },
     });
   }
+
+  async createMany(data: any[]) {
+    const results = {
+      success: 0,
+      failed: 0,
+      errors: [] as string[],
+    };
+
+    for (const item of data) {
+      try {
+        const existing = await this.prisma.aula.findUnique({
+          where: { codigo: item.codigo },
+        });
+
+        if (existing) {
+          results.failed++;
+          results.errors.push(`El código ${item.codigo} ya existe.`);
+          continue;
+        }
+
+        await this.prisma.aula.create({
+          data: {
+            codigo: item.codigo,
+            nombre: item.nombre,
+            capacidad: parseInt(item.capacidad) || 0,
+            ubicacion: item.ubicacion || '',
+          },
+        });
+        results.success++;
+      } catch (err: any) {
+        results.failed++;
+        results.errors.push(`Error en ${item.codigo}: ${err.message}`);
+      }
+    }
+
+    return results;
+  }
 }

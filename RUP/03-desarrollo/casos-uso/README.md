@@ -33,6 +33,7 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 
 #### Gestión de Aulas
 - [abrirAulas](0-Administrador/abrirAulas/README.md) - Implementación de la vista de listado de aulas.
+- [importarAulas](0-Administrador/importarAulas/README.md) - Implementación de la carga masiva de aulas.
 
 ### Actor Profesor
 *(En desarrollo)*
