@@ -69,6 +69,31 @@ export class AulasService {
     return results;
   }
 
+  async findOne(id: string) {
+    return this.prisma.aula.findUnique({
+      where: { id },
+    });
+  }
+
+  async update(id: string, data: any) {
+    const existing = await this.prisma.aula.findUnique({
+      where: { id },
+    });
+
+    if (!existing) {
+      throw new Error(`Aula con ID ${id} no encontrada.`);
+    }
+
+    return this.prisma.aula.update({
+      where: { id },
+      data: {
+        nombre: data.nombre,
+        capacidad: parseInt(data.capacidad) || 0,
+        ubicacion: data.ubicacion || '',
+      },
+    });
+  }
+
   async remove(id: string): Promise<void> {
     const aula = await this.prisma.aula.findUnique({ where: { id } });
     if (!aula) {

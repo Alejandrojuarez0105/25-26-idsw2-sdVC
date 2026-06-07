@@ -36,6 +36,7 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 - [importarAulas](0-Administrador/importarAulas/README.md) - Implementación de la carga masiva de aulas.
 - [eliminarAula](0-Administrador/eliminarAula/README.md) - Implementación de la funcionalidad de borrado seguro.
 - [crearAula](0-Administrador/crearAula/README.md) - Implementación del registro de nuevas aulas.
+- [editarAula](0-Administrador/editarAula/README.md) - Implementación de la edición de aulas existentes.
 
 ### Actor Profesor
 *(En desarrollo)*

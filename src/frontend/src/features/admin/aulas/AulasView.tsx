@@ -105,7 +105,7 @@ const AulasView: React.FC = () => {
                   <td style={{ padding: '12px 10px' }}>{aula.ubicacion}</td>
                   <td style={{ padding: '12px 10px' }}>
                     <button 
-                      onClick={() => handleAccionNoImplementada('editar')}
+                      onClick={() => navigate(`/admin/aulas/editar/${aula.id}`)}
                       style={{ background: '#2d89ef', color: 'white', border: 'none', padding: '5px 15px', fontFamily: 'inherit', fontSize: '13px', cursor: 'pointer', borderRadius: '3px' }}
                     >
                       Editar

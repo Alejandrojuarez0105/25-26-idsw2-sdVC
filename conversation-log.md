@@ -773,4 +773,19 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se completó satisfactoriamente la implementación y documentación de la creación de aulas (`crearAula`), logrando consistencia con el diseño del caso de uso, aplicando la nomenclatura en español (`CrearAulaView`) y manteniendo la simplicidad del patrón de hooks existente.
 
+## [07/06/2026 11:42] Sesión 58: Implementación de editarAula()
+
+**Prompt:** Muy bien, para la sesión 58, quiero que hagas la implementación y documentación del caso de uso editarAula.
+
+**Resultado:**
+1. **Backend — AulasController:** Añadidos los endpoints `@Get(':id')` para la recuperación de una sola aula y `@Put(':id')` para la actualización de los datos de un aula, importando `Put` y `NotFoundException` de `@nestjs/common`.
+2. **Backend — AulasService:** Implementados los métodos `findOne(id)` y `update(id, data)`. El método `update` valida la existencia previa del aula y modifica sus campos (`nombre`, `capacidad` y `ubicacion`) a través de Prisma en PostgreSQL.
+3. **Frontend — EditarAulaView Component:** Creado el componente visual del formulario en `src/frontend/src/features/admin/aulas/EditarAulaView.tsx` siguiendo el estilo Courier New retro de Davidario, con campos de Código deshabilitados/readonly (`codigo-disabled`), control de cambios `hayCambios()`, confirmaciones nativas antes de guardar, botón "📌 Continuar editando" y alertas de confirmación.
+4. **Frontend — aulas.service.ts:** Añadidos los métodos `findOne(id)` y `update(id, data)` al objeto de servicio para realizar las peticiones HTTP correspondientes.
+5. **Frontend — AulasView.tsx & App.tsx:** Conectado el botón "Editar" de cada fila para navegar a `/admin/aulas/editar/:id` y registrada la ruta dinámica en el router principal de React.
+6. **Documentación RUP:** Generado el README técnico detallado en `RUP/03-desarrollo/casos-uso/0-Administrador/editarAula/README.md` y actualizados los índices de desarrollo en `RUP/03-desarrollo/README.md` y `RUP/03-desarrollo/casos-uso/README.md`.
+
+**Decisión:** Se completó satisfactoriamente la implementación y documentación de la edición de aulas (`editarAula`), respetando la nomenclatura en español (`EditarAulaView`), gestionando las validaciones y el estado dentro de la vista, y manteniendo la consistencia visual y técnica del proyecto.
+
+
 
