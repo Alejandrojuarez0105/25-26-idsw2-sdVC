@@ -8,9 +8,20 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- 3. Tipos ENUM
-CREATE TYPE rol_usuario AS ENUM ('Admin', 'Profesor', 'Alumno');
+DROP TYPE IF EXISTS "RolUsuario" CASCADE;
+DROP TYPE IF EXISTS rol_usuario CASCADE;
+CREATE TYPE "RolUsuario" AS ENUM ('Admin', 'Profesor', 'Alumno');
 
 -- Limpieza (Opcional, para ejecución limpia)
+DROP TABLE IF EXISTS "Nota" CASCADE;
+DROP TABLE IF EXISTS "Matricula" CASCADE;
+DROP TABLE IF EXISTS "ProfesorAsignatura" CASCADE;
+DROP TABLE IF EXISTS "Alumno" CASCADE;
+DROP TABLE IF EXISTS "Profesor" CASCADE;
+DROP TABLE IF EXISTS "Asignatura" CASCADE;
+DROP TABLE IF EXISTS "Examen" CASCADE;
+DROP TABLE IF EXISTS "Aula" CASCADE;
+DROP TABLE IF EXISTS "CursoAcademico" CASCADE;
 DROP TABLE IF EXISTS "Usuario" CASCADE;
 DROP TABLE IF EXISTS "Grado" CASCADE;
 
@@ -21,7 +32,7 @@ CREATE TABLE "Usuario" (
     "apellido" VARCHAR(50) NOT NULL,
     "email" VARCHAR(100) UNIQUE NOT NULL,
     "password" VARCHAR(255) NOT NULL,
-    "rol" rol_usuario NOT NULL,
+    "rol" "RolUsuario" NOT NULL,
     "activo" BOOLEAN NOT NULL DEFAULT TRUE,
     "fechaCreacion" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -32,6 +43,18 @@ VALUES
 ('Administrador', 'Sistema', 'admin@davidario.edu', '$2b$10$KIXQ1Q9l9y0z2z8b7h6Y7e9pQG9v1Q8kG0mZxQJQZ8q8q8q8q8q8q', 'Admin'),
 ('Profesor', 'Demo', 'profesor@davidario.edu', '$2b$10$Zx8mQ9pL2k8v7n6b5c4d3e2r1t0y9u8i7o6p5a4s3d2f1g0h9j8k7', 'Profesor'),
 ('Alumno', 'Demo', 'alumno@davidario.edu', '$2b$10$A1b2C3d4E5f6G7h8I9j0K1l2M3n4O5p6Q7r8S9t0U1v2W3x4Y5z6', 'Alumno');
+
+UPDATE "Usuario"
+SET "password" = '$2b$10$e.3wJxLWkl99ENbCV7/QK.ZN5A9EN4hMnhrcctM.mPF5GFEKM8aMy'
+WHERE "email" = 'admin@davidario.edu';
+
+UPDATE "Usuario"
+SET "password" = '$2b$10$S64kLshjsy/hR4L9CZ0yFeoxjbXdH.xiKUkHGxtQ.8fnsu3Q/l3y.'
+WHERE "email" = 'profesor@davidario.edu';
+
+UPDATE "Usuario"
+SET "password" = '$2b$10$PmyAFmUANTVN6COebCjheeFe/DzV7tuk1aM8.YA85HE925Q2dPtqq'
+WHERE "email" = 'alumno@davidario.edu';
 
 -- 6. Tabla de Grados
 CREATE TABLE "Grado" (
@@ -163,40 +186,40 @@ VALUES
 )
 ON CONFLICT (email) DO NOTHING;
 
--- 16. Colocar a los alumnos en los grados
+UPDATE "Usuario"
+SET "password" = '$2b$10$engewKhyK1uBwfDigkNir.GgJDKIjmZtKllXEhN7RU8EwhfzrEJcK'
+WHERE "email" = 'ana.garcia@alumnos.uneatlantico.es';
 
-INSERT INTO "Alumno"
-("usuarioId", "matricula", "gradoId")
-VALUES
-(
-  '35f566f4-3795-4bdd-8f9b-3c6d5112306a',
-  'AL001234',
-  '0a0322e4-9c6b-4869-9e46-d20f69cd114c'
-);
+UPDATE "Usuario"
+SET "password" = '$2b$10$1IE3ZPGxH5NEkL1/xEpYkudIr0n0O8BXmbT97yKAdzIVKVF7/M0mO'
+WHERE "email" = 'carlos.martin@alumnos.uneatlantico.es';
 
-INSERT INTO "Alumno"
-("usuarioId", "matricula", "gradoId")
-VALUES
-(
-  '27041df9-9f8b-4319-ac61-7cf5a8f925ff',
-  'AL002345',
-  'b3cb524c-5837-446f-ba10-21b5cecebe7c'
-);
+UPDATE "Usuario"
+SET "password" = '$2b$10$17T8rvklhmb3drktB/VL0ex0SS5rOe6CWxiyUTppBCpWSp/y8gP/G'
+WHERE "email" = 'laura.sanchez@alumnos.uneatlantico.es';
 
-INSERT INTO "Alumno"
-("usuarioId", "matricula", "gradoId")
-VALUES
-(
-  '6976f68d-e66f-4458-9c92-8c6f07f2dcc4',
-  'AL003456',
-  '0a0322e4-9c6b-4869-9e46-d20f69cd114c'
-);
+UPDATE "Usuario"
+SET "password" = '$2b$10$3/HJWpVXUCv13nUcFBq6Deo7p7Y6ULjtjpHVS8zj5dIyfidK7xDmy'
+WHERE "email" = 'alumno@davidario.edu';
 
-INSERT INTO "Alumno"
-("usuarioId", "matricula", "gradoId")
-VALUES
-(
-  '6ac3ad3a-f106-4396-80eb-6e4d69c6dc41',
-  'AL000001',
-  '0a0322e4-9c6b-4869-9e46-d20f69cd114c'
-);
+-- 16. Insertar alumnos
+
+INSERT INTO "Alumno" ("usuarioId", "matricula", "gradoId")
+SELECT u.id, 'AL001234', g.id
+FROM "Usuario" u, "Grado" g
+WHERE u.email = 'ana.garcia@alumnos.uneatlantico.es' AND g.codigo = 'INF';
+
+INSERT INTO "Alumno" ("usuarioId", "matricula", "gradoId")
+SELECT u.id, 'AL002345', g.id
+FROM "Usuario" u, "Grado" g
+WHERE u.email = 'carlos.martin@alumnos.uneatlantico.es' AND g.codigo = 'ADE';
+
+INSERT INTO "Alumno" ("usuarioId", "matricula", "gradoId")
+SELECT u.id, 'AL003456', g.id
+FROM "Usuario" u, "Grado" g
+WHERE u.email = 'laura.sanchez@alumnos.uneatlantico.es' AND g.codigo = 'INF';
+
+INSERT INTO "Alumno" ("usuarioId", "matricula", "gradoId")
+SELECT u.id, 'AL000001', g.id
+FROM "Usuario" u, "Grado" g
+WHERE u.email = 'alumno@davidario.edu' AND g.codigo = 'INF';

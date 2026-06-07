@@ -803,6 +803,25 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se implementó y documentó con éxito el caso de uso `abrirAlumnos` siguiendo las directrices del proyecto y el patrón de las ramas previas de administración, consolidando la visualización del listado de estudiantes en la plataforma Davidario.
 
+## [07/06/2026 14:10] Sesión 60: Implementación de importarAlumnos() y eliminarAlumno()
+
+**Prompt:** Así es, para la sesión 60 quiero que hagas el ramillete de Alumnos, para ir paso a paso, para la sesión 60 quiero que hagas únicamente la implementación y documentación de los casos de uso importarAlumnos y eliminarAlumno. Cuando termines, modifica el conversation-log.md.
+
+**Resultado:**
+1. **Backend — Módulo de Alumnos:**
+   - Actualizado `AlumnosService` con los métodos `remove(id)` (que elimina el `Usuario` asociado al alumno desencadenando el borrado en cascada del perfil `Alumno`) y el método `importAlumnos(data)` (que realiza la carga masiva en una transacción prisma `$transaction`, encripta contraseñas por defecto con `bcrypt`, e identifica grados relacionales de forma tolerante a mayúsculas/minúsculas).
+   - Actualizado `AlumnosController` con los endpoints `@Post('import')` y `@Delete(':id')`.
+2. **Frontend — Componentes y Rutas:**
+   - Actualizado `alumnos.service.ts` con los métodos `importAlumnos` y `remove`.
+   - Creado `ImportarAlumnosView.tsx` en `src/frontend/src/features/admin/alumnos/` que implementa la interfaz de carga de archivos CSV con parser local (`FileReader`), validaciones de peso/extensión y opciones de importación configurables. Se refinó el parser para auto-detectar la presencia de cabeceras y admitir formatos con nombre/apellido separados o unificados.
+   - Creado `EliminarAlumnoView.tsx` en `src/frontend/src/features/admin/alumnos/` que presenta un desglose detallado de los expedientes a eliminar, paneles informativos de advertencia y un triple flujo secuencial de confirmación nativa.
+   - Modificado `AlumnosView.tsx` enlazando los botones de "Importar alumnos" y "Eliminar seleccionado" a sus respectivas vistas.
+   - Modificado `App.tsx` registrando las rutas `/admin/alumnos/eliminar` y `/admin/alumnos/importar`.
+3. **Documentación RUP:** Creados los informes técnicos del caso de uso en `RUP/03-desarrollo/casos-uso/0-Administrador/importarAlumnos/README.md` y `RUP/03-desarrollo/casos-uso/0-Administrador/eliminarAlumno/README.md`. Actualizados los índices de construcción global y de casos de uso.
+
+**Decisión:** Se implementaron y documentaron satisfactoriamente los casos de uso `importarAlumnos` y `eliminarAlumno` dentro de la disciplina de implementación RUP, ampliando de forma consistente y robusta el CRUD básico de administración de estudiantes.
+
+
 
 
 

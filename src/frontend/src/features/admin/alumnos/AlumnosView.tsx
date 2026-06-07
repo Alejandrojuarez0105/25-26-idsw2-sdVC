@@ -12,6 +12,19 @@ const AlumnosView: React.FC = () => {
     navigate('/admin');
   };
 
+  const handleEliminar = () => {
+    if (seleccionados.length === 0) {
+      alert('⚠️ Seleccione al menos un alumno para eliminar.');
+      return;
+    }
+    const alumnosSeleccionados = alumnos.filter(a => seleccionados.includes(a.id));
+    navigate('/admin/alumnos/eliminar', { state: { alumnos: alumnosSeleccionados } });
+  };
+
+  const handleImportar = () => {
+    navigate('/admin/alumnos/importar');
+  };
+
   const handleAccionNoImplementada = (accion: string) => {
     alert(`⚠️ La funcionalidad de "${accion}" no está implementada en esta sesión.`);
   };
@@ -146,13 +159,13 @@ const AlumnosView: React.FC = () => {
             ➕ Crear nuevo
           </button>
           <button 
-            onClick={() => handleAccionNoImplementada('Importar alumnos')}
+            onClick={handleImportar}
             style={{ minWidth: '180px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #999', fontWeight: 'bold', background: '#2d89ef', color: 'white' }}
           >
             📎 Importar alumnos
           </button>
           <button
-            onClick={() => handleAccionNoImplementada('Eliminar alumno')}
+            onClick={handleEliminar}
             style={{ minWidth: '180px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #999', fontWeight: 'bold', background: '#dc3545', color: 'white' }}
           >
             🗑️ Eliminar seleccionado

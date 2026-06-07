@@ -25,6 +25,8 @@ import ImportarAulasView from './features/admin/aulas/ImportarAulasView';
 import CrearAulaView from './features/admin/aulas/CrearAulaView';
 import EditarAulaView from './features/admin/aulas/EditarAulaView';
 import AlumnosView from './features/admin/alumnos/AlumnosView';
+import ImportarAlumnosView from './features/admin/alumnos/ImportarAlumnosView';
+import EliminarAlumnoView from './features/admin/alumnos/EliminarAlumnoView';
 
 const App: React.FC = () => {
   return (
@@ -53,6 +55,8 @@ const App: React.FC = () => {
         <Route path="/admin/aulas/crear" element={<CrearAulaView />} />
         <Route path="/admin/aulas/editar/:id" element={<EditarAulaView />} />
         <Route path="/admin/alumnos" element={<AlumnosView />} />
+        <Route path="/admin/alumnos/eliminar" element={<EliminarAlumnoView />} />
+        <Route path="/admin/alumnos/importar" element={<ImportarAlumnosView />} />
         <Route path="/profesor" element={<ProfesorDashboard />} />
         <Route path="/alumno" element={<AlumnoDashboard />} />
         <Route path="/" element={<Navigate to="/login" replace />} />

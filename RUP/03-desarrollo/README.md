@@ -73,6 +73,8 @@ A continuación se detallan las especificaciones de implementación por actor y 
 
 #### Gestión de Alumnos
 - [abrirAlumnos](casos-uso/0-Administrador/abrirAlumnos/README.md) - Implementación de la visualización del listado de alumnos.
+- [importarAlumnos](casos-uso/0-Administrador/importarAlumnos/README.md) - Implementación de la carga masiva de alumnos.
+- [eliminarAlumno](casos-uso/0-Administrador/eliminarAlumno/README.md) - Implementación de la funcionalidad de borrado seguro.
 
 ## Referencias
 

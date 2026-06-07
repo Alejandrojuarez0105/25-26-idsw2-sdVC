@@ -25,4 +25,13 @@ export const alumnosService = {
     const response = await api.get('/alumnos');
     return response.data;
   },
+
+  async importAlumnos(data: Partial<Alumno>[]): Promise<{success: number; failed: number; errors: string[]}> {
+    const response = await api.post('/alumnos/import', data);
+    return response.data;
+  },
+
+  async remove(id: string): Promise<void> {
+    await api.delete(`/alumnos/${id}`);
+  },
 };
