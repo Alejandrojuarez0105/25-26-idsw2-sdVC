@@ -23,4 +23,8 @@ export const profesoresService = {
     const response = await api.post('/profesores/import', data);
     return response.data;
   },
+
+  async remove(id: string): Promise<void> {
+    await api.delete(`/profesores/${id}`);
+  },
 };

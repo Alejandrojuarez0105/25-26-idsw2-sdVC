@@ -886,7 +886,7 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se completó y documentó con éxito la implementación de la pantalla principal de listado de profesores (`abrirProfesores`) y la inclusión de los datos de prueba congruentes con el prototipo en `database-setup.sql`, garantizando consistencia funcional y visual con el resto de listados del administrador de Davidario.
 
-## [08/06/2026 12:30] Sesión 64: Implementación de importarProfesores() - Cambio de Agente (Antigravity CLI -> Claude Code)
+## [08/06/2026 00:30] Sesión 64: Implementación de importarProfesores() - Cambio de Agente (Antigravity CLI -> Claude Code)
 
 **Prompt:** Muy bien, para la sesión 64 vamos a hacer la implementación del caso de uso importarProfesores. (Reutilizar lógica de importarGrados, importarAsignaturas, importarAulas e importarAlumnos. No modificar funcionalidades existentes ni base de datos. Documentar bajo `RUP/03-desarrollo/casos-uso/0-Administrador/importarProfesores/README.md` y actualizar índices.)
 
@@ -900,3 +900,18 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 7. **Documentación RUP:** Creado el informe técnico del caso de uso en `RUP/03-desarrollo/casos-uso/0-Administrador/importarProfesores/README.md` siguiendo estrictamente el formato de `importarAlumnos` e `importarAulas`. Actualizados los índices globales `RUP/03-desarrollo/README.md` y `RUP/03-desarrollo/casos-uso/README.md` agregando la entrada bajo "Gestión de Profesores".
 
 **Decisión:** Se implementó y documentó con éxito el caso de uso `importarProfesores`, manteniendo la coherencia arquitectónica y visual con los módulos previos de importación. Se respetó íntegramente la restricción de no modificar funcionalidades existentes, autenticación, JWT, Prisma, dashboards ni el script `database-setup.sql`. La generación determinista del código `PROF###` queda alineada con los seeds existentes y garantiza unicidad sin tocar la base de datos.
+
+## [08/06/2026 01:15] Sesión 65: Implementación de eliminarProfesor()
+
+**Prompt:** Muy bien, para la sesión 65 vamos a hacer la implementación del caso de uso eliminarProfesor. (Reutilizar lógica de eliminarGrado, eliminarAsignatura, eliminarExamen, eliminarAula y eliminarAlumno. No modificar funcionalidades existentes, autenticación, JWT, Prisma ni base de datos. Documentar bajo `RUP/03-desarrollo/casos-uso/0-Administrador/eliminarProfesor/README.md` y actualizar índices.)
+
+**Resultado:**
+1. **Backend — ProfesoresService:** Implementado el método `remove(id)` que verifica la existencia del profesor (`NotFoundException` 404 si no existe) y ejecuta `prisma.usuario.delete()`. Importado `NotFoundException` de `@nestjs/common`. El borrado de `Usuario` desencadena la supresión de `Profesor` por la relación `onDelete: Cascade` definida en `schema.prisma`, y a su vez el borrado de `Profesor` cascadea sobre `ProfesorAsignatura`.
+2. **Backend — ProfesoresController:** Añadidos los decoradores `Delete`, `Param` y `NotFoundException` y registrado el endpoint `@Delete(':id')` con `@HttpCode(HttpStatus.NO_CONTENT)` que delega en `remove(id)` y traduce los errores a `NotFoundException`.
+3. **Frontend — profesores.service.ts:** Añadido el método `remove(id)` que encapsula `DELETE /profesores/:id` vía Axios.
+4. **Frontend — EliminarProfesorView.tsx:** Creado el componente bajo `src/frontend/src/features/admin/profesores/` siguiendo fielmente el prototipo `eliminarProfesor.html` y replicando el patrón de `EliminarAlumnoView`/`EliminarAulaView`. Incluye: ficha de profesor (Código, Nombre, Email, Departamento), panel informativo amarillo sobre eliminación en cascada de asignaciones, panel de advertencia roja irreversible, y triple validación secuencial (`confirm → confirm → prompt "ELIMINAR"`). Procesamiento individual asíncrono con reporte agregado de éxitos/fallos.
+5. **Frontend — ProfesoresListView.tsx:** Implementado `handleEliminar` que valida selección mínima, recoge los objetos `Profesor[]` seleccionados, los enriquece con el código `PRO###` calculado por `getCodigo` (manteniendo coherencia visual con el listado) y navega a `/admin/profesores/eliminar` via `state`. Botón "🗑️ Eliminar seleccionado" vinculado (antes era placeholder `handleAccionNoImplementada`).
+6. **Frontend — App.tsx:** Importado `EliminarProfesorView` y registrada la ruta `/admin/profesores/eliminar`.
+7. **Documentación RUP:** Creado el informe técnico del caso de uso en `RUP/03-desarrollo/casos-uso/0-Administrador/eliminarProfesor/README.md` siguiendo estrictamente el formato de `eliminarAlumno` y `eliminarAula`. Actualizados los índices globales `RUP/03-desarrollo/README.md` y `RUP/03-desarrollo/casos-uso/README.md` agregando la entrada bajo "Gestión de Profesores".
+
+**Decisión:** Se implementó y documentó con éxito el caso de uso `eliminarProfesor`, manteniendo la coherencia arquitectónica con `eliminarAlumno` (mismo patrón Usuario+perfil con borrado en cascada) y la coherencia visual con el resto de pantallas de eliminación. Se respetó íntegramente la restricción de no modificar backend existente, frontend existente, autenticación, JWT, Prisma, dashboards ni el script `database-setup.sql`. La eliminación apalanca por completo las relaciones `onDelete: Cascade` ya definidas en el esquema, evitando cualquier modificación estructural.

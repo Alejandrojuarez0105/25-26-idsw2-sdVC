@@ -17,6 +17,17 @@ const ProfesoresListView: React.FC = () => {
     alert(`⚠️ La funcionalidad de "${accion}" no está implementada en esta sesión.`);
   };
 
+  const handleEliminar = () => {
+    if (seleccionados.length === 0) {
+      alert('⚠️ Debe seleccionar al menos un profesor para eliminar.');
+      return;
+    }
+    const profesoresAEliminar = profesores
+      .filter(p => seleccionados.includes(p.id))
+      .map(p => ({ ...p, codigoMostrado: getCodigo(p) }));
+    navigate('/admin/profesores/eliminar', { state: { profesores: profesoresAEliminar } });
+  };
+
   const toggleSeleccion = (id: string) => {
     setSeleccionados(prev => 
       prev.includes(id) ? prev.filter(item => item !== id) : [...prev, id]
@@ -152,7 +163,7 @@ const ProfesoresListView: React.FC = () => {
             📎 Importar profesores
           </button>
           <button
-            onClick={() => handleAccionNoImplementada('Eliminar Profesor')}
+            onClick={handleEliminar}
             style={{ minWidth: '180px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #999', fontWeight: 'bold', background: '#dc3545', color: 'white' }}
           >
             🗑️ Eliminar seleccionado

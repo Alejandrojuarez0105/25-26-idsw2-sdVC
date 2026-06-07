@@ -41,3 +41,8 @@ backend/prisma/dev.db
 # =========================
 .DS_Store
 Thumbs.db
+
+# =========================
+# CLAUDE CODE
+# =========================
+.claude/

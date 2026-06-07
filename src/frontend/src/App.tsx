@@ -31,6 +31,7 @@ import CrearAlumnoView from './features/admin/alumnos/CrearAlumnoView';
 import EditarAlumnoView from './features/admin/alumnos/EditarAlumnoView';
 import ProfesoresListView from './features/admin/profesores/ProfesoresListView';
 import ImportarProfesoresView from './features/admin/profesores/ImportarProfesoresView';
+import EliminarProfesorView from './features/admin/profesores/EliminarProfesorView';
 
 const App: React.FC = () => {
   return (
@@ -65,6 +66,7 @@ const App: React.FC = () => {
         <Route path="/admin/alumnos/editar/:id" element={<EditarAlumnoView />} />
         <Route path="/admin/profesores" element={<ProfesoresListView />} />
         <Route path="/admin/profesores/importar" element={<ImportarProfesoresView />} />
+        <Route path="/admin/profesores/eliminar" element={<EliminarProfesorView />} />
         <Route path="/profesor" element={<ProfesorDashboard />} />
         <Route path="/alumno" element={<AlumnoDashboard />} />
         <Route path="/" element={<Navigate to="/login" replace />} />

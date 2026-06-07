@@ -1,10 +1,24 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../common/prisma.service';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class ProfesoresService {
   constructor(private prisma: PrismaService) {}
+
+  async remove(id: string): Promise<void> {
+    const profesor = await this.prisma.profesor.findUnique({
+      where: { id },
+    });
+
+    if (!profesor) {
+      throw new NotFoundException(`Profesor con ID ${id} no encontrado`);
+    }
+
+    await this.prisma.usuario.delete({
+      where: { id: profesor.usuarioId },
+    });
+  }
 
   async findAll() {
     return this.prisma.profesor.findMany({
