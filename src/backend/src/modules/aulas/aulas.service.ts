@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../common/prisma.service';
 
 @Injectable()
@@ -48,5 +48,14 @@ export class AulasService {
     }
 
     return results;
+  }
+
+  async remove(id: string): Promise<void> {
+    const aula = await this.prisma.aula.findUnique({ where: { id } });
+    if (!aula) {
+      throw new NotFoundException(`Aula con ID ${id} no encontrada.`);
+    }
+
+    await this.prisma.aula.delete({ where: { id } });
   }
 }

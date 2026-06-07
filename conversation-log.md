@@ -744,3 +744,17 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 
 **Decisión:** Se completaron los artefactos documentales pendientes de la Sesión 54 correspondientes a la implementación de `importarAulas`, asegurando la trazabilidad y la integridad de los índices de la disciplina de Desarrollo.
 
+## [07/06/2026 02:36] Sesión 56: Implementación de eliminarAula()
+
+**Prompt:** Muy bien, para la sesión 56 vamos a hacer la implementación del caso de uso eliminarAula. Prototipo de referencia: extraDocs/DiagramasDetallados-Administrador/eliminarAula.html. Reutilizar lógica de eliminarGrado como referencia directa. No crear módulos duplicados. No modificar implementaciones ya funcionales.
+
+**Resultado:**
+1. **Backend — AulasController:** Añadido endpoint `DELETE /aulas/:id` con decoradores `@Delete(':id')` y `@HttpCode(HttpStatus.NO_CONTENT)`. Importados los decoradores `Delete` y `Param` de NestJS.
+2. **Backend — AulasService:** Implementado método `remove(id)` que verifica la existencia del aula (`NotFoundException` 404 si no existe) y ejecuta `prisma.aula.delete()`. Se detectó que el modelo `Examen` referencia el aula como `String` libre (sin FK), por lo que se descartó la comprobación referencial con `prisma.examen.count` para evitar error de compilación Prisma. El aviso de reasignación de exámenes se traslada al frontend como información operacional.
+3. **Frontend — EliminarAulaView.tsx:** Creado nuevo componente siguiendo fielmente el prototipo `eliminarAula.html` y el patrón de `EliminarGradoView`. Incluye: ficha de aula (Código, Nombre, Capacidad, Ubicación), panel informativo amarillo sobre reasignación de exámenes, panel de advertencia roja irreversible, y triple validación (`confirm → confirm → prompt "ELIMINAR"`). Procesamiento individual con reporte de éxitos/fallos.
+4. **Frontend — AulasView.tsx:** Implementado `handleEliminar` que valida selección mínima, recoge los objetos `Aula[]` completos y navega a `/admin/aulas/eliminar` via `state`. Botón 🗑️ Eliminar seleccionado vinculado (antes era placeholder).
+5. **Frontend — aulas.service.ts:** Añadido método `remove(id)` que encapsula `DELETE /aulas/:id` vía Axios.
+6. **Frontend — App.tsx:** Registrada la ruta `/admin/aulas/eliminar` con el componente `EliminarAulaView` e importado el componente.
+7. **Documentación RUP:** Creado `RUP/03-desarrollo/casos-uso/0-Administrador/eliminarAula/README.md` con informe técnico completo. Actualizados los índices `RUP/03-desarrollo/README.md` y `RUP/03-desarrollo/casos-uso/README.md`.
+
+**Decisión:** Se completó satisfactoriamente la implementación de `eliminarAula`, manteniendo la coherencia arquitectónica con `eliminarGrado`, `eliminarAsignatura` y `eliminarExamen`. Se respetó íntegramente la restricción de no modificar casos de uso ya implementados. La nota arquitectónica sobre la ausencia de FK entre `Examen` y `Aula` queda documentada para futuras sesiones de refinamiento.

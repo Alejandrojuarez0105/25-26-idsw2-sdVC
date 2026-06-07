@@ -20,6 +20,7 @@ import LoginView from './features/auth/login/LoginView';
 import LogoutView from './features/auth/logout/LogoutView';
 import ProfesorDashboard from './features/profesor/ProfesorDashboard';
 import AulasView from './features/admin/aulas/AulasView';
+import EliminarAulaView from './features/admin/aulas/EliminarAulaView';
 import ImportarAulasView from './features/admin/aulas/ImportarAulasView';
 
 const App: React.FC = () => {
@@ -44,6 +45,7 @@ const App: React.FC = () => {
         <Route path="/admin/examenes/crear" element={<CrearExamenView />} />
         <Route path="/admin/examenes/editar/:id" element={<EditarExamenView />} />
         <Route path="/admin/aulas" element={<AulasView />} />
+        <Route path="/admin/aulas/eliminar" element={<EliminarAulaView />} />
         <Route path="/admin/aulas/importar" element={<ImportarAulasView />} />
         <Route path="/profesor" element={<ProfesorDashboard />} />
         <Route path="/alumno" element={<AlumnoDashboard />} />

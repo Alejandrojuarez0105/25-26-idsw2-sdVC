@@ -12,7 +12,11 @@ export const aulasService = {
   async importAulas(data: Partial<Aula>[]): Promise<{success: number; failed: number; errors: string[]}> {
     const response = await api.post('/aulas/import', data);
     return response.data;
-  }
+  },
+
+  async remove(id: string): Promise<void> {
+    await api.delete(`/aulas/${id}`);
+  },
 };
 
 export const getAulas = async (): Promise<Aula[]> => {
