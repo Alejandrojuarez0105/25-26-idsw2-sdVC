@@ -1,0 +1,56 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "AsignarProfesorView\n(React)" as UI <<Component>>
+participant "useAsignaciones\n(Hook)" as Hook <<Hook>>
+participant "AsignacionesService\n(Axios)" as FService <<Service>>
+participant "AsignacionesController\n(NestJS)" as Controller <<Controller>>
+participant "AsignacionesService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+== Carga de exámenes disponibles ==
+
+Administrador -> UI : Abre asignación de profesor
+UI -> Hook : loadExamenesDisponibles()
+Hook -> FService : getExamenesSinProfesor()
+FService -> Controller : GET /examenes/disponibles
+Controller -> BService : findExamenesSinProfesor()
+
+BService -> DB : SELECT * FROM "Examen"\nWHERE "profesorId" IS NULL
+DB --> BService : Lista de exámenes
+BService --> Controller : ExamenesDTO
+Controller --> FService : JSON Response
+FService --> Hook : ExamenesDTO
+Hook --> UI : Muestra lista de exámenes
+
+== Asignación ==
+
+Administrador -> UI : Selecciona profesor y examen
+UI -> Hook : asignarProfesor(profesorId, examenId)
+Hook -> FService : asignar(profesorId, examenId)
+FService -> Controller : POST /examenes/asignar-profesor
+Controller -> BService : asignar(profesorId, examenId)
+
+BService -> DB : SELECT * FROM "Examen"\nWHERE "profesorId" = :profesorId
+DB --> BService : Exámenes del profesor
+
+BService -> BService : Validar solapamientos de horario
+
+alt Profesor no disponible
+    BService --> Controller : ConflictException
+    Controller --> FService : 409 Conflict
+    FService --> Hook : Error
+    Hook --> UI : Muestra advertencia de conflicto
+else Profesor disponible
+    BService -> DB : UPDATE "Examen"\nSET "profesorId" = :profesorId\nWHERE id = :examenId
+    DB --> BService : OK
+
+    BService --> Controller : Examen actualizado
+    Controller --> FService : 200 OK (ExamenDTO)
+    FService --> Hook : Success
+    Hook --> UI : Actualiza estado
+    UI --> Administrador : Notifica asignación exitosa
+end
+
+@enduml

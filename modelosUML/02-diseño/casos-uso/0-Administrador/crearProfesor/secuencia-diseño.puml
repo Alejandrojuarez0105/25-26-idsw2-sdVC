@@ -1,0 +1,37 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "CrearProfesorView\n(React)" as UI <<Component>>
+participant "useProfesorForm\n(Hook)" as Hook <<Hook>>
+participant "ProfesoresService\n(Axios)" as FService <<Service>>
+participant "ProfesoresController\n(NestJS)" as Controller <<Controller>>
+participant "ProfesoresService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+Administrador -> UI : Rellena datos del profesor y pulsa "Crear"
+UI -> Hook : submit(data)
+Hook -> FService : createProfesor(data)
+FService -> Controller : POST /profesores (JSON Body)
+Controller -> BService : create(dto)
+
+BService -> DB : SELECT 1 FROM "Usuario" WHERE email = :email
+DB --> BService : Existe / No existe
+
+alt Email duplicado
+    BService --> Controller : ConflictException
+    Controller --> FService : 409 Conflict
+    FService --> Hook : Error email duplicado
+    Hook --> UI : Muestra error en formulario
+else Email disponible
+    BService -> DB : INSERT INTO "Usuario" y "Profesor"
+    DB --> BService : Profesor creado (UUID)
+
+    BService --> Controller : Profesor Entity
+    Controller --> FService : JSON Response (201 Created)
+    FService --> Hook : Profesor Object
+    Hook --> UI : Redirigir / Mostrar éxito
+    UI --> Administrador : Muestra confirmación
+end
+
+@enduml

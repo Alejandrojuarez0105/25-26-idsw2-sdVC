@@ -1,0 +1,50 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "EditarProfesorView\n(React)" as UI <<Component>>
+participant "useProfesorForm\n(Hook)" as Hook <<Hook>>
+participant "ProfesoresService\n(Axios)" as FService <<Service>>
+participant "ProfesoresController\n(NestJS)" as Controller <<Controller>>
+participant "ProfesoresService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+== Carga de Datos ==
+
+Administrador -> UI : Accede a editar profesor
+UI -> Hook : loadProfesor(id)
+Hook -> FService : getProfesorById(id)
+FService -> Controller : GET /profesores/:id
+Controller -> BService : findOne(id)
+BService -> DB : SELECT * FROM "Profesor"\nJOIN "Usuario" WHERE id = :id
+DB --> BService : Profesor Data
+BService --> Controller : Profesor Entity
+Controller --> FService : JSON Response
+FService --> Hook : Profesor Object
+Hook --> UI : Rellena formulario
+
+== Edición ==
+
+Administrador -> UI : Modifica campos y asignaciones
+Administrador -> UI : Click en "Guardar"
+UI -> Hook : update(id, data)
+Hook -> FService : updateProfesor(id, data)
+FService -> Controller : PUT /profesores/:id (JSON Body)
+Controller -> BService : update(id, dto)
+
+BService -> DB : UPDATE "Usuario" SET ... WHERE id = usuarioId
+BService -> DB : UPDATE "Profesor" SET ... WHERE id = profesorId
+DB --> BService : OK
+
+alt Modificaciones en asignaturas
+    BService -> DB : INSERT/DELETE "ProfesorAsignatura"
+    DB --> BService : OK
+end
+
+BService --> Controller : Profesor Entity actualizado
+Controller --> FService : JSON Response (200 OK)
+FService --> Hook : Success
+Hook --> UI : Redirigir / Mostrar éxito
+UI --> Administrador : Muestra confirmación
+
+@enduml

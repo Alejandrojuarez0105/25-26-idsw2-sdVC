@@ -61,6 +61,15 @@ Esta carpeta contiene el diseño detallado de los casos de uso, transformando la
 - [crearAlumno](0-Administrador/crearAlumno/README.md) - Diseño de registro.
 - [editarAlumno](0-Administrador/editarAlumno/README.md) - Diseño de modificación.
 
+#### Gestión de Profesores
+- [abrirProfesores](0-Administrador/abrirProfesores/README.md) - Diseño de vista de listado.
+- [importarProfesores](0-Administrador/importarProfesores/README.md) - Diseño de carga masiva.
+- [eliminarProfesor](0-Administrador/eliminarProfesor/README.md) - Diseño de borrado.
+- [crearProfesor](0-Administrador/crearProfesor/README.md) - Diseño de registro.
+- [editarProfesor](0-Administrador/editarProfesor/README.md) - Diseño de modificación.
+- [listarConflictosExamenes](0-Administrador/listarConflictosExamenes/README.md) - Diseño de detección de solapamientos.
+- [asignarProfesorAExamen](0-Administrador/asignarProfesorAExamen/README.md) - Diseño de vinculación de supervisor.
+
 #### Procesos del sistema
 *(Vacío - En desarrollo)*
 

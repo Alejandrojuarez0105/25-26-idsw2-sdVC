@@ -1,0 +1,29 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "ListarConflictosView\n(React)" as UI <<Component>>
+participant "useConflictosExamenes\n(Hook)" as Hook <<Hook>>
+participant "ExamenesService\n(Axios)" as FService <<Service>>
+participant "ExamenesController\n(NestJS)" as Controller <<Controller>>
+participant "ExamenesService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+Administrador -> UI : Selecciona ver conflictos de profesor
+UI -> Hook : loadConflictos(profesorId)
+Hook -> FService : getConflictos(profesorId)
+FService -> Controller : GET /examenes/conflictos/:profesorId
+Controller -> BService : getConflictosPorProfesor(profesorId)
+
+BService -> DB : SELECT * FROM "Examen"\nWHERE "profesorId" = :profesorId
+DB --> BService : Lista de exámenes
+
+BService -> BService : Detectar solapamientos\n(fecha, hora, aula)
+
+BService --> Controller : List<ConflictosDTO>
+Controller --> FService : JSON Response (200 OK)
+FService --> Hook : ConflictosDTO
+Hook --> UI : Actualiza estado (conflictos)
+UI --> Administrador : Muestra lista de conflictos
+
+@enduml

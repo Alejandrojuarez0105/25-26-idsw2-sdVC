@@ -1,0 +1,48 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "EliminarProfesorView\n(React)" as UI <<Component>>
+participant "useProfesoresDelete\n(Hook)" as Hook <<Hook>>
+participant "ProfesoresService\n(Axios)" as FService <<Service>>
+participant "ProfesoresController\n(NestJS)" as Controller <<Controller>>
+participant "ProfesoresService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+== Confirmación de eliminación ==
+
+Administrador -> UI : Selecciona profesor a eliminar
+Administrador -> UI : Click en "Eliminar"
+UI -> UI : Muestra advertencia
+Administrador -> UI : Confirma eliminación
+
+== Verificación de dependencias ==
+
+UI -> Hook : removeProfesor(id)
+Hook -> FService : deleteProfesor(id)
+FService -> Controller : DELETE /profesores/:id
+Controller -> BService : remove(id)
+
+BService -> DB : SELECT COUNT(*) FROM "AsignaturaProfesor"\nWHERE profesor_id = :id
+DB --> BService : totalAsignaturas
+
+BService -> DB : SELECT COUNT(*) FROM "Examen"\nWHERE profesor_id = :id
+DB --> BService : totalExamenes
+
+alt Tiene dependencias
+    BService --> Controller : ConflictException
+    Controller --> FService : 409 Conflict
+    FService --> Hook : Error de dependencias
+    Hook --> UI : Muestra alerta de bloqueo
+else Sin dependencias
+    BService -> DB : DELETE FROM "Usuario" WHERE id = usuarioId
+    DB --> BService : OK (cascade Profesor)
+
+    BService --> Controller : OK (204 No Content)
+    Controller --> FService : Success
+    FService --> Hook : Success
+    Hook --> UI : Actualiza lista
+    UI --> Administrador : Notifica eliminación
+end
+
+@enduml

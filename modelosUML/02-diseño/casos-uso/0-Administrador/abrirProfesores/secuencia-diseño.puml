@@ -1,0 +1,28 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "ProfesoresListView\n(React)" as UI <<Component>>
+participant "useProfesores\n(Hook)" as Hook <<Hook>>
+participant "ProfesoresService\n(Axios)" as FService <<Service>>
+participant "ProfesoresController\n(NestJS)" as Controller <<Controller>>
+participant "ProfesoresService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+Administrador -> UI : Accede a la gestión de profesores
+UI -> Hook : fetchProfesores(query)
+Hook -> FService : getProfesores(query)
+FService -> Controller : GET /profesores?search=...&page=...
+Controller -> BService : findAll(query)
+
+BService -> DB : SELECT * FROM "Profesor" INNER JOIN "Usuario"\nON "usuarioId" = "Usuario".id
+DB --> BService : Lista de profesores + datos usuario
+
+BService --> Controller : PaginatedProfesoresDTO
+Controller --> FService : JSON Response
+FService --> Hook : PaginatedProfesoresDTO
+Hook --> UI : Actualiza estado (profesores)
+
+UI --> Administrador : Muestra tabla (código, nombre, email, departamento)
+
+@enduml

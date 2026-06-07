@@ -110,6 +110,15 @@ El diseño detallado de cada caso de uso se organiza en subcarpetas por actor de
 - [crearAlumno](casos-uso/0-Administrador/crearAlumno/README.md) - Diseño de registro.
 - [editarAlumno](casos-uso/0-Administrador/editarAlumno/README.md) - Diseño de modificación.
 
+#### Gestión de Profesores
+- [abrirProfesores](casos-uso/0-Administrador/abrirProfesores/README.md) - Diseño de vista de listado.
+- [importarProfesores](casos-uso/0-Administrador/importarProfesores/README.md) - Diseño de carga masiva.
+- [eliminarProfesor](casos-uso/0-Administrador/eliminarProfesor/README.md) - Diseño de borrado.
+- [crearProfesor](casos-uso/0-Administrador/crearProfesor/README.md) - Diseño de registro.
+- [editarProfesor](casos-uso/0-Administrador/editarProfesor/README.md) - Diseño de modificación.
+- [listarConflictosExamenes](casos-uso/0-Administrador/listarConflictosExamenes/README.md) - Diseño de detección de solapamientos.
+- [asignarProfesorAExamen](casos-uso/0-Administrador/asignarProfesorAExamen/README.md) - Diseño de vinculación de supervisor.
+
 #### Procesos del sistema
 
 - **Trazabilidad estricta**: Cada clase de diseño debe mapearse a una o más clases de análisis.

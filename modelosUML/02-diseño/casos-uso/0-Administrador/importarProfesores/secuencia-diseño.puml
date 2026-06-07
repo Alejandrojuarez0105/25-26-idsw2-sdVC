@@ -1,0 +1,40 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+
+actor Administrador
+participant "ImportarProfesoresView\n(React)" as UI <<Component>>
+participant "useProfesoresImport\n(Hook)" as Hook <<Hook>>
+participant "ProfesoresService\n(Axios)" as FService <<Service>>
+participant "ProfesoresController\n(NestJS)" as Controller <<Controller>>
+participant "ProfesoresService\n(NestJS)" as BService <<Service>>
+database "PostgreSQL" as DB
+
+Administrador -> UI : Selecciona archivo CSV y pulsa "Importar"
+
+UI -> Hook : importProfesores(file)
+Hook -> FService : importProfesores(file)
+FService -> Controller : POST /profesores/import (Multipart/Form-Data)
+Controller -> BService : importProfesores(lote)
+
+BService -> BService : Procesa cada registro e inicia transacción
+
+loop Por cada profesor en el lote
+    BService -> DB : SELECT 1 FROM "Usuario" WHERE email = :email
+    DB --> BService : Existe / No existe
+
+    alt Email disponible
+        BService -> DB : INSERT INTO "Usuario" y "Profesor"
+        DB --> BService : Insert OK
+    else Email duplicado o inválido
+        BService -> BService : Registra error individual
+    end
+end
+
+BService --> Controller : ImportResultDTO (éxitos, fallos, errores)
+Controller --> FService : JSON Response (200 OK)
+FService --> Hook : ImportResultDTO
+Hook --> UI : Resultado de importación
+
+UI --> Administrador : Muestra resumen (procesados, éxitos, fallos)
+
+@enduml
