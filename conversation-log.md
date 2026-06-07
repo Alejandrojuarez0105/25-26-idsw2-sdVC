@@ -758,3 +758,19 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 7. **Documentación RUP:** Creado `RUP/03-desarrollo/casos-uso/0-Administrador/eliminarAula/README.md` con informe técnico completo. Actualizados los índices `RUP/03-desarrollo/README.md` y `RUP/03-desarrollo/casos-uso/README.md`.
 
 **Decisión:** Se completó satisfactoriamente la implementación de `eliminarAula`, manteniendo la coherencia arquitectónica con `eliminarGrado`, `eliminarAsignatura` y `eliminarExamen`. Se respetó íntegramente la restricción de no modificar casos de uso ya implementados. La nota arquitectónica sobre la ausencia de FK entre `Examen` y `Aula` queda documentada para futuras sesiones de refinamiento.
+
+## [07/06/2026 11:26] Sesión 57: Implementación de crearAula()
+
+**Prompt:** quiero que hagas la sesión 57, la implementación y documentación del caso de uso crearAua. Sigue por favor, aunque no considero necesario hacer el npm run build, yo lo venía construyendo normal sin necesidad de hacer eso.
+
+**Resultado:**
+1. **Backend — AulasController:** Añadido el endpoint `@Post()` para la creación de un aula individual, importando `ConflictException` de `@nestjs/common` para capturar errores de unicidad del código.
+2. **Backend — AulasService:** Implementado el método `create(data)` que verifica la unicidad del código del aula (`Error` que se traduce en `ConflictException` en el controlador) y realiza la creación de la entidad a través de Prisma en PostgreSQL.
+3. **Frontend — CrearAulaView Component:** Diseñado el componente visual del formulario en `src/frontend/src/features/admin/aulas/CrearAulaView.tsx` siguiendo el estilo Courier New retro de Davidario, integrando el estado y las validaciones de campos obligatorios, formato de código y capacidad mínima en el propio componente (sin ganchos redundantes), con cuadros de confirmación nativos y redirección tras creación o cancelación.
+4. **Frontend — aulas.service.ts:** Añadido el método `create(data)` al objeto de servicio para realizar la petición `POST /aulas`.
+5. **Frontend — AulasView.tsx & App.tsx:** Conectado el botón "➕ Crear nuevo" para navegar a `/admin/aulas/crear` y registrada la ruta dinámica en el router principal de React.
+6. **Documentación RUP:** Generado el README técnico detallado en `RUP/03-desarrollo/casos-uso/0-Administrador/crearAula/README.md` y actualizados los índices de desarrollo en `RUP/03-desarrollo/README.md` y `RUP/03-desarrollo/casos-uso/README.md`.
+
+**Decisión:** Se completó satisfactoriamente la implementación y documentación de la creación de aulas (`crearAula`), logrando consistencia con el diseño del caso de uso, aplicando la nomenclatura en español (`CrearAulaView`) y manteniendo la simplicidad del patrón de hooks existente.
+
+

@@ -22,6 +22,7 @@ import ProfesorDashboard from './features/profesor/ProfesorDashboard';
 import AulasView from './features/admin/aulas/AulasView';
 import EliminarAulaView from './features/admin/aulas/EliminarAulaView';
 import ImportarAulasView from './features/admin/aulas/ImportarAulasView';
+import CrearAulaView from './features/admin/aulas/CrearAulaView';
 
 const App: React.FC = () => {
   return (
@@ -47,6 +48,7 @@ const App: React.FC = () => {
         <Route path="/admin/aulas" element={<AulasView />} />
         <Route path="/admin/aulas/eliminar" element={<EliminarAulaView />} />
         <Route path="/admin/aulas/importar" element={<ImportarAulasView />} />
+        <Route path="/admin/aulas/crear" element={<CrearAulaView />} />
         <Route path="/profesor" element={<ProfesorDashboard />} />
         <Route path="/alumno" element={<AlumnoDashboard />} />
         <Route path="/" element={<Navigate to="/login" replace />} />

@@ -68,6 +68,7 @@ A continuación se detallan las especificaciones de implementación por actor y 
 - [abrirAulas](casos-uso/0-Administrador/abrirAulas/README.md) - Implementación de la visualización del listado de aulas.
 - [importarAulas](casos-uso/0-Administrador/importarAulas/README.md) - Implementación de la carga masiva de aulas mediante archivos CSV.
 - [eliminarAula](casos-uso/0-Administrador/eliminarAula/README.md) - Implementación del borrado seguro y controlado de aulas.
+- [crearAula](casos-uso/0-Administrador/crearAula/README.md) - Implementación del alta de nuevas aulas.
 
 ## Referencias
 

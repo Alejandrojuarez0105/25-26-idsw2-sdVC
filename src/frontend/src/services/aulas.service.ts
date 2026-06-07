@@ -9,6 +9,11 @@ export interface Aula {
 }
 
 export const aulasService = {
+  async create(data: Omit<Aula, 'id'>): Promise<Aula> {
+    const response = await api.post('/aulas', data);
+    return response.data;
+  },
+
   async importAulas(data: Partial<Aula>[]): Promise<{success: number; failed: number; errors: string[]}> {
     const response = await api.post('/aulas/import', data);
     return response.data;
