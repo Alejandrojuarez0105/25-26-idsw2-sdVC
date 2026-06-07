@@ -17,37 +17,37 @@ enum RolUsuario {
 }
 
 model Usuario {
-  id               String       @id @default(uuid()) @db.Uuid
-  nombre           String       @db.VarChar(50)
-  apellido         String       @db.VarChar(50)
-  email            String       @unique @db.VarChar(100)
-  password         String       @db.VarChar(255)
-  rol              RolUsuario
-  activo           Boolean      @default(true)
-  fechaCreacion    DateTime     @default(now()) @db.Timestamptz
-  
+  id            String     @id @default(uuid()) @db.Uuid
+  nombre        String     @db.VarChar(50)
+  apellido      String     @db.VarChar(50)
+  email         String     @unique @db.VarChar(100)
+  password      String     @db.VarChar(255)
+  rol           RolUsuario
+  activo        Boolean    @default(true)
+  fechaCreacion DateTime   @default(now()) @db.Timestamptz
+
   // Relations
-  profesor         Profesor?
-  alumno           Alumno?
+  profesor Profesor?
+  alumno   Alumno?
 
   @@index([email])
 }
 
 model CursoAcademico {
-  id      String  @id @default(uuid()) @db.Uuid
-  nombre  String  @unique @db.VarChar(20)
-  activo  Boolean @default(false)
+  id     String  @id @default(uuid()) @db.Uuid
+  nombre String  @unique @db.VarChar(20)
+  activo Boolean @default(false)
 }
 
 model Grado {
-  id                 String       @id @default(uuid()) @db.Uuid
-  codigo             String       @unique @db.VarChar(20)
-  nombre             String       @db.VarChar(100)
-  descripcion        String?      @db.Text
-  fechaActualizacion DateTime     @default(now()) @db.Timestamptz @updatedAt
+  id                 String   @id @default(uuid()) @db.Uuid
+  codigo             String   @unique @db.VarChar(20)
+  nombre             String   @db.VarChar(100)
+  descripcion        String?  @db.Text
+  fechaActualizacion DateTime @default(now()) @updatedAt @db.Timestamptz
 
-  asignaturas        Asignatura[]
-  alumnos            Alumno[]
+  asignaturas Asignatura[]
+  alumnos     Alumno[]
 }
 
 model Asignatura {
@@ -56,47 +56,48 @@ model Asignatura {
   nombre        String   @db.VarChar(100)
   creditos      Int
   fechaCreacion DateTime @default(now()) @db.Timestamptz
-  
-  gradoId       String   @db.Uuid
-  grado         Grado    @relation(fields: [gradoId], references: [id], onDelete: Cascade)
 
-  profesores    ProfesorAsignatura[]
-  matriculas    Matricula[]
+  gradoId String @db.Uuid
+  grado   Grado  @relation(fields: [gradoId], references: [id], onDelete: Cascade)
+
+  profesores ProfesorAsignatura[]
+  matriculas Matricula[]
 
   @@index([gradoId])
 }
 
 model Alumno {
-  id         String   @id @default(uuid()) @db.Uuid
-  usuarioId  String   @unique @db.Uuid
-  usuario    Usuario  @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
-  matricula  String   @unique @db.VarChar(20)
-  gradoId    String   @db.Uuid
-  grado      Grado    @relation(fields: [gradoId], references: [id])
-  curso      String   @default("1°") @db.VarChar(10)
+  id        String  @id @default(uuid()) @db.Uuid
+  usuarioId String  @unique @db.Uuid
+  usuario   Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  matricula String  @unique @db.VarChar(20)
+  gradoId   String  @db.Uuid
+  grado     Grado   @relation(fields: [gradoId], references: [id])
+  curso     String  @default("1°") @db.VarChar(10)
 
   matriculas Matricula[]
 }
 
 model Profesor {
-  id           String   @id @default(uuid()) @db.Uuid
-  usuarioId    String   @unique @db.Uuid
-  usuario      Usuario  @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
-  departamento String?  @db.VarChar(100)
+  id           String  @id @default(uuid()) @db.Uuid
+  usuarioId    String  @unique @db.Uuid
+  usuario      Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  codigo       String  @unique @db.VarChar(20)
+  departamento String? @db.VarChar(100)
 
-  asignaturas  ProfesorAsignatura[]
+  asignaturas ProfesorAsignatura[]
 }
 
 model Examen {
-  id            String     @id @default(uuid()) @db.Uuid
-  codigo        String     @unique @db.VarChar(20)
-  asignatura    String     @db.VarChar(100)
-  fecha         DateTime   @db.Date
-  hora          String     @db.VarChar(5)
-  aula          String     @db.VarChar(50)
-  profesor      String     @db.VarChar(100)
-  
-  fechaCreacion DateTime   @default(now()) @db.Timestamptz
+  id         String   @id @default(uuid()) @db.Uuid
+  codigo     String   @unique @db.VarChar(20)
+  asignatura String   @db.VarChar(100)
+  fecha      DateTime @db.Date
+  hora       String   @db.VarChar(5)
+  aula       String   @db.VarChar(50)
+  profesor   String   @db.VarChar(100)
+
+  fechaCreacion DateTime @default(now()) @db.Timestamptz
 }
 
 model ProfesorAsignatura {
@@ -116,7 +117,7 @@ model Matricula {
   asignatura     Asignatura @relation(fields: [asignaturaId], references: [id], onDelete: Cascade)
   fechaMatricula DateTime   @default(now()) @db.Timestamptz
 
-  notas          Nota[]
+  notas Nota[]
 
   @@unique([alumnoId, asignaturaId])
   @@index([alumnoId])

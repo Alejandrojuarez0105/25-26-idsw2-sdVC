@@ -88,24 +88,38 @@ SELECT 'IYA023', 'Bases de Datos I', 6, id FROM "Grado" WHERE codigo = 'INF' UNI
 SELECT 'IYA025', 'Estructuras de Datos I', 6, id FROM "Grado" WHERE codigo = 'INF' UNION ALL
 SELECT 'IYA016', 'Expresión Gráfica', 6, id FROM "Grado" WHERE codigo = 'ADE';
 
--- 9b. Tabla de Profesores
-CREATE TABLE IF NOT EXISTS "Profesor" (
+-- 9. Tabla de Profesores
+DROP TABLE IF EXISTS "ProfesorAsignatura" CASCADE;
+DROP TABLE IF EXISTS "Profesor" CASCADE;
+
+CREATE TABLE "Profesor" (
     "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     "usuarioId" UUID UNIQUE NOT NULL REFERENCES "Usuario"("id") ON DELETE CASCADE,
+    "codigo" VARCHAR(20) UNIQUE,
     "departamento" VARCHAR(100)
 );
 
 -- 9c. Tabla de ProfesorAsignatura (Relación N:M)
-CREATE TABLE IF NOT EXISTS "ProfesorAsignatura" (
+CREATE TABLE "ProfesorAsignatura" (
     "profesorId" UUID NOT NULL REFERENCES "Profesor"("id") ON DELETE CASCADE,
     "asignaturaId" UUID NOT NULL REFERENCES "Asignatura"("id") ON DELETE CASCADE,
     PRIMARY KEY ("profesorId", "asignaturaId")
 );
 
--- Datos Iniciales de Profesores
-INSERT INTO "Profesor" ("usuarioId", "departamento")
-SELECT id, 'Informática' FROM "Usuario" WHERE email = 'profesor@davidario.edu';
- -- Solo como ejemplo para el setup inicial
+INSERT INTO "Profesor" ("usuarioId", "codigo", "departamento")
+SELECT id, 'PROF000', 'Informática' FROM "Usuario" WHERE email = 'profesor@davidario.edu' UNION ALL
+SELECT id, 'PROF001', 'Informática' FROM "Usuario" WHERE email = 'manuel.masias@uneatlantico.es' UNION ALL
+SELECT id, 'PROF002', 'Informática' FROM "Usuario" WHERE email = 'jorge.crespo@uneatlantico.es' UNION ALL
+SELECT id, 'PROF003', 'Informática' FROM "Usuario" WHERE email = 'javier.bel@uneatlantico.es' UNION ALL
+SELECT id, 'PROF004', 'Informática' FROM "Usuario" WHERE email = 'daniel.iglesias@uneatlantico.es';
+
+INSERT INTO "Usuario" ("id", "nombre", "apellido", "email", "password", "rol")
+VALUES 
+(uuid_generate_v4(), 'Manuel', 'Masías', 'manuel.masias@uneatlantico.es', '$2b$10$S64kLshjsy/hR4L9CZ0yFeoxjbXdH.xiKUkHGxtQ.8fnsu3Q/l3y.', 'Profesor'),
+(uuid_generate_v4(), 'Jorge', 'Crespo', 'jorge.crespo@uneatlantico.es', '$2b$10$S64kLshjsy/hR4L9CZ0yFeoxjbXdH.xiKUkHGxtQ.8fnsu3Q/l3y.', 'Profesor'),
+(uuid_generate_v4(), 'Javier', 'Bel', 'javier.bel@uneatlantico.es', '$2b$10$S64kLshjsy/hR4L9CZ0yFeoxjbXdH.xiKUkHGxtQ.8fnsu3Q/l3y.', 'Profesor'),
+(uuid_generate_v4(), 'Daniel', 'Iglesias', 'daniel.iglesias@uneatlantico.es', '$2b$10$S64kLshjsy/hR4L9CZ0yFeoxjbXdH.xiKUkHGxtQ.8fnsu3Q/l3y.', 'Profesor')
+ON CONFLICT (email) DO NOTHING;
 
 -- 10. Tabla de Exámenes
 CREATE TABLE "Examen" (

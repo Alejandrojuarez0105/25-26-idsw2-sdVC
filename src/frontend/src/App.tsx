@@ -29,6 +29,7 @@ import ImportarAlumnosView from './features/admin/alumnos/ImportarAlumnosView';
 import EliminarAlumnoView from './features/admin/alumnos/EliminarAlumnoView';
 import CrearAlumnoView from './features/admin/alumnos/CrearAlumnoView';
 import EditarAlumnoView from './features/admin/alumnos/EditarAlumnoView';
+import ProfesoresListView from './features/admin/profesores/ProfesoresListView';
 
 const App: React.FC = () => {
   return (
@@ -61,6 +62,7 @@ const App: React.FC = () => {
         <Route path="/admin/alumnos/importar" element={<ImportarAlumnosView />} />
         <Route path="/admin/alumnos/crear" element={<CrearAlumnoView />} />
         <Route path="/admin/alumnos/editar/:id" element={<EditarAlumnoView />} />
+        <Route path="/admin/profesores" element={<ProfesoresListView />} />
         <Route path="/profesor" element={<ProfesorDashboard />} />
         <Route path="/alumno" element={<AlumnoDashboard />} />
         <Route path="/" element={<Navigate to="/login" replace />} />

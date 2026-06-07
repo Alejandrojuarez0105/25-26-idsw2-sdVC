@@ -45,6 +45,9 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 - [crearAlumno](0-Administrador/crearAlumno/README.md) - Implementación del registro de nuevos alumnos.
 - [editarAlumno](0-Administrador/editarAlumno/README.md) - Implementación de la edición de alumnos existentes.
 
+#### Gestión de Profesores
+- [abrirProfesores](0-Administrador/abrirProfesores/README.md) - Implementación de la vista de listado de profesores.
+
 ### Actor Profesor
 *(En desarrollo)*
 

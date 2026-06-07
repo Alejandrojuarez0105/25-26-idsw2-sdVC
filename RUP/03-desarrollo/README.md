@@ -78,6 +78,9 @@ A continuación se detallan las especificaciones de implementación por actor y 
 - [crearAlumno](casos-uso/0-Administrador/crearAlumno/README.md) - Implementación del alta de nuevos alumnos.
 - [editarAlumno](casos-uso/0-Administrador/editarAlumno/README.md) - Implementación de la edición de alumnos existentes.
 
+#### Gestión de Profesores
+- [abrirProfesores](casos-uso/0-Administrador/abrirProfesores/README.md) - Implementación de la vista de listado de profesores.
+
 ## Referencias
 
 - [Guía de Configuración y Scaffolding](/RUP/02-diseño/configuración-proyecto.md)
