@@ -47,6 +47,7 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 
 #### Gestión de Profesores
 - [abrirProfesores](0-Administrador/abrirProfesores/README.md) - Implementación de la vista de listado de profesores.
+- [importarProfesores](0-Administrador/importarProfesores/README.md) - Implementación de la carga masiva de profesores.
 
 ### Actor Profesor
 *(En desarrollo)*

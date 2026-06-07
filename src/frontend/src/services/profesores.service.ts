@@ -18,4 +18,9 @@ export const profesoresService = {
     const response = await api.get('/profesores');
     return response.data;
   },
+
+  async importProfesores(data: any[]): Promise<{success: number; failed: number; errors: string[]}> {
+    const response = await api.post('/profesores/import', data);
+    return response.data;
+  },
 };

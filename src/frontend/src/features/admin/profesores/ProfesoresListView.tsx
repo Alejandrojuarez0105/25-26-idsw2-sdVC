@@ -145,8 +145,8 @@ const ProfesoresListView: React.FC = () => {
           >
             ➕ Crear nuevo
           </button>
-          <button 
-            onClick={() => handleAccionNoImplementada('Importar Profesores')}
+          <button
+            onClick={() => navigate('/admin/profesores/importar')}
             style={{ minWidth: '180px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #999', fontWeight: 'bold', background: '#2d89ef', color: 'white' }}
           >
             📎 Importar profesores
