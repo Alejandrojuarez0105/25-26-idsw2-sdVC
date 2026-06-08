@@ -122,8 +122,64 @@ const GenerarCalendarioView: React.FC = () => {
           </div>
         )}
 
-        {/* Estado SUCCESS */}
-        {estado === 'success' && data && (
+        {/* Estado SUCCESS — DATOS INSUFICIENTES */}
+        {estado === 'success' && data && !data.datosSuficientes && (
+          <>
+            <div style={{ background: '#f8d7da', border: '2px solid #dc3545', padding: '18px', marginBottom: '25px', textAlign: 'center' }}>
+              <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#721c24' }}>
+                ❌ DATOS INSUFICIENTES ❌
+              </div>
+            </div>
+
+            <div style={{ background: '#ededed', border: '1px solid #cfcfcf', padding: '18px', marginBottom: '25px' }}>
+              <h3 style={{ fontSize: '18px', marginBottom: '15px', textDecoration: 'underline' }}>📋 Requisitos mínimos del sistema</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', paddingLeft: '10px' }}>
+                {data.requisitos.map((r) => (
+                  <div key={r.nombre} style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '16px' }}>
+                    <span style={{ fontSize: '20px', minWidth: '30px', color: r.cumple ? '#28a745' : '#dc3545' }}>
+                      {r.cumple ? '✅' : '❌'}
+                    </span>
+                    <span style={{ flex: 1 }}>
+                      <strong>{r.nombre}:</strong> {r.actual} disponible(s){' '}
+                      <span style={{ fontSize: '13px', color: '#666', fontStyle: 'italic' }}>(mínimo: {r.minimo})</span>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ background: '#e7f3ff', borderLeft: '4px solid #2d89ef', padding: '15px 18px', marginBottom: '20px' }}>
+              <h4 style={{ fontSize: '16px', marginBottom: '12px', fontWeight: 'bold' }}>📌 Acciones recomendadas</h4>
+              <ul style={{ marginLeft: '25px', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px' }}>
+                <li>Registre al menos un examen en el módulo de Exámenes.</li>
+                <li>Asegúrese de que exista al menos un aula disponible.</li>
+                <li>Asegúrese de que exista al menos un profesor disponible.</li>
+              </ul>
+            </div>
+
+            <div style={{ background: '#e9ecef', padding: '12px', textAlign: 'center', fontSize: '13px', color: '#555', fontStyle: 'italic', marginBottom: '20px' }}>
+              💡 Este mensaje desaparecerá cuando se cumplan los requisitos mínimos.
+            </div>
+
+            <div style={{ textAlign: 'center' }}>
+              <button
+                onClick={generar}
+                style={{ minWidth: '180px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #999', fontWeight: 'bold', background: '#2d89ef', color: 'white', marginRight: '15px' }}
+              >
+                🔄 Reintentar
+              </button>
+              <button
+                onClick={handleSalir}
+                style={{ minWidth: '180px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #999', fontWeight: 'bold', background: '#f3f0ec', color: 'black' }}
+              >
+                🚪 Entendido
+              </button>
+            </div>
+          </>
+        )}
+
+        {/* Estado SUCCESS — calendario generado */}
+        {estado === 'success' && data && data.datosSuficientes && (
           <>
             <div style={{ background: '#d4edda', borderLeft: '4px solid #28a745', color: '#155724', padding: '12px 15px', marginBottom: '20px', fontWeight: 'bold' }}>
               ✅ ¡Calendario generado exitosamente! ({data.resumen.totalExamenes} examen(es) consolidado(s))

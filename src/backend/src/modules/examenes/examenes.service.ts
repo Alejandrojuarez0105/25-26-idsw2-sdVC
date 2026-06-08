@@ -320,7 +320,18 @@ export class ExamenesService {
     const conAula = examenesCalendario.filter((e) => !!e.aulaId).length;
     const completos = examenesCalendario.filter((e) => !!e.profesorId && !!e.aulaId).length;
 
+    // 6) Validar los requisitos mínimos reales para poder generar un calendario:
+    //    debe existir al menos un examen, un aula y un profesor en el sistema.
+    const requisitos = [
+      { nombre: 'Exámenes', actual: examenesCalendario.length, minimo: 1, cumple: examenesCalendario.length >= 1 },
+      { nombre: 'Aulas', actual: aulas, minimo: 1, cumple: aulas >= 1 },
+      { nombre: 'Profesores', actual: profesores, minimo: 1, cumple: profesores >= 1 },
+    ];
+    const datosSuficientes = requisitos.every((r) => r.cumple);
+
     return {
+      datosSuficientes,
+      requisitos,
       generadoEn: new Date().toISOString(),
       datosProcesados: { grados, asignaturas, profesores, aulas, estudiantes },
       resumen: {

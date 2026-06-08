@@ -117,7 +117,16 @@ export interface CalendarioExamen {
   tiposConflicto: string[];
 }
 
+export interface RequisitoCalendario {
+  nombre: string;
+  actual: number;
+  minimo: number;
+  cumple: boolean;
+}
+
 export interface CalendarioGenerado {
+  datosSuficientes: boolean;
+  requisitos: RequisitoCalendario[];
   generadoEn: string;
   datosProcesados: {
     grados: number;
