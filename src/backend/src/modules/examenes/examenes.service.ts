@@ -74,4 +74,41 @@ export class ExamenesService {
       where: { id },
     });
   }
+
+  async asignarProfesor(examenId: string, profesorId: string | null) {
+    const examen = await this.prisma.examen.findUnique({
+      where: { id: examenId },
+    });
+
+    if (!examen) {
+      throw new Error(`Examen con ID ${examenId} no encontrado`);
+    }
+
+    if (!profesorId) {
+      return this.prisma.examen.update({
+        where: { id: examenId },
+        data: { profesor: '' },
+      });
+    }
+
+    const profesor = await this.prisma.profesor.findUnique({
+      where: { id: profesorId },
+      include: {
+        usuario: {
+          select: { nombre: true, apellido: true },
+        },
+      },
+    });
+
+    if (!profesor) {
+      throw new Error(`Profesor con ID ${profesorId} no encontrado`);
+    }
+
+    const nombreCompleto = `${profesor.usuario.nombre} ${profesor.usuario.apellido}`.trim();
+
+    return this.prisma.examen.update({
+      where: { id: examenId },
+      data: { profesor: nombreCompleto },
+    });
+  }
 }

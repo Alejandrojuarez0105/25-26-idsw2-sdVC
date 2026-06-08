@@ -156,13 +156,19 @@ const ExamenesView: React.FC = () => {
           >
             ➕ Crear nuevo
           </button>
-          <button 
+          <button
             onClick={handleEliminar}
             style={{ minWidth: '180px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #999', fontWeight: 'bold', background: '#dc3545', color: 'white' }}
           >
             🗑️ Eliminar seleccionado
           </button>
-          <button 
+          <button
+            onClick={() => navigate('/admin/examenes/asignar-profesor')}
+            style={{ minWidth: '180px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #999', fontWeight: 'bold', background: '#2d89ef', color: 'white' }}
+          >
+            👨‍🏫 Asignar profesor
+          </button>
+          <button
             onClick={handleSalir}
             style={{ minWidth: '180px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #999', fontWeight: 'bold', background: '#f3f0ec', color: 'black' }}
           >

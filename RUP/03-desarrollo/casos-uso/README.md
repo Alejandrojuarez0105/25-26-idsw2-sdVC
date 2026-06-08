@@ -51,6 +51,7 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 - [eliminarProfesor](0-Administrador/eliminarProfesor/README.md) - Implementación de la funcionalidad de borrado seguro de profesores.
 - [crearProfesor](0-Administrador/crearProfesor/README.md) - Implementación del registro de nuevos profesores.
 - [editarProfesor](0-Administrador/editarProfesor/README.md) - Implementación de la edición de profesores existentes.
+- [asignarProfesorAExamen](0-Administrador/asignarProfesorAExamen/README.md) - Implementación de la asignación de profesores a exámenes.
 
 ### Actor Profesor
 *(En desarrollo)*

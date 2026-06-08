@@ -54,4 +54,14 @@ export class ExamenesController {
     }
     return result;
   }
+
+  @Post(':id/asignar-profesor')
+  @HttpCode(HttpStatus.OK)
+  async asignarProfesor(@Param('id') id: string, @Body() data: { profesorId: string | null }) {
+    try {
+      return await this.examenesService.asignarProfesor(id, data?.profesorId ?? null);
+    } catch (err: any) {
+      throw new NotFoundException(err.message);
+    }
+  }
 }

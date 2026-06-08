@@ -84,6 +84,7 @@ A continuación se detallan las especificaciones de implementación por actor y 
 - [eliminarProfesor](casos-uso/0-Administrador/eliminarProfesor/README.md) - Implementación de la funcionalidad de borrado seguro de profesores.
 - [crearProfesor](casos-uso/0-Administrador/crearProfesor/README.md) - Implementación del alta de nuevos profesores.
 - [editarProfesor](casos-uso/0-Administrador/editarProfesor/README.md) - Implementación de la edición de profesores existentes.
+- [asignarProfesorAExamen](casos-uso/0-Administrador/asignarProfesorAExamen/README.md) - Implementación de la asignación/desasignación de profesores a exámenes.
 
 ## Referencias
 

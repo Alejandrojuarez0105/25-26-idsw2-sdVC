@@ -34,4 +34,9 @@ export const examenesService = {
     const response = await api.put(`/examenes/${id}`, data);
     return response.data;
   },
+
+  async asignarProfesor(examenId: string, profesorId: string | null): Promise<Examen> {
+    const response = await api.post(`/examenes/${examenId}/asignar-profesor`, { profesorId });
+    return response.data;
+  },
 };
