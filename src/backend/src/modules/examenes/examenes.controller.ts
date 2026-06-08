@@ -1,4 +1,5 @@
-import { Body, ConflictException, Controller, Delete, Get, HttpCode, HttpStatus, InternalServerErrorException, NotFoundException, Param, Post, Put } from '@nestjs/common';
+import { Body, ConflictException, Controller, Delete, Get, HttpCode, HttpStatus, InternalServerErrorException, NotFoundException, Param, Post, Put, Query, Res } from '@nestjs/common';
+import { Response } from 'express';
 import { ExamenesService } from './examenes.service';
 
 @Controller('examenes')
@@ -22,6 +23,41 @@ export class ExamenesController {
     } catch (err: any) {
       throw new InternalServerErrorException(
         err?.message || 'Error al generar el calendario de exámenes',
+      );
+    }
+  }
+
+  @Get('calendario/descargar')
+  async descargarCalendario(@Query() query: any, @Res() res: Response) {
+    try {
+      const opts = {
+        incluirAula: query.incluirAula !== 'false',
+        incluirProfesor: query.incluirProfesor !== 'false',
+        incluirEstudiantes: query.incluirEstudiantes !== 'false',
+        fechaInicio: query.fechaInicio || undefined,
+        fechaFin: query.fechaFin || undefined,
+      };
+      const { content, filename, contentType } =
+        await this.examenesService.descargarCalendario(opts);
+      res.set({
+        'Content-Type': contentType,
+        'Content-Disposition': `attachment; filename="${filename}"`,
+      });
+      res.send(content);
+    } catch (err: any) {
+      throw new InternalServerErrorException(
+        err?.message || 'Error al descargar el calendario de exámenes',
+      );
+    }
+  }
+
+  @Get('calendario')
+  async consultarCalendario() {
+    try {
+      return await this.examenesService.consultarCalendario();
+    } catch (err: any) {
+      throw new InternalServerErrorException(
+        err?.message || 'Error al consultar el calendario de exámenes',
       );
     }
   }

@@ -80,6 +80,25 @@ export const examenesService = {
     const response = await api.get('/examenes/calendario/generar');
     return response.data;
   },
+
+  async consultarCalendario(): Promise<CalendarioConsulta> {
+    const response = await api.get('/examenes/calendario');
+    return response.data;
+  },
+
+  async descargarCalendario(opts: DescargaOpciones = {}): Promise<Blob> {
+    const params: Record<string, string> = {};
+    if (opts.incluirAula === false) params.incluirAula = 'false';
+    if (opts.incluirProfesor === false) params.incluirProfesor = 'false';
+    if (opts.incluirEstudiantes === false) params.incluirEstudiantes = 'false';
+    if (opts.fechaInicio) params.fechaInicio = opts.fechaInicio;
+    if (opts.fechaFin) params.fechaFin = opts.fechaFin;
+    const response = await api.get('/examenes/calendario/descargar', {
+      params,
+      responseType: 'blob',
+    });
+    return response.data;
+  },
 };
 
 export interface ConflictoExamen {
@@ -122,6 +141,26 @@ export interface RequisitoCalendario {
   actual: number;
   minimo: number;
   cumple: boolean;
+}
+
+export interface CalendarioConsulta {
+  generadoEn: string;
+  resumen: {
+    totalExamenes: number;
+    profesoresAsignados: number;
+    aulasUtilizadas: number;
+    estudiantesAfectados: number;
+  };
+  examenes: CalendarioExamen[];
+  conflictos: ConflictoExamen[];
+}
+
+export interface DescargaOpciones {
+  incluirAula?: boolean;
+  incluirProfesor?: boolean;
+  incluirEstudiantes?: boolean;
+  fechaInicio?: string;
+  fechaFin?: string;
 }
 
 export interface CalendarioGenerado {

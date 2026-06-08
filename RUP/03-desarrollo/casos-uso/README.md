@@ -59,6 +59,10 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 #### Procesos del sistema
 - [generarCalendario](0-Administrador/generarCalendario/README.md) - Implementación de la generación y visualización del calendario oficial de exámenes.
 
+#### Consulta de información
+- [consultarCalendario](0-Administrador/consultarCalendario/README.md) - Implementación de la consulta y visualización del calendario de exámenes.
+- [descargarCalendarioExamenes](0-Administrador/descargarCalendarioExamenes/README.md) - Implementación de la descarga del calendario en formato CSV.
+
 ### Actor Profesor
 *(En desarrollo)*
 

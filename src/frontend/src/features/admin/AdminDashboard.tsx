@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import { ConflictoExamen, examenesService } from '../../services/examenes.service';
+import { CalendarioExamen, ConflictoExamen, examenesService } from '../../services/examenes.service';
 
 const AdminDashboard: React.FC = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [conflictos, setConflictos] = useState<ConflictoExamen[]>([]);
   const [conflictosLoading, setConflictosLoading] = useState(true);
+  const [proximos, setProximos] = useState<CalendarioExamen[]>([]);
+  const [proximosLoading, setProximosLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -20,7 +22,28 @@ const AdminDashboard: React.FC = () => {
         setConflictosLoading(false);
       }
     })();
+
+    (async () => {
+      try {
+        const calendario = await examenesService.consultarCalendario();
+        const hoy = new Date().toISOString().slice(0, 10);
+        const futuros = calendario.examenes.filter((e) => e.fecha >= hoy);
+        // Si no hay exámenes futuros, mostrar los más recientes del calendario.
+        const lista = (futuros.length > 0 ? futuros : calendario.examenes).slice(0, 5);
+        setProximos(lista);
+      } catch {
+        setProximos([]);
+      } finally {
+        setProximosLoading(false);
+      }
+    })();
   }, []);
+
+  const formatearFechaCorta = (fechaStr: string) => {
+    const partes = fechaStr.split('-');
+    if (partes.length === 3) return `${partes[2]}/${partes[1]}`;
+    return fechaStr;
+  };
 
   const colorEstado = (estado: ConflictoExamen['estado']) => {
     if (estado === 'Pendiente') return '#dc3545';
@@ -45,6 +68,8 @@ const AdminDashboard: React.FC = () => {
       navigate('/admin/alumnos');
     } else if (modulo === 'profesores') {
       navigate('/admin/profesores');
+    } else if (modulo === 'calendario') {
+      navigate('/admin/calendario/consultar');
     } else {
       alert(`🔍 Navegando a: ${modulo}\n\nFuncionalidad en desarrollo.`);
     }
@@ -137,21 +162,20 @@ const AdminDashboard: React.FC = () => {
           <div style={{ flex: 1, background: '#ededed', border: '1px solid #cfcfcf', padding: '18px' }}>
             <h3 style={{ fontSize: '18px', marginBottom: '15px', textDecoration: 'underline', fontWeight: 'bold' }}>📅 Próximos exámenes</h3>
             <ul style={{ listStyle: 'none', padding: 0 }}>
-              <li style={{ padding: '8px 0', borderBottom: '1px solid #cfcfcf', fontSize: '13px', display: 'flex', justifyContent: 'space-between' }}>
-                <span>Programación I</span><span>15/01 08:30</span>
-              </li>
-              <li style={{ padding: '8px 0', borderBottom: '1px solid #cfcfcf', fontSize: '13px', display: 'flex', justifyContent: 'space-between' }}>
-                <span>Bases de Datos I</span><span>16/01 11:30</span>
-              </li>
-              <li style={{ padding: '8px 0', borderBottom: '1px solid #cfcfcf', fontSize: '13px', display: 'flex', justifyContent: 'space-between' }}>
-                <span>Estructuras de Datos</span><span>19/01 14:30</span>
-              </li>
-              <li style={{ padding: '8px 0', borderBottom: '1px solid #cfcfcf', fontSize: '13px', display: 'flex', justifyContent: 'space-between' }}>
-                <span>Expresión Gráfica</span><span>20/01 17:30</span>
-              </li>
+              {proximosLoading ? (
+                <li style={{ padding: '8px 0', fontSize: '13px', fontStyle: 'italic', color: '#666' }}>Cargando exámenes...</li>
+              ) : proximos.length === 0 ? (
+                <li style={{ padding: '8px 0', fontSize: '13px', color: '#666' }}>Sin exámenes programados.</li>
+              ) : (
+                proximos.map((e) => (
+                  <li key={e.id} style={{ padding: '8px 0', borderBottom: '1px solid #cfcfcf', fontSize: '13px', display: 'flex', justifyContent: 'space-between' }}>
+                    <span>{e.asignatura}</span><span>{formatearFechaCorta(e.fecha)} {e.hora}</span>
+                  </li>
+                ))
+              )}
             </ul>
             <div style={{ marginTop: '12px', textAlign: 'right' }}>
-              <a onClick={() => alert('📅 Calendario de exámenes')} style={{ color: '#2d89ef', textDecoration: 'none', fontSize: '12px', cursor: 'pointer' }}>Ver todos los exámenes →</a>
+              <a onClick={() => navigate('/admin/calendario/consultar')} style={{ color: '#2d89ef', textDecoration: 'none', fontSize: '12px', cursor: 'pointer' }}>Ver todos los exámenes →</a>
             </div>
           </div>
         </div>
@@ -165,8 +189,7 @@ const AdminDashboard: React.FC = () => {
             { id: 'aulas', icon: '🏛️', name: 'Aulas' },
             { id: 'alumnos', icon: '👨‍🎓', name: 'Alumnos' },
             { id: 'examenes', icon: '📝', name: 'Exámenes' },
-            { id: 'calendario', icon: '📅', name: 'Calendario' },
-            { id: 'reportes', icon: '📊', name: 'Reportes' }
+            { id: 'calendario', icon: '📅', name: 'Calendario' }
           ].map((acc) => (
             <div 
               key={acc.id} 

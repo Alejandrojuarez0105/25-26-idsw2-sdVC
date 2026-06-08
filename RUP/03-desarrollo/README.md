@@ -92,6 +92,10 @@ A continuación se detallan las especificaciones de implementación por actor y 
 #### Procesos del sistema
 - [generarCalendario](casos-uso/0-Administrador/generarCalendario/README.md) - Implementación de la generación y visualización del calendario oficial de exámenes.
 
+#### Consulta de información
+- [consultarCalendario](casos-uso/0-Administrador/consultarCalendario/README.md) - Implementación de la consulta y visualización del calendario de exámenes.
+- [descargarCalendarioExamenes](casos-uso/0-Administrador/descargarCalendarioExamenes/README.md) - Implementación de la descarga del calendario en formato CSV.
+
 ## Referencias
 
 - [Guía de Configuración y Scaffolding](/RUP/02-diseño/configuración-proyecto.md)

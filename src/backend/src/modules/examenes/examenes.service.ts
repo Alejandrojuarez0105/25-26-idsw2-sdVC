@@ -347,4 +347,170 @@ export class ExamenesService {
       conflictos,
     };
   }
+
+  // Consolida el calendario actual (exámenes ordenados cronológicamente con sus
+  // relaciones reales de profesor/aula) y marca los implicados en conflictos.
+  // Reutilizado por consultarCalendario() y descargarCalendario().
+  private async buildCalendarioConsolidado() {
+    const examenes = await this.prisma.examen.findMany({
+      orderBy: [{ fecha: 'asc' }, { hora: 'asc' }],
+      include: examenInclude,
+    });
+    const conflictos = await this.findConflictos();
+
+    const formatFecha = (d: Date) => {
+      const day = String(d.getUTCDate()).padStart(2, '0');
+      const month = String(d.getUTCMonth() + 1).padStart(2, '0');
+      const year = d.getUTCFullYear();
+      return `${year}-${month}-${day}`;
+    };
+    const nombreProfesor = (ex: any) =>
+      ex.profesor?.usuario
+        ? `${ex.profesor.usuario.nombre} ${ex.profesor.usuario.apellido}`.trim()
+        : '';
+    const codigoAula = (ex: any) => ex.aula?.codigo || '';
+
+    const tiposPorExamen = new Map<string, Set<string>>();
+    for (const c of conflictos) {
+      for (const ex of c.examenes) {
+        if (!tiposPorExamen.has(ex.id)) tiposPorExamen.set(ex.id, new Set());
+        tiposPorExamen.get(ex.id)!.add(c.tipo);
+      }
+    }
+
+    const examenesCalendario = examenes.map((e) => {
+      const tipos = Array.from(tiposPorExamen.get(e.id) || []);
+      return {
+        id: e.id,
+        codigo: e.codigo,
+        asignatura: e.asignatura,
+        fecha: formatFecha(new Date(e.fecha)),
+        hora: e.hora,
+        aula: codigoAula(e),
+        aulaId: e.aulaId,
+        profesor: nombreProfesor(e),
+        profesorId: e.profesorId,
+        tieneConflicto: tipos.length > 0,
+        tiposConflicto: tipos,
+      };
+    });
+
+    return { examenesCalendario, conflictos };
+  }
+
+  // Resuelve los nombres/códigos libres de asignatura contra el catálogo y
+  // devuelve un Map asignaturaId -> número de alumnos matriculados.
+  private async matriculasPorAsignatura(asignaturas: string[]) {
+    const catalogo = await this.prisma.asignatura.findMany({
+      select: { id: true, nombre: true, codigo: true },
+    });
+    const resolver = (valor: string) => {
+      const target = (valor || '').trim().toLowerCase();
+      const match = catalogo.find(
+        (a) => a.nombre.toLowerCase() === target || a.codigo.toLowerCase() === target,
+      );
+      return match?.id || null;
+    };
+
+    const ids = Array.from(
+      new Set(asignaturas.map(resolver).filter((x): x is string => !!x)),
+    );
+
+    const countById = new Map<string, number>();
+    if (ids.length > 0) {
+      const grouped = await this.prisma.matricula.groupBy({
+        by: ['asignaturaId'],
+        where: { asignaturaId: { in: ids } },
+        _count: { _all: true },
+      });
+      for (const g of grouped) countById.set(g.asignaturaId, g._count._all);
+    }
+
+    return { resolver, countById };
+  }
+
+  async consultarCalendario() {
+    const { examenesCalendario, conflictos } = await this.buildCalendarioConsolidado();
+
+    const profesoresAsignados = new Set(
+      examenesCalendario.filter((e) => e.profesorId).map((e) => e.profesorId),
+    ).size;
+    const aulasUtilizadas = new Set(
+      examenesCalendario.filter((e) => e.aulaId).map((e) => e.aulaId),
+    ).size;
+
+    // Estudiantes afectados: alumnos distintos matriculados en alguna asignatura con examen.
+    const { resolver, countById } = await this.matriculasPorAsignatura(
+      examenesCalendario.map((e) => e.asignatura),
+    );
+    const idsConExamen = new Set(
+      examenesCalendario.map((e) => resolver(e.asignatura)).filter((x): x is string => !!x),
+    );
+    let estudiantesAfectados = 0;
+    for (const id of idsConExamen) estudiantesAfectados += countById.get(id) || 0;
+
+    return {
+      generadoEn: new Date().toISOString(),
+      resumen: {
+        totalExamenes: examenesCalendario.length,
+        profesoresAsignados,
+        aulasUtilizadas,
+        estudiantesAfectados,
+      },
+      examenes: examenesCalendario,
+      conflictos,
+    };
+  }
+
+  async descargarCalendario(opts: {
+    incluirAula?: boolean;
+    incluirProfesor?: boolean;
+    incluirEstudiantes?: boolean;
+    fechaInicio?: string;
+    fechaFin?: string;
+  }) {
+    const { examenesCalendario } = await this.buildCalendarioConsolidado();
+
+    let filas = examenesCalendario;
+    if (opts.fechaInicio) filas = filas.filter((e) => e.fecha >= opts.fechaInicio!);
+    if (opts.fechaFin) filas = filas.filter((e) => e.fecha <= opts.fechaFin!);
+
+    // Conteo de estudiantes por examen (solo si se solicita la columna).
+    let estudiantesDe: (asignatura: string) => number = () => 0;
+    if (opts.incluirEstudiantes) {
+      const { resolver, countById } = await this.matriculasPorAsignatura(
+        filas.map((e) => e.asignatura),
+      );
+      estudiantesDe = (asignatura: string) => {
+        const id = resolver(asignatura);
+        return id ? countById.get(id) || 0 : 0;
+      };
+    }
+
+    const columnas = ['Fecha', 'Hora', 'Código', 'Asignatura'];
+    if (opts.incluirAula) columnas.push('Aula');
+    if (opts.incluirProfesor) columnas.push('Profesor');
+    if (opts.incluirEstudiantes) columnas.push('Estudiantes');
+    columnas.push('Estado');
+
+    const esc = (valor: string) => `"${String(valor ?? '').replace(/"/g, '""')}"`;
+    const lineas = [columnas.map(esc).join(',')];
+
+    for (const e of filas) {
+      const fila: string[] = [e.fecha, e.hora, e.codigo, e.asignatura];
+      if (opts.incluirAula) fila.push(e.aula || '');
+      if (opts.incluirProfesor) fila.push(e.profesor || '');
+      if (opts.incluirEstudiantes) fila.push(String(estudiantesDe(e.asignatura)));
+      fila.push(e.tieneConflicto ? `Conflicto: ${e.tiposConflicto.join('/')}` : 'OK');
+      lineas.push(fila.map(esc).join(','));
+    }
+
+    // BOM inicial para que Excel respete los acentos al abrir el CSV.
+    const content = '﻿' + lineas.join('\r\n');
+    return {
+      content,
+      filename: 'calendario-examenes.csv',
+      contentType: 'text/csv; charset=utf-8',
+    };
+  }
 }
