@@ -10,6 +10,11 @@ export class ExamenesController {
     return this.examenesService.findAll();
   }
 
+  @Get('conflictos')
+  async findConflictos() {
+    return this.examenesService.findConflictos();
+  }
+
   @Get(':id')
   async findOne(@Param('id') id: string) {
     const examen = await this.examenesService.findOne(id);

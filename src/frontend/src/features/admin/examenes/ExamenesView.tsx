@@ -169,6 +169,12 @@ const ExamenesView: React.FC = () => {
             👨‍🏫 Asignar profesor
           </button>
           <button
+            onClick={() => navigate('/admin/examenes/conflictos')}
+            style={{ minWidth: '180px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #999', fontWeight: 'bold', background: '#e6a017', color: 'white' }}
+          >
+            ⚠️ Ver conflictos
+          </button>
+          <button
             onClick={handleSalir}
             style={{ minWidth: '180px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #999', fontWeight: 'bold', background: '#f3f0ec', color: 'black' }}
           >

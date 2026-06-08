@@ -39,4 +39,28 @@ export const examenesService = {
     const response = await api.post(`/examenes/${examenId}/asignar-profesor`, { profesorId });
     return response.data;
   },
+
+  async findConflictos(): Promise<ConflictoExamen[]> {
+    const response = await api.get('/examenes/conflictos');
+    return response.data;
+  },
 };
+
+export interface ConflictoExamen {
+  id: number;
+  tipo: 'Profesor' | 'Aula' | 'Estudiante';
+  detalle: string;
+  estado: 'Pendiente' | 'Resuelto' | 'En revisión';
+  fecha: string;
+  hora: string;
+  estudiantesAfectados: number;
+  examenes: {
+    id: string;
+    codigo: string;
+    asignatura: string;
+    fecha: string;
+    hora: string;
+    aula: string;
+    profesor: string;
+  }[];
+}

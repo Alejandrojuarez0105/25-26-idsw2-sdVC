@@ -85,6 +85,7 @@ A continuación se detallan las especificaciones de implementación por actor y 
 - [crearProfesor](casos-uso/0-Administrador/crearProfesor/README.md) - Implementación del alta de nuevos profesores.
 - [editarProfesor](casos-uso/0-Administrador/editarProfesor/README.md) - Implementación de la edición de profesores existentes.
 - [asignarProfesorAExamen](casos-uso/0-Administrador/asignarProfesorAExamen/README.md) - Implementación de la asignación/desasignación de profesores a exámenes.
+- [listarConflictosExamenes](casos-uso/0-Administrador/listarConflictosExamenes/README.md) - Implementación de la detección y listado de conflictos en la planificación de exámenes.
 
 ## Referencias
 
