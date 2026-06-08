@@ -105,7 +105,10 @@ const EliminarExamenView: React.FC = () => {
                 <strong>Fecha/Hora:</strong> {formatearFecha(ex.fecha)} {ex.hora}
               </div>
               <div style={{ marginBottom: '5px', fontSize: '15px' }}>
-                <strong>Aula:</strong> {ex.aula}
+                <strong>Aula:</strong> {ex.aula?.codigo || 'N/A'}
+              </div>
+              <div style={{ marginBottom: '5px', fontSize: '15px' }}>
+                <strong>Profesor:</strong> {ex.profesor ? `${ex.profesor.usuario.nombre} ${ex.profesor.usuario.apellido}` : 'N/A'}
               </div>
             </div>
           ))}

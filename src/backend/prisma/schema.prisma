@@ -86,6 +86,7 @@ model Profesor {
   departamento String? @db.VarChar(100)
 
   asignaturas ProfesorAsignatura[]
+  examenes    Examen[]
 }
 
 model Examen {
@@ -94,10 +95,18 @@ model Examen {
   asignatura String   @db.VarChar(100)
   fecha      DateTime @db.Date
   hora       String   @db.VarChar(5)
-  aula       String   @db.VarChar(50)
-  profesor   String   @db.VarChar(100)
+
+  profesorId String?   @db.Uuid
+  profesor   Profesor? @relation(fields: [profesorId], references: [id], onDelete: SetNull)
+
+  aulaId String? @db.Uuid
+  aula   Aula?   @relation(fields: [aulaId], references: [id], onDelete: SetNull)
 
   fechaCreacion DateTime @default(now()) @db.Timestamptz
+
+  @@index([profesorId])
+  @@index([aulaId])
+  @@index([fecha, hora])
 }
 
 model ProfesorAsignatura {
@@ -141,4 +150,6 @@ model Aula {
   capacidad     Int
   ubicacion     String   @db.VarChar(100)
   fechaCreacion DateTime @default(now()) @db.Timestamptz
+
+  examenes Examen[]
 }

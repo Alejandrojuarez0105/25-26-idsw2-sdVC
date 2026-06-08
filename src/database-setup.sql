@@ -121,26 +121,8 @@ VALUES
 (uuid_generate_v4(), 'Daniel', 'Iglesias', 'daniel.iglesias@uneatlantico.es', '$2b$10$S64kLshjsy/hR4L9CZ0yFeoxjbXdH.xiKUkHGxtQ.8fnsu3Q/l3y.', 'Profesor')
 ON CONFLICT (email) DO NOTHING;
 
--- 10. Tabla de Exámenes
-CREATE TABLE "Examen" (
-    "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    "codigo" VARCHAR(20) UNIQUE NOT NULL,
-    "asignatura" VARCHAR(100) NOT NULL,
-    "fecha" DATE NOT NULL,
-    "hora" VARCHAR(5) NOT NULL,
-    "aula" VARCHAR(50) NOT NULL,
-    "profesor" VARCHAR(100) NOT NULL,
-    "fechaCreacion" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
--- 11. Datos Iniciales de Exámenes
-INSERT INTO "Examen"("codigo","asignatura","fecha","hora","aula","profesor")
-VALUES('EX001','Programación I','2026-01-15','08:30','-2.6','Manuel Masías'),
-('EX002','Bases de Datos I','2026-01-16','11:30','-2.2','Lázaro Hernández'),
-('EX003','Estructuras de Datos I','2026-01-19','14:30','-2.4','Manuel Masías'),
-('EX004','Expresión Gráfica','2026-01-20','17:30','1.2','Carlos Galiano');
-
--- Nota: Los usuarios y grados iniciales se usan para pruebas locales.
+-- Nota: La tabla "Examen" se crea tras "Aula" (Sesión 70) para poder referenciar aulaId como FK.
+-- Los usuarios y grados iniciales se usan para pruebas locales.
 -- Los passwords deben mantenerse sincronizados con el script de seed de backend.
 
 -- 12. Tabla de Aulas
@@ -159,6 +141,39 @@ VALUES('-2.6','Laboratorio -2.6',30,'Planta -2'),
 ('-2.2','Aula Magna',150,'Planta -2'),
 ('-2.4','Aula Informática -2.4',40,'Planta -2'),
 ('1.2','Aula 1.2',60,'Planta 1');
+
+-- 13b. Tabla de Exámenes (refactor Sesión 70: usa profesorId/aulaId como FKs reales)
+CREATE TABLE "Examen" (
+    "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    "codigo" VARCHAR(20) UNIQUE NOT NULL,
+    "asignatura" VARCHAR(100) NOT NULL,
+    "fecha" DATE NOT NULL,
+    "hora" VARCHAR(5) NOT NULL,
+    "profesorId" UUID REFERENCES "Profesor"("id") ON DELETE SET NULL,
+    "aulaId" UUID REFERENCES "Aula"("id") ON DELETE SET NULL,
+    "fechaCreacion" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS "Examen_profesorId_idx" ON "Examen"("profesorId");
+CREATE INDEX IF NOT EXISTS "Examen_aulaId_idx" ON "Examen"("aulaId");
+CREATE INDEX IF NOT EXISTS "Examen_fecha_hora_idx" ON "Examen"("fecha","hora");
+
+-- 13c. Datos Iniciales de Exámenes (FKs resueltos por subconsultas)
+INSERT INTO "Examen"("codigo","asignatura","fecha","hora","profesorId","aulaId")
+SELECT 'EX001','Programación I',DATE '2026-01-15','08:30',
+       (SELECT p.id FROM "Profesor" p JOIN "Usuario" u ON u.id = p."usuarioId" WHERE u.email = 'manuel.masias@uneatlantico.es'),
+       (SELECT id FROM "Aula" WHERE codigo = '-2.6')
+UNION ALL
+SELECT 'EX002','Bases de Datos I',DATE '2026-01-16','11:30',
+       NULL,
+       (SELECT id FROM "Aula" WHERE codigo = '-2.2')
+UNION ALL
+SELECT 'EX003','Estructuras de Datos I',DATE '2026-01-19','14:30',
+       (SELECT p.id FROM "Profesor" p JOIN "Usuario" u ON u.id = p."usuarioId" WHERE u.email = 'manuel.masias@uneatlantico.es'),
+       (SELECT id FROM "Aula" WHERE codigo = '-2.4')
+UNION ALL
+SELECT 'EX004','Expresión Gráfica',DATE '2026-01-20','17:30',
+       NULL,
+       (SELECT id FROM "Aula" WHERE codigo = '1.2');
 
 -- 14. Tabla de Alumnos
 CREATE TABLE IF NOT EXISTS "Alumno" (

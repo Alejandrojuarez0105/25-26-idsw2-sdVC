@@ -86,6 +86,8 @@ A continuación se detallan las especificaciones de implementación por actor y 
 - [editarProfesor](casos-uso/0-Administrador/editarProfesor/README.md) - Implementación de la edición de profesores existentes.
 - [asignarProfesorAExamen](casos-uso/0-Administrador/asignarProfesorAExamen/README.md) - Implementación de la asignación/desasignación de profesores a exámenes.
 - [listarConflictosExamenes](casos-uso/0-Administrador/listarConflictosExamenes/README.md) - Implementación de la detección y listado de conflictos en la planificación de exámenes.
+- [refactorExamenes](casos-uso/0-Administrador/refactorExamenes/README.md) - Refactorización del modelo Examen para usar relaciones reales (profesorId, aulaId).
+- [actualizarConflictosExamenes](casos-uso/0-Administrador/actualizarConflictosExamenes/README.md) - Actualización de la detección de conflictos sobre IDs reales y sincronización del dashboard.
 
 ## Referencias
 

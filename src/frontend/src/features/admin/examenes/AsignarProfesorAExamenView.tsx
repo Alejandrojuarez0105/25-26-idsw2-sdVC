@@ -41,7 +41,12 @@ const AsignarProfesorAExamenView: React.FC = () => {
     [profesores, profesorSeleccionadoId]
   );
 
-  const totalSinProfesor = examenes.filter(e => !e.profesor || e.profesor.trim() === '').length;
+  const totalSinProfesor = examenes.filter(e => !e.profesorId).length;
+  const formatExamenLine = (e: Examen) => {
+    const prof = e.profesor ? `${e.profesor.usuario.nombre} ${e.profesor.usuario.apellido}` : '(sin profesor)';
+    const aula = e.aula?.codigo || '(sin aula)';
+    return { prof, aula };
+  };
 
   const formatearFecha = (fechaStr: string) => {
     try {
@@ -66,10 +71,13 @@ const AsignarProfesorAExamenView: React.FC = () => {
     }
 
     const nombreNuevo = `${profesorSeleccionado.usuario.nombre} ${profesorSeleccionado.usuario.apellido}`.trim();
+    const nombreActual = examenSeleccionado.profesor
+      ? `${examenSeleccionado.profesor.usuario.nombre} ${examenSeleccionado.profesor.usuario.apellido}`
+      : '';
 
-    if (examenSeleccionado.profesor && examenSeleccionado.profesor.trim() !== '') {
+    if (examenSeleccionado.profesorId) {
       const confirmar = window.confirm(
-        `⚠️ El examen "${examenSeleccionado.codigo} - ${examenSeleccionado.asignatura}" ya tiene asignado al profesor "${examenSeleccionado.profesor}".\n\n¿Deseas reemplazarlo por "${nombreNuevo}"?`
+        `⚠️ El examen "${examenSeleccionado.codigo} - ${examenSeleccionado.asignatura}" ya tiene asignado al profesor "${nombreActual}".\n\n¿Deseas reemplazarlo por "${nombreNuevo}"?`
       );
       if (!confirmar) return;
     }
@@ -93,12 +101,15 @@ const AsignarProfesorAExamenView: React.FC = () => {
       alert('⚠️ Primero selecciona un examen.');
       return;
     }
-    if (!examenSeleccionado.profesor || examenSeleccionado.profesor.trim() === '') {
+    if (!examenSeleccionado.profesorId) {
       alert(`⚠️ El examen "${examenSeleccionado.codigo} - ${examenSeleccionado.asignatura}" no tiene profesor asignado.`);
       return;
     }
+    const nombreActual = examenSeleccionado.profesor
+      ? `${examenSeleccionado.profesor.usuario.nombre} ${examenSeleccionado.profesor.usuario.apellido}`
+      : '';
     const confirmar = window.confirm(
-      `¿Desasignar al profesor "${examenSeleccionado.profesor}" del examen "${examenSeleccionado.codigo} - ${examenSeleccionado.asignatura}"?`
+      `¿Desasignar al profesor "${nombreActual}" del examen "${examenSeleccionado.codigo} - ${examenSeleccionado.asignatura}"?`
     );
     if (!confirmar) return;
 
@@ -116,16 +127,17 @@ const AsignarProfesorAExamenView: React.FC = () => {
   };
 
   const handleGuardar = () => {
-    const asignaciones = examenes.filter(e => e.profesor && e.profesor.trim() !== '');
+    const asignaciones = examenes.filter(e => !!e.profesorId);
     if (asignaciones.length === 0) {
       alert('⚠️ No hay asignaciones para guardar.');
       return;
     }
     let mensaje = '💾 ASIGNACIONES VIGENTES\n\n';
     asignaciones.forEach(e => {
+      const { prof, aula } = formatExamenLine(e);
       mensaje += `📖 ${e.codigo} - ${e.asignatura}\n`;
-      mensaje += `   👨‍🏫 Profesor: ${e.profesor}\n`;
-      mensaje += `   📅 ${formatearFecha(e.fecha)} ${e.hora} - Aula ${e.aula}\n\n`;
+      mensaje += `   👨‍🏫 Profesor: ${prof}\n`;
+      mensaje += `   📅 ${formatearFecha(e.fecha)} ${e.hora} - Aula ${aula}\n\n`;
     });
     mensaje += `✅ Total asignaciones: ${asignaciones.length}`;
     alert(mensaje);
@@ -173,8 +185,10 @@ const AsignarProfesorAExamenView: React.FC = () => {
                   <div style={{ fontStyle: 'italic', color: '#666', fontSize: '13px' }}>No hay exámenes registrados.</div>
                 ) : (
                   examenes.map(ex => {
-                    const asignado = !!ex.profesor && ex.profesor.trim() !== '';
+                    const asignado = !!ex.profesorId;
                     const sel = examenSeleccionadoId === ex.id;
+                    const nombreProf = ex.profesor ? `${ex.profesor.usuario.nombre} ${ex.profesor.usuario.apellido}` : '';
+                    const codigoAulaEx = ex.aula?.codigo || 'N/A';
                     const base: React.CSSProperties = {
                       border: '1px solid #bdbdbd',
                       padding: '12px',
@@ -193,9 +207,9 @@ const AsignarProfesorAExamenView: React.FC = () => {
                         onClick={() => setExamenSeleccionadoId(ex.id)}
                       >
                         <div style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '5px' }}>📖 {ex.codigo} – {ex.asignatura}</div>
-                        <div style={{ fontSize: '12px', color: '#555' }}>{formatearFecha(ex.fecha)} {ex.hora} · Aula {ex.aula}</div>
+                        <div style={{ fontSize: '12px', color: '#555' }}>{formatearFecha(ex.fecha)} {ex.hora} · Aula {codigoAulaEx}</div>
                         {asignado ? (
-                          <div style={{ fontSize: '12px', color: '#28a745', marginTop: '5px', fontWeight: 'bold' }}>✅ Asignado: {ex.profesor}</div>
+                          <div style={{ fontSize: '12px', color: '#28a745', marginTop: '5px', fontWeight: 'bold' }}>✅ Asignado: {nombreProf}</div>
                         ) : (
                           <div style={{ fontSize: '12px', color: '#dc3545', marginTop: '5px', fontWeight: 'bold' }}>⚠️ Sin profesor asignado</div>
                         )}

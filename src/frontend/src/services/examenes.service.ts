@@ -1,13 +1,44 @@
 import api from '../core/api';
 
+export interface ExamenProfesorRel {
+  id: string;
+  codigo: string;
+  departamento: string | null;
+  usuario: {
+    id: string;
+    nombre: string;
+    apellido: string;
+    email: string;
+  };
+}
+
+export interface ExamenAulaRel {
+  id: string;
+  codigo: string;
+  nombre: string;
+  ubicacion: string;
+  capacidad: number;
+}
+
 export interface Examen {
   id: string;
   codigo: string;
+  asignatura: string;
   fecha: string;
   hora: string;
-  aula: string;
-  asignatura: string;
-  profesor: string;
+  profesorId: string | null;
+  aulaId: string | null;
+  profesor: ExamenProfesorRel | null;
+  aula: ExamenAulaRel | null;
+}
+
+export interface ExamenInput {
+  codigo?: string;
+  asignatura?: string;
+  fecha?: string;
+  hora?: string;
+  profesorId?: string | null;
+  aulaId?: string | null;
 }
 
 export const examenesService = {
@@ -25,12 +56,12 @@ export const examenesService = {
     await api.delete(`/examenes/${id}`);
   },
 
-  async create(data: Omit<Examen, 'id'>): Promise<Examen> {
+  async create(data: ExamenInput): Promise<Examen> {
     const response = await api.post('/examenes', data);
     return response.data;
   },
 
-  async update(id: string, data: Partial<Examen>): Promise<Examen> {
+  async update(id: string, data: ExamenInput): Promise<Examen> {
     const response = await api.put(`/examenes/${id}`, data);
     return response.data;
   },
@@ -61,6 +92,8 @@ export interface ConflictoExamen {
     fecha: string;
     hora: string;
     aula: string;
+    aulaId: string | null;
     profesor: string;
+    profesorId: string | null;
   }[];
 }

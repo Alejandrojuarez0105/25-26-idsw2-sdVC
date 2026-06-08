@@ -1,10 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import { ConflictoExamen, examenesService } from '../../services/examenes.service';
 
 const AdminDashboard: React.FC = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [conflictos, setConflictos] = useState<ConflictoExamen[]>([]);
+  const [conflictosLoading, setConflictosLoading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await examenesService.findConflictos();
+        setConflictos(data);
+      } catch {
+        setConflictos([]);
+      } finally {
+        setConflictosLoading(false);
+      }
+    })();
+  }, []);
+
+  const colorEstado = (estado: ConflictoExamen['estado']) => {
+    if (estado === 'Pendiente') return '#dc3545';
+    if (estado === 'Resuelto') return '#28a745';
+    return '#e6a017';
+  };
 
   const handleCerrarSesion = () => {
     navigate('/logout');
@@ -95,18 +117,21 @@ const AdminDashboard: React.FC = () => {
           <div style={{ flex: 1, background: '#ededed', border: '1px solid #cfcfcf', padding: '18px' }}>
             <h3 style={{ fontSize: '18px', marginBottom: '15px', textDecoration: 'underline', fontWeight: 'bold' }}>📋 Conflictos recientes</h3>
             <ul style={{ listStyle: 'none', padding: 0 }}>
-              <li style={{ padding: '8px 0', borderBottom: '1px solid #cfcfcf', fontSize: '13px', display: 'flex', justifyContent: 'space-between' }}>
-                <span>Profesor Dr. Pérez - 2 exámenes 08:30</span><span style={{ color: '#dc3545', fontWeight: 'bold' }}>Pendiente</span>
-              </li>
-              <li style={{ padding: '8px 0', borderBottom: '1px solid #cfcfcf', fontSize: '13px', display: 'flex', justifyContent: 'space-between' }}>
-                <span>Aula -2.6 usada por 2 exámenes</span><span style={{ color: '#28a745', fontWeight: 'bold' }}>Resuelto</span>
-              </li>
-              <li style={{ padding: '8px 0', borderBottom: '1px solid #cfcfcf', fontSize: '13px', display: 'flex', justifyContent: 'space-between' }}>
-                <span>15 estudiantes con 3 exámenes mismo día</span><span style={{ color: '#dc3545', fontWeight: 'bold' }}>Pendiente</span>
-              </li>
+              {conflictosLoading ? (
+                <li style={{ padding: '8px 0', fontSize: '13px', fontStyle: 'italic', color: '#666' }}>Cargando conflictos...</li>
+              ) : conflictos.length === 0 ? (
+                <li style={{ padding: '8px 0', fontSize: '13px', color: '#28a745', fontWeight: 'bold' }}>✅ Sin conflictos detectados en la planificación actual.</li>
+              ) : (
+                conflictos.slice(0, 5).map(c => (
+                  <li key={c.id} style={{ padding: '8px 0', borderBottom: '1px solid #cfcfcf', fontSize: '13px', display: 'flex', justifyContent: 'space-between' }}>
+                    <span>[{c.tipo}] {c.detalle}</span>
+                    <span style={{ color: colorEstado(c.estado), fontWeight: 'bold' }}>{c.estado}</span>
+                  </li>
+                ))
+              )}
             </ul>
             <div style={{ marginTop: '12px', textAlign: 'right' }}>
-              <a onClick={() => alert('📋 Lista de conflictos de exámenes')} style={{ color: '#2d89ef', textDecoration: 'none', fontSize: '12px', cursor: 'pointer' }}>Ver todos los conflictos →</a>
+              <a onClick={() => navigate('/admin/examenes/conflictos')} style={{ color: '#2d89ef', textDecoration: 'none', fontSize: '12px', cursor: 'pointer' }}>Ver todos los conflictos →</a>
             </div>
           </div>
           <div style={{ flex: 1, background: '#ededed', border: '1px solid #cfcfcf', padding: '18px' }}>

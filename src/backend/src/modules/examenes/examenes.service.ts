@@ -1,21 +1,34 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../common/prisma.service';
 
+const examenInclude = {
+  profesor: {
+    include: {
+      usuario: {
+        select: { id: true, nombre: true, apellido: true, email: true },
+      },
+    },
+  },
+  aula: {
+    select: { id: true, codigo: true, nombre: true, ubicacion: true, capacidad: true },
+  },
+} as const;
+
 @Injectable()
 export class ExamenesService {
   constructor(private prisma: PrismaService) {}
 
   async findAll() {
     return this.prisma.examen.findMany({
-      orderBy: {
-        fecha: 'asc',
-      },
+      orderBy: [{ fecha: 'asc' }, { hora: 'asc' }],
+      include: examenInclude,
     });
   }
 
   async findOne(id: string) {
     return this.prisma.examen.findUnique({
       where: { id },
+      include: examenInclude,
     });
   }
 
@@ -34,9 +47,10 @@ export class ExamenesService {
         asignatura: data.asignatura,
         fecha: new Date(data.fecha),
         hora: data.hora,
-        aula: data.aula,
-        profesor: data.profesor,
+        profesorId: data.profesorId ?? null,
+        aulaId: data.aulaId ?? null,
       },
+      include: examenInclude,
     });
   }
 
@@ -52,12 +66,13 @@ export class ExamenesService {
     return this.prisma.examen.update({
       where: { id },
       data: {
-        asignatura: data.asignatura,
+        asignatura: data.asignatura ?? undefined,
         fecha: data.fecha ? new Date(data.fecha) : undefined,
-        hora: data.hora,
-        aula: data.aula,
-        profesor: data.profesor,
+        hora: data.hora ?? undefined,
+        profesorId: data.profesorId === undefined ? undefined : data.profesorId,
+        aulaId: data.aulaId === undefined ? undefined : data.aulaId,
       },
+      include: examenInclude,
     });
   }
 
@@ -75,9 +90,35 @@ export class ExamenesService {
     });
   }
 
+  async asignarProfesor(examenId: string, profesorId: string | null) {
+    const examen = await this.prisma.examen.findUnique({
+      where: { id: examenId },
+    });
+
+    if (!examen) {
+      throw new Error(`Examen con ID ${examenId} no encontrado`);
+    }
+
+    if (profesorId) {
+      const profesor = await this.prisma.profesor.findUnique({
+        where: { id: profesorId },
+      });
+      if (!profesor) {
+        throw new Error(`Profesor con ID ${profesorId} no encontrado`);
+      }
+    }
+
+    return this.prisma.examen.update({
+      where: { id: examenId },
+      data: { profesorId: profesorId },
+      include: examenInclude,
+    });
+  }
+
   async findConflictos() {
     const examenes = await this.prisma.examen.findMany({
-      orderBy: { fecha: 'asc' },
+      orderBy: [{ fecha: 'asc' }, { hora: 'asc' }],
+      include: examenInclude,
     });
 
     const formatFecha = (d: Date) => {
@@ -87,35 +128,44 @@ export class ExamenesService {
       return `${year}-${month}-${day}`;
     };
 
+    const nombreProfesor = (ex: any) =>
+      ex.profesor?.usuario
+        ? `${ex.profesor.usuario.nombre} ${ex.profesor.usuario.apellido}`.trim()
+        : '';
+
+    const codigoAula = (ex: any) => ex.aula?.codigo || '';
+
     const serializeExamen = (e: any) => ({
       id: e.id,
       codigo: e.codigo,
       asignatura: e.asignatura,
       fecha: formatFecha(new Date(e.fecha)),
       hora: e.hora,
-      aula: e.aula,
-      profesor: e.profesor,
+      aula: codigoAula(e),
+      aulaId: e.aulaId,
+      profesor: nombreProfesor(e),
+      profesorId: e.profesorId,
     });
 
     const conflictos: any[] = [];
     let nextId = 1;
 
-    // 1) Conflictos de PROFESOR — mismo profesor, misma fecha, misma hora
+    // 1) Conflicto de PROFESOR — mismo profesorId, misma fecha, misma hora
     const groupsProfesor = new Map<string, any[]>();
     for (const ex of examenes) {
-      if (!ex.profesor || ex.profesor.trim() === '') continue;
-      const key = `${ex.profesor.trim().toLowerCase()}|${formatFecha(new Date(ex.fecha))}|${ex.hora}`;
+      if (!ex.profesorId) continue;
+      const key = `${ex.profesorId}|${formatFecha(new Date(ex.fecha))}|${ex.hora}`;
       if (!groupsProfesor.has(key)) groupsProfesor.set(key, []);
       groupsProfesor.get(key)!.push(ex);
     }
     for (const [, group] of groupsProfesor) {
       if (group.length >= 2) {
         const fecha = formatFecha(new Date(group[0].fecha));
-        const profesor = group[0].profesor;
+        const profesor = nombreProfesor(group[0]);
         conflictos.push({
           id: nextId++,
           tipo: 'Profesor',
-          detalle: `${profesor} - ${group.length} exámenes a las ${group[0].hora}`,
+          detalle: `${profesor || 'Profesor'} - ${group.length} exámenes a las ${group[0].hora}`,
           estado: 'Pendiente',
           examenes: group.map(serializeExamen),
           fecha,
@@ -125,11 +175,11 @@ export class ExamenesService {
       }
     }
 
-    // 2) Conflictos de AULA — misma aula, misma fecha, misma hora
+    // 2) Conflicto de AULA — misma aulaId, misma fecha, misma hora
     const groupsAula = new Map<string, any[]>();
     for (const ex of examenes) {
-      if (!ex.aula || ex.aula.trim() === '') continue;
-      const key = `${ex.aula.trim().toLowerCase()}|${formatFecha(new Date(ex.fecha))}|${ex.hora}`;
+      if (!ex.aulaId) continue;
+      const key = `${ex.aulaId}|${formatFecha(new Date(ex.fecha))}|${ex.hora}`;
       if (!groupsAula.has(key)) groupsAula.set(key, []);
       groupsAula.get(key)!.push(ex);
     }
@@ -139,7 +189,7 @@ export class ExamenesService {
         conflictos.push({
           id: nextId++,
           tipo: 'Aula',
-          detalle: `Aula ${group[0].aula} usada por ${group.length} exámenes`,
+          detalle: `Aula ${codigoAula(group[0])} usada por ${group.length} exámenes`,
           estado: 'Pendiente',
           examenes: group.map(serializeExamen),
           fecha,
@@ -149,7 +199,7 @@ export class ExamenesService {
       }
     }
 
-    // 3) Conflictos de ESTUDIANTE — alumnos matriculados en asignaturas con exámenes simultáneos
+    // 3) Conflicto de ESTUDIANTE — alumnos matriculados en asignaturas con exámenes simultáneos
     const slotMap = new Map<string, any[]>();
     for (const ex of examenes) {
       const key = `${formatFecha(new Date(ex.fecha))}|${ex.hora}`;
@@ -203,42 +253,5 @@ export class ExamenesService {
     }
 
     return conflictos;
-  }
-
-  async asignarProfesor(examenId: string, profesorId: string | null) {
-    const examen = await this.prisma.examen.findUnique({
-      where: { id: examenId },
-    });
-
-    if (!examen) {
-      throw new Error(`Examen con ID ${examenId} no encontrado`);
-    }
-
-    if (!profesorId) {
-      return this.prisma.examen.update({
-        where: { id: examenId },
-        data: { profesor: '' },
-      });
-    }
-
-    const profesor = await this.prisma.profesor.findUnique({
-      where: { id: profesorId },
-      include: {
-        usuario: {
-          select: { nombre: true, apellido: true },
-        },
-      },
-    });
-
-    if (!profesor) {
-      throw new Error(`Profesor con ID ${profesorId} no encontrado`);
-    }
-
-    const nombreCompleto = `${profesor.usuario.nombre} ${profesor.usuario.apellido}`.trim();
-
-    return this.prisma.examen.update({
-      where: { id: examenId },
-      data: { profesor: nombreCompleto },
-    });
   }
 }

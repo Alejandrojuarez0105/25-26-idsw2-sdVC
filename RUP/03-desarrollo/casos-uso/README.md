@@ -53,6 +53,8 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 - [editarProfesor](0-Administrador/editarProfesor/README.md) - Implementación de la edición de profesores existentes.
 - [asignarProfesorAExamen](0-Administrador/asignarProfesorAExamen/README.md) - Implementación de la asignación de profesores a exámenes.
 - [listarConflictosExamenes](0-Administrador/listarConflictosExamenes/README.md) - Implementación del listado de conflictos detectados en la planificación de exámenes.
+- [refactorExamenes](0-Administrador/refactorExamenes/README.md) - Refactorización del modelo Examen con relaciones reales a Profesor y Aula.
+- [actualizarConflictosExamenes](0-Administrador/actualizarConflictosExamenes/README.md) - Actualización de la lógica de conflictos basada en IDs y sincronización del dashboard.
 
 ### Actor Profesor
 *(En desarrollo)*

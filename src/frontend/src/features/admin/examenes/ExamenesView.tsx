@@ -39,10 +39,15 @@ const ExamenesView: React.FC = () => {
     navigate('/admin/examenes/eliminar', { state: { exams: examsToDelete } });
   };
 
-  const examenesFiltrados = examenes.filter(examen => 
-    examen.codigo.toLowerCase().includes(busqueda.toLowerCase()) || 
+  const nombreProfesor = (e: typeof examenes[number]) =>
+    e.profesor ? `${e.profesor.usuario.nombre} ${e.profesor.usuario.apellido}` : '';
+  const codigoAula = (e: typeof examenes[number]) => e.aula?.codigo || '';
+
+  const examenesFiltrados = examenes.filter(examen =>
+    examen.codigo.toLowerCase().includes(busqueda.toLowerCase()) ||
     examen.asignatura.toLowerCase().includes(busqueda.toLowerCase()) ||
-    examen.profesor.toLowerCase().includes(busqueda.toLowerCase())
+    nombreProfesor(examen).toLowerCase().includes(busqueda.toLowerCase()) ||
+    codigoAula(examen).toLowerCase().includes(busqueda.toLowerCase())
   );
 
   const formatearFecha = (fechaStr: string) => {
@@ -119,8 +124,8 @@ const ExamenesView: React.FC = () => {
                   <td style={{ padding: '12px 10px' }}>{examen.asignatura}</td>
                   <td style={{ padding: '12px 10px' }}>{formatearFecha(examen.fecha)}</td>
                   <td style={{ padding: '12px 10px' }}>{examen.hora}</td>
-                  <td style={{ padding: '12px 10px' }}>{examen.aula}</td>
-                  <td style={{ padding: '12px 10px' }}>{examen.profesor}</td>
+                  <td style={{ padding: '12px 10px' }}>{codigoAula(examen) || <span style={{ color: '#dc3545', fontStyle: 'italic' }}>(sin aula)</span>}</td>
+                  <td style={{ padding: '12px 10px' }}>{nombreProfesor(examen) || <span style={{ color: '#dc3545', fontStyle: 'italic' }}>(sin profesor)</span>}</td>
                   <td style={{ padding: '12px 10px' }}>
                     <button 
                       onClick={() => navigate(`/admin/examenes/editar/${examen.id}`)}
