@@ -122,8 +122,8 @@ const ProfesoresListView: React.FC = () => {
                   <td style={{ padding: '12px 10px' }}>{profesor.usuario?.email}</td>
                   <td style={{ padding: '12px 10px' }}>{profesor.departamento || 'N/A'}</td>
                   <td style={{ padding: '12px 10px' }}>
-                    <button 
-                      onClick={() => handleAccionNoImplementada('Editar Profesor')}
+                    <button
+                      onClick={() => navigate(`/admin/profesores/editar/${profesor.id}`)}
                       style={{ background: '#2d89ef', color: 'white', border: 'none', padding: '5px 15px', fontFamily: 'inherit', fontSize: '13px', cursor: 'pointer', borderRadius: '3px' }}
                     >
                       Editar

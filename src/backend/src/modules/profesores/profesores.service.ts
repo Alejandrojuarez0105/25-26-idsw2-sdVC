@@ -100,6 +100,126 @@ export class ProfesoresService {
     });
   }
 
+  async findOne(id: string) {
+    const profesor = await this.prisma.profesor.findUnique({
+      where: { id },
+      include: {
+        usuario: {
+          select: {
+            id: true,
+            nombre: true,
+            apellido: true,
+            email: true,
+            activo: true,
+          },
+        },
+        asignaturas: {
+          include: {
+            asignatura: {
+              select: {
+                id: true,
+                codigo: true,
+                nombre: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    if (!profesor) {
+      throw new NotFoundException(`Profesor con ID ${id} no encontrado`);
+    }
+
+    return profesor;
+  }
+
+  async update(id: string, data: any) {
+    const profesor = await this.prisma.profesor.findUnique({
+      where: { id },
+      include: { usuario: true },
+    });
+
+    if (!profesor) {
+      throw new NotFoundException(`Profesor con ID ${id} no encontrado`);
+    }
+
+    if (data.email && data.email !== profesor.usuario.email) {
+      const existingEmail = await this.prisma.usuario.findUnique({
+        where: { email: data.email },
+      });
+      if (existingEmail) {
+        throw new Error(`El email ${data.email} ya está en uso por otro usuario.`);
+      }
+    }
+
+    let nombre = profesor.usuario.nombre;
+    let apellido = profesor.usuario.apellido;
+    if (data.apellido) {
+      nombre = String(data.nombre || profesor.usuario.nombre).trim();
+      apellido = String(data.apellido).trim();
+    } else if (data.nombre) {
+      const parts = String(data.nombre).trim().split(/\s+/);
+      nombre = parts[0] || profesor.usuario.nombre;
+      apellido = parts.slice(1).join(' ') || profesor.usuario.apellido;
+    }
+
+    return this.prisma.$transaction(async (tx) => {
+      await tx.usuario.update({
+        where: { id: profesor.usuarioId },
+        data: {
+          nombre,
+          apellido,
+          email: data.email ?? profesor.usuario.email,
+        },
+      });
+
+      const updatedProfesor = await tx.profesor.update({
+        where: { id },
+        data: {
+          departamento: data.departamento ?? profesor.departamento,
+        },
+      });
+
+      if (data.asignaturas && Array.isArray(data.asignaturas)) {
+        const newAsignaturaIds: string[] = data.asignaturas;
+
+        const currentAsignaciones = await tx.profesorAsignatura.findMany({
+          where: { profesorId: id },
+        });
+        const currentAsignaturaIds = currentAsignaciones.map(a => a.asignaturaId);
+
+        const toDelete = currentAsignaciones.filter(
+          a => !newAsignaturaIds.includes(a.asignaturaId)
+        );
+        for (const a of toDelete) {
+          await tx.profesorAsignatura.delete({
+            where: {
+              profesorId_asignaturaId: {
+                profesorId: a.profesorId,
+                asignaturaId: a.asignaturaId,
+              },
+            },
+          });
+        }
+
+        const toAdd = newAsignaturaIds.filter(
+          aid => !currentAsignaturaIds.includes(aid)
+        );
+        for (const aid of toAdd) {
+          await tx.profesorAsignatura.create({
+            data: {
+              profesorId: id,
+              asignaturaId: aid,
+            },
+          });
+        }
+      }
+
+      return updatedProfesor;
+    });
+  }
+
   async importProfesores(data: any[]) {
     const results = {
       success: 0,

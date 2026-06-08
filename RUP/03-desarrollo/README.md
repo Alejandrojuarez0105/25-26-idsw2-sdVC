@@ -83,6 +83,7 @@ A continuación se detallan las especificaciones de implementación por actor y 
 - [importarProfesores](casos-uso/0-Administrador/importarProfesores/README.md) - Implementación de la carga masiva de profesores mediante archivos CSV.
 - [eliminarProfesor](casos-uso/0-Administrador/eliminarProfesor/README.md) - Implementación de la funcionalidad de borrado seguro de profesores.
 - [crearProfesor](casos-uso/0-Administrador/crearProfesor/README.md) - Implementación del alta de nuevos profesores.
+- [editarProfesor](casos-uso/0-Administrador/editarProfesor/README.md) - Implementación de la edición de profesores existentes.
 
 ## Referencias
 

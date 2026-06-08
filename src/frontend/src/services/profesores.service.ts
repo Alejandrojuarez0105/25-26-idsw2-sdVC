@@ -3,6 +3,7 @@ import api from '../core/api';
 export interface Profesor {
   id: string;
   usuarioId: string;
+  codigo?: string;
   departamento: string | null;
   usuario: {
     id: string;
@@ -11,6 +12,15 @@ export interface Profesor {
     email: string;
     activo: boolean;
   };
+  asignaturas?: {
+    profesorId: string;
+    asignaturaId: string;
+    asignatura: {
+      id: string;
+      codigo: string;
+      nombre: string;
+    };
+  }[];
 }
 
 export const profesoresService = {
@@ -30,6 +40,16 @@ export const profesoresService = {
 
   async create(data: any): Promise<Profesor> {
     const response = await api.post('/profesores', data);
+    return response.data;
+  },
+
+  async findOne(id: string): Promise<Profesor> {
+    const response = await api.get(`/profesores/${id}`);
+    return response.data;
+  },
+
+  async update(id: string, data: any): Promise<Profesor> {
+    const response = await api.put(`/profesores/${id}`, data);
     return response.data;
   },
 };

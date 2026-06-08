@@ -50,6 +50,7 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 - [importarProfesores](0-Administrador/importarProfesores/README.md) - Implementación de la carga masiva de profesores.
 - [eliminarProfesor](0-Administrador/eliminarProfesor/README.md) - Implementación de la funcionalidad de borrado seguro de profesores.
 - [crearProfesor](0-Administrador/crearProfesor/README.md) - Implementación del registro de nuevos profesores.
+- [editarProfesor](0-Administrador/editarProfesor/README.md) - Implementación de la edición de profesores existentes.
 
 ### Actor Profesor
 *(En desarrollo)*
