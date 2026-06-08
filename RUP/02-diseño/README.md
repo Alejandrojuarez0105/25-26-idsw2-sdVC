@@ -122,6 +122,10 @@ El diseño detallado de cada caso de uso se organiza en subcarpetas por actor de
 #### Procesos del sistema
 - [generarCalendario](casos-uso/0-Administrador/generarCalendario/README.md) - Diseño del motor de calendarización automática.
 
+#### Consulta de información
+- [consultarCalendario](casos-uso/0-Administrador/consultarCalendario/README.md) - Diseño de la visualización del calendario de exámenes.
+- [descargarCalendarioExamenes](casos-uso/0-Administrador/descargarCalendarioExamenes/README.md) - Diseño de la exportación (PDF/Excel) del calendario.
+
 #### Principios de diseño aplicados
 
 - **Trazabilidad estricta**: Cada clase de diseño debe mapearse a una o más clases de análisis.

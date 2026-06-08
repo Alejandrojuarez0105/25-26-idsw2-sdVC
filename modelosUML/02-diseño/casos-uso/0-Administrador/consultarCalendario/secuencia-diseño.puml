@@ -1,0 +1,40 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+skinparam responseMessageBelowArrow true
+
+actor Administrador
+participant "ConsultarCalendarioView\n(React)" as UI <<Component>>
+participant "useCalendario\n(Hook)" as Hook <<Hook>>
+participant "examenesService\n(Axios)" as FService <<Service>>
+participant "ExamenesController\n(NestJS)" as Controller <<Controller>>
+participant "ExamenesService\n(NestJS)" as BService <<Service>>
+participant "PrismaService" as Prisma <<ORM>>
+database "PostgreSQL 16" as DB
+
+Administrador -> UI : consultarCalendario() / aplica filtros
+UI -> Hook : loadCalendario(filtros)
+Hook -> FService : findCalendario(filtros)
+FService -> Controller : GET /examenes/calendario?fechaInicio&fechaFin&gradoId&asignaturaId
+
+Controller -> BService : findCalendario(filtros)
+BService -> Prisma : examen.findMany({\n  where: { fecha BETWEEN ... },\n  include: { profesor: { usuario }, aula }\n})
+Prisma -> DB : SELECT exámenes programados + FKs
+DB --> Prisma : Exámenes (asignatura, fecha, hora, aula, profesor)
+Prisma --> BService : Lista de exámenes
+
+BService -> BService : Resolver Examen.asignatura → Asignatura → Grado\ny aplicar filtros dimensionales (grado/asignatura)
+BService --> Controller : List<ExamenCalendarioDto>
+Controller --> FService : 200 OK (JSON)
+FService --> Hook : ExamenCalendarioDto[]
+
+Hook -> Hook : Pre-agrupar por fecha en Map (O(N))
+Hook --> UI : Actualiza estado (calendario indexado)
+UI --> Administrador : Renderiza rejilla (fecha, hora, asignatura, aula, profesor)
+
+note right of UI
+  Acciones disponibles (CALENDARIO_ABIERTO):
+  - descargarCalendarioExamenes() (self)
+  - completarConsulta() → vuelve al menú
+end note
+
+@enduml

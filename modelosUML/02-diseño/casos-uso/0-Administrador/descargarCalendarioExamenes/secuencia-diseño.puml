@@ -1,0 +1,43 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+skinparam responseMessageBelowArrow true
+
+actor Administrador
+participant "ConsultarCalendarioView\n(React)" as UI <<Component>>
+participant "DescargarCalendarioModal\n(React)" as Modal <<Component>>
+participant "examenesService\n(Axios)" as FService <<Service>>
+participant "ExamenesController\n(NestJS)" as Controller <<Controller>>
+participant "ExportacionService\n(NestJS)" as Export <<Service>>
+participant "ExamenExporterFactory" as Factory <<Factory>>
+participant "ExamenExporter\n(Excel | PDF)" as Strategy <<Strategy>>
+participant "ExamenesService\n(NestJS)" as BService <<Service>>
+participant "PrismaService" as Prisma <<ORM>>
+database "PostgreSQL 16" as DB
+
+Administrador -> UI : descargarCalendarioExamenes()
+UI -> Modal : abrir (formato + opciones)
+Administrador -> Modal : elige formato (pdf|excel) y columnas
+Modal -> FService : descargarCalendario(filtros, formato, opciones)
+FService -> Controller : GET /examenes/exportar?formato&incluirAula&incluirProfesor&incluirGrado&...
+
+Controller -> Export : exportar(filtros, formato, opciones)
+Export -> BService : findCalendario(filtros)
+BService -> Prisma : examen.findMany({ include: profesor.usuario, aula })
+Prisma -> DB : SELECT exámenes programados + FKs
+DB --> Prisma : Exámenes
+Prisma --> BService : Lista de exámenes
+BService --> Export : ExamenExportData[] (inmutable)
+
+Export -> Factory : crear(formato)
+Factory --> Export : ExamenExporter concreto
+Export -> Strategy : exportar(datos, opciones)
+Strategy --> Export : Buffer (binario)
+
+Export --> Controller : Buffer + metadatos
+Controller --> FService : 200 OK\nContent-Disposition: attachment\n(calendario.pdf | calendario.xlsx)
+FService --> Modal : Blob
+Modal -> Modal : crear URL + <a> virtual → click
+Modal --> Administrador : Archivo descargado
+Modal --> UI : cerrar → regresa a CALENDARIO_ABIERTO
+
+@enduml

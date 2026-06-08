@@ -74,7 +74,8 @@ Esta carpeta contiene el diseño detallado de los casos de uso, transformando la
 - [generarCalendario](0-Administrador/generarCalendario/README.md) - Diseño del motor de calendarización automática.
 
 #### Consulta de información
-*(Vacío - En desarrollo)*
+- [consultarCalendario](0-Administrador/consultarCalendario/README.md) - Diseño de la visualización del calendario de exámenes.
+- [descargarCalendarioExamenes](0-Administrador/descargarCalendarioExamenes/README.md) - Diseño de la exportación (PDF/Excel) del calendario.
 
 ### Actor Profesor
 *(Vacío - En desarrollo)*
