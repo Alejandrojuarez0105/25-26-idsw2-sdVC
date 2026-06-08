@@ -1,0 +1,80 @@
+@startuml secuencia-diseño
+skinparam shadowing false
+skinparam responseMessageBelowArrow true
+
+actor Administrador
+participant "GenerarCalendarioView\n(React)" as UI <<Component>>
+participant "useGenerarCalendario\n(Hook)" as Hook <<Hook>>
+participant "calendarioService\n(Axios)" as FService <<Service>>
+participant "CalendarioController\n(NestJS)" as Controller <<Controller>>
+participant "CalendarioService\n(NestJS)" as BService <<Service>>
+participant "CalendarioEngine\n(Dominio)" as Engine <<PureFabrication>>
+participant "PrismaService" as Prisma <<ORM>>
+database "PostgreSQL 16" as DB
+
+== Fase 1: Generación de la propuesta (CALENDARIO_GENERADO) ==
+
+Administrador -> UI : Configura parámetros\n(fechaInicio, fechaFin, franjas) y pulsa Generar
+UI -> Hook : generar(config)
+Hook -> FService : generar(GenerarCalendarioDto)
+FService -> Controller : POST /calendario/generar
+Controller -> BService : generar(dto)
+
+group Carga de datos (solo lectura)
+  BService -> Prisma : examen.findMany({ include: profesor, aula })
+  Prisma -> DB : SELECT exámenes + FKs
+  DB --> Prisma : Exámenes
+  BService -> Prisma : aula.findMany()
+  Prisma -> DB : SELECT aulas (capacidad)
+  DB --> Prisma : Aulas
+  BService -> Prisma : profesor.findMany({ include: asignaturas })
+  Prisma -> DB : SELECT profesores
+  DB --> Prisma : Profesores
+  BService -> Prisma : asignatura.findMany() + matricula.groupBy(asignaturaId)
+  Prisma -> DB : SELECT asignaturas + conteo de matrículas
+  DB --> Prisma : Asignaturas + aforos por asignatura
+  Prisma --> BService : Datos en memoria
+end
+
+BService -> Engine : generar(GeneracionConfig)
+note right of Engine
+  Algoritmo puro en memoria (sin BD):
+  - generarRanurasTemporales(inicio, fin, franjas)
+  - por cada examen: buscarSlotOptimo()
+    * Aula.tieneCapacidadSuficiente(aforo)
+    * Aula.estaDisponibleEn(slot)  (intersección de intervalos)
+    * Profesor.tieneCruceHorario(slot)
+    * sinSolapamientoEstudiantes(slot, asignatura)
+    * calcularPuntuacionDispersion(grado)
+  - registrarAsignacion() en memoria
+end note
+Engine --> BService : GeneracionResultDto\n(propuesta[] + conflictos[])
+
+BService --> Controller : GeneracionResultDto
+Controller --> FService : 200 OK (JSON)
+FService --> Hook : GeneracionResultDto
+Hook --> UI : Actualiza estado (estadísticas, propuesta, conflictos)
+UI --> Administrador : Muestra resultado (NO persistido)
+
+== Fase 2: Confirmación y persistencia (guardarCalendario) ==
+
+Administrador -> UI : Revisa y pulsa Guardar calendario
+UI -> Hook : confirmar(propuesta)
+Hook -> FService : confirmar(ConfirmarCalendarioDto)
+FService -> Controller : POST /calendario/confirmar
+Controller -> BService : confirmar(dto)
+
+BService -> Prisma : $transaction(asignaciones)
+loop por cada asignación propuesta
+  Prisma -> DB : UPDATE "Examen"\nSET fecha, hora, aulaId, profesorId
+end
+DB --> Prisma : COMMIT
+Prisma --> BService : Exámenes actualizados
+
+BService --> Controller : { confirmados, total }
+Controller --> FService : 200 OK (JSON)
+FService --> Hook : Resultado de confirmación
+Hook --> UI : Estado actualizado
+UI --> Administrador : Calendario guardado → navega a Consulta
+
+@enduml

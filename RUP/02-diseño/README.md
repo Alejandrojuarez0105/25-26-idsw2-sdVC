@@ -120,6 +120,9 @@ El diseño detallado de cada caso de uso se organiza en subcarpetas por actor de
 - [asignarProfesorAExamen](casos-uso/0-Administrador/asignarProfesorAExamen/README.md) - Diseño de vinculación de supervisor.
 
 #### Procesos del sistema
+- [generarCalendario](casos-uso/0-Administrador/generarCalendario/README.md) - Diseño del motor de calendarización automática.
+
+#### Principios de diseño aplicados
 
 - **Trazabilidad estricta**: Cada clase de diseño debe mapearse a una o más clases de análisis.
 - **Tipado fuerte**: Uso de TypeScript en todo el stack para minimizar errores en tiempo de ejecución.

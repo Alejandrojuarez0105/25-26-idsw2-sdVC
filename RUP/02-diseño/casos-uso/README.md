@@ -71,7 +71,7 @@ Esta carpeta contiene el diseño detallado de los casos de uso, transformando la
 - [asignarProfesorAExamen](0-Administrador/asignarProfesorAExamen/README.md) - Diseño de vinculación de supervisor.
 
 #### Procesos del sistema
-*(Vacío - En desarrollo)*
+- [generarCalendario](0-Administrador/generarCalendario/README.md) - Diseño del motor de calendarización automática.
 
 #### Consulta de información
 *(Vacío - En desarrollo)*
