@@ -1,4 +1,4 @@
-import { Body, ConflictException, Controller, Delete, Get, HttpCode, HttpStatus, NotFoundException, Param, Post, Put } from '@nestjs/common';
+import { Body, ConflictException, Controller, Delete, Get, HttpCode, HttpStatus, InternalServerErrorException, NotFoundException, Param, Post, Put } from '@nestjs/common';
 import { ExamenesService } from './examenes.service';
 
 @Controller('examenes')
@@ -13,6 +13,17 @@ export class ExamenesController {
   @Get('conflictos')
   async findConflictos() {
     return this.examenesService.findConflictos();
+  }
+
+  @Get('calendario/generar')
+  async generarCalendario() {
+    try {
+      return await this.examenesService.generarCalendario();
+    } catch (err: any) {
+      throw new InternalServerErrorException(
+        err?.message || 'Error al generar el calendario de exámenes',
+      );
+    }
   }
 
   @Get(':id')

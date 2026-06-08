@@ -17,6 +17,7 @@ import CrearExamenView from './features/admin/examenes/CrearExamenView';
 import EditarExamenView from './features/admin/examenes/EditarExamenView';
 import AsignarProfesorAExamenView from './features/admin/examenes/AsignarProfesorAExamenView';
 import ListarConflictosExamenesView from './features/admin/examenes/ListarConflictosExamenesView';
+import GenerarCalendarioView from './features/admin/examenes/GenerarCalendarioView';
 import AlumnoDashboard from './features/alumno/AlumnoDashboard';
 import LoginView from './features/auth/login/LoginView';
 import LogoutView from './features/auth/logout/LogoutView';
@@ -60,6 +61,7 @@ const App: React.FC = () => {
         <Route path="/admin/examenes/editar/:id" element={<EditarExamenView />} />
         <Route path="/admin/examenes/asignar-profesor" element={<AsignarProfesorAExamenView />} />
         <Route path="/admin/examenes/conflictos" element={<ListarConflictosExamenesView />} />
+        <Route path="/admin/examenes/calendario" element={<GenerarCalendarioView />} />
         <Route path="/admin/aulas" element={<AulasView />} />
         <Route path="/admin/aulas/eliminar" element={<EliminarAulaView />} />
         <Route path="/admin/aulas/importar" element={<ImportarAulasView />} />

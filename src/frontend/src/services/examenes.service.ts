@@ -75,6 +75,11 @@ export const examenesService = {
     const response = await api.get('/examenes/conflictos');
     return response.data;
   },
+
+  async generarCalendario(): Promise<CalendarioGenerado> {
+    const response = await api.get('/examenes/calendario/generar');
+    return response.data;
+  },
 };
 
 export interface ConflictoExamen {
@@ -96,4 +101,40 @@ export interface ConflictoExamen {
     profesor: string;
     profesorId: string | null;
   }[];
+}
+
+export interface CalendarioExamen {
+  id: string;
+  codigo: string;
+  asignatura: string;
+  fecha: string;
+  hora: string;
+  aula: string;
+  aulaId: string | null;
+  profesor: string;
+  profesorId: string | null;
+  tieneConflicto: boolean;
+  tiposConflicto: string[];
+}
+
+export interface CalendarioGenerado {
+  generadoEn: string;
+  datosProcesados: {
+    grados: number;
+    asignaturas: number;
+    profesores: number;
+    aulas: number;
+    estudiantes: number;
+  };
+  resumen: {
+    totalExamenes: number;
+    completos: number;
+    conProfesor: number;
+    conAula: number;
+    sinProfesor: number;
+    sinAula: number;
+    totalConflictos: number;
+  };
+  examenes: CalendarioExamen[];
+  conflictos: ConflictoExamen[];
 }

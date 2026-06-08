@@ -254,4 +254,86 @@ export class ExamenesService {
 
     return conflictos;
   }
+
+  async generarCalendario() {
+    // 1) Obtener todos los exámenes registrados, ya ordenados cronológicamente,
+    //    con sus relaciones reales (profesor + aula). Sin campos de texto quemados.
+    const examenes = await this.prisma.examen.findMany({
+      orderBy: [{ fecha: 'asc' }, { hora: 'asc' }],
+      include: examenInclude,
+    });
+
+    // 2) Validar conflictos reutilizando la lógica ya existente.
+    const conflictos = await this.findConflictos();
+
+    const formatFecha = (d: Date) => {
+      const day = String(d.getUTCDate()).padStart(2, '0');
+      const month = String(d.getUTCMonth() + 1).padStart(2, '0');
+      const year = d.getUTCFullYear();
+      return `${year}-${month}-${day}`;
+    };
+
+    const nombreProfesor = (ex: any) =>
+      ex.profesor?.usuario
+        ? `${ex.profesor.usuario.nombre} ${ex.profesor.usuario.apellido}`.trim()
+        : '';
+
+    const codigoAula = (ex: any) => ex.aula?.codigo || '';
+
+    // 3) Indexar qué exámenes están involucrados en algún conflicto y de qué tipo.
+    const tiposPorExamen = new Map<string, Set<string>>();
+    for (const c of conflictos) {
+      for (const ex of c.examenes) {
+        if (!tiposPorExamen.has(ex.id)) tiposPorExamen.set(ex.id, new Set());
+        tiposPorExamen.get(ex.id)!.add(c.tipo);
+      }
+    }
+
+    // 4) Consolidar la información lista para visualización (resolviendo profesor y aula reales).
+    const examenesCalendario = examenes.map((e) => {
+      const tipos = Array.from(tiposPorExamen.get(e.id) || []);
+      return {
+        id: e.id,
+        codigo: e.codigo,
+        asignatura: e.asignatura,
+        fecha: formatFecha(new Date(e.fecha)),
+        hora: e.hora,
+        aula: codigoAula(e),
+        aulaId: e.aulaId,
+        profesor: nombreProfesor(e),
+        profesorId: e.profesorId,
+        tieneConflicto: tipos.length > 0,
+        tiposConflicto: tipos,
+      };
+    });
+
+    // 5) Métricas de datos procesados y resumen de la generación.
+    const [grados, asignaturas, profesores, aulas, estudiantes] = await Promise.all([
+      this.prisma.grado.count(),
+      this.prisma.asignatura.count(),
+      this.prisma.profesor.count(),
+      this.prisma.aula.count(),
+      this.prisma.alumno.count(),
+    ]);
+
+    const conProfesor = examenesCalendario.filter((e) => !!e.profesorId).length;
+    const conAula = examenesCalendario.filter((e) => !!e.aulaId).length;
+    const completos = examenesCalendario.filter((e) => !!e.profesorId && !!e.aulaId).length;
+
+    return {
+      generadoEn: new Date().toISOString(),
+      datosProcesados: { grados, asignaturas, profesores, aulas, estudiantes },
+      resumen: {
+        totalExamenes: examenesCalendario.length,
+        completos,
+        conProfesor,
+        conAula,
+        sinProfesor: examenesCalendario.length - conProfesor,
+        sinAula: examenesCalendario.length - conAula,
+        totalConflictos: conflictos.length,
+      },
+      examenes: examenesCalendario,
+      conflictos,
+    };
+  }
 }

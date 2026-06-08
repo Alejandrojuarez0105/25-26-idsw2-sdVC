@@ -56,6 +56,9 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 - [refactorExamenes](0-Administrador/refactorExamenes/README.md) - Refactorización del modelo Examen con relaciones reales a Profesor y Aula.
 - [actualizarConflictosExamenes](0-Administrador/actualizarConflictosExamenes/README.md) - Actualización de la lógica de conflictos basada en IDs y sincronización del dashboard.
 
+#### Procesos del sistema
+- [generarCalendario](0-Administrador/generarCalendario/README.md) - Implementación de la generación y visualización del calendario oficial de exámenes.
+
 ### Actor Profesor
 *(En desarrollo)*
 

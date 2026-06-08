@@ -180,6 +180,12 @@ const ExamenesView: React.FC = () => {
             ⚠️ Ver conflictos
           </button>
           <button
+            onClick={() => navigate('/admin/examenes/calendario')}
+            style={{ minWidth: '180px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #999', fontWeight: 'bold', background: '#6f42c1', color: 'white' }}
+          >
+            📅 Generar calendario
+          </button>
+          <button
             onClick={handleSalir}
             style={{ minWidth: '180px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #999', fontWeight: 'bold', background: '#f3f0ec', color: 'black' }}
           >

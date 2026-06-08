@@ -89,6 +89,9 @@ A continuación se detallan las especificaciones de implementación por actor y 
 - [refactorExamenes](casos-uso/0-Administrador/refactorExamenes/README.md) - Refactorización del modelo Examen para usar relaciones reales (profesorId, aulaId).
 - [actualizarConflictosExamenes](casos-uso/0-Administrador/actualizarConflictosExamenes/README.md) - Actualización de la detección de conflictos sobre IDs reales y sincronización del dashboard.
 
+#### Procesos del sistema
+- [generarCalendario](casos-uso/0-Administrador/generarCalendario/README.md) - Implementación de la generación y visualización del calendario oficial de exámenes.
+
 ## Referencias
 
 - [Guía de Configuración y Scaffolding](/RUP/02-diseño/configuración-proyecto.md)
