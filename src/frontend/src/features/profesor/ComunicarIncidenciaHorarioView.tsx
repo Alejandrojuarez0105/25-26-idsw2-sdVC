@@ -76,7 +76,7 @@ const ComunicarIncidenciaHorarioView: React.FC = () => {
   };
 
   const estadoColor = (e: string) =>
-    e === 'RESUELTA' ? '#28a745' : e === 'REVISADA' ? '#2d89ef' : '#e6a017';
+    e === 'RESUELTA' ? '#28a745' : e === 'REVISADA' ? '#2d89ef' : e === 'OMITIDA' ? '#6c757d' : '#e6a017';
 
   const badge = (texto: string, color: string) => (
     <span style={{ color, fontWeight: 'bold', fontSize: '12px' }}>{texto}</span>
@@ -237,7 +237,7 @@ const ComunicarIncidenciaHorarioView: React.FC = () => {
             {/* Listado de incidencias previas */}
             <div style={{ border: '1px solid #cfcfcf', background: '#ededed', padding: '18px' }}>
               <h3 style={{ fontSize: '18px', marginBottom: '12px', textDecoration: 'underline', fontWeight: 'bold' }}>
-                📋 Mis incidencias comunicadas ({incidencias.length})
+                📌 Mis incidencias ({incidencias.length})
               </h3>
               {incidencias.length === 0 ? (
                 <p style={{ fontSize: '13px', color: '#666' }}>Aún no ha comunicado ninguna incidencia.</p>
@@ -248,6 +248,7 @@ const ComunicarIncidenciaHorarioView: React.FC = () => {
                       <th style={{ border: '1px solid #bdbdbd', padding: '8px', textAlign: 'left' }}>EXAMEN</th>
                       <th style={{ border: '1px solid #bdbdbd', padding: '8px', textAlign: 'left' }}>DESCRIPCIÓN</th>
                       <th style={{ border: '1px solid #bdbdbd', padding: '8px', textAlign: 'center' }}>ESTADO</th>
+                      <th style={{ border: '1px solid #bdbdbd', padding: '8px', textAlign: 'left' }}>RESOLUCIÓN</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -258,6 +259,16 @@ const ComunicarIncidenciaHorarioView: React.FC = () => {
                         </td>
                         <td style={{ padding: '8px' }}>{inc.descripcion}</td>
                         <td style={{ padding: '8px', textAlign: 'center' }}>{badge(inc.estado, estadoColor(inc.estado))}</td>
+                        <td style={{ padding: '8px' }}>
+                          {inc.mensajeResolucion ? (
+                            <div style={{ background: '#e7f6ec', borderLeft: '3px solid #28a745', padding: '5px 8px' }}>
+                              💬 {inc.mensajeResolucion}
+                              {inc.fechaResolucion && <div style={{ fontSize: '11px', color: '#155724', marginTop: '3px' }}>Resuelta: {new Date(inc.fechaResolucion).toLocaleDateString()}</div>}
+                            </div>
+                          ) : (
+                            <span style={{ color: '#888', fontStyle: 'italic', fontSize: '12px' }}>Sin resolución aún</span>
+                          )}
+                        </td>
                       </tr>
                     ))}
                   </tbody>

@@ -63,6 +63,9 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 - [consultarCalendario](0-Administrador/consultarCalendario/README.md) - Implementación de la consulta y visualización del calendario de exámenes.
 - [descargarCalendarioExamenes](0-Administrador/descargarCalendarioExamenes/README.md) - Implementación de la descarga del calendario en formato CSV.
 
+#### Gestión de incidencias
+- [gestionIncidencias](0-Administrador/gestionIncidencias/README.md) - Panel de gestión de incidencias de horario: listar, revisar, resolver (con mensaje), omitir y exportar.
+
 ### Actor Profesor
 
 #### Gestión del sistema
@@ -74,7 +77,7 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 - [descargarCalendario](1-Profesor/descargarCalendario/README.md) - Descarga (CSV) del calendario propio.
 
 #### Gestión de incidencias
-- [comunicarIncidenciaHorario](1-Profesor/comunicarIncidenciaHorario/README.md) - **Caso exclusivo del Profesor**: registro de incidencias de horario (entidad `IncidenciaHorario`).
+- [comunicarIncidenciaHorario](1-Profesor/comunicarIncidenciaHorario/README.md) - **Caso exclusivo del Profesor**: registro de incidencias de horario (entidad `IncidenciaHorario`) y **visibilidad de la resolución** aplicada por el administrador (solo lectura).
 
 ### Actor Alumno
 *(En desarrollo)*

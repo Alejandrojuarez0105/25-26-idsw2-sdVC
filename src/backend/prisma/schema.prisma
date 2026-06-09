@@ -161,6 +161,7 @@ enum EstadoIncidencia {
   PENDIENTE
   REVISADA
   RESUELTA
+  OMITIDA
 }
 
 // Incidencia de horario comunicada por un profesor sobre uno de sus exámenes
@@ -171,6 +172,11 @@ model IncidenciaHorario {
   descripcion   String           @db.Text
   estado        EstadoIncidencia @default(PENDIENTE)
   fechaCreacion DateTime         @default(now()) @db.Timestamptz
+
+  // Resolución aplicada por el administrador (mensaje + fecha). Opcionales:
+  // solo se rellenan cuando se aplica una solución a la incidencia.
+  mensajeResolucion String?   @db.Text
+  fechaResolucion   DateTime? @db.Timestamptz
 
   profesorId String   @db.Uuid
   profesor   Profesor @relation(fields: [profesorId], references: [id], onDelete: Cascade)

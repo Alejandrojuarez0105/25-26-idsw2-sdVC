@@ -7,10 +7,11 @@ import { AulasModule } from './modules/aulas/aulas.module';
 import { AlumnosModule } from './modules/alumnos/alumnos.module';
 import { ProfesoresModule } from './modules/profesores/profesores.module';
 import { ProfesorModule } from './modules/profesor/profesor.module';
+import { IncidenciasModule } from './modules/incidencias/incidencias.module';
 import { PrismaService } from './common/prisma.service';
 
 @Module({
-  imports: [AuthModule, GradosModule, AsignaturasModule, ExamenesModule, AulasModule, AlumnosModule, ProfesoresModule, ProfesorModule],
+  imports: [AuthModule, GradosModule, AsignaturasModule, ExamenesModule, AulasModule, AlumnosModule, ProfesoresModule, ProfesorModule, IncidenciasModule],
   controllers: [],
   providers: [PrismaService],
 })

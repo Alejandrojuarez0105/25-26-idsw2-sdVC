@@ -27,5 +27,6 @@ import { ExamenesModule } from '../examenes/examenes.module';
     ProfesorJwtGuard,
     PrismaService,
   ],
+  exports: [IncidenciasService],
 })
 export class ProfesorModule {}

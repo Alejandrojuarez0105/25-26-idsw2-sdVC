@@ -35,8 +35,10 @@ export interface DescargaProfesorOpciones {
 export interface IncidenciaHorario {
   id: string;
   descripcion: string;
-  estado: 'PENDIENTE' | 'REVISADA' | 'RESUELTA';
+  estado: 'PENDIENTE' | 'REVISADA' | 'RESUELTA' | 'OMITIDA';
   fechaCreacion: string;
+  mensajeResolucion?: string | null;
+  fechaResolucion?: string | null;
   examen: {
     id: string;
     codigo: string;

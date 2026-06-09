@@ -54,9 +54,9 @@ const ProfesorDashboard: React.FC = () => {
   const proximos = (futuros.length > 0 ? futuros : examenes).slice(0, 4);
 
   const estadoIncidenciaColor = (e: string) =>
-    e === 'RESUELTA' ? '#28a745' : e === 'REVISADA' ? '#2d89ef' : '#ffc107';
+    e === 'RESUELTA' ? '#28a745' : e === 'REVISADA' ? '#2d89ef' : e === 'OMITIDA' ? '#6c757d' : '#ffc107';
   const estadoIncidenciaTexto = (e: string) =>
-    e === 'RESUELTA' ? 'Resuelto' : e === 'REVISADA' ? 'En revisión' : 'Pendiente';
+    e === 'RESUELTA' ? 'Resuelto' : e === 'REVISADA' ? 'En revisión' : e === 'OMITIDA' ? 'Omitido' : 'Pendiente';
 
   const stats = [
     { n: String(calendario?.resumen.asignaturas ?? 0), l: 'Asignaturas con examen' },
@@ -143,7 +143,7 @@ const ProfesorDashboard: React.FC = () => {
             </div>
           </div>
           <div style={{ flex: 1, minWidth: '300px', background: '#ededed', border: '1px solid #cfcfcf', padding: '18px' }}>
-            <h3 style={{ fontSize: '18px', marginBottom: '15px', textDecoration: 'underline', fontWeight: 'bold' }}>⚠️ Incidencias reportadas</h3>
+            <h3 style={{ fontSize: '18px', marginBottom: '15px', textDecoration: 'underline', fontWeight: 'bold' }}>📌 Mis incidencias</h3>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {cargando ? (
                 <li style={{ padding: '8px 0', fontSize: '13px', color: '#666' }}>Cargando…</li>
@@ -151,9 +151,14 @@ const ProfesorDashboard: React.FC = () => {
                 <li style={{ padding: '8px 0', fontSize: '13px', color: '#666' }}>No ha reportado incidencias.</li>
               ) : (
                 incidencias.slice(0, 4).map((inc) => (
-                  <li key={inc.id} style={{ padding: '8px 0', borderBottom: '1px solid #cfcfcf', fontSize: '13px', display: 'flex', justifyContent: 'space-between', gap: '10px' }}>
-                    <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{inc.examen ? inc.examen.asignatura : 'Examen'}: {inc.descripcion}</span>
-                    <span style={{ color: estadoIncidenciaColor(inc.estado), fontWeight: 'bold', whiteSpace: 'nowrap' }}>{estadoIncidenciaTexto(inc.estado)}</span>
+                  <li key={inc.id} style={{ padding: '8px 0', borderBottom: '1px solid #cfcfcf', fontSize: '13px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px' }}>
+                      <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{inc.examen ? inc.examen.asignatura : 'Examen'}: {inc.descripcion}</span>
+                      <span style={{ color: estadoIncidenciaColor(inc.estado), fontWeight: 'bold', whiteSpace: 'nowrap' }}>{estadoIncidenciaTexto(inc.estado)}</span>
+                    </div>
+                    {inc.mensajeResolucion && (
+                      <div style={{ fontSize: '11px', color: '#155724', marginTop: '3px', fontStyle: 'italic' }}>💬 {inc.mensajeResolucion}</div>
+                    )}
                   </li>
                 ))
               )}

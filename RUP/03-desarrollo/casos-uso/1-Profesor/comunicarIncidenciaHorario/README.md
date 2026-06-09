@@ -72,8 +72,14 @@ Lista las incidencias del profesor autenticado (más recientes primero).
 - GET incidencias → devuelve la incidencia asociada al profesor.
 - (El registro de prueba se eliminó tras la verificación para no dejar datos espurios.)
 
+## Ampliación (Sesión 78) — visibilidad de la resolución
+El profesor ahora ve, **en solo lectura**, el resultado de la gestión administrativa de sus incidencias:
+- La tabla **📌 Mis incidencias** (y el panel del `ProfesorDashboard`) muestran el **estado actual** (`PENDIENTE` / `REVISADA` / `RESUELTA` / `OMITIDA`), el **mensaje de resolución** del administrador y la **fecha de resolución** cuando existen.
+- Estos datos provienen de los campos `mensajeResolucion` y `fechaResolucion` añadidos a `IncidenciaHorario`, que el administrador rellena desde el panel de [gestionIncidencias](/RUP/03-desarrollo/casos-uso/0-Administrador/gestionIncidencias/README.md).
+- El profesor **no puede modificar** estados ni resoluciones; el endpoint `GET /profesor/incidencias` se mantiene sin cambios de contrato (solo se añadieron campos opcionales a la respuesta).
+
 ## Notas
-- Única modificación de Prisma de la sesión, estrictamente necesaria para este caso. No se modificó ningún examen ni caso de uso previo.
+- La entidad `IncidenciaHorario` se creó en esta sesión y se amplió en la Sesión 78 (campos de resolución + estado `OMITIDA`); no se modificó ningún examen ni caso de uso previo.
 - La autorización es por rol del JWT; funciona con cualquier usuario de rol Profesor.
 
 ## Referencias

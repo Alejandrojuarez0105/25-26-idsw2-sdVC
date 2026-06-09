@@ -2,6 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { CalendarioExamen, ConflictoExamen, examenesService } from '../../services/examenes.service';
+import { EstadoIncidencia, IncidenciaAdmin, incidenciasService } from '../../services/incidencias.service';
+
+const COLOR_INCIDENCIA: Record<EstadoIncidencia, string> = {
+  PENDIENTE: '#e6a017',
+  REVISADA: '#2d89ef',
+  RESUELTA: '#28a745',
+  OMITIDA: '#6c757d',
+};
 
 const AdminDashboard: React.FC = () => {
   const { user } = useAuth();
@@ -10,6 +18,24 @@ const AdminDashboard: React.FC = () => {
   const [conflictosLoading, setConflictosLoading] = useState(true);
   const [proximos, setProximos] = useState<CalendarioExamen[]>([]);
   const [proximosLoading, setProximosLoading] = useState(true);
+  const [incidencias, setIncidencias] = useState<IncidenciaAdmin[]>([]);
+  const [incidenciasLoading, setIncidenciasLoading] = useState(true);
+  const [accionId, setAccionId] = useState<string | null>(null);
+
+  const cargarIncidencias = async () => {
+    try {
+      const data = await incidenciasService.listarTodas();
+      setIncidencias(data);
+    } catch {
+      setIncidencias([]);
+    } finally {
+      setIncidenciasLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    cargarIncidencias();
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -55,6 +81,36 @@ const AdminDashboard: React.FC = () => {
     navigate('/logout');
   };
 
+  const handleCambiarEstadoIncidencia = async (inc: IncidenciaAdmin, nuevo: EstadoIncidencia) => {
+    setAccionId(inc.id);
+    try {
+      const actualizada = await incidenciasService.cambiarEstado(inc.id, nuevo);
+      setIncidencias((prev) => prev.map((i) => (i.id === inc.id ? actualizada : i)));
+    } catch (err: any) {
+      alert(`❌ ${err.response?.data?.message || err.message || 'No se pudo cambiar el estado'}`);
+    } finally {
+      setAccionId(null);
+    }
+  };
+
+  const handleExportarIncidencias = async () => {
+    try {
+      const blob = await incidenciasService.exportar();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'incidencias.csv';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (err: any) {
+      alert(`❌ ${err.response?.data?.message || err.message || 'No se pudo exportar'}`);
+    }
+  };
+
+  const incidenciasPendientes = incidencias.filter((i) => i.estado === 'PENDIENTE').length;
+
   const handleAccesoRapido = (modulo: string) => {
     if (modulo === 'grados') {
       navigate('/admin/grados');
@@ -70,6 +126,8 @@ const AdminDashboard: React.FC = () => {
       navigate('/admin/profesores');
     } else if (modulo === 'calendario') {
       navigate('/admin/calendario/consultar');
+    } else if (modulo === 'incidencias') {
+      navigate('/admin/incidencias');
     } else {
       alert(`🔍 Navegando a: ${modulo}\n\nFuncionalidad en desarrollo.`);
     }
@@ -178,6 +236,38 @@ const AdminDashboard: React.FC = () => {
               <a onClick={() => navigate('/admin/calendario/consultar')} style={{ color: '#2d89ef', textDecoration: 'none', fontSize: '12px', cursor: 'pointer' }}>Ver todos los exámenes →</a>
             </div>
           </div>
+
+          {/* 🔧 Incidencias */}
+          <div style={{ flex: 1, background: '#ededed', border: '1px solid #cfcfcf', padding: '18px' }}>
+            <h3 style={{ fontSize: '18px', marginBottom: '15px', textDecoration: 'underline', fontWeight: 'bold' }}>
+              🔧 Incidencias{incidenciasPendientes > 0 && <span style={{ marginLeft: '8px', background: '#dc3545', color: 'white', borderRadius: '10px', padding: '1px 8px', fontSize: '12px' }}>{incidenciasPendientes}</span>}
+            </h3>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+              {incidenciasLoading ? (
+                <li style={{ padding: '8px 0', fontSize: '13px', fontStyle: 'italic', color: '#666' }}>Cargando incidencias...</li>
+              ) : incidencias.length === 0 ? (
+                <li style={{ padding: '8px 0', fontSize: '13px', color: '#28a745', fontWeight: 'bold' }}>✅ Sin incidencias comunicadas.</li>
+              ) : (
+                incidencias.slice(0, 4).map((inc) => (
+                  <li key={inc.id} style={{ padding: '8px 0', borderBottom: '1px solid #cfcfcf', fontSize: '13px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', gap: '8px' }}>
+                      <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{inc.examen?.asignatura || 'Examen'} · {inc.profesor?.nombre}</span>
+                      <span style={{ color: COLOR_INCIDENCIA[inc.estado], fontWeight: 'bold', whiteSpace: 'nowrap' }}>{inc.estado}</span>
+                    </div>
+                    <div style={{ display: 'flex', gap: '6px', marginTop: '4px', flexWrap: 'wrap' }}>
+                      <button disabled={accionId === inc.id} onClick={() => navigate('/admin/incidencias')} style={{ fontSize: '11px', fontFamily: 'inherit', padding: '2px 6px', border: '1px solid #1e7e34', background: '#28a745', color: 'white', borderRadius: '3px', cursor: 'pointer' }}>🔧 Resolver</button>
+                      <button disabled={accionId === inc.id || inc.estado === 'REVISADA'} onClick={() => handleCambiarEstadoIncidencia(inc, 'REVISADA')} style={{ fontSize: '11px', fontFamily: 'inherit', padding: '2px 6px', border: '1px solid #1d5faa', background: '#2d89ef', color: 'white', borderRadius: '3px', cursor: 'pointer' }}>✅ Revisado</button>
+                      <button disabled={accionId === inc.id || inc.estado === 'OMITIDA'} onClick={() => handleCambiarEstadoIncidencia(inc, 'OMITIDA')} style={{ fontSize: '11px', fontFamily: 'inherit', padding: '2px 6px', border: '1px solid #565e64', background: '#6c757d', color: 'white', borderRadius: '3px', cursor: 'pointer' }}>⏭️ Omitir</button>
+                    </div>
+                  </li>
+                ))
+              )}
+            </ul>
+            <div style={{ marginTop: '12px', display: 'flex', justifyContent: 'space-between' }}>
+              <a onClick={handleExportarIncidencias} style={{ color: '#2d89ef', textDecoration: 'none', fontSize: '12px', cursor: 'pointer' }}>📎 Exportar reporte</a>
+              <a onClick={() => navigate('/admin/incidencias')} style={{ color: '#2d89ef', textDecoration: 'none', fontSize: '12px', cursor: 'pointer' }}>Ver todas →</a>
+            </div>
+          </div>
         </div>
 
         {/* Accesos rápidos */}
@@ -189,7 +279,8 @@ const AdminDashboard: React.FC = () => {
             { id: 'aulas', icon: '🏛️', name: 'Aulas' },
             { id: 'alumnos', icon: '👨‍🎓', name: 'Alumnos' },
             { id: 'examenes', icon: '📝', name: 'Exámenes' },
-            { id: 'calendario', icon: '📅', name: 'Calendario' }
+            { id: 'calendario', icon: '📅', name: 'Calendario' },
+            { id: 'incidencias', icon: '🔧', name: 'Incidencias' }
           ].map((acc) => (
             <div 
               key={acc.id} 
