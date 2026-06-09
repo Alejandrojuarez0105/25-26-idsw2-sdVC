@@ -6,10 +6,11 @@ import { ExamenesModule } from './modules/examenes/examenes.module';
 import { AulasModule } from './modules/aulas/aulas.module';
 import { AlumnosModule } from './modules/alumnos/alumnos.module';
 import { ProfesoresModule } from './modules/profesores/profesores.module';
+import { ProfesorModule } from './modules/profesor/profesor.module';
 import { PrismaService } from './common/prisma.service';
 
 @Module({
-  imports: [AuthModule, GradosModule, AsignaturasModule, ExamenesModule, AulasModule, AlumnosModule, ProfesoresModule],
+  imports: [AuthModule, GradosModule, AsignaturasModule, ExamenesModule, AulasModule, AlumnosModule, ProfesoresModule, ProfesorModule],
   controllers: [],
   providers: [PrismaService],
 })

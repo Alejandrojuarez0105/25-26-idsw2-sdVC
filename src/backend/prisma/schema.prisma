@@ -87,6 +87,7 @@ model Profesor {
 
   asignaturas ProfesorAsignatura[]
   examenes    Examen[]
+  incidencias IncidenciaHorario[]
 }
 
 model Examen {
@@ -103,6 +104,8 @@ model Examen {
   aula   Aula?   @relation(fields: [aulaId], references: [id], onDelete: SetNull)
 
   fechaCreacion DateTime @default(now()) @db.Timestamptz
+
+  incidencias IncidenciaHorario[]
 
   @@index([profesorId])
   @@index([aulaId])
@@ -152,4 +155,29 @@ model Aula {
   fechaCreacion DateTime @default(now()) @db.Timestamptz
 
   examenes Examen[]
+}
+
+enum EstadoIncidencia {
+  PENDIENTE
+  REVISADA
+  RESUELTA
+}
+
+// Incidencia de horario comunicada por un profesor sobre uno de sus exámenes
+// asignados (solapamientos, error de asignación, aula incorrecta, etc.).
+// Caso de uso exclusivo del rol Profesor — comunicarIncidenciaHorario.
+model IncidenciaHorario {
+  id            String           @id @default(uuid()) @db.Uuid
+  descripcion   String           @db.Text
+  estado        EstadoIncidencia @default(PENDIENTE)
+  fechaCreacion DateTime         @default(now()) @db.Timestamptz
+
+  profesorId String   @db.Uuid
+  profesor   Profesor @relation(fields: [profesorId], references: [id], onDelete: Cascade)
+  examenId   String   @db.Uuid
+  examen     Examen   @relation(fields: [examenId], references: [id], onDelete: Cascade)
+
+  @@index([profesorId])
+  @@index([examenId])
+  @@index([estado])
 }

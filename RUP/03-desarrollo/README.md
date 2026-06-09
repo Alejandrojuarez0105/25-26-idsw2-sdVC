@@ -96,6 +96,21 @@ A continuación se detallan las especificaciones de implementación por actor y 
 - [consultarCalendario](casos-uso/0-Administrador/consultarCalendario/README.md) - Implementación de la consulta y visualización del calendario de exámenes.
 - [descargarCalendarioExamenes](casos-uso/0-Administrador/descargarCalendarioExamenes/README.md) - Implementación de la descarga del calendario en formato CSV.
 
+### Actor Profesor
+
+#### Gestión del sistema
+- [iniciarSesion](casos-uso/1-Profesor/iniciarSesion/README.md) - Acceso del profesor (documentado; login multi-rol por JWT reutilizado).
+- [cerrarSesion](casos-uso/1-Profesor/cerrarSesion/README.md) - Cierre de sesión del profesor (documentado; logout multi-rol reutilizado).
+
+#### Consulta de información
+- [consultarCalendario](casos-uso/1-Profesor/consultarCalendario/README.md) - Consulta del calendario restringida a los exámenes propios (filtro por `profesorId` del JWT).
+- [descargarCalendario](casos-uso/1-Profesor/descargarCalendario/README.md) - Descarga (CSV) del calendario propio.
+
+#### Gestión de incidencias
+- [comunicarIncidenciaHorario](casos-uso/1-Profesor/comunicarIncidenciaHorario/README.md) - Caso exclusivo del Profesor: registro de incidencias de horario (nueva entidad `IncidenciaHorario`).
+
+> **Cobertura de la rama Profesor**: `iniciarSesion` y `cerrarSesion` se documentan reutilizando la autenticación multi-rol existente (sin código nuevo). `consultarCalendario` y `descargarCalendario` se implementan en un módulo backend `profesor` aditivo que reutiliza `ExamenesService` y filtra por el profesor del JWT. `comunicarIncidenciaHorario` introduce la entidad `IncidenciaHorario`. La autorización se basa únicamente en el rol del JWT (compatible con cualquier usuario de rol Profesor).
+
 ## Referencias
 
 - [Guía de Configuración y Scaffolding](/RUP/02-diseño/configuración-proyecto.md)

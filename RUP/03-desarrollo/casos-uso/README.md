@@ -64,7 +64,17 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 - [descargarCalendarioExamenes](0-Administrador/descargarCalendarioExamenes/README.md) - Implementación de la descarga del calendario en formato CSV.
 
 ### Actor Profesor
-*(En desarrollo)*
+
+#### Gestión del sistema
+- [iniciarSesion](1-Profesor/iniciarSesion/README.md) - Acceso del profesor (documentado; reutiliza el login multi-rol por JWT).
+- [cerrarSesion](1-Profesor/cerrarSesion/README.md) - Cierre de sesión del profesor (documentado; reutiliza el logout multi-rol).
+
+#### Consulta de información
+- [consultarCalendario](1-Profesor/consultarCalendario/README.md) - Consulta del calendario **restringida a los exámenes propios** (filtro por `profesorId` del JWT).
+- [descargarCalendario](1-Profesor/descargarCalendario/README.md) - Descarga (CSV) del calendario propio.
+
+#### Gestión de incidencias
+- [comunicarIncidenciaHorario](1-Profesor/comunicarIncidenciaHorario/README.md) - **Caso exclusivo del Profesor**: registro de incidencias de horario (entidad `IncidenciaHorario`).
 
 ### Actor Alumno
 *(En desarrollo)*
