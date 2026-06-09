@@ -1,0 +1,45 @@
+@startuml secuencia-diseño-consultarCalendario-profesor
+skinparam shadowing false
+skinparam responseMessageBelowArrow true
+
+actor Profesor
+participant "ConsultarCalendarioView\n(React)" as UI <<Component>>
+participant "useCalendario\n(Hook)" as Hook <<Hook>>
+participant "examenesService\n(Axios)" as FService <<Service>>
+participant "ExamenesController\n(NestJS)" as Controller <<Controller>>
+participant "RolesGuard / JWT" as Guard <<Guard>>
+participant "ExamenesService\n(NestJS)" as BService <<Service>>
+participant "PrismaService" as Prisma <<ORM>>
+database "PostgreSQL 16" as DB
+
+Profesor -> UI : consultarCalendario() / aplica filtros
+UI -> Hook : loadCalendario(filtros)
+Hook -> FService : findCalendario(filtros)
+FService -> Controller : GET /examenes/calendario?fechaInicio&fechaFin&asignaturaId\n(Authorization: Bearer JWT)
+
+Controller -> Guard : validar token + rol
+Guard --> Controller : req.user { profesorId, rol = Profesor }
+Controller -> BService : findCalendario(filtros, usuario)
+
+BService -> BService : forzar where.profesorId = usuario.profesorId\n(restricción no eludible)
+BService -> Prisma : examen.findMany({\n  where: { profesorId, fecha BETWEEN ... },\n  include: { aula }\n})
+Prisma -> DB : SELECT exámenes del profesor + aula
+DB --> Prisma : Exámenes propios (asignatura, fecha, hora, aula)
+Prisma --> BService : Lista de exámenes
+
+BService -> BService : Resolver asignatura y aplicar filtro por asignatura
+BService --> Controller : List<ExamenCalendarioDto>
+Controller --> FService : 200 OK (JSON)
+FService --> Hook : ExamenCalendarioDto[]
+
+Hook -> Hook : Pre-agrupar por fecha en Map (O(N))
+Hook --> UI : Actualiza estado (calendario indexado)
+UI --> Profesor : Renderiza rejilla (fecha, hora, asignatura, aula)
+
+note right of UI
+  Acciones disponibles (CALENDARIO_ABIERTO):
+  - descargarCalendarioExamenes() (self)
+  - completarConsulta() -> vuelve al menú
+end note
+
+@enduml

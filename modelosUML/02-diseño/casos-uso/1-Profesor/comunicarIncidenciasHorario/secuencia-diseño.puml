@@ -1,0 +1,64 @@
+@startuml secuencia-diseño-comunicarIncidenciasHorario-profesor
+skinparam shadowing false
+skinparam responseMessageBelowArrow true
+
+actor Profesor
+participant "ComunicarIncidenciasView\n(React)" as UI <<Component>>
+participant "useIncidencias\n(Hook)" as Hook <<Hook>>
+participant "incidenciasService\n(Axios)" as FService <<Service>>
+participant "ExamenesController\n(NestJS)" as ExCtrl <<Controller>>
+participant "IncidenciasController\n(NestJS)" as Controller <<Controller>>
+participant "RolesGuard / JWT" as Guard <<Guard>>
+participant "IncidenciasService\n(NestJS)" as BService <<Service>>
+participant "PrismaService" as Prisma <<ORM>>
+database "PostgreSQL 16" as DB
+
+Profesor -> UI : comunicarIncidenciasHorario()
+UI -> Hook : loadExamenesPropios()
+Hook -> FService : findExamenesPropios()
+FService -> ExCtrl : GET /examenes/calendario (JWT)
+ExCtrl --> FService : ExamenCalendarioDto[] (solo del profesor)
+FService --> Hook : exámenes propios
+Hook --> UI : renderiza selector de examen
+
+Profesor -> UI : selecciona examen + tipo + descripción
+UI -> UI : valida formulario (examen, tipo, descripción 10..500)
+Profesor -> UI : Enviar incidencia
+UI -> Hook : enviarIncidencia(dto)
+Hook -> FService : crearIncidencia(CrearIncidenciaDto)
+FService -> Controller : POST /incidencias (JWT)
+
+Controller -> Guard : validar token + rol Profesor
+Guard --> Controller : req.user { profesorId }
+Controller -> BService : crear(dto, usuario)
+
+BService -> Prisma : examen.findUnique({ where: { id: dto.examenId } })
+Prisma -> DB : SELECT examen
+DB --> Prisma : examen (profesorId)
+Prisma --> BService : examen
+
+alt examen pertenece al profesor
+    BService -> Prisma : incidencia.create({ ...dto, profesorId, estado: PENDIENTE })
+    Prisma -> DB : INSERT INTO "Incidencia"
+    DB --> Prisma : incidencia creada
+    Prisma --> BService : Incidencia
+    BService --> Controller : IncidenciaDto
+    Controller --> FService : 201 Created
+    FService --> Hook : IncidenciaDto
+    Hook --> UI : mostrarIncidenciaRegistrada (éxito)
+    UI --> Profesor : confirmación de envío
+else examen ajeno o datos inválidos
+    BService --> Controller : 403 Forbidden / 400 Bad Request
+    Controller --> FService : error
+    FService --> Hook : error
+    Hook --> UI : muestra mensaje de error
+    UI --> Profesor : advertencia
+end
+
+note right of UI
+  Acciones (INCIDENCIAS_ABIERTO):
+  - completarComunicacion() -> menú
+  - cancelarComunicacion() -> menú
+end note
+
+@enduml

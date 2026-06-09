@@ -78,7 +78,17 @@ Esta carpeta contiene el diseño detallado de los casos de uso, transformando la
 - [descargarCalendarioExamenes](0-Administrador/descargarCalendarioExamenes/README.md) - Diseño de la exportación (PDF/Excel) del calendario.
 
 ### Actor Profesor
-*(Vacío - En desarrollo)*
+
+#### Gestión del sistema
+- [iniciarSesion](1-Profesor/iniciarSesion/README.md) - Acceso del profesor (reutiliza arquitectura del Administrador; navegación a `/profesor`).
+- [cerrarSesion](1-Profesor/cerrarSesion/README.md) - Finalización de sesión del profesor.
+
+#### Consulta de información
+- [consultarCalendario](1-Profesor/consultarCalendario/README.md) - Visualización del calendario **restringida a sus propios exámenes** (filtro por `profesorId` del JWT).
+- [descargarCalendarioExamenes](1-Profesor/descargarCalendarioExamenes/README.md) - Exportación (PDF/Excel) del calendario propio.
+
+#### Gestión de incidencias
+- [comunicarIncidenciasHorario](1-Profesor/comunicarIncidenciasHorario/README.md) - **Caso exclusivo del Profesor**: reporte de incidencias de horario para revisión administrativa.
 
 ### Actor Alumno
 *(Vacío - En desarrollo)*

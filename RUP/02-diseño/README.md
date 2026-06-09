@@ -126,6 +126,21 @@ El diseño detallado de cada caso de uso se organiza en subcarpetas por actor de
 - [consultarCalendario](casos-uso/0-Administrador/consultarCalendario/README.md) - Diseño de la visualización del calendario de exámenes.
 - [descargarCalendarioExamenes](casos-uso/0-Administrador/descargarCalendarioExamenes/README.md) - Diseño de la exportación (PDF/Excel) del calendario.
 
+### Actor Profesor
+
+#### Gestión del sistema
+- [iniciarSesion](casos-uso/1-Profesor/iniciarSesion/README.md) - Acceso del profesor (arquitectura reutilizada; navegación a `/profesor`).
+- [cerrarSesion](casos-uso/1-Profesor/cerrarSesion/README.md) - Diseño de finalización de sesión del profesor.
+
+#### Consulta de información
+- [consultarCalendario](casos-uso/1-Profesor/consultarCalendario/README.md) - Visualización del calendario restringida a sus propios exámenes (filtro por `profesorId` del JWT).
+- [descargarCalendarioExamenes](casos-uso/1-Profesor/descargarCalendarioExamenes/README.md) - Exportación (PDF/Excel) del calendario propio.
+
+#### Gestión de incidencias
+- [comunicarIncidenciasHorario](casos-uso/1-Profesor/comunicarIncidenciasHorario/README.md) - Caso exclusivo del Profesor: reporte de incidencias de horario para revisión administrativa.
+
+> **Cobertura de la rama Profesor**: los cuatro casos comunes (`iniciarSesion`, `cerrarSesion`, `consultarCalendario`, `descargarCalendarioExamenes`) reutilizan la arquitectura aprobada para el Administrador, adaptando únicamente actor, permisos, navegación y restricciones de acceso (visibilidad por `profesorId`). `comunicarIncidenciasHorario` es exclusivo del Profesor e introduce el módulo `incidencias` (con el modelo `Incidencia` propuesto para implementación).
+
 #### Principios de diseño aplicados
 
 - **Trazabilidad estricta**: Cada clase de diseño debe mapearse a una o más clases de análisis.
