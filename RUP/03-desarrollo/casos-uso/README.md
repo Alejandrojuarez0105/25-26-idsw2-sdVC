@@ -80,7 +80,14 @@ Esta carpeta centraliza los informes técnicos de implementación para cada caso
 - [comunicarIncidenciaHorario](1-Profesor/comunicarIncidenciaHorario/README.md) - **Caso exclusivo del Profesor**: registro de incidencias de horario (entidad `IncidenciaHorario`) y **visibilidad de la resolución** aplicada por el administrador (solo lectura).
 
 ### Actor Alumno
-*(En desarrollo)*
+
+#### Gestión del sistema
+- [iniciarSesion](2-Alumno/iniciarSesion/README.md) - Acceso del alumno (documentado; reutiliza el login multi-rol por JWT).
+- [cerrarSesion](2-Alumno/cerrarSesion/README.md) - Cierre de sesión del alumno (documentado; reutiliza el logout multi-rol).
+
+#### Consulta de información
+- [consultarCalendario](2-Alumno/consultarCalendario/README.md) - Consulta del calendario **restringida a sus asignaturas matriculadas** (filtro por `Matricula` derivado del JWT).
+- [descargarCalendarioExamenes](2-Alumno/descargarCalendarioExamenes/README.md) - Descarga (CSV) del calendario de sus asignaturas matriculadas.
 
 ## Estructura de cada informe de implementación
 

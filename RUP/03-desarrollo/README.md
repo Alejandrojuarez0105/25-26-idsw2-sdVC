@@ -114,6 +114,18 @@ A continuación se detallan las especificaciones de implementación por actor y 
 
 > **Cobertura de la rama Profesor**: `iniciarSesion` y `cerrarSesion` se documentan reutilizando la autenticación multi-rol existente (sin código nuevo). `consultarCalendario` y `descargarCalendario` se implementan en un módulo backend `profesor` aditivo que reutiliza `ExamenesService` y filtra por el profesor del JWT. `comunicarIncidenciaHorario` introduce la entidad `IncidenciaHorario`. La autorización se basa únicamente en el rol del JWT (compatible con cualquier usuario de rol Profesor).
 
+### Actor Alumno
+
+#### Gestión del sistema
+- [iniciarSesion](casos-uso/2-Alumno/iniciarSesion/README.md) - Acceso del alumno (documentado; login multi-rol por JWT reutilizado).
+- [cerrarSesion](casos-uso/2-Alumno/cerrarSesion/README.md) - Cierre de sesión del alumno (documentado; logout multi-rol reutilizado).
+
+#### Consulta de información
+- [consultarCalendario](casos-uso/2-Alumno/consultarCalendario/README.md) - Consulta del calendario restringida a sus asignaturas matriculadas (filtro por `Matricula` derivado del JWT).
+- [descargarCalendarioExamenes](casos-uso/2-Alumno/descargarCalendarioExamenes/README.md) - Descarga (CSV) del calendario de sus asignaturas matriculadas.
+
+> **Cobertura de la rama Alumno**: `iniciarSesion` y `cerrarSesion` se documentan reutilizando la autenticación multi-rol existente. `consultarCalendario` y `descargarCalendarioExamenes` se implementan en un módulo backend `alumno` aditivo que reutiliza `ExamenesService` y filtra por las asignaturas matriculadas del alumno (`Matricula`) derivadas del JWT. No introduce entidades ni tablas nuevas. Con esta rama, la implementación queda cubierta para los **tres actores** (Administrador, Profesor, Alumno) en sus casos de calendario.
+
 ## Referencias
 
 - [Guía de Configuración y Scaffolding](/RUP/02-diseño/configuración-proyecto.md)
