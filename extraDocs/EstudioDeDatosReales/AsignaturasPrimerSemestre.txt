@@ -1,0 +1,581 @@
+A continuación, te presento el listado de **asignaturas únicas** del primer semestre, agrupadas por grado (eliminando duplicados dentro de cada uno). Al final, incluyo un apartado con las **asignaturas que se repiten en dos o más grados**.
+
+---
+
+## GCAFD (Grado en Ciencias de la Actividad Física y del Deporte)
+
+- Anatomía Humana
+- Bioestadística
+- Fisiología del Cuerpo Humano
+- Fundamentos de la Actividad Física y Motricidad Humana
+- Historia de la Actividad Física y del Deporte
+- Análisis de la Conducta Deportiva
+- Deportes Colectivos III: Voleibol
+- Fisiología del Deporte
+- Inglés I
+- Deportes Individuales III: Atletismo (Saltos y Lanzamientos)
+- Psicopedagogía del Aprendizaje y de la Educación
+- Juegos e Iniciación Deportiva
+- Deportes de Raqueta
+- Deportes Individuales IV: Habilidades Gimnásticas
+- Economía y Gestión en el Deporte - Inglés
+- Expresión y Comunicación Corporal
+- Nutrición y Deporte
+- Nutrición y Deporte (Inglés)
+- Inglés III
+- Actividades en el Medio Natural
+- Educación Física Inclusiva
+- Métodos y Técnicas de Investigación en el Deporte (Inglés)
+- Métodos y Técnicas de Investigación en el Deporte
+- Socorrismo Acuático y Primeros Auxilios
+- Nuevas tecnologías aplicadas a la actividad física y deporte
+- Prescripción de actividad física para la salud
+- Sistemas Educativos, Contexto Institucional y Gestión Escolar
+- Resolución de Conflictos y Mediación
+
+---
+
+## GPSI (Grado en Psicología)
+
+- Fundamentos de Psicobiología
+- Historia de la Psicología
+- Psicología de la Motivación
+- Psicología del Aprendizaje
+- Inglés I
+- Metodología de la Investigación en Psicología I
+- Procesos Cognitivos: Percepción, Atención y Memoria
+- Psicología de la Personalidad y de las Diferencias Individuales
+- Psicología del Desarrollo: Juventud, Adultez y Adulto Mayor
+- Inglés III
+- Psicología de la Educación
+- Psicología de los Grupos
+- Psicopatología
+- Fundamentos de la Actividad Física y Motricidad Humana
+- Organización de Empresas - inglés
+- Organización de Empresas
+- Sociología de la Educación: Cambios Sociales, Educativos y Multiculturalidad
+- Psicología de la Salud
+- Evaluación de Programas e Intervenciones en Diferentes Contextos
+- Intervención Psicológica
+- Resolución de Conflictos y Mediación
+- Análisis Comportamental del Deporte
+- Dirección Estratégica y Competencias Directivas
+- Investigación de Mercados
+- Sistemas Educativos, Contexto Institucional y Gestión Escolar
+- Técnicas de entrevista psicológica
+
+---
+
+## MASTERPSI (Máster en Psicología)
+
+- Fundamentos Científicos y Metodológicos de la Psicología Sanitaria
+- Fundamentos Profesionales del Psicólogo Sanitario
+- Evaluación e Intervención de los Trastornos Mentales en Adulto
+- Diagnóstico e Intervención de los Trastornos Mentales de Inicio en la Infancia
+- Evaluación e Intervención Neuropsicológica
+- Actitudes y Habilidades para el Desempeño de Servicios Psicológicos en el Entorno Sociosanitario
+
+---
+
+## GND (Grado en Nutrición y Dietética)
+
+- Anatomía Humana
+- Bioestadística
+- Biología Celular y Molecular
+- Fisiología del Cuerpo Humano I
+- Química General y Análisis Químico
+- Bromatología I
+- Fisiopatología y Farmacología I
+- Nutrición y Dietética
+- Nutrición y Metabolismo
+- Técnicas Culinarias y Gastronomía
+- Calidad y Gestión de la Empresa Alimentaria
+- Dietoterapia I
+- Higiene y Seguridad Alimentaria
+- Restauración Colectiva
+- Psicología de la Motivación
+- Intolerancias y Alergias Alimentarias
+- Educación y Coaching Nutricional
+- Métodos y Técnicas de Investigación en Nutrición
+- Nutrición Artificial
+- Prescripción Dietética
+- Análisis Sensorial de los Alimentos
+- Promoción y Prescripción de Actividad Física para la Salud
+- Diseño e Innovación Alimentaria
+
+---
+
+## GCTA (Grado en Ciencia y Tecnología de los Alimentos)
+
+- Biología Celular y Molecular
+- Física
+- Fisiología del Cuerpo Humano
+- Matemáticas
+- Química
+- Bromatología I
+- Fundamentos de Ingeniería Química
+- Nutrición
+- Química y Bioquímica de los Alimentos
+- Técnicas Culinarias y Gastronomía
+- Calidad y Gestión de la Empresa Alimentaria
+- Producción de Materias Primas Animales
+- Higiene y Seguridad Alimentaria
+- Producción de Materias Primas Vegetales
+- Gestión de Riesgos Laborales
+- Restauración Colectiva
+- Intolerancias y Alergias Alimentarias
+- Optimización de la Producción y Valorización de Alimento
+- Diseño e Innovación en Alimentación
+- Biotecnología alimentaria
+- Gestión de Proyectos en Ciencia y Tecnología de los Alimentos
+- Nutrición y Dietética
+- Análisis Sensorial de los Alimentos
+- Dirección Estratégica y Competencias Directivas
+
+---
+
+## GCG (Grado en Cocina y Gastronomía)
+
+- Biología Celular y Molecular
+- Fisiología del Cuerpo Humano
+- Físico-Química Alimentaria
+- Contabilidad I
+- Técnicas Culinarias I
+- Bromatología
+- Calidad y Gestión de la Empresa Gastronómica
+- Análisis Sensorial de los Alimentos
+- Gastronomía Cántabra
+- Sistemas y Procesos en Cocina y Restauración
+- Restauración Colectiva
+- Producción de Materias Primas Animales
+- Higiene y Seguridad Alimentaria
+- Producción de Materias Primas Vegetales
+- Dirección Comercial
+- Proyectos
+- Diseño e Innovación en Alimentación
+- Resolución de Conflictos y Mediación
+- Dirección Estratégica y Competencias Directivas
+
+---
+
+## GIIAA (Grado en Ingeniería Industrial Agroalimentaria)
+
+- Biología
+- Expresión Gráfica
+- Física
+- Matemáticas
+- Química
+- Matemática Numérica
+- Operaciones Básicas en la Industria Alimentaria
+- Bromatología I
+- Electrotecnia, Motores y Máquinas Eléctricas
+- Economía y Gestión de la Empresa Alimentaria
+- Producción de Materias Primas Animales
+- Producción de Materias Primas Vegetales
+- Gestión de Calidad y Seguridad Alimentaria
+- Inglés III
+- Gestión de Riesgos Laborales
+- Tecnología de Industrias Agroalimentarias
+- Dirección Estratégica y Competencias Directivas
+- Química y Bioquímica de los Alimentos
+- Optimización de la Producción y Valorización de Alimentos
+- Construcciones Agroindustriales
+- Proyectos y Evaluación del Impacto Ambiental
+- Análisis Sensorial de los Alimentos
+
+---
+
+## GADE (Grado en Administración y Dirección de Empresas)
+
+- Contabilidad I
+- Organización de Empresas
+- Organización de Empresas - inglés
+- Matemáticas
+- Microeconomía
+- Derecho Laboral
+- Dirección Comercial
+- Estadística I
+- Matemáticas Financieras
+- Inglés I
+- Historia Económica
+- Finanzas Empresariales
+- Gestión de Riesgos Laborales
+- Investigación de Mercados
+- Investigación de Mercados - inglés
+- Fundamentos de las Relaciones Públicas
+- Fundamentos de Programación
+- Inglés III
+- Integración Económica
+- Ciencias Políticas
+- Creación Publicitaria (TV, Radio, Impresos)
+- Investigación de Operaciones
+- Gestión Financiera
+- Dirección Estratégica y Competencias Directivas
+- Proyectos
+- Proyectos (Inglés)
+- Política Exterior
+- Organismos y Tratados Internacionales
+- Gestión de la Calidad
+- Marketing Digital y Medios Interactivos
+- Resolución de Conflictos y Mediación
+
+---
+
+## GIOI (Grado en Ingeniería de Organización Industrial)
+
+- Contabilidad I
+- Expresión Gráfica
+- Física
+- Matemáticas I
+- Química
+- Termodinámica
+- Estadística I
+- Matemática Numérica
+- Mecánica
+- Tecnología Eléctrica
+- Ingeniería de la Calidad
+- Gestión de Riesgos Laborales
+- Investigación de Operaciones
+- Organización de Empresas
+- Organización de Empresas - inglés
+- Finanzas Empresariales
+- Investigación de Mercados
+- Tecnología de Frío y Calor
+- Inglés III
+- Tecnología y Estructura de Ordenadores
+- Automática y Control
+- Proyectos
+- Tecnología Energética
+- Dirección Estratégica y Competencias Directivas
+- Matemáticas Financieras
+- Construcciones Industriales
+
+---
+
+## GII (Grado en Ingeniería Informática)
+
+- Física
+- Matemáticas I
+- Introducción Gestión de Proyectos de Software
+- Programación I
+- Tecnología y Estructura de Ordenadores
+- Estadística
+- Bases de Datos I
+- Matemática Numérica
+- Redes de Ordenadores
+- Estructura de Datos y Algoritmos I
+- Organización de Empresas
+- Organización de Empresas - Inglés
+- Contabilidad I
+- Investigación de Mercados
+- Investigación de Mercados - inglés
+- Teoría y Práctica de la Comunicación Visual
+- Inglés III
+- Ingeniería de Software I
+- Ética y Legislación Informática
+- Sistemas Distribuidos y Programación en Paralelo
+- Inteligencia Artificial
+- Proyectos
+- Programación Web I
+- Automática y Control
+- Marketing Digital y Medios Interactivos
+- Animación Digital
+- Matemáticas Financieras
+
+---
+
+## GTEL (Grado en Traducción y Lingüística)
+
+- Inglés I
+- Alemán I
+- Francés I
+- Edición y revisión
+- Lengua española y comunicación I
+- Inglés III
+- Francés III
+- Alemán III
+- Traducción Literaria y Humanística B-A
+- Lingüística descriptiva I
+- Terminología y documentación aplicada
+- Alemán V
+- Francés V
+- Estructura y significado de las Lenguas
+- Enseñanza y aprendizaje de lenguas
+- Iniciación a la interpretación I
+- Traducción Científico-Técnica B-A
+- Factores Individuales en el Proceso de Aprendizaje de Lenguas Extranjeras
+- Lenguas de especialidad y su enseñanza
+- Traducción Inversa A-B
+- Aprendizaje Integrado de Contenido y Lengua
+- Métodos e Instrumentos para los Estudios Traductológicos y del Lenguaje
+- Producción de Idiomas B y C para Traductores e Intérpretes
+
+---
+
+## GTI (Grado en Traducción e Interpretación)
+
+- Documentación Aplicada
+- Lingüística Descriptiva I
+- Francés V
+- Iniciación a la Interpretación I
+- Iniciación a la Interpretación I (práctica)
+- Iniciación a la Traducción Especializada B-A II
+- Traducción B-A III
+- Alemán V
+- Enseñanza y Aprendizaje de Lenguas
+- Lengua de Especialidad A y B
+- Traducción literaria y humanística B-A
+- Historia y Cultura de los Países de Habla Inglesa
+- Métodos e instrumentos para los estudios traductológicos
+- Traducción C-A I Francés-Español
+- Traducción C-A I Alemán-Español
+- Traducción Inversa A-B
+- Política Exterior
+- Organismos y Tratados Internacionales
+- Integración Económica
+- Edición y Revisión
+- Traducción Audiovisual y Localización B-A
+
+---
+
+## GLA (Grado en Lenguas Aplicadas)
+
+- Lengua española y comunicación I
+- Alemán III
+- Documentación Aplicada
+- Lingüística Aplicada y Mente
+- Estructura y significado de las lenguas
+- Alemán V
+- Francés V
+- Producción idiomas B y C (Inglés)
+- Producción idiomas B y C (Alemán)
+- Enseñanza y Aprendizaje de Lenguas
+- Organización de Empresas - inglés
+- Historia y Cultura de los Países de Habla Inglesa
+- Edición y revisión
+- Métodos de investigación empírica para el estudio del lenguaje
+- Lingüística de Corpus y Herramientas de Análisis textual
+- Fundamentos de las Relaciones Públicas
+- Aprendizaje Integrado de Contenido y Lengua
+- Sociolingüística, comunidad e ideología
+
+---
+
+## GEP (Grado en Educación Primaria)
+
+- Historia y Antropología de la Educación: Teorías y prácticas
+- Inglés I
+- Lengua española y comunicación I
+- Sociología de la educación: cambios sociales, educativos y multiculturalidad
+- Psicopedagogía del Aprendizaje y de la Educación
+- Planificación, investigación e innovación
+- Sistemas Educativos, Contexto Institucional y Gestión Escolar
+- Inglés III
+- Aprendizaje de las matemáticas y su didáctica II
+- Currículo de la Educación Física en la Educación Primaria
+- Enseñanza y aprendizaje del conocimiento medio natural, social y cultural
+- Enseñanza y Aprendizaje de Lenguas
+- Psicología de los Grupos
+- Fundamentos de la Actividad Física y Motricidad Humana
+- Inglés V
+- Aprendizaje Integrado de Contenido y Lengua
+- Educación Plástica y Visual
+- Educación Musical
+- Historia y Cultura de los Países de Habla Inglesa
+- Expresión y Comunicación Corporal
+- Actividades en el Medio Natural
+- Juegos e Iniciación Deportiva
+- Factores Individuales de Aprendizaje
+
+---
+
+## GPER (Grado en Periodismo)
+
+- Expresión Oral y Escrita de la Lengua Española
+- Teoría de la Comunicación
+- Sociedad Contemporánea
+- Teoría y Práctica de la Comunicación Visual
+- Teoría y Práctica de los Géneros Periodísticos (Interpretación y Opinión)
+- Televisión y Opinión Pública
+- Métodos y Técnicas de Investigación
+- Introducción a la Realización Audiovisual II
+- Inglés I
+- Historia del Cine y la TV
+- Inglés III
+- Fotoperiodismo
+- Diseño y Composición en Prensa
+- Creación Publicitaria (TV, Radio, Impresos)
+- Rutinas de Producción Periodística: Radio y TV II
+- Ciencias Políticas
+- Evolución de la Tecnología Audiovisual
+- Fundamentos de las Relaciones Públicas
+- Periodismo Especializado
+- Periodismo de Investigación
+- Gestión de Proyectos en Periodismo
+- Animación Digital
+- Dirección Estratégica en Gabinetes de Comunicación y Agencias de Publicidad
+- Política Exterior
+- Organismos y Tratados Internacionales
+- Integración Económica
+- Resolución de Conflictos y Mediación
+
+---
+
+## GCA (Grado en Comunicación Audiovisual)
+
+- Teoría de la Comunicación
+- Expresión Oral y Escrita de la Lengua Española
+- Sociedad Contemporánea
+- Teoría y Práctica de la Comunicación Visual
+- Inglés I
+- Lenguaje y Técnica Audiovisual II
+- Métodos y Técnicas de Investigación
+- Producción e Industria Audiovisual
+- Televisión y Opinión Pública
+- Evolución de la Tecnología Audiovisual
+- Historia del Cine y la TV
+- Inglés III
+- Post-producción Audiovisual
+- Creación Publicitaria (TV, Radio, Impresos)
+- Fundamentos de las Relaciones Públicas
+- Fundamentos de Programación
+- Diseño y Composición en Prensa
+- Animación Digital
+- Dirección Artística
+- Gestión de Proyectos Audiovisuales
+- Teoría y Práctica de los Géneros Periodísticos (Interpretación y Opinión)
+- Dirección Estratégica en Gabinetes de Comunicación y Agencias de Publicidad
+
+---
+
+## GPRP (Grado en Publicidad y Relaciones Públicas)
+
+- Teoría de la Comunicación
+- Expresión Oral y Escrita de la Lengua Española
+- Sociedad Contemporánea
+- Teoría y Práctica de la Comunicación Visual
+- Comunicación Audiovisual II
+- Métodos y Técnicas de Investigación
+- Televisión y Opinión Pública
+- Fundamentos de las Relaciones Públicas
+- Inglés I
+- Creación Publicitaria (TV, Radio, Impresos)
+- Historia del Cine y la TV
+- Inglés III
+- Investigación de Mercados - inglés
+- Contabilidad I
+- Diseño y Composición en Prensa
+- Evolución de la Tecnología Audiovisual
+- Organización de Empresas
+- Ciencias Políticas
+- Dirección Estratégica en Gabinetes de Comunicación y Agencias de Publicidad
+- Gestión de Proyectos de Publicidad y Relaciones Públicas
+- Marketing Digital y Medios Interactivos
+- Dirección Comercial
+- Teoría y Práctica de los Géneros Periodísticos (Interpretación y Opinión)
+- Producción e Industria Audiovisual
+- Política Exterior
+- Organismos y Tratados Internacionales
+- Integración Económica
+- Resolución de Conflictos y Mediación
+
+---
+
+## GERA (Grado en Relaciones Internacionales - aparece al final)
+
+- Proyectos
+- Organización de Empresas
+- Gestión Financiera
+- Investigación de Mercados
+
+---
+
+# ASIGNATURAS QUE SE REPITEN EN DOS O MÁS GRADOS (primer semestre)
+
+- **Actividades en el Medio Natural** → GCAFD, GEP
+- **Alemán III** → GTEL, GLA
+- **Alemán V** → GTEL, GTI, GLA
+- **Análisis Sensorial de los Alimentos** → GND, GCTA, GCG, GIIAA
+- **Anatomía Humana** → GCAFD, GND
+- **Animación Digital** → GII, GPER, GCA
+- **Aprendizaje Integrado de Contenido y Lengua** → GTEL, GLA, GEP
+- **Bioestadística** → GCAFD, GND
+- **Biología Celular y Molecular** → GND, GCTA, GCG
+- **Bromatología I** → GND, GCTA, GIIAA
+- **Calidad y Gestión de la Empresa Alimentaria** → GND, GCTA
+- **Ciencias Políticas** → GADE, GPER, GPRP
+- **Contabilidad I** → GCG, GADE, GIOI, GII, GPRP
+- **Creación Publicitaria (TV, Radio, Impresos)** → GADE, GPER, GCA, GPRP
+- **Dirección Comercial** → GCG, GADE, GPRP
+- **Dirección Estratégica y Competencias Directivas** → GPSI, GCTA, GCG, GIIAA, GADE, GIOI
+- **Diseño e Innovación Alimentaria** → GND, GCTA, GCG
+- **Diseño y Composición en Prensa** → GPER, GCA, GPRP
+- **Documentación Aplicada** → GTI, GLA
+- **Edición y revisión** → GTEL, GTI, GLA
+- **Enseñanza y Aprendizaje de Lenguas** → GTEL, GTI, GLA, GEP
+- **Estadística I** → GADE, GIOI
+- **Estructura y significado de las lenguas** → GTEL, GLA
+- **Evolución de la Tecnología Audiovisual** → GPER, GCA, GPRP
+- **Expresión Oral y Escrita de la Lengua Española** → GPER, GCA, GPRP
+- **Expresión y Comunicación Corporal** → GCAFD, GEP
+- **Factores Individuales en el Proceso de Aprendizaje de Lenguas Extranjeras** → GTEL, GEP
+- **Finanzas Empresariales** → GADE, GIOI
+- **Física** → GCTA, GIIAA, GIOI, GII
+- **Fisiología del Cuerpo Humano** → GCAFD, GCTA, GCG
+- **Francés V** → GTEL, GTI, GLA
+- **Fundamentos de la Actividad Física y Motricidad Humana** → GCAFD, GPSI, GEP
+- **Fundamentos de las Relaciones Públicas** → GADE, GLA, GPER, GCA, GPRP
+- **Fundamentos de Programación** → GADE, GCA
+- **Gastronomía Cántabra** → GCG (aparece dos veces dentro del mismo grado, duplicado interno)
+- **Gestión de la Calidad** → GADE
+- **Gestión de Proyectos en Periodismo** → GPER
+- **Gestión de Riesgos Laborales** → GCTA, GIIAA, GADE, GIOI
+- **Higiene y Seguridad Alimentaria** → GND, GCTA, GCG
+- **Historia y Cultura de los Países de Habla Inglesa** → GTI, GLA, GEP
+- **Historia del Cine y la TV** → GPER, GCA, GPRP
+- **Inglés I** → GCAFD, GPSI, GADE, GTEL, GEP, GPER, GCA, GPRP
+- **Inglés III** → GCAFD, GPSI, GIIAA, GADE, GIOI, GII, GTEL, GEP, GPER, GCA, GPRP
+- **Iniciación a la Interpretación I** → GTEL, GTI
+- **Integración Económica** → GADE, GTI, GPER, GPRP
+- **Intolerancias y Alergias Alimentarias** → GND, GCTA
+- **Investigación de Mercados** → GPSI, GADE, GIOI, GII, GERA
+- **Investigación de Mercados - inglés** → GADE, GII, GPRP
+- **Investigación de Operaciones** → GADE, GIOI
+- **Juegos e Iniciación Deportiva** → GCAFD, GEP
+- **Lengua española y comunicación I** → GTEL, GLA, GEP
+- **Marketing Digital y Medios Interactivos** → GADE, GII, GPRP
+- **Matemáticas** → GCTA, GIIAA, GADE
+- **Matemáticas Financieras** → GADE, GIOI, GII
+- **Matemáticas I** → GIOI, GII
+- **Matemática Numérica** → GIIAA, GIOI, GII
+- **Métodos y Técnicas de Investigación** → GPER, GCA, GPRP
+- **Métodos y Técnicas de Investigación en el Deporte** → GCAFD
+- **Nutrición y Dietética** → GND, GCTA
+- **Organismos y Tratados Internacionales** → GADE, GTI, GPER, GPRP
+- **Organización de Empresas** → GPSI, GADE, GIOI, GII, GPRP, GERA
+- **Organización de Empresas - inglés** → GPSI, GADE, GIOI, GII, GLA
+- **Política Exterior** → GADE, GTI, GPER, GPRP
+- **Producción de Materias Primas Animales** → GCTA, GCG, GIIAA
+- **Producción de Materias Primas Vegetales** → GCTA, GCG, GIIAA
+- **Producción e Industria Audiovisual** → GCA, GPRP
+- **Programación I** → GII
+- **Programación Web I** → GII
+- **Proyectos** → GCG, GADE, GIOI, GII, GERA
+- **Psicología de la Motivación** → GPSI, GND
+- **Psicología de los Grupos** → GPSI, GEP
+- **Psicopedagogía del Aprendizaje y de la Educación** → GCAFD, GEP
+- **Química** → GCTA, GIIAA, GIOI
+- **Química y Bioquímica de los Alimentos** → GCTA, GIIAA
+- **Resolución de Conflictos y Mediación** → GCAFD, GPSI, GCG, GADE, GPER, GPRP
+- **Restauración Colectiva** → GND, GCTA, GCG
+- **Sistemas Educativos, Contexto Institucional y Gestión Escolar** → GCAFD, GPSI, GEP
+- **Sociedad Contemporánea** → GPER, GCA, GPRP
+- **Técnicas Culinarias y Gastronomía** → GND, GCTA
+- **Tecnología y Estructura de Ordenadores** → GIOI, GII
+- **Televisión y Opinión Pública** → GPER, GCA, GPRP
+- **Teoría de la Comunicación** → GPER, GCA, GPRP
+- **Teoría y Práctica de la Comunicación Visual** → GII, GPER, GCA, GPRP
+- **Teoría y Práctica de los Géneros Periodísticos (Interpretación y Opinión)** → GPER, GCA, GPRP
+- **Terminología y documentación aplicada** → GTEL
+- **Traducción Inversa A-B** → GTEL, GTI
+- **Traducción literaria y humanística B-A** → GTEL, GTI

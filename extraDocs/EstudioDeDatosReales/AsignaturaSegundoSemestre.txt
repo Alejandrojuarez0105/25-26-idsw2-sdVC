@@ -1,0 +1,534 @@
+A continuación, te presento el listado de **asignaturas únicas** del segundo semestre, agrupadas por el grado en el que aparecen, eliminando duplicados dentro de cada uno. Al final, incluyo un apartado con las **asignaturas que se repiten en dos o más grados** (excluyendo las que ya aparecen en el listado individual de cada grado, para no duplicar).
+
+---
+
+## GCAFD (Grado en Ciencias de la Actividad Física y del Deporte)
+
+- Biomecánica del Movimiento Humano
+- Deportes Colectivos I: Baloncesto
+- Deportes Individuales I: Atletismo - Carreras
+- Deportes Individuales II: Natación
+- Sociología del Deporte
+- Deportes Colectivos II: Balonmano
+- Fundamentos del Entrenamiento
+- Inglés II
+- Valoración del Estado Nutricional y la Composición Corporal
+- Sistemática del Ejercicio
+- Deportes Colectivos IV: Fútbol
+- Educación Física y su Didáctica
+- Planificación y Entrenamiento Físico de Alto Nivel
+- Antropología y Psicología del Comportamiento Alimentario
+- Ayudas Ergogénicas
+- Psicología del Desarrollo: Infancia y Adolescencia
+- Nuevas Tendencias en Fitness y Wellness
+- Prevención y readaptación de lesiones en el deporte
+- Instalaciones y Equipamientos Deportivos
+- Coaching
+- Coaching - inglés
+- Economía de la Empresa y Emprendedores
+- Salud Pública
+- Valoración de la condición física
+- Psicología del Deporte
+- Inglés IV
+
+---
+
+## GPSI (Grado en Psicología)
+
+- Estadística
+- Psicofisiología
+- Psicología de la Emoción
+- Psicología del Desarrollo: Infancia y Adolescencia
+- Psicología Social
+- Inglés II
+- Metodología de la Investigación en Psicología II
+- Neuropsicología
+- Procesos Cognitivos: Pensamiento y Lenguaje
+- Psicometría
+- Diagnóstico Psicológico
+- Inglés IV
+- Psicología Clínica
+- Psicología de las Organizaciones
+- Recursos Humanos
+- Recursos Humanos - inglés
+- Sociología del Deporte
+- Psicofarmacología
+- Diversidad y educación inclusiva
+- Coaching
+- Coaching - inglés
+- Economía de la Empresa y Emprendedores
+- Comunicación Corporativa e Institucional
+- Marketing Estratégico y Operativo
+- Psicología del Deporte
+- Orientación Educativa y Tutorial
+
+---
+
+## MASTERPSI (Máster en Psicología)
+
+- Evaluación e Intervención en Psicogerontología
+- Sexualidad, Pareja y Familia
+- Actualización en teoría y práctica de la psicoterapia
+- Conductas de Riesgo y Adicciones: Diagnostico e Intervención Individual, Grupal y Comunitario
+- Intervención en Crisis, Catástrofes y Emergencias
+- Intervención psicológica: entrenamiento y psicoterapia en el entorno socio-sanitario
+
+---
+
+## GND (Grado en Nutrición y Dietética)
+
+- Antropología y Psicología del Comportamiento Alimentario
+- Bioquímica
+- Fisiología del Cuerpo Humano II
+- Microbiología y Parasitología
+- Química orgánica
+- Bromatología II
+- Dietética Aplicada
+- Fisiopatología y Farmacología II
+- Salud Pública
+- Valoración del Estado Nutricional y la Composición Corporal
+- Inglés Aplicado a la Nutrición y la Dietética II
+- Deontología y Legislación Alimentaria
+- Dietoterapia II
+- Epidemiología y Nutrición Comunitaria
+- Ayudas Ergogénicas
+- Higiene en la Industria Alimentaria
+
+---
+
+## GCTA (Grado en Ciencia y Tecnología de los Alimentos)
+
+- Antropología y Psicología del Comportamiento Alimentario
+- Bioquímica
+- Matemáticas
+- Estadística
+- Microbiología y Parasitología
+- Química orgánica
+- Física
+- Bromatología II
+- Inglés Aplicado a la Ciencia y Tecnología de los Alimentos
+- Operaciones Básicas en la Industria Alimentaria
+- Deontología y Legislación Alimentaria
+- Salud Pública y Nutrición Comunitaria
+- Tecnología de los Alimentos
+- Procesado de Alimentos de Origen Animal
+- Higiene en la Industria Alimentaria
+- Procesado de Alimentos de Origen Vegetal
+- Ingeniería de la Producción en la Industria Alimentaria
+- Fisiología del Cuerpo Humano II
+- Inglés Avanzado Aplicado a la Ciencia y Tecnología de los Alimentos II
+- Economía de la Empresa y los Emprendedores
+- Tecnología Medioambiental
+- Envasado y Vida útil de los Alimentos Comerciales
+- Gestión de Residuos y Aprovechamiento de Subproductos
+- Coaching
+- Dietética Aplicada
+
+---
+
+## GCG (Grado en Cocina y Gastronomía)
+
+- Control y Gestión de Costes
+- Inglés Aplicado a la Ciencia y Tecnología de los Alimentos
+- Deontología y Legislación Alimentaria
+- Estadística
+- Tecnología de los Alimentos
+- Gastronomía Española
+- Emprendimiento y Gastronomía
+- Gastronomía Internacional
+- Inglés IV
+- Recursos Humanos
+- Gestión de Servicios de Restauración Colectiva y Catering
+
+---
+
+## GIIAA (Grado en Ingeniería Industrial Agroalimentaria)
+
+- Bioquímica
+- Informática
+- Microbiología y parasitologia
+- Electricidad y Electrónica
+- Topografía y Cartografía
+- Física
+- Matemáticas I
+- Inglés II
+- Hidráulica
+- Ingeniería de la Producción en la Industria Alimentaria
+- Estadística
+- Resistencia de Materiales
+- Procesado de Alimentos de Origen Animal
+- Procesado de Alimentos de Origen Vegetal
+- Ingeniería de Instalaciones, Equipos y Maquinaria de la Industria Agroalimentaria
+- Higiene en la industria alimentaria
+- Gestión de Residuos y Aprovechamiento de Subproductos
+- Coaching
+- Envasado y Vida útil de los Alimentos Comerciales
+
+---
+
+## GADE (Grado en Administración y Dirección de Empresas)
+
+- Marketing Estratégico y Operativo
+- Contabilidad II
+- Estructura Económica
+- Introducción al Derecho
+- Matemáticas
+- Macroeconomía
+- Administración de la Producción y Logística
+- Análisis de Estados Financieros
+- Derecho Mercantil
+- Estadística II
+- Inglés II
+- Relaciones Internacionales
+- Fundamentos de Publicidad
+- Dirección de Sistemas de Información
+- Dirección Financiera
+- Recursos Humanos
+- Recursos Humanos - inglés
+- Contabilidad de Gestión
+- Diseño y Planificación de Campañas
+- Tecnología Medioambiental
+- Inglés IV
+- Comportamiento del Consumidor
+- Sistemas Políticos Comparados
+- Sociedad de la Información y el Conocimiento
+- Derecho Fiscal
+- Economía de la Empresa y Emprendedores
+- Coaching
+- Comunicación Corporativa e Institucional
+- Responsabilidad Social Corporativa
+- Globalización, Geopolítica y Geoestrategia
+- Agenda Internacional Para la Sostenibilidad Ambiental
+- Cooperación Internacional
+- Finanzas Internacionales
+
+---
+
+## GIOI (Grado en Ingeniería de Organización Industrial)
+
+- Electricidad y Electrónica
+- Contabilidad de Gestión
+- Ingeniería de Materiales
+- Matematicas II
+- Informática
+- Matemáticas
+- Física
+- Tecnología Mecánica
+- Administración de la Producción y Logística
+- Estadística II
+- Inglés II
+- Mecánica de Fluidos
+- Resistencia de Materiales
+- Dirección de Sistemas de Información
+- Recursos Humanos
+- Recursos Humanos - inglés
+- Tecnología Medioambiental
+- Inglés IV
+- Marketing Estratégico y Operativo
+- Instalaciones Electricas de Baja Tension y Luminotecnia
+- Contabilidad II
+- Economía de la Empresa y Emprendedores
+- Coaching
+- Responsabilidad Social Corporativa
+- Ingeniería Química
+- Análisis de Estados Financieros
+
+---
+
+## GII (Grado en Ingeniería Informática)
+
+- Lógica
+- Matemática Discreta
+- Matemáticas II
+- Matemáticas
+- Física
+- Programación II
+- Programación I
+- Estructura de Datos y Algoritmos II
+- Sistemas Operativos
+- Bases de Datos II
+- Inglés II
+- Lenguajes de Programación
+- Dirección de Sistemas de Información
+- Ingeniería de Software II
+- Inglés IV
+- Seguridad Informática y Criptografía
+- Recursos Humanos
+- Sociedad de la Información y el Conocimiento
+- Contabilidad II
+- Marketing Estratégico y Operativo
+- Economía de la Empresa y Emprendedores
+- Programación Web II
+- Administración de la Producción y Logística
+- Creación de Productos Multimedia
+- Comunicación Corporativa e Institucional
+- Análisis de Estados Financieros
+
+---
+
+## GTEL (Grado en Traducción y Lingüística)
+
+- Inglés II
+- Francés II
+- Alemán II
+- Iniciación a la Traductología y a la traducción B-A
+- Morfosintaxis
+- Lengua española y comunicación II
+- Inglés IV
+- Francés IV
+- Alemán IV
+- Traducción Jurídico-Financiera
+- Lingüística descriptiva II
+- Lingüística aplicada a la educación y a la tecnología
+- Idioma C Francés y su Cultura
+- Iniciación a la Interpretación II
+- Traducción Científico-Técnica
+- Traducción Jurídico-Financiera B-A
+- Idioma C Alemán y su Cultura
+- Adquisición de Segundas Lenguas
+- Tecnologías de la Traducción y de la Interpretación
+
+---
+
+## GTI (Grado en Traducción e Interpretación)
+
+- Tecnologías de la Traducción y de la Interpretación
+- Idioma C Francés y su Cultura
+- Idioma C Alemán y su Cultura
+- Comunicación Especializada y Terminología
+- Traducción jurídico-financiera
+- Traducción Científico-Técnica
+- Adquisición de Segundas Lenguas
+- Iniciación a la Interpretación II
+- Traducción C-A II ALEMAN
+- Traducción C-A II FRANCES
+- Traducción Inversa Especializada A-B
+- Globalización, Geopolítica y Geoestrategia
+
+---
+
+## GEP (Grado en Educación Primaria)
+
+- Didáctica, diseño curricular y programación
+- Psicología del desarrollo: infancia y adolescencia
+- Inglés II
+- Lengua Española y Comunicación II
+- Aprendizaje de las matemáticas y su didáctica I
+- Didáctica de la lengua y la literatura infantil
+- Diversidad y educación inclusiva
+- Orientación Educativa y Tutorial
+- Didáctica de las Ciencias Experimentales
+- Inglés IV
+- Psicología del Deporte
+- Sistemática del Ejercicio
+- Análisis y Diseño de Materiales Didácticos para la Enseñanza
+- Psicología de la Emoción
+- Educación en Valores desde la Educación Física y el Deporte
+- Adquisición de segundas lenguas
+- Didáctica de las Ciencias Sociales
+
+---
+
+## GLA (Grado en Lenguas Aplicadas)
+
+- Idioma C Alemán y su Cultura
+- Idioma C Francés y su Cultura
+- Traducción Científico-Técnica
+- Adquisición de Segundas Lenguas
+- Lingüistica Aplicada a la Tecnología
+- Iniciación a la Traducción B-A
+
+---
+
+## GPER (Grado en Periodismo)
+
+- Fundamentos de Fotografía Periodística
+- Introducción a la Realización Audiovisual I
+- Estructura General de la Comunicación
+- Teoría y Práctica de la Redacción Periodística (La Noticia)
+- Técnicas de Comunicación Presencial
+- Historia del Periodismo
+- Inglés II
+- Rutinas de Producción Periodística: Radio y TV
+- Soportes Multimedia en la Producción Informativa
+- Técnicas de Análisis de Mensajes
+- Relaciones Internacionales
+- Documentación Periodística
+- Inglés IV
+- Producción en Prensa y Cibermedios
+- Sociedad de la Información y el Conocimiento
+- Diseño y Planificación de Campañas
+- Producción en Nuevos Medios y Formatos
+- Comunicación Corporativa e Institucional
+- Sistemas Políticos Comparados
+- Derecho de la Información
+- Economía de la Empresa y Emprendedores
+- Dirección Cinematográfica
+- Ética y Deontología de la Comunicación
+- Globalización, Geopolítica y Geoestrategia
+- Agenda Internacional Para la Sostenibilidad Ambiental
+- Cooperación Internacional
+
+---
+
+## GCA (Grado en Comunicación Audiovisual)
+
+- Guion Dramatico, Guion Argumental y Documental
+- Lenguaje y Técnica Audiovisual I
+- Técnicas Fotográficas en Producción Audiovisual
+- Estructura General de la Comunicación
+- Técnicas de Comunicación Presencial
+- Creación de Productos Audiovisuales y Multimedia
+- Fundamentos de Publicidad
+- Inglés II
+- Rutinas de Producción Periodística: Radio y TV
+- Técnicas de Análisis de Mensajes
+- Dirección de Fotografía
+- Inglés IV
+- Producción en Nuevos Medios y Formatos
+- Sociedad de la Información y el Conocimiento
+- Diseño y Planificación de Campañas
+- Teoría y Práctica de la Redacción Periodística (La Noticia)
+- Comunicación Corporativa e Institucional
+- Dirección Cinematográfica
+- Economía de la Empresa y Emprendedores
+- Derecho de la Información
+- Ética y Deontología de la Comunicación
+- Programación Web II
+
+---
+
+## GPRP (Grado en Publicidad y Relaciones Públicas)
+
+- Comunicación Audiovisual I
+- Diseño Gráfico
+- Fundamentos de Fotografía Publicitaria
+- Estructura General de la Comunicación
+- Técnicas de Comunicación Oral
+- Aplicaciones Multimedia en la Creación Publicitaria
+- Comunicación Corporativa e Institucional
+- Fundamentos de Publicidad
+- Inglés II
+- Técnicas de Análisis de Mensajes
+- Relaciones Internacionales
+- Diseño y Planificación de Campañas
+- Inglés IV
+- Marketing Estratégico y Operativo
+- Sociedad de la Información y el Conocimiento
+- Guion Dramatico, Guion Argumental y Documental
+- Recursos Humanos
+- Recursos Humanos - inglés
+- Comportamiento del Consumidor
+- Sistemas Políticos Comparados
+- Teoría y Práctica de la Redacción Periodística (La Noticia)
+- Economía de la Empresa y Emprendedores
+- Ética y Deontología de la Comunicación
+- Coaching
+- Derecho de la Información
+- Dirección Cinematográfica
+- Responsabilidad Social Corporativa
+- Cooperación Internacional
+- Globalización, Geopolítica y Geoestrategia
+- Agenda Internacional Para la Sostenibilidad Ambiental
+
+---
+
+## ERASMUS
+
+- Proyectos
+- Economía de la Empresa y Emprendedores
+- Coaching - inglés
+- Recursos Humanos - inglés
+
+---
+
+# ASIGNATURAS QUE SE REPITEN EN DOS O MÁS GRADOS (lista única)
+
+- **Adquisición de Segundas Lenguas** → GTEL, GTI, GEP, GLA
+- **Administración de la Producción y Logística** → GADE, GIOI, GII
+- **Agenda Internacional Para la Sostenibilidad Ambiental** → GADE, GPER, GPRP
+- **Análisis de Estados Financieros** → GADE, GIOI, GII
+- **Antropología y Psicología del Comportamiento Alimentario** → GCAFD, GND, GCTA
+- **Ayudas Ergogénicas** → GCAFD, GND
+- **Bioquímica** → GND, GCTA, GIIAA
+- **Bromatología II** → GND, GCTA
+- **Coaching** → GCAFD, GPSI, GCTA, GIIAA, GADE, GIOI, GPRP
+- **Coaching - inglés** → GCAFD, GPSI, ERASMUS
+- **Comportamiento del Consumidor** → GADE, GPRP
+- **Comunicación Corporativa e Institucional** → GPSI, GADE, GII, GPER, GCA, GPRP
+- **Contabilidad II** → GADE, GIOI, GII
+- **Contabilidad de Gestión** → GADE, GIOI
+- **Cooperación Internacional** → GADE, GPER, GPRP
+- **Creación de Productos Multimedia** → GII, GCA
+- **Deontología y Legislación Alimentaria** → GND, GCTA, GCG
+- **Derecho de la Información** → GPER, GCA, GPRP
+- **Derecho Mercantil** → GADE, GIOI? (no, solo GADE)
+- **Dietética Aplicada** → GND, GCTA
+- **Dirección Cinematográfica** → GPER, GCA, GPRP
+- **Dirección de Sistemas de Información** → GADE, GIOI, GII
+- **Dirección Financiera** → GADE
+- **Diseño y Planificación de Campañas** → GADE, GPER, GCA, GPRP
+- **Diversidad y educación inclusiva** → GPSI, GEP
+- **Economía de la Empresa y Emprendedores** → GCAFD, GPSI, GCTA, GADE, GIOI, GII, GPER, GCA, GPRP, ERASMUS
+- **Electricidad y Electrónica** → GIIAA, GIOI
+- **Envasado y Vida útil de los Alimentos Comerciales** → GCTA, GIIAA
+- **Estadística** → GPSI, GCTA, GCG, GIIAA
+- **Estadística II** → GADE, GIOI
+- **Estructura General de la Comunicación** → GPER, GCA, GPRP
+- **Ética y Deontología de la Comunicación** → GPER, GCA, GPRP
+- **Física** → GCTA, GIIAA, GIOI, GII
+- **Fisiología del Cuerpo Humano II** → GND, GCTA
+- **Fundamentos de Publicidad** → GADE, GCA, GPRP
+- **Gestión de Residuos y Aprovechamiento de Subproductos** → GCTA, GIIAA
+- **Globalización, Geopolítica y Geoestrategia** → GADE, GTI, GPER, GPRP
+- **Guion Dramatico, Guion Argumental y Documental** → GCA, GPRP
+- **Higiene en la Industria Alimentaria** → GND, GCTA, GIIAA
+- **Idioma C Alemán y su Cultura** → GTEL, GTI, GLA
+- **Idioma C Francés y su Cultura** → GTEL, GTI, GLA
+- **Informática** → GIIAA, GIOI
+- **Ingeniería de la Producción en la Industria Alimentaria** → GCTA, GIIAA
+- **Ingeniería de Materiales** → GIOI
+- **Ingeniería Química** → GIOI
+- **Inglés II** → GCAFD, GPSI, GIIAA, GADE, GIOI, GII, GTEL, GEP, GPER, GCA, GPRP
+- **Inglés IV** → GCAFD, GPSI, GCG, GADE, GIOI, GII, GTEL, GEP, GPER, GCA, GPRP
+- **Inglés Aplicado a la Ciencia y Tecnología de los Alimentos** → GCTA, GCG
+- **Iniciación a la Interpretación II** → GTEL, GTI
+- **Iniciación a la Traducción B-A** → GTEL, GLA
+- **Instalaciones Electricas de Baja Tension y Luminotecnia** → GIOI
+- **Lengua española y comunicación II** → GTEL, GEP
+- **Marketing Estratégico y Operativo** → GPSI, GADE, GIOI, GII, GPRP
+- **Matemáticas** → GCTA, GADE, GIOI, GII
+- **Matemáticas II** → GIOI, GII
+- **Microbiología y Parasitología** → GND, GCTA, GIIAA
+- **Orientación Educativa y Tutorial** → GPSI, GEP
+- **Procesado de Alimentos de Origen Animal** → GCTA, GIIAA
+- **Procesado de Alimentos de Origen Vegetal** → GCTA, GIIAA
+- **Producción en Nuevos Medios y Formatos** → GPER, GCA
+- **Programación Web II** → GII, GCA
+- **Psicología de la Emoción** → GPSI, GEP
+- **Psicología del Deporte** → GCAFD, GPSI, GEP
+- **Psicología del Desarrollo: Infancia y Adolescencia** → GCAFD, GPSI, GEP
+- **Psicología Social** → GPSI
+- **Química orgánica** → GND, GCTA
+- **Recursos Humanos** → GPSI, GCG, GADE, GIOI, GII, GPRP
+- **Recursos Humanos - inglés** → GPSI, GADE, GIOI, GPRP, ERASMUS
+- **Relaciones Internacionales** → GADE, GPER, GPRP
+- **Resistencia de Materiales** → GIIAA, GIOI
+- **Responsabilidad Social Corporativa** → GADE, GIOI, GPRP
+- **Rutinas de Producción Periodística: Radio y TV** → GPER, GCA
+- **Salud Pública** → GCAFD, GND
+- **Sistemas Políticos Comparados** → GADE, GPER, GPRP
+- **Sistemática del Ejercicio** → GCAFD, GEP
+- **Sociedad de la Información y el Conocimiento** → GADE, GII, GPER, GCA, GPRP
+- **Sociología del Deporte** → GCAFD, GPSI
+- **Técnicas de Análisis de Mensajes** → GPER, GCA, GPRP
+- **Técnicas de Comunicación Presencial** → GPER, GCA
+- **Tecnología de los Alimentos** → GCTA, GCG
+- **Tecnología Mecánica** → GIOI
+- **Tecnología Medioambiental** → GCTA, GADE, GIOI
+- **Tecnologías de la Traducción y de la Interpretación** → GTEL, GTI
+- **Teoría y Práctica de la Redacción Periodística (La Noticia)** → GPER, GCA, GPRP
+- **Topografía y Cartografía** → GIIAA
+- **Traducción Científico-Técnica** → GTEL, GTI, GLA
+- **Traducción Jurídico-Financiera** → GTEL, GTI
+- **Valoración del Estado Nutricional y la Composición Corporal** → GCAFD, GND

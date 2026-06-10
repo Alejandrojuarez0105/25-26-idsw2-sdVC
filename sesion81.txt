@@ -1,0 +1,288 @@
+## COMENZAMOS, Sesión 81: Análisis de datos reales y planificación de adaptación del modelo académico
+
+⚠️ IMPORTANTE:
+
+En esta sesión NO se debe implementar nada.
+
+NO modificar:
+
+* schema.prisma
+* database-setup.sql
+* Backend
+* Frontend
+* PostgreSQL
+* Prisma Migrations
+* Casos de uso existentes
+
+El objetivo es exclusivamente:
+
+* Analizar información real.
+* Detectar incompatibilidades con el modelo actual.
+* Proponer cambios futuros.
+* Documentar conclusiones.
+
+---
+
+## CONTEXTO
+
+Actualmente el sistema ya tiene implementados:
+
+### Administrador
+
+* iniciarSesion
+* cerrarSesion
+
+### Grados
+
+* abrirGrados
+* importarGrados
+* crearGrado
+* editarGrado
+* eliminarGrado
+
+### Asignaturas
+
+* abrirAsignaturas
+* importarAsignaturas
+* crearAsignatura
+* editarAsignatura
+* eliminarAsignatura
+
+### Exámenes
+
+* abrirExamenes
+* crearExamen
+* editarExamen
+* eliminarExamen
+* asignarProfesorAExamen
+* listarConflictosExamenes
+* generarCalendario
+* consultarCalendario
+* descargarCalendarioExamenes
+
+### Aulas
+
+* abrirAulas
+* importarAulas
+* crearAula
+* editarAula
+* eliminarAula
+
+### Alumnos
+
+* abrirAlumnos
+* importarAlumnos
+* crearAlumno
+* editarAlumno
+* eliminarAlumno
+
+### Profesores
+
+* abrirProfesores
+* importarProfesores
+* crearProfesor
+* editarProfesor
+* eliminarProfesor
+* comunicarIncidenciaHorario
+
+---
+
+## NUEVA INFORMACIÓN DISPONIBLE
+
+Debes analizar los siguientes archivos:
+
+### Aulas.txt
+
+### Grados.txt
+
+### AsignaturasPrimerSemestre.txt
+
+### AsignaturasSegundoSemestre.txt
+
+Estos archivos contienen los datos reales que posteriormente serán importados al sistema.
+
+---
+
+## OBJETIVO DEL ANÁLISIS
+
+Leer completamente los archivos y determinar:
+
+### 1. Compatibilidad con el modelo actual
+
+Detectar:
+
+* Qué elementos encajan correctamente.
+* Qué elementos requieren modificaciones.
+
+---
+
+### 2. Modelo de Grados
+
+Verificar:
+
+* Si los grados actuales son suficientes.
+* Si aparecen nuevos grados.
+* Si existen relaciones no contempladas.
+
+---
+
+### 3. Modelo de Asignaturas
+
+Verificar especialmente:
+
+#### Posible problema detectado
+
+Actualmente:
+
+* Una asignatura pertenece a un único grado.
+
+Analizar si en los datos reales:
+
+* Una asignatura aparece en varios grados.
+* Una asignatura se comparte entre titulaciones.
+
+Si esto ocurre:
+
+Explicar:
+
+* Por qué el modelo actual sería incorrecto.
+* Qué alternativas existen para corregirlo.
+
+NO implementar nada.
+
+Solo documentar.
+
+---
+
+### 4. Semestres
+
+Analizar:
+
+* Diferencias entre:
+
+  * AsignaturasPrimerSemestre.txt
+  * AsignaturasSegundoSemestre.txt
+
+Determinar:
+
+* Si el sistema necesita incorporar el concepto de semestre.
+
+Posibles ejemplos:
+
+* Primer semestre
+* Segundo semestre
+
+Indicar:
+
+* Cómo afectaría al modelo de datos.
+* Qué tablas se verían afectadas.
+* Qué casos de uso se verían afectados.
+
+---
+
+### 5. Aulas
+
+Analizar:
+
+* Capacidades reales.
+* Cantidad total de aulas.
+* Distribución de capacidades.
+
+Determinar:
+
+* Si el modelo actual es suficiente.
+* Si faltan atributos.
+
+---
+
+### 6. Impacto sobre Generación de Calendarios
+
+Analizar cómo afectarían los nuevos datos a:
+
+* generarCalendario
+* consultarCalendario
+* descargarCalendarioExamenes
+
+Especialmente:
+
+* semestres
+* asignaturas compartidas
+* capacidades de aulas
+
+---
+
+### 7. Impacto sobre Matrículas
+
+Analizar si:
+
+* Las matrículas actuales siguen siendo válidas.
+* Deberían modificarse para soportar asignaturas compartidas.
+
+---
+
+### 8. Impacto sobre Exámenes
+
+Analizar:
+
+* Si un examen debería seguir asociado únicamente a una asignatura.
+* Si el modelo actual continúa siendo correcto.
+
+---
+
+## DOCUMENTACIÓN A GENERAR
+
+Crear:
+
+RUP/01-analisis/estudios/analisis-datos-reales-sesion81.md
+
+---
+
+## CONTENIDO DEL DOCUMENTO
+
+Debe incluir:
+
+### Resumen ejecutivo
+
+### Hallazgos encontrados
+
+### Problemas detectados
+
+### Riesgos
+
+### Cambios recomendados
+
+### Cambios opcionales
+
+### Impacto sobre la arquitectura actual
+
+### Propuesta de evolución futura
+
+---
+
+## IMPORTANTE
+
+NO implementar nada.
+
+NO modificar:
+
+* schema.prisma
+* PostgreSQL
+* database-setup.sql
+* código frontend
+* código backend
+
+Solo leer, analizar y documentar.
+
+---
+
+## RESULTADO ESPERADO
+
+Al finalizar la sesión debe existir un informe completo que permita decidir posteriormente:
+
+* Cómo importar los datos reales.
+* Cómo incorporar semestres.
+* Cómo gestionar asignaturas compartidas entre grados.
+* Cómo adaptar el generador de calendarios.
+* Qué cambios deberán realizarse en futuras sesiones.
+
+Sin realizar todavía ninguna modificación técnica.
