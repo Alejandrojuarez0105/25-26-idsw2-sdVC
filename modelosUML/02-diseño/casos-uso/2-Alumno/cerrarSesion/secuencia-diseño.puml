@@ -1,0 +1,20 @@
+@startuml secuencia-diseño-cerrarSesion-alumno
+skinparam linetype polyline
+skinparam shadowing false
+
+actor Alumno
+participant "CerrarSesionView (React)" as View
+participant "useAuth (Hook)" as Hook
+participant "LocalStorage/Cookie" as Storage
+participant "AuthController (NestJS)" as Controller
+
+Alumno -> View : confirma cerrar sesión
+View -> Hook : logout()
+Hook -> Storage : clearToken()
+Hook -> Storage : clearUserProfile()
+Hook -> Controller : HTTP POST /auth/logout (opcional)
+Controller --> Hook : 200 OK
+Hook --> View : clear client state
+View --> Alumno : redirige a /login
+
+@enduml

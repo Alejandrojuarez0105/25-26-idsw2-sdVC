@@ -1,0 +1,49 @@
+@startuml secuencia-diseño-consultarCalendario-alumno
+skinparam shadowing false
+skinparam responseMessageBelowArrow true
+
+actor Alumno
+participant "ConsultarCalendarioView\n(React)" as UI <<Component>>
+participant "useCalendario\n(Hook)" as Hook <<Hook>>
+participant "examenesService\n(Axios)" as FService <<Service>>
+participant "ExamenesController\n(NestJS)" as Controller <<Controller>>
+participant "RolesGuard / JWT" as Guard <<Guard>>
+participant "ExamenesService\n(NestJS)" as BService <<Service>>
+participant "PrismaService" as Prisma <<ORM>>
+database "PostgreSQL 16" as DB
+
+Alumno -> UI : consultarCalendario() / aplica filtros
+UI -> Hook : loadCalendario(filtros)
+Hook -> FService : findCalendario(filtros)
+FService -> Controller : GET /examenes/calendario?fechaInicio&fechaFin&asignaturaId\n(Authorization: Bearer JWT)
+
+Controller -> Guard : validar token + rol
+Guard --> Controller : req.user { alumnoId, rol = Alumno }
+Controller -> BService : findCalendario(filtros, usuario)
+
+BService -> Prisma : matricula.findMany({ where: { alumnoId } })
+Prisma -> DB : SELECT asignaturas matriculadas
+DB --> Prisma : asignaturaId[]
+Prisma --> BService : asignaturas del alumno
+
+BService -> BService : restringir exámenes a asignaturas matriculadas\n(restricción no eludible)
+BService -> Prisma : examen.findMany({\n  where: { asignatura IN matriculadas, fecha BETWEEN ... },\n  include: { aula }\n})
+Prisma -> DB : SELECT exámenes de sus asignaturas + aula
+DB --> Prisma : Exámenes (asignatura, fecha, hora, aula)
+Prisma --> BService : Lista de exámenes
+
+BService --> Controller : List<ExamenCalendarioDto>
+Controller --> FService : 200 OK (JSON)
+FService --> Hook : ExamenCalendarioDto[]
+
+Hook -> Hook : Pre-agrupar por fecha en Map (O(N))
+Hook --> UI : Actualiza estado (calendario indexado)
+UI --> Alumno : Renderiza rejilla (fecha, hora, asignatura, aula)
+
+note right of UI
+  Acciones disponibles (CALENDARIO_ABIERTO):
+  - descargarCalendarioExamenes() (self)
+  - completarConsulta() -> vuelve al menú
+end note
+
+@enduml

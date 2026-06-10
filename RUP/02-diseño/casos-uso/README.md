@@ -26,9 +26,6 @@ Esta carpeta contiene el diseño detallado de los casos de uso, transformando la
 - [iniciarSesion](0-Administrador/iniciarSesion/README.md) - Diseño técnico del acceso al sistema.
 - [cerrarSesion](0-Administrador/cerrarSesion/README.md) - Diseño técnico de la finalización de sesión.
 
-#### Apertura de entidades
-*(Vacío - En desarrollo)*
-
 #### Gestión de entidades
 - [abrirGrados](0-Administrador/abrirGrados/README.md) - Diseño de vista de listado.
 - [importarGrados](0-Administrador/importarGrados/README.md) - Diseño de carga masiva.
@@ -91,7 +88,14 @@ Esta carpeta contiene el diseño detallado de los casos de uso, transformando la
 - [comunicarIncidenciasHorario](1-Profesor/comunicarIncidenciasHorario/README.md) - **Caso exclusivo del Profesor**: reporte de incidencias de horario para revisión administrativa.
 
 ### Actor Alumno
-*(Vacío - En desarrollo)*
+
+#### Gestión del sistema
+- [iniciarSesion](2-Alumno/iniciarSesion/README.md) - Acceso del alumno (reutiliza arquitectura del Administrador/Profesor; navegación a `/alumno`).
+- [cerrarSesion](2-Alumno/cerrarSesion/README.md) - Finalización de sesión del alumno.
+
+#### Consulta de información
+- [consultarCalendario](2-Alumno/consultarCalendario/README.md) - Visualización del calendario **restringida a sus asignaturas matriculadas** (filtro por `Matricula` derivado del JWT).
+- [descargarCalendarioExamenes](2-Alumno/descargarCalendarioExamenes/README.md) - Exportación (PDF/Excel) del calendario de sus asignaturas matriculadas.
 
 ## Estructura de diseño
 

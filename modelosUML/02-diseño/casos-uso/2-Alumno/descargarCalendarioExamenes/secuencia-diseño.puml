@@ -1,0 +1,50 @@
+@startuml secuencia-diseño-descargarCalendarioExamenes-alumno
+skinparam shadowing false
+skinparam responseMessageBelowArrow true
+
+actor Alumno
+participant "ConsultarCalendarioView\n(React)" as UI <<Component>>
+participant "DescargarCalendarioModal\n(React)" as Modal <<Component>>
+participant "examenesService\n(Axios)" as FService <<Service>>
+participant "ExamenesController\n(NestJS)" as Controller <<Controller>>
+participant "RolesGuard / JWT" as Guard <<Guard>>
+participant "ExportacionService\n(NestJS)" as Export <<Service>>
+participant "ExamenExporterFactory" as Factory <<Factory>>
+participant "ExamenExporter\n(Excel | PDF)" as Strategy <<Strategy>>
+participant "ExamenesService\n(NestJS)" as BService <<Service>>
+participant "PrismaService" as Prisma <<ORM>>
+database "PostgreSQL 16" as DB
+
+Alumno -> UI : descargarCalendarioExamenes()
+UI -> Modal : abrir (formato + opciones)
+Alumno -> Modal : elige formato (pdf|excel) y columnas
+Modal -> FService : descargarCalendario(filtros, formato, opciones)
+FService -> Controller : GET /examenes/exportar?formato&incluirAula&...\n(Authorization: Bearer JWT)
+
+Controller -> Guard : validar token + rol
+Guard --> Controller : req.user { alumnoId, rol = Alumno }
+Controller -> Export : exportar(filtros, formato, opciones, usuario)
+Export -> BService : findCalendario(filtros, usuario)
+BService -> Prisma : matricula.findMany({ where: { alumnoId } })
+Prisma -> DB : SELECT asignaturas matriculadas
+DB --> Prisma : asignaturaId[]
+Prisma --> BService : asignaturas del alumno
+BService -> Prisma : examen.findMany({ where: { asignatura IN matriculadas }, include: aula })
+Prisma -> DB : SELECT exámenes de sus asignaturas + aula
+DB --> Prisma : Exámenes
+Prisma --> BService : Lista de exámenes
+BService --> Export : ExamenExportData[] (inmutable)
+
+Export -> Factory : crear(formato)
+Factory --> Export : ExamenExporter concreto
+Export -> Strategy : exportar(datos, opciones)
+Strategy --> Export : Buffer (binario)
+
+Export --> Controller : Buffer + metadatos
+Controller --> FService : 200 OK\nContent-Disposition: attachment\n(calendario.pdf | calendario.xlsx)
+FService --> Modal : Blob
+Modal -> Modal : crear URL + <a> virtual -> click
+Modal --> Alumno : Archivo descargado
+Modal --> UI : cerrar -> regresa a CALENDARIO_ABIERTO
+
+@enduml

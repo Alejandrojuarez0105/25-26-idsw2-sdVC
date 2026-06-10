@@ -141,6 +141,18 @@ El diseño detallado de cada caso de uso se organiza en subcarpetas por actor de
 
 > **Cobertura de la rama Profesor**: los cuatro casos comunes (`iniciarSesion`, `cerrarSesion`, `consultarCalendario`, `descargarCalendarioExamenes`) reutilizan la arquitectura aprobada para el Administrador, adaptando únicamente actor, permisos, navegación y restricciones de acceso (visibilidad por `profesorId`). `comunicarIncidenciasHorario` es exclusivo del Profesor e introduce el módulo `incidencias` (con el modelo `Incidencia` propuesto para implementación).
 
+### Actor Alumno
+
+#### Gestión del sistema
+- [iniciarSesion](casos-uso/2-Alumno/iniciarSesion/README.md) - Acceso del alumno (arquitectura reutilizada; navegación a `/alumno`).
+- [cerrarSesion](casos-uso/2-Alumno/cerrarSesion/README.md) - Diseño de finalización de sesión del alumno.
+
+#### Consulta de información
+- [consultarCalendario](casos-uso/2-Alumno/consultarCalendario/README.md) - Visualización del calendario restringida a sus asignaturas matriculadas (filtro por `Matricula` derivado del JWT).
+- [descargarCalendarioExamenes](casos-uso/2-Alumno/descargarCalendarioExamenes/README.md) - Exportación (PDF/Excel) del calendario de sus asignaturas matriculadas.
+
+> **Cobertura de la rama Alumno**: los cuatro casos (`iniciarSesion`, `cerrarSesion`, `consultarCalendario`, `descargarCalendarioExamenes`) reutilizan la arquitectura aprobada para Administrador y Profesor, adaptando únicamente actor, navegación (`/alumno`) y la restricción de acceso: **visibilidad por matrícula** (los exámenes de las asignaturas en las que el alumno está matriculado, derivadas del JWT vía `Matricula`). No se introduce ningún módulo ni entidad nueva. Con esta rama, el diseño RUP queda **completo para los tres actores** (Administrador, Profesor, Alumno).
+
 #### Principios de diseño aplicados
 
 - **Trazabilidad estricta**: Cada clase de diseño debe mapearse a una o más clases de análisis.
