@@ -45,3 +45,6 @@ Protegido por `AlumnoJwtGuard`. Query params (opcionales): `incluirAula`, `inclu
 - [Desarrollo: descargarCalendarioExamenes (Profesor)](/RUP/03-desarrollo/casos-uso/1-Profesor/descargarCalendario/README.md)
 - [Desarrollo: consultarCalendario (Alumno)](../consultarCalendario/README.md)
 - [AGENTES.md](/AGENTES.md)
+
+## Ampliación (Sesión 83) — Descarga en PDF
+`GET /alumno/calendario/descargar` acepta `formato` (`csv` | `pdf`). Con `formato=pdf` genera el calendario de sus asignaturas matriculadas en PDF (helper compartido `calendario-pdf.ts` con `pdfkit`); el modal del alumno incluye selector CSV/PDF. Verificado en caliente: `200 application/pdf`.

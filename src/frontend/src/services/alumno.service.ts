@@ -30,6 +30,7 @@ export interface DescargaAlumnoOpciones {
   incluirAsignatura?: boolean;
   fechaInicio?: string;
   fechaFin?: string;
+  formato?: 'csv' | 'pdf';
 }
 
 export const alumnoService = {
@@ -46,6 +47,7 @@ export const alumnoService = {
     if (opts.incluirAsignatura === false) params.incluirAsignatura = 'false';
     if (opts.fechaInicio) params.fechaInicio = opts.fechaInicio;
     if (opts.fechaFin) params.fechaFin = opts.fechaFin;
+    if (opts.formato) params.formato = opts.formato;
     const response = await api.get('/alumno/calendario/descargar', {
       params,
       responseType: 'blob',

@@ -14,6 +14,7 @@ const ProfesorCalendarioView: React.FC = () => {
   const [modalAbierto, setModalAbierto] = useState(false);
   const [incluirAula, setIncluirAula] = useState(true);
   const [incluirAsignatura, setIncluirAsignatura] = useState(true);
+  const [formato, setFormato] = useState<'csv' | 'pdf'>('csv');
   const [periodoPersonalizado, setPeriodoPersonalizado] = useState(false);
   const [fechaDesde, setFechaDesde] = useState('');
   const [fechaHasta, setFechaHasta] = useState('');
@@ -62,13 +63,14 @@ const ProfesorCalendarioView: React.FC = () => {
       const blob = await profesorService.descargarCalendario({
         incluirAula,
         incluirAsignatura,
+        formato,
         fechaInicio: periodoPersonalizado ? fechaDesde || undefined : undefined,
         fechaFin: periodoPersonalizado ? fechaHasta || undefined : undefined,
       });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'mi-calendario-examenes.csv';
+      a.download = `mi-calendario-examenes.${formato}`;
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -243,11 +245,9 @@ const ProfesorCalendarioView: React.FC = () => {
 
             <div style={{ background: '#ededed', border: '1px solid #cfcfcf', padding: '15px', marginBottom: '18px' }}>
               <h3 style={{ fontSize: '16px', marginBottom: '10px', textDecoration: 'underline' }}>📄 Formato de archivo</h3>
-              <div style={{ fontSize: '14px' }}>
-                <label><input type="radio" checked readOnly style={{ marginRight: '8px' }} />CSV</label>
-                <div style={{ fontSize: '12px', color: '#666', fontStyle: 'italic', marginTop: '6px' }}>
-                  Coherente con la descarga del Administrador (CSV con BOM para Excel).
-                </div>
+              <div style={{ display: 'flex', gap: '20px', fontSize: '14px' }}>
+                <label><input type="radio" name="formato" checked={formato === 'csv'} onChange={() => setFormato('csv')} style={{ marginRight: '8px' }} />CSV</label>
+                <label><input type="radio" name="formato" checked={formato === 'pdf'} onChange={() => setFormato('pdf')} style={{ marginRight: '8px' }} />PDF</label>
               </div>
             </div>
 

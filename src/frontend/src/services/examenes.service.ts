@@ -98,6 +98,7 @@ export const examenesService = {
     if (opts.incluirEstudiantes === false) params.incluirEstudiantes = 'false';
     if (opts.fechaInicio) params.fechaInicio = opts.fechaInicio;
     if (opts.fechaFin) params.fechaFin = opts.fechaFin;
+    if (opts.formato) params.formato = opts.formato;
     const response = await api.get('/examenes/calendario/descargar', {
       params,
       responseType: 'blob',
@@ -166,6 +167,7 @@ export interface DescargaOpciones {
   incluirEstudiantes?: boolean;
   fechaInicio?: string;
   fechaFin?: string;
+  formato?: 'csv' | 'pdf';
 }
 
 export interface CalendarioGenerado {

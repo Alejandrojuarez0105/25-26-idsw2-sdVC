@@ -36,6 +36,7 @@ export class ExamenesController {
         incluirEstudiantes: query.incluirEstudiantes !== 'false',
         fechaInicio: query.fechaInicio || undefined,
         fechaFin: query.fechaFin || undefined,
+        formato: query.formato === 'pdf' ? ('pdf' as const) : ('csv' as const),
       };
       const { content, filename, contentType } =
         await this.examenesService.descargarCalendario(opts);

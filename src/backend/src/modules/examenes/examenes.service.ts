@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../common/prisma.service';
+import { construirPdfCalendario } from '../../common/calendario-pdf';
 
 const examenInclude = {
   profesor: {
@@ -468,18 +469,19 @@ export class ExamenesService {
     incluirEstudiantes?: boolean;
     fechaInicio?: string;
     fechaFin?: string;
+    formato?: 'csv' | 'pdf';
   }) {
     const { examenesCalendario } = await this.buildCalendarioConsolidado();
 
-    let filas = examenesCalendario;
-    if (opts.fechaInicio) filas = filas.filter((e) => e.fecha >= opts.fechaInicio!);
-    if (opts.fechaFin) filas = filas.filter((e) => e.fecha <= opts.fechaFin!);
+    let examenesFiltrados = examenesCalendario;
+    if (opts.fechaInicio) examenesFiltrados = examenesFiltrados.filter((e) => e.fecha >= opts.fechaInicio!);
+    if (opts.fechaFin) examenesFiltrados = examenesFiltrados.filter((e) => e.fecha <= opts.fechaFin!);
 
     // Conteo de estudiantes por examen (solo si se solicita la columna).
     let estudiantesDe: (asignatura: string) => number = () => 0;
     if (opts.incluirEstudiantes) {
       const { resolver, countById } = await this.matriculasPorAsignatura(
-        filas.map((e) => e.asignatura),
+        examenesFiltrados.map((e) => e.asignatura),
       );
       estudiantesDe = (asignatura: string) => {
         const id = resolver(asignatura);
@@ -493,19 +495,33 @@ export class ExamenesService {
     if (opts.incluirEstudiantes) columnas.push('Estudiantes');
     columnas.push('Estado');
 
-    const esc = (valor: string) => `"${String(valor ?? '').replace(/"/g, '""')}"`;
-    const lineas = [columnas.map(esc).join(',')];
-
-    for (const e of filas) {
+    const filas: string[][] = examenesFiltrados.map((e) => {
       const fila: string[] = [e.fecha, e.hora, e.codigo, e.asignatura];
       if (opts.incluirAula) fila.push(e.aula || '');
       if (opts.incluirProfesor) fila.push(e.profesor || '');
       if (opts.incluirEstudiantes) fila.push(String(estudiantesDe(e.asignatura)));
       fila.push(e.tieneConflicto ? `Conflicto: ${e.tiposConflicto.join('/')}` : 'OK');
-      lineas.push(fila.map(esc).join(','));
+      return fila;
+    });
+
+    if (opts.formato === 'pdf') {
+      const buffer = await construirPdfCalendario({
+        titulo: 'Calendario de Exámenes',
+        subtitulo: `Total: ${filas.length} examen(es)`,
+        columnas,
+        filas,
+      });
+      return {
+        content: buffer,
+        filename: 'calendario-examenes.pdf',
+        contentType: 'application/pdf',
+      };
     }
 
-    // BOM inicial para que Excel respete los acentos al abrir el CSV.
+    // CSV (BOM inicial para que Excel respete los acentos).
+    const esc = (valor: string) => `"${String(valor ?? '').replace(/"/g, '""')}"`;
+    const lineas = [columnas.map(esc).join(',')];
+    for (const fila of filas) lineas.push(fila.map(esc).join(','));
     const content = '﻿' + lineas.join('\r\n');
     return {
       content,

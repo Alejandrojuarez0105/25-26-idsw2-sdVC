@@ -43,3 +43,6 @@ Protegido por `ProfesorJwtGuard`. Query params (opcionales): `incluirAula`, `inc
 - [Desarrollo: descargarCalendarioExamenes (Administrador)](/RUP/03-desarrollo/casos-uso/0-Administrador/descargarCalendarioExamenes/README.md)
 - [Desarrollo: consultarCalendario (Profesor)](../consultarCalendario/README.md)
 - [AGENTES.md](/AGENTES.md)
+
+## Ampliación (Sesión 83) — Descarga en PDF
+`GET /profesor/calendario/descargar` acepta `formato` (`csv` | `pdf`). Con `formato=pdf` genera el calendario propio en PDF (helper compartido `calendario-pdf.ts` con `pdfkit`); el modal del profesor incluye selector CSV/PDF. Verificado en caliente: `200 application/pdf`.

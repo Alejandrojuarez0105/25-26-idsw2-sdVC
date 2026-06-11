@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ExamenesService } from '../examenes/examenes.service';
+import { construirPdfCalendario } from '../../common/calendario-pdf';
 
 /**
  * Servicio de calendario para el rol Profesor.
@@ -51,13 +52,14 @@ export class ProfesorCalendarioService {
       incluirAsignatura?: boolean;
       fechaInicio?: string;
       fechaFin?: string;
+      formato?: 'csv' | 'pdf';
     } = {},
   ) {
     const { examenes } = await this.consultarCalendario(profesorId);
 
-    let filas = examenes;
-    if (opts.fechaInicio) filas = filas.filter((e) => e.fecha >= opts.fechaInicio!);
-    if (opts.fechaFin) filas = filas.filter((e) => e.fecha <= opts.fechaFin!);
+    let filtrados = examenes;
+    if (opts.fechaInicio) filtrados = filtrados.filter((e) => e.fecha >= opts.fechaInicio!);
+    if (opts.fechaFin) filtrados = filtrados.filter((e) => e.fecha <= opts.fechaFin!);
 
     const incluirAula = opts.incluirAula !== false;
     const incluirAsignatura = opts.incluirAsignatura !== false;
@@ -67,18 +69,32 @@ export class ProfesorCalendarioService {
     if (incluirAula) columnas.push('Aula');
     columnas.push('Estado');
 
-    const esc = (valor: string) => `"${String(valor ?? '').replace(/"/g, '""')}"`;
-    const lineas = [columnas.map(esc).join(',')];
-
-    for (const e of filas) {
+    const filas: string[][] = filtrados.map((e) => {
       const fila: string[] = [e.fecha, e.hora, e.codigo];
       if (incluirAsignatura) fila.push(e.asignatura);
       if (incluirAula) fila.push(e.aula || '');
       fila.push(e.tieneConflicto ? `Conflicto: ${e.tiposConflicto.join('/')}` : 'OK');
-      lineas.push(fila.map(esc).join(','));
+      return fila;
+    });
+
+    if (opts.formato === 'pdf') {
+      const buffer = await construirPdfCalendario({
+        titulo: 'Mi Calendario de Exámenes',
+        subtitulo: `Total: ${filas.length} examen(es)`,
+        columnas,
+        filas,
+      });
+      return {
+        content: buffer,
+        filename: 'mi-calendario-examenes.pdf',
+        contentType: 'application/pdf',
+      };
     }
 
     // BOM inicial para que Excel respete los acentos al abrir el CSV.
+    const esc = (valor: string) => `"${String(valor ?? '').replace(/"/g, '""')}"`;
+    const lineas = [columnas.map(esc).join(',')];
+    for (const fila of filas) lineas.push(fila.map(esc).join(','));
     const content = '﻿' + lineas.join('\r\n');
     return {
       content,

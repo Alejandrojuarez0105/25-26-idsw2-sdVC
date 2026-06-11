@@ -71,4 +71,8 @@ Genera y devuelve el calendario como archivo CSV descargable.
 - El archivo descargado se genera desde la misma consolidación que la consulta (`buildCalendarioConsolidado`), por lo que es **idéntico** a lo visualizado y a los datos persistidos; la descarga es de solo lectura y nunca muta el calendario.
 - Profesores y aulas provienen de las relaciones reales (`profesor.usuario`, `aula.codigo`); ningún campo de texto quemado.
 - No se modificó autenticación, JWT, el esquema Prisma, `database-setup.sql` ni ningún caso de uso previamente implementado.
+
+## Ampliación (Sesión 83) — Descarga en PDF
+
+Además de **CSV**, la descarga admite ahora **PDF** (para los tres actores: Administrador, Profesor y Alumno). El endpoint acepta el query param **`formato`** (`csv` | `pdf`, por defecto `csv`); el servicio construye las mismas `columnas`/`filas` y, si `formato=pdf`, delega en el helper compartido `src/backend/src/common/calendario-pdf.ts` (basado en **`pdfkit`**), que genera un PDF tabular A4 apaisado (cabecera reimpresa al saltar de página) devuelto como `application/pdf` adjunto. El frontend añade un selector **CSV/PDF** en el modal de descarga y ajusta la extensión del archivo. CSV permanece intacto (incluido el BOM para Excel) y se reutiliza la misma fuente de datos, por lo que el contenido es idéntico. Verificado en caliente: los tres actores devuelven `200 application/pdf` (cabecera `%PDF-`).
 </content>

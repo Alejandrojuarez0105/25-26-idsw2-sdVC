@@ -30,6 +30,7 @@ export interface DescargaProfesorOpciones {
   incluirAsignatura?: boolean;
   fechaInicio?: string;
   fechaFin?: string;
+  formato?: 'csv' | 'pdf';
 }
 
 export interface IncidenciaHorario {
@@ -68,6 +69,7 @@ export const profesorService = {
     if (opts.incluirAsignatura === false) params.incluirAsignatura = 'false';
     if (opts.fechaInicio) params.fechaInicio = opts.fechaInicio;
     if (opts.fechaFin) params.fechaFin = opts.fechaFin;
+    if (opts.formato) params.formato = opts.formato;
     const response = await api.get('/profesor/calendario/descargar', {
       params,
       responseType: 'blob',

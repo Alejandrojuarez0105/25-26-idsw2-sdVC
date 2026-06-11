@@ -51,6 +51,7 @@ export class AlumnoController {
         incluirAsignatura: query.incluirAsignatura !== 'false',
         fechaInicio: query.fechaInicio || undefined,
         fechaFin: query.fechaFin || undefined,
+        formato: query.formato === 'pdf' ? ('pdf' as const) : ('csv' as const),
       };
       const { content, filename, contentType } =
         await this.calendarioService.descargarCalendario(this.alumnoId(req), opts);
