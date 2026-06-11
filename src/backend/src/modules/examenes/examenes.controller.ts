@@ -62,6 +62,18 @@ export class ExamenesController {
     }
   }
 
+  @Post('calendario/generar-automatico')
+  @HttpCode(HttpStatus.OK)
+  async generarCalendarioAutomatico(@Body() body: any) {
+    try {
+      return await this.examenesService.generarCalendarioAutomatico(body || {});
+    } catch (err: any) {
+      throw new InternalServerErrorException(
+        err?.message || 'Error al generar automáticamente el calendario',
+      );
+    }
+  }
+
   @Get(':id')
   async findOne(@Param('id') id: string) {
     const examen = await this.examenesService.findOne(id);

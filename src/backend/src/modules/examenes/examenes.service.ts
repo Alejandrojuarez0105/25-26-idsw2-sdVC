@@ -513,4 +513,226 @@ export class ExamenesService {
       contentType: 'text/csv; charset=utf-8',
     };
   }
+
+  // ===== Generación AUTOMÁTICA del calendario =====
+  // Asigna fecha, hora, aula y profesor a cada examen respetando:
+  //  - Separación: dos exámenes de la misma cohorte (grado + año) no pueden caer
+  //    el mismo día ni en días consecutivos (>= 1 día libre entre ellos).
+  //  - Aforo: el aula asignada tiene capacidad >= alumnos matriculados.
+  //  - Sin doble reserva: una misma aula o un mismo profesor no se usan dos veces
+  //    en el mismo (fecha, hora).
+  //  - Profesor: tomado de ProfesorAsignatura (quien imparte esa asignatura).
+  // Es un heurístico greedy (exámenes con más matriculados primero). Los exámenes
+  // que no encajan se devuelven en `noAsignados` con su motivo; nunca se produce
+  // un horario inválido. Persiste las asignaciones en BD.
+  private formatFechaISO(d: Date): string {
+    const day = String(d.getUTCDate()).padStart(2, '0');
+    const month = String(d.getUTCMonth() + 1).padStart(2, '0');
+    return `${d.getUTCFullYear()}-${month}-${day}`;
+  }
+
+  private proximoDiaHabilUTC(): Date {
+    const hoy = new Date();
+    const d = new Date(Date.UTC(hoy.getUTCFullYear(), hoy.getUTCMonth(), hoy.getUTCDate()));
+    // Avanzar hasta el próximo lunes (o quedarse si ya es día hábil futuro).
+    while (d.getUTCDay() === 0 || d.getUTCDay() === 6) {
+      d.setUTCDate(d.getUTCDate() + 1);
+    }
+    return d;
+  }
+
+  async generarCalendarioAutomatico(opts: {
+    fechaInicio?: string;
+    horizonteDias?: number;
+    franjas?: string[];
+    separacionDias?: number;
+  } = {}) {
+    const franjas = opts.franjas && opts.franjas.length
+      ? opts.franjas
+      : ['08:30', '11:30', '14:30', '17:30'];
+    const separacionDias = opts.separacionDias ?? 1;
+    const horizonteDias = opts.horizonteDias ?? 120;
+    const baseInicio = opts.fechaInicio
+      ? new Date(opts.fechaInicio + 'T00:00:00Z')
+      : this.proximoDiaHabilUTC();
+
+    // 1) Cargar datos
+    const examenes = await this.prisma.examen.findMany({ include: examenInclude });
+    const asignaturas = await this.prisma.asignatura.findMany({
+      select: { id: true, nombre: true, codigo: true, gradoId: true, anio: true },
+    });
+    const aulas = await this.prisma.aula.findMany({ orderBy: { capacidad: 'asc' } });
+    const profAsig = await this.prisma.profesorAsignatura.findMany({
+      select: { profesorId: true, asignaturaId: true },
+    });
+    const todosProfesores = (
+      await this.prisma.profesor.findMany({ select: { id: true } })
+    ).map((x) => x.id);
+    const matriculasGrouped = await this.prisma.matricula.groupBy({
+      by: ['asignaturaId'],
+      _count: { _all: true },
+    });
+
+    // 2) Índices auxiliares
+    const norm = (s: string) => (s || '').trim().toLowerCase();
+    const asigByKey = new Map<string, (typeof asignaturas)[number]>();
+    for (const a of asignaturas) {
+      asigByKey.set(norm(a.nombre), a);
+      asigByKey.set(norm(a.codigo), a);
+    }
+    const matriCount = new Map<string, number>();
+    for (const m of matriculasGrouped) matriCount.set(m.asignaturaId, m._count._all);
+    const profesoresPorAsignatura = new Map<string, string[]>();
+    for (const pa of profAsig) {
+      if (!profesoresPorAsignatura.has(pa.asignaturaId)) {
+        profesoresPorAsignatura.set(pa.asignaturaId, []);
+      }
+      profesoresPorAsignatura.get(pa.asignaturaId)!.push(pa.profesorId);
+    }
+
+    // 3) Construir slots (días hábiles L-V × franjas), en orden cronológico
+    const slots: { fecha: string; hora: string; dayNum: number }[] = [];
+    for (let i = 0; i < horizonteDias; i++) {
+      const d = new Date(baseInicio);
+      d.setUTCDate(d.getUTCDate() + i);
+      const dow = d.getUTCDay();
+      if (dow === 0 || dow === 6) continue; // saltar fines de semana
+      const fecha = this.formatFechaISO(d);
+      const dayNum = Math.floor(d.getTime() / 86400000); // índice absoluto de día
+      for (const hora of franjas) slots.push({ fecha, hora, dayNum });
+    }
+
+    // 4) Preparar exámenes con metadatos (cohorte, aforo, profesores candidatos)
+    const prep = examenes.map((e) => {
+      const a = asigByKey.get(norm(e.asignatura));
+      const enrolled = a ? matriCount.get(a.id) || 0 : 0;
+      const cohorte = a ? `${a.gradoId}|${a.anio}` : `SIN|${e.id}`;
+      const candidatos = a ? profesoresPorAsignatura.get(a.id) || [] : [];
+      return { e, enrolled, cohorte, candidatos };
+    });
+    // Más matriculados primero (más difíciles de ubicar por aforo).
+    prep.sort((x, y) => y.enrolled - x.enrolled);
+
+    // 5) Estado de ocupación
+    const aulaOcupada = new Set<string>(); // `${aulaId}|${fecha}|${hora}`
+    const profOcupado = new Set<string>(); // `${profId}|${fecha}|${hora}`
+    const cohorteDias = new Map<string, number[]>(); // cohorte -> días asignados
+
+    const capacidadMaxima = aulas.length ? aulas[aulas.length - 1].capacidad : 0;
+    const asignados: any[] = [];
+    const noAsignados: { codigo: string; asignatura: string; motivo: string }[] = [];
+
+    // 6) Asignación greedy
+    for (const item of prep) {
+      const { e, enrolled, cohorte, candidatos } = item;
+
+      const aulasAptas = aulas.filter((au) => au.capacidad >= enrolled);
+      if (enrolled > 0 && aulasAptas.length === 0) {
+        noAsignados.push({
+          codigo: e.codigo,
+          asignatura: e.asignatura,
+          motivo: `Aforo insuficiente: ${enrolled} matriculados superan la mayor aula (${capacidadMaxima}). El reparto multi-aula no está soportado.`,
+        });
+        continue;
+      }
+      const aulasCandidatas = aulasAptas.length ? aulasAptas : aulas;
+
+      // Selección de profesor (opción c): prioriza el profesor asignado a mano
+      // (si está libre), luego un docente de la asignatura, y como último recurso
+      // cualquier profesor libre. Devuelve null solo si no hay ninguno libre.
+      const elegirProfesor = (slot: { fecha: string; hora: string }): string | null => {
+        const libre = (p: string) => !profOcupado.has(`${p}|${slot.fecha}|${slot.hora}`);
+        if (e.profesorId && libre(e.profesorId)) return e.profesorId;
+        const docente = candidatos.find((p) => libre(p));
+        if (docente) return docente;
+        const cualquiera = todosProfesores.find((p) => libre(p));
+        return cualquiera || null;
+      };
+
+      type Slot = (typeof slots)[number];
+      type Aula = (typeof aulas)[number];
+      let elegido: { slot: Slot; aula: Aula; profId: string } | null = null;
+      let fallback: { slot: Slot; aula: Aula } | null = null; // sin profesor libre
+
+      for (const slot of slots) {
+        // 6a) Separación de la cohorte (no mismo día ni consecutivos)
+        const dias = cohorteDias.get(cohorte) || [];
+        if (dias.some((dn) => Math.abs(dn - slot.dayNum) <= separacionDias)) continue;
+
+        // 6b) Aula libre con aforo suficiente (best-fit: menor capacidad primero)
+        const aula = aulasCandidatas.find(
+          (au) => !aulaOcupada.has(`${au.id}|${slot.fecha}|${slot.hora}`),
+        );
+        if (!aula) continue;
+
+        // 6c) Profesor por prioridad; preferimos un slot donde haya profesor.
+        const profId = elegirProfesor(slot);
+        if (profId) {
+          elegido = { slot, aula, profId };
+          break;
+        }
+        if (!fallback) fallback = { slot, aula };
+      }
+
+      // Si ningún slot permitió profesor, usamos el primer slot válido sin profesor.
+      const destino = elegido
+        ? elegido
+        : fallback
+          ? { ...fallback, profId: null as string | null }
+          : null;
+
+      if (!destino) {
+        noAsignados.push({
+          codigo: e.codigo,
+          asignatura: e.asignatura,
+          motivo:
+            'No se encontró un hueco que cumpla la separación de días y la disponibilidad de aula dentro del horizonte.',
+        });
+        continue;
+      }
+
+      // 6d) Asignar y persistir
+      await this.prisma.examen.update({
+        where: { id: e.id },
+        data: {
+          fecha: new Date(destino.slot.fecha + 'T00:00:00Z'),
+          hora: destino.slot.hora,
+          aulaId: destino.aula.id,
+          profesorId: destino.profId,
+        },
+      });
+      aulaOcupada.add(`${destino.aula.id}|${destino.slot.fecha}|${destino.slot.hora}`);
+      if (destino.profId) {
+        profOcupado.add(`${destino.profId}|${destino.slot.fecha}|${destino.slot.hora}`);
+      }
+      if (!cohorteDias.has(cohorte)) cohorteDias.set(cohorte, []);
+      cohorteDias.get(cohorte)!.push(destino.slot.dayNum);
+      asignados.push({
+        codigo: e.codigo,
+        asignatura: e.asignatura,
+        fecha: destino.slot.fecha,
+        hora: destino.slot.hora,
+        aula: destino.aula.codigo,
+        sinProfesor: !destino.profId,
+      });
+    }
+
+    // 7) Resultado consolidado (reutiliza la lógica existente sobre los datos ya persistidos)
+    const consolidado = await this.generarCalendario();
+    return {
+      ...consolidado,
+      generacion: {
+        parametros: {
+          fechaInicio: this.formatFechaISO(baseInicio),
+          horizonteDias,
+          franjas,
+          separacionDias,
+        },
+        totalProcesados: prep.length,
+        asignados: asignados.length,
+        noAsignados,
+        detalleAsignados: asignados,
+      },
+    };
+  }
 }

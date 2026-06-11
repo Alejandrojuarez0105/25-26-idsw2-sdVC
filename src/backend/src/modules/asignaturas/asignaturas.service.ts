@@ -59,9 +59,18 @@ export class AsignaturasService {
         codigo: data.codigo,
         nombre: data.nombre,
         creditos: data.creditos,
+        anio: this.normalizarAnio(data.anio),
         gradoId: data.gradoId,
       },
     });
+  }
+
+  // Normaliza el año académico al rango 1-4 (por defecto 1).
+  private normalizarAnio(anio: any): number {
+    const n = parseInt(anio, 10);
+    if (isNaN(n) || n < 1) return 1;
+    if (n > 4) return 4;
+    return n;
   }
 
   async createMany(data: any[]) {
@@ -109,6 +118,7 @@ export class AsignaturasService {
             codigo: item.codigo,
             nombre: item.nombre,
             creditos: item.creditos || 6,
+            anio: this.normalizarAnio(item.anio),
             gradoId: gradoId,
           },
         });
@@ -146,6 +156,7 @@ export class AsignaturasService {
       data: {
         nombre: data.nombre,
         creditos: data.creditos,
+        anio: data.anio === undefined ? undefined : this.normalizarAnio(data.anio),
         gradoId: data.gradoId,
       },
     });

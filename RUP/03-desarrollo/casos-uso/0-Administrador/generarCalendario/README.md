@@ -110,4 +110,42 @@ De los tres prototipos disponibles en `extraDocs/DiagramasDetallados-Administrad
 - **`generarCalendarioGeneracion.html`** (barras de progreso simuladas): **descartado**; se mantiene la pantalla de éxito/carga real implementada en `GenerarCalendarioView`.
 - **`generarCalendarioError.html`** (DATOS INSUFICIENTES): **implementado** mediante la validación de requisitos mínimos reales (≥1 examen, ≥1 aula, ≥1 profesor).
 - **`generarCalendarioAdvertencia.html`** (confirmación de sobrescritura de un calendario existente): **diferido**. Requiere persistir la generación (timestamp + snapshot), lo que implica un cambio de esquema; se aborda en la rama **Consultar Calendario** junto con la persistencia del calendario oficial.
+
+---
+
+## Ampliación (Sesión 82) — Generación AUTOMÁTICA del horario
+
+Hasta la Sesión 81, `generarCalendario` solo **consolidaba y validaba** asignaciones introducidas a mano. La Sesión 82 incorpora la **generación automática real**: el sistema asigna `fecha`, `hora`, `aula` y `profesor` a cada examen y **persiste** el resultado.
+
+### Cambio de modelo (mínimo, aditivo)
+- Se añadió `Asignatura.anio` (`SmallInt`, 1–4, por defecto 1), editable desde Crear/Editar/Importar asignatura. Define, junto con el grado, la **cohorte** usada por la regla de separación. Migración aditiva `asignatura_anio` (no altera datos existentes; las asignaturas previas quedan en año 1).
+
+### Endpoint
+#### POST `/examenes/calendario/generar-automatico`
+Body opcional: `{ fechaInicio?, horizonteDias?, franjas?, separacionDias? }`. Por defecto: inicio el próximo día hábil, horizonte 120 días, franjas `08:30/11:30/14:30/17:30`, separación 1 día libre. Persiste las asignaciones y devuelve el calendario consolidado + un bloque `generacion` con `asignados`, `noAsignados` (con motivo) y los parámetros usados. El endpoint `GET /examenes/calendario/generar` (consolidación de solo lectura) se mantiene intacto.
+
+### Algoritmo (`ExamenesService.generarCalendarioAutomatico`)
+Heurístico **greedy** (exámenes con más matriculados primero) que, para cada examen, busca el primer *slot* (día hábil L–V × franja, en orden cronológico) que cumple **todas** las restricciones duras:
+1. **Separación por cohorte (grado + año)**: dos exámenes de la misma cohorte no pueden caer el **mismo día** ni en **días consecutivos** (`|díaA − díaB| > separacionDias`, por defecto > 1 → ≥1 día libre). El fin de semana cuenta como separación (viernes → lunes es válido).
+2. **Aforo**: el aula asignada (best-fit: menor capacidad suficiente) tiene `capacidad ≥` matriculados (`Matricula`). Si ningún aula basta → no asignado (multi-aula no soportado en este modelo).
+3. **Sin doble reserva**: una misma aula o un mismo profesor no se reutilizan en el mismo `(fecha, hora)`.
+4. **Profesor (estrategia en cascada, "opción c")**: por orden de prioridad sobre cada *slot* candidato — (1) el profesor que el examen ya tuviera **asignado a mano**, si está libre; (2) un **docente de la asignatura** (`ProfesorAsignatura`) libre; (3) como último recurso, **cualquier profesor libre**. El motor prefiere un *slot* en el que pueda asignar profesor; solo si ninguno lo permite usa el primer *slot* válido y deja el examen `sinProfesor`. Nunca reutiliza un profesor ya ocupado en ese `(fecha, hora)`.
+
+Los exámenes que no encajan se devuelven en `noAsignados` con su motivo; **nunca** se produce un horario inválido.
+
+### Frontend
+`GenerarCalendarioView` ofrece dos acciones: **⚙️ Generar automáticamente** (llama al nuevo endpoint, persiste y muestra un panel de resultado con asignados/no asignados y los parámetros) y **📅 Solo consolidar** (comportamiento previo de solo lectura). El año es editable en los formularios de asignatura.
+
+### Visibilidad de grado y año (afinado S82)
+- **Lista de Asignaturas** (`AsignaturasView`): nueva columna **AÑO** (1.º–4.º) junto a Grado.
+- **Lista de Exámenes** (`ExamenesView`): nuevas columnas derivadas **GRADO / AÑO** — se resuelven en el cliente emparejando el texto `Examen.asignatura` con el catálogo de asignaturas; los exámenes que no casan muestran `(?)`, lo que ayuda a detectar los textos que no resuelven (limitación P3).
+
+### Verificación realizada (en caliente)
+Generación sobre los datos de *seed*: 5/5 exámenes asignados. Validación independiente de la regla: la cohorte `grado|año` con 3 exámenes quedó en días **06‑11, 06‑15, 06‑17** (jueves → lunes → miércoles), todos con ≥2 días de separación → **0 violaciones**. Exámenes de cohortes distintas sí comparten día (correcto).
+
+### Limitación conocida (trazada al estudio S81)
+La cohorte se deriva resolviendo el **texto libre** `Examen.asignatura` contra el catálogo `Asignatura` (por nombre/código normalizado). Un examen cuyo texto **no casa** con el catálogo (p. ej. variantes de acentos/mayúsculas) se trata como cohorte propia y **no** se le aplica la separación. La solución de fondo —`Examen.asignaturaId` como FK— está recogida en [`analisis-datos-reales-sesion81.md`](/RUP/01-analisis/estudios/analisis-datos-reales-sesion81.md) (problema P3) y se abordará al evolucionar el modelo.
+
+### Alcance respetado
+No se modificó autenticación, JWT, `database-setup.sql`, los dashboards ni casos de uso previos. El único cambio de esquema es el campo aditivo `Asignatura.anio`. El endpoint de consolidación previo permanece sin cambios.
 </content>

@@ -5,6 +5,7 @@ export interface Asignatura {
   codigo: string;
   nombre: string;
   creditos: number;
+  anio: number;
   gradoId: string;
   grado: {
     codigo: string;

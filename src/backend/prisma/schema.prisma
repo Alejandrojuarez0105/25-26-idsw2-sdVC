@@ -55,6 +55,7 @@ model Asignatura {
   codigo        String   @unique @db.VarChar(20)
   nombre        String   @db.VarChar(100)
   creditos      Int
+  anio          Int      @default(1) @db.SmallInt
   fechaCreacion DateTime @default(now()) @db.Timestamptz
 
   gradoId String @db.Uuid

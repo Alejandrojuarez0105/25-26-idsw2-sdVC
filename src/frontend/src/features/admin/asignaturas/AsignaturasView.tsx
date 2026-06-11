@@ -73,15 +73,16 @@ const AsignaturasView: React.FC = () => {
               <th style={{ border: '1px solid #bdbdbd', padding: '12px 10px', textAlign: 'left' }}>CÓDIGO</th>
               <th style={{ border: '1px solid #bdbdbd', padding: '12px 10px', textAlign: 'left' }}>NOMBRE</th>
               <th style={{ border: '1px solid #bdbdbd', padding: '12px 10px', width: '80px' }}>CRÉDITOS</th>
+              <th style={{ border: '1px solid #bdbdbd', padding: '12px 10px', width: '60px' }}>AÑO</th>
               <th style={{ border: '1px solid #bdbdbd', padding: '12px 10px', width: '80px' }}>GRADO</th>
               <th style={{ border: '1px solid #bdbdbd', padding: '12px 10px', width: '100px', textAlign: 'left' }}>ACCIÓN</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
-              <tr><td colSpan={6} style={{ textAlign: 'center', padding: '20px' }}>Cargando asignaturas...</td></tr>
+              <tr><td colSpan={7} style={{ textAlign: 'center', padding: '20px' }}>Cargando asignaturas...</td></tr>
             ) : asignaturasFiltradas.length === 0 ? (
-              <tr><td colSpan={6} style={{ textAlign: 'center', padding: '20px' }}>No hay asignaturas disponibles</td></tr>
+              <tr><td colSpan={7} style={{ textAlign: 'center', padding: '20px' }}>No hay asignaturas disponibles</td></tr>
             ) : (
               asignaturasFiltradas.map((asig) => (
                 <tr 
@@ -101,6 +102,7 @@ const AsignaturasView: React.FC = () => {
                   <td style={{ padding: '12px 10px' }}><strong>{asig.codigo}</strong></td>
                   <td style={{ padding: '12px 10px' }}>{asig.nombre}</td>
                   <td style={{ padding: '12px 10px' }}>{asig.creditos}</td>
+                  <td style={{ padding: '12px 10px' }}>{asig.anio}º</td>
                   <td style={{ padding: '12px 10px' }}>{asig.grado.codigo}</td>
                   <td style={{ padding: '12px 10px' }}>
                     <button 

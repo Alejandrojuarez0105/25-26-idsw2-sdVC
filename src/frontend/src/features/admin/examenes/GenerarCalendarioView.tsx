@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CalendarioGenerado, examenesService } from '../../../services/examenes.service';
+import { CalendarioAutoGenerado, CalendarioGenerado, examenesService } from '../../../services/examenes.service';
 
 type Estado = 'idle' | 'loading' | 'success' | 'error';
 
@@ -8,14 +8,33 @@ const GenerarCalendarioView: React.FC = () => {
   const navigate = useNavigate();
   const [estado, setEstado] = useState<Estado>('idle');
   const [data, setData] = useState<CalendarioGenerado | null>(null);
+  const [generacion, setGeneracion] = useState<CalendarioAutoGenerado['generacion'] | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  // Consolidación (solo lectura): refleja lo que hay sin asignar nada.
   const generar = async () => {
     setEstado('loading');
     setError(null);
+    setGeneracion(null);
     try {
       const resultado = await examenesService.generarCalendario();
       setData(resultado);
+      setEstado('success');
+    } catch (err: any) {
+      setError(err.response?.data?.message || err.message || 'Error desconocido al generar el calendario');
+      setEstado('error');
+    }
+  };
+
+  // Generación AUTOMÁTICA: asigna fecha, hora, aula y profesor y persiste.
+  const generarAuto = async () => {
+    setEstado('loading');
+    setError(null);
+    setGeneracion(null);
+    try {
+      const resultado = await examenesService.generarCalendarioAutomatico();
+      setData(resultado);
+      setGeneracion(resultado.generacion);
       setEstado('success');
     } catch (err: any) {
       setError(err.response?.data?.message || err.message || 'Error desconocido al generar el calendario');
@@ -61,22 +80,33 @@ const GenerarCalendarioView: React.FC = () => {
           GENERAR CALENDARIO DE EXÁMENES
         </h1>
         <div style={{ textAlign: 'center', fontSize: '15px', color: '#555', marginBottom: '25px' }}>
-          Genera el calendario oficial consolidando los exámenes, profesores y aulas registrados en el sistema.
+          Genera automáticamente el calendario oficial asignando fecha, hora, aula y profesor a cada examen, o consolida el estado actual sin modificar nada.
         </div>
 
         {/* Estado IDLE */}
         {estado === 'idle' && (
           <div style={{ textAlign: 'center', padding: '40px 20px' }}>
             <div style={{ fontSize: '60px', marginBottom: '20px' }}>📅</div>
-            <p style={{ fontSize: '16px', color: '#333', marginBottom: '30px' }}>
-              Pulsa el botón para generar el calendario a partir de los datos actuales del sistema.
+            <p style={{ fontSize: '16px', color: '#333', marginBottom: '12px' }}>
+              <strong>Generar automáticamente</strong> asigna fecha, hora, aula y profesor a los exámenes respetando el aforo y dejando <strong>al menos un día libre</strong> entre exámenes del mismo grado y año.
             </p>
-            <button
-              onClick={generar}
-              style={{ minWidth: '220px', padding: '14px 25px', borderRadius: '4px', fontSize: '18px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #1e7e34', fontWeight: 'bold', background: '#28a745', color: 'white' }}
-            >
-              📅 Generar Calendario
-            </button>
+            <p style={{ fontSize: '13px', color: '#666', marginBottom: '30px' }}>
+              (También puedes solo <em>consolidar</em> el calendario actual, sin modificar las asignaciones.)
+            </p>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '18px', flexWrap: 'wrap' }}>
+              <button
+                onClick={generarAuto}
+                style={{ minWidth: '240px', padding: '14px 25px', borderRadius: '4px', fontSize: '18px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #1e7e34', fontWeight: 'bold', background: '#28a745', color: 'white' }}
+              >
+                ⚙️ Generar automáticamente
+              </button>
+              <button
+                onClick={generar}
+                style={{ minWidth: '220px', padding: '14px 25px', borderRadius: '4px', fontSize: '18px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #1d5faa', fontWeight: 'bold', background: '#2d89ef', color: 'white' }}
+              >
+                📅 Solo consolidar
+              </button>
+            </div>
           </div>
         )}
 
@@ -185,6 +215,31 @@ const GenerarCalendarioView: React.FC = () => {
               ✅ ¡Calendario generado exitosamente! ({data.resumen.totalExamenes} examen(es) consolidado(s))
             </div>
 
+            {/* Resumen de la GENERACIÓN AUTOMÁTICA (solo tras "Generar automáticamente") */}
+            {generacion && (
+              <div style={{ background: '#eef7ff', border: '1px solid #7ea0c0', padding: '15px 18px', marginBottom: '25px' }}>
+                <h3 style={{ fontSize: '18px', marginBottom: '10px', textDecoration: 'underline' }}>⚙️ Resultado de la generación automática</h3>
+                <div style={{ fontSize: '14px', marginBottom: '8px' }}>
+                  <strong style={{ color: '#28a745' }}>✅ {generacion.asignados}</strong> examen(es) asignado(s) ·{' '}
+                  <strong style={{ color: generacion.noAsignados.length > 0 ? '#dc3545' : '#28a745' }}>{generacion.noAsignados.length}</strong> sin asignar ·{' '}
+                  de <strong>{generacion.totalProcesados}</strong> procesados.
+                </div>
+                <div style={{ fontSize: '12px', color: '#555', marginBottom: generacion.noAsignados.length > 0 ? '10px' : 0 }}>
+                  Parámetros: separación ≥ {generacion.parametros.separacionDias} día libre · franjas {generacion.parametros.franjas.join(', ')} · desde {generacion.parametros.fechaInicio} (L–V).
+                </div>
+                {generacion.noAsignados.length > 0 && (
+                  <div style={{ background: '#fff3cd', borderLeft: '4px solid #ffc107', color: '#856404', padding: '10px 12px', fontSize: '13px' }}>
+                    <strong>Exámenes no asignados:</strong>
+                    <ul style={{ marginLeft: '20px', marginTop: '6px' }}>
+                      {generacion.noAsignados.map((n) => (
+                        <li key={n.codigo}><strong>{n.asignatura}</strong> ({n.codigo}): {n.motivo}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Datos procesados */}
             <h3 style={{ fontSize: '18px', marginBottom: '12px', textDecoration: 'underline' }}>📊 Datos procesados</h3>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '12px', marginBottom: '25px' }}>
@@ -256,10 +311,16 @@ const GenerarCalendarioView: React.FC = () => {
 
             <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '25px', flexWrap: 'wrap' }}>
               <button
-                onClick={generar}
-                style={{ minWidth: '180px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #999', fontWeight: 'bold', background: '#2d89ef', color: 'white' }}
+                onClick={generarAuto}
+                style={{ minWidth: '200px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #1e7e34', fontWeight: 'bold', background: '#28a745', color: 'white' }}
               >
-                🔄 Regenerar
+                ⚙️ Generar automáticamente
+              </button>
+              <button
+                onClick={generar}
+                style={{ minWidth: '160px', padding: '12px 20px', borderRadius: '4px', fontSize: '15px', fontFamily: 'inherit', cursor: 'pointer', border: '1px solid #999', fontWeight: 'bold', background: '#2d89ef', color: 'white' }}
+              >
+                🔄 Consolidar
               </button>
               <button
                 onClick={() => navigate('/admin/examenes/conflictos')}

@@ -1,12 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useExamenes } from '../../../hooks/useExamenes';
+import { Asignatura, asignaturasService } from '../../../services/asignaturas.service';
 
 const ExamenesView: React.FC = () => {
   const { examenes, loading, error } = useExamenes();
   const navigate = useNavigate();
   const [busqueda, setBusqueda] = useState('');
   const [seleccionados, setSeleccionados] = useState<string[]>([]);
+  const [catalogo, setCatalogo] = useState<Asignatura[]>([]);
+
+  // Catálogo de asignaturas para deducir el grado y año de cada examen
+  // (el examen guarda la asignatura como texto libre, no enlazada a grado/año).
+  useEffect(() => {
+    asignaturasService.findAll().then(setCatalogo).catch(() => setCatalogo([]));
+  }, []);
+
+  const normaliza = (s: string) => (s || '').trim().toLowerCase();
+  const catalogoMap = useMemo(() => {
+    const m = new Map<string, Asignatura>();
+    for (const a of catalogo) {
+      m.set(normaliza(a.nombre), a);
+      m.set(normaliza(a.codigo), a);
+    }
+    return m;
+  }, [catalogo]);
+  const cohorteDe = (asignatura: string) => catalogoMap.get(normaliza(asignatura)) || null;
 
   const handleSalir = () => {
     navigate('/admin');
@@ -92,6 +111,8 @@ const ExamenesView: React.FC = () => {
               </th>
               <th style={{ border: '1px solid #bdbdbd', padding: '12px 10px', textAlign: 'left' }}>CÓDIGO</th>
               <th style={{ border: '1px solid #bdbdbd', padding: '12px 10px', textAlign: 'left' }}>ASIGNATURA</th>
+              <th style={{ border: '1px solid #bdbdbd', padding: '12px 10px', width: '70px', textAlign: 'left' }}>GRADO</th>
+              <th style={{ border: '1px solid #bdbdbd', padding: '12px 10px', width: '55px', textAlign: 'left' }}>AÑO</th>
               <th style={{ border: '1px solid #bdbdbd', padding: '12px 10px', textAlign: 'left' }}>FECHA</th>
               <th style={{ border: '1px solid #bdbdbd', padding: '12px 10px', textAlign: 'left' }}>HORA</th>
               <th style={{ border: '1px solid #bdbdbd', padding: '12px 10px', textAlign: 'left' }}>AULA</th>
@@ -101,9 +122,9 @@ const ExamenesView: React.FC = () => {
           </thead>
           <tbody>
             {loading ? (
-              <tr><td colSpan={8} style={{ textAlign: 'center', padding: '20px' }}>Cargando exámenes...</td></tr>
+              <tr><td colSpan={10} style={{ textAlign: 'center', padding: '20px' }}>Cargando exámenes...</td></tr>
             ) : examenesFiltrados.length === 0 ? (
-              <tr><td colSpan={8} style={{ textAlign: 'center', padding: '20px' }}>No hay exámenes disponibles</td></tr>
+              <tr><td colSpan={10} style={{ textAlign: 'center', padding: '20px' }}>No hay exámenes disponibles</td></tr>
             ) : (
               examenesFiltrados.map((examen) => (
                 <tr 
@@ -122,6 +143,8 @@ const ExamenesView: React.FC = () => {
                   </td>
                   <td style={{ padding: '12px 10px' }}><strong>{examen.codigo}</strong></td>
                   <td style={{ padding: '12px 10px' }}>{examen.asignatura}</td>
+                  <td style={{ padding: '12px 10px' }}>{cohorteDe(examen.asignatura)?.grado.codigo || <span style={{ color: '#dc3545', fontStyle: 'italic' }}>(?)</span>}</td>
+                  <td style={{ padding: '12px 10px' }}>{cohorteDe(examen.asignatura) ? `${cohorteDe(examen.asignatura)!.anio}º` : <span style={{ color: '#dc3545', fontStyle: 'italic' }}>(?)</span>}</td>
                   <td style={{ padding: '12px 10px' }}>{formatearFecha(examen.fecha)}</td>
                   <td style={{ padding: '12px 10px' }}>{examen.hora}</td>
                   <td style={{ padding: '12px 10px' }}>{codigoAula(examen) || <span style={{ color: '#dc3545', fontStyle: 'italic' }}>(sin aula)</span>}</td>

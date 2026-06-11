@@ -86,6 +86,11 @@ export const examenesService = {
     return response.data;
   },
 
+  async generarCalendarioAutomatico(opts: GenerarAutoOpciones = {}): Promise<CalendarioAutoGenerado> {
+    const response = await api.post('/examenes/calendario/generar-automatico', opts);
+    return response.data;
+  },
+
   async descargarCalendario(opts: DescargaOpciones = {}): Promise<Blob> {
     const params: Record<string, string> = {};
     if (opts.incluirAula === false) params.incluirAula = 'false';
@@ -185,4 +190,33 @@ export interface CalendarioGenerado {
   };
   examenes: CalendarioExamen[];
   conflictos: ConflictoExamen[];
+}
+
+export interface GenerarAutoOpciones {
+  fechaInicio?: string;
+  horizonteDias?: number;
+  franjas?: string[];
+  separacionDias?: number;
+}
+
+export interface CalendarioAutoGenerado extends CalendarioGenerado {
+  generacion: {
+    parametros: {
+      fechaInicio: string;
+      horizonteDias: number;
+      franjas: string[];
+      separacionDias: number;
+    };
+    totalProcesados: number;
+    asignados: number;
+    noAsignados: { codigo: string; asignatura: string; motivo: string }[];
+    detalleAsignados: {
+      codigo: string;
+      asignatura: string;
+      fecha: string;
+      hora: string;
+      aula: string;
+      sinProfesor: boolean;
+    }[];
+  };
 }

@@ -12,6 +12,7 @@ const EditarAsignaturaView: React.FC = () => {
     codigo: '',
     nombre: '',
     creditos: 0,
+    anio: 1,
     gradoId: '',
     descripcion: '' // UI Only if not in DB
   });
@@ -34,6 +35,7 @@ const EditarAsignaturaView: React.FC = () => {
           codigo: asignaturaData.codigo,
           nombre: asignaturaData.nombre,
           creditos: asignaturaData.creditos,
+          anio: asignaturaData.anio ?? 1,
           gradoId: asignaturaData.gradoId,
           descripcion: '' // Placeholder
         });
@@ -49,16 +51,17 @@ const EditarAsignaturaView: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
-    setFormData(prev => ({ 
-      ...prev, 
-      [id]: id === 'creditos' ? parseInt(value) || 0 : value 
+    setFormData(prev => ({
+      ...prev,
+      [id]: (id === 'creditos' || id === 'anio') ? parseInt(value) || 0 : value
     }));
   };
 
   const hayCambios = () => {
     if (!asignaturaOriginal) return false;
-    return formData.nombre.trim() !== asignaturaOriginal.nombre || 
+    return formData.nombre.trim() !== asignaturaOriginal.nombre ||
            formData.creditos !== asignaturaOriginal.creditos ||
+           formData.anio !== (asignaturaOriginal.anio ?? 1) ||
            formData.gradoId !== asignaturaOriginal.gradoId;
   };
 
@@ -93,6 +96,7 @@ const EditarAsignaturaView: React.FC = () => {
         await asignaturasService.update(id, {
           nombre: nombre.trim(),
           creditos: creditos,
+          anio: formData.anio,
           gradoId: gradoId
         });
         alert('✅ Cambios guardados exitosamente.');
@@ -195,9 +199,27 @@ const EditarAsignaturaView: React.FC = () => {
         </div>
 
         <div style={{ marginBottom: '20px' }}>
+          <label htmlFor="anio" style={{ display: 'block', fontSize: '16px', fontWeight: 'bold', marginBottom: '8px' }}>Año (curso):</label>
+          <select
+            id="anio"
+            value={formData.anio}
+            onChange={handleChange}
+            style={{ width: '100%', padding: '10px 12px', fontFamily: 'inherit', fontSize: '16px', border: '1px solid #bdbdbd', background: 'white', cursor: 'pointer' }}
+          >
+            <option value={1}>1.º</option>
+            <option value={2}>2.º</option>
+            <option value={3}>3.º</option>
+            <option value={4}>4.º</option>
+          </select>
+          <div style={{ fontSize: '12px', color: '#666', marginTop: '4px' }}>
+            Usado por la generación automática para separar exámenes por grado + año.
+          </div>
+        </div>
+
+        <div style={{ marginBottom: '20px' }}>
           <label htmlFor="gradoId" style={{ display: 'block', fontSize: '16px', fontWeight: 'bold', marginBottom: '8px' }}>Grado:</label>
-          <select 
-            id="gradoId" 
+          <select
+            id="gradoId"
             value={formData.gradoId}
             onChange={handleChange}
             style={{ width: '100%', padding: '10px 12px', fontFamily: 'inherit', fontSize: '16px', border: '1px solid #bdbdbd', background: 'white', cursor: 'pointer' }}

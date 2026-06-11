@@ -10,6 +10,7 @@ const CrearAsignaturaView: React.FC = () => {
     codigo: '',
     nombre: '',
     creditos: 6,
+    anio: 1,
     gradoId: ''
   });
   const [loading, setLoading] = useState(false);
@@ -31,9 +32,9 @@ const CrearAsignaturaView: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { id, value } = e.target;
-    setFormData(prev => ({ 
-      ...prev, 
-      [id]: id === 'creditos' ? parseInt(value) || 0 : value 
+    setFormData(prev => ({
+      ...prev,
+      [id]: (id === 'creditos' || id === 'anio') ? parseInt(value) || 0 : value
     }));
   };
 
@@ -155,6 +156,24 @@ const CrearAsignaturaView: React.FC = () => {
             max={12}
             style={{ width: '100%', padding: '10px 12px', fontFamily: 'inherit', fontSize: '16px', border: '1px solid #bdbdbd', background: 'white' }}
           />
+        </div>
+
+        <div style={{ marginBottom: '20px' }}>
+          <label htmlFor="anio" style={{ display: 'block', fontSize: '16px', fontWeight: 'bold', marginBottom: '8px' }}>Año (curso):</label>
+          <select
+            id="anio"
+            value={formData.anio}
+            onChange={handleChange}
+            style={{ width: '100%', padding: '10px 12px', fontFamily: 'inherit', fontSize: '16px', border: '1px solid #bdbdbd', background: 'white', cursor: 'pointer' }}
+          >
+            <option value={1}>1.º</option>
+            <option value={2}>2.º</option>
+            <option value={3}>3.º</option>
+            <option value={4}>4.º</option>
+          </select>
+          <div style={{ fontSize: '12px', color: '#666', marginTop: '4px' }}>
+            Usado por la generación automática para separar exámenes por grado + año.
+          </div>
         </div>
 
         <div style={{ marginBottom: '20px' }}>
