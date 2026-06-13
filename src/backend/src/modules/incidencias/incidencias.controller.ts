@@ -1,4 +1,4 @@
-import {
+import { UseGuards,
   Body,
   Controller,
   Get,
@@ -10,6 +10,7 @@ import {
   Put,
   Res,
 } from '@nestjs/common';
+import { AdminJwtGuard } from '../../common/admin-jwt.guard';
 import { Response } from 'express';
 import { IncidenciasService } from '../profesor/incidencias.service';
 import { CambiarEstadoDto } from './dto/cambiar-estado.dto';
@@ -21,6 +22,7 @@ import { AplicarSolucionDto } from './dto/aplicar-solucion.dto';
  * incidencias, cambiar su estado, aplicar soluciones y exportarlas.
  * Coherente con el resto de endpoints administrativos del sistema.
  */
+@UseGuards(AdminJwtGuard)
 @Controller('incidencias')
 export class IncidenciasController {
   constructor(private readonly incidenciasService: IncidenciasService) {}

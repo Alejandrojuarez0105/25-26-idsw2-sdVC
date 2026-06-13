@@ -1,4 +1,4 @@
-import {
+import { UseGuards,
   Body,
   ConflictException,
   Controller,
@@ -11,8 +11,10 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { AdminJwtGuard } from '../../common/admin-jwt.guard';
 import { GradosService } from './grados.service';
 
+@UseGuards(AdminJwtGuard)
 @Controller('grados')
 export class GradosController {
   constructor(private readonly gradosService: GradosService) {}
