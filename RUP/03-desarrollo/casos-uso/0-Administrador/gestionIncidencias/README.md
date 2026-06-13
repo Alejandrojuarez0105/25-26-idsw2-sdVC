@@ -1,6 +1,6 @@
 # Davidario > gestionIncidencias (Administrador) > Desarrollo
 
-> |[🏠️](/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|[🔧 Incidencias del Profesor](/RUP/03-desarrollo/casos-uso/1-Profesor/comunicarIncidenciaHorario/README.md)|**Desarrollo**|Pruebas|
+> |[🏠️](/RUP/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|[🔧 Incidencias del Profesor](/RUP/03-desarrollo/casos-uso/1-Profesor/comunicarIncidenciaHorario/README.md)|**Desarrollo**|Pruebas|
 > |-|-|-|-|-|
 
 - **Backend:** [incidencias.controller.ts](/src/backend/src/modules/incidencias/incidencias.controller.ts) · [incidencias.module.ts](/src/backend/src/modules/incidencias/incidencias.module.ts) · [incidencias.service.ts](/src/backend/src/modules/profesor/incidencias.service.ts) (reutilizado) · [prisma/schema.prisma](/src/backend/prisma/schema.prisma)

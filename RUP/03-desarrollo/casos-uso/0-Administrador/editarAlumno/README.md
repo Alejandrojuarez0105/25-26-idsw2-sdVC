@@ -1,6 +1,6 @@
 # Davidario > editarAlumno > Desarrollo
 
-> |[🏠️](/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/editarAlumno/editarAlumno.md)|[🔍 Análisis](/RUP/01-analisis/casos-uso/0-Administrador/editarAlumno/README.md)|[📂 Diseño](/RUP/02-diseño/casos-uso/0-Administrador/editarAlumno/README.md)|**Desarrollo**|Pruebas|
+> |[🏠️](/RUP/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/editarAlumno/editarAlumno.md)|[🔍 Análisis](/RUP/01-analisis/casos-uso/0-Administrador/editarAlumno/README.md)|[📂 Diseño](/RUP/02-diseño/casos-uso/0-Administrador/editarAlumno/README.md)|**Desarrollo**|Pruebas|
 > |-|-|-|-|-|-|-|
 
 - **Backend:** [alumnos.controller.ts](/src/backend/src/modules/alumnos/alumnos.controller.ts) · [alumnos.service.ts](/src/backend/src/modules/alumnos/alumnos.service.ts)

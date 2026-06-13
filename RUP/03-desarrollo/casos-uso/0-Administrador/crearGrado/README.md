@@ -1,6 +1,6 @@
 # Davidario > crearGrado > Desarrollo
 
-> |[🏠️](/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/crearGrado/crearGrado.md)|[🔍 Análisis](/RUP/01-analisis/casos-uso/0-Administrador/crearGrado/README.md)|[📂 Diseño](/RUP/02-diseño/casos-uso/0-Administrador/crearGrado/README.md)|**Desarrollo**|Pruebas|
+> |[🏠️](/RUP/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/crearGrado/crearGrado.md)|[🔍 Análisis](/RUP/01-analisis/casos-uso/0-Administrador/crearGrado/README.md)|[📂 Diseño](/RUP/02-diseño/casos-uso/0-Administrador/crearGrado/README.md)|**Desarrollo**|Pruebas|
 > |-|-|-|-|-|-|-|
 
 - **Backend:** [grados.controller.ts](/src/backend/src/modules/grados/grados.controller.ts) · [grados.service.ts](/src/backend/src/modules/grados/grados.service.ts)

@@ -1215,3 +1215,15 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 **Verificación:** **45 enlaces** de Implementación en los breadcrumbs de diseño, **0 rotos** (todos los destinos de `03-desarrollo` existen). Ejemplos revisados (Administrador y los 2 del Profesor con mapeo) correctos. 0 casos sin cambio (todos los casos de diseño tienen su desarrollo).
 
 **Decisión:** Mismo criterio que la Sesión 85: enlazar solo a documentos existentes y respetar los nombres de carpeta reales de Desarrollo del Profesor. "Pruebas" sigue en texto plano. Pendiente: verificar/resaltar los breadcrumbs de **03-desarrollo** (que ya enlazan Análisis y Diseño y resaltan Desarrollo, según el inventario) y, si se decide, añadir el menú de badges a los índices listados de `03-desarrollo`/`00-requisitos`.
+
+## [13/06/2026 14:35] Sesión 87: Verificación de breadcrumbs de Desarrollo (sin cambios)
+
+**Prompt:** COMENZAMOS, Sesión 87 — Verificar los breadcrumbs de **03-desarrollo**: confirmar que resaltan Desarrollo, enlazan Análisis y Diseño y no tienen enlaces rotos; corregir si algo falla.
+
+**Resultado:**
+- **Verificación:** los **48** documentos por-caso en `03-desarrollo/casos-uso/` **ya** resaltaban **`**Desarrollo**`**, enlazaban **🔍 Análisis** y **📂 Diseño**, y dejaban **Pruebas** en texto plano. Desajustes de nombre del Profesor correctos (`descargarCalendario`→`…descargarCalendarioExamenes`, `comunicarIncidenciaHorario`→`…comunicarIncidenciasHorario`). `gestionIncidencias` (Administrador) es un caso solo-desarrollo (sin análisis/diseño propios); su breadcrumb enlaza a "🔧 Incidencias del Profesor" — correcto e intencional.
+- **Cambio aplicado (a petición del usuario):** se **unificó el destino del enlace de inicio (🏠)** en todo `03-desarrollo`, de `/README.md` a **`/RUP/README.md`** (el mismo que usan análisis y diseño), para que todos los breadcrumbs redirijan al mismo lugar. Reemplazo en **50 ficheros** (48 casos + 2 índices) con script Python.
+
+**Verificación:** tras el cambio, **0** ocurrencias de `[🏠️](/README.md)` y **50** de `[🏠️](/RUP/README.md)` en `03-desarrollo`; reverificación de enlaces: **512 enlaces absolutos, 0 rotos**.
+
+**Decisión:** Para "que todos redirijan al mismo lugar" se alineó la **minoría** (`03-desarrollo`, que apuntaba a `/README.md`) con la **mayoría** (análisis + diseño, que apuntan a `/RUP/README.md`), cambio mínimo y sin romper enlaces. Se mantienen las demás diferencias (el blockquote `>` y las columnas Detalle, propias de los docs de desarrollo). No se tocó el resaltado de Desarrollo ni los enlaces de Análisis/Diseño, que ya eran correctos. Queda pendiente (si se decide) añadir el menú de badges a los índices de `03-desarrollo`/`00-requisitos` listados en la Sesión 85.

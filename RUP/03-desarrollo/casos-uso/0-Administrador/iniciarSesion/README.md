@@ -1,6 +1,6 @@
 # Davidario > iniciarSesion > Desarrollo
 
-> |[🏠️](/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/3-CasosDeUsoComunes/iniciarSesion/iniciarSesion.md)|[🔍 Análisis](/RUP/01-analisis/casos-uso/0-Administrador/iniciarSesion/README.md)|[📂 Diseño](/RUP/02-diseño/casos-uso/0-Administrador/iniciarSesion/README.md)|**Desarrollo**|Pruebas|
+> |[🏠️](/RUP/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/3-CasosDeUsoComunes/iniciarSesion/iniciarSesion.md)|[🔍 Análisis](/RUP/01-analisis/casos-uso/0-Administrador/iniciarSesion/README.md)|[📂 Diseño](/RUP/02-diseño/casos-uso/0-Administrador/iniciarSesion/README.md)|**Desarrollo**|Pruebas|
 > |-|-|-|-|-|-|-|
 
 - **Backend:** [auth.controller.ts](/src/backend/src/modules/auth/auth.controller.ts) · [auth.service.ts](/src/backend/src/modules/auth/auth.service.ts) · [schema.prisma](/src/backend/prisma/schema.prisma)

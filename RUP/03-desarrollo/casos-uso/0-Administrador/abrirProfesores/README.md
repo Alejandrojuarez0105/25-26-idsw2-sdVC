@@ -1,6 +1,6 @@
 # Davidario > abrirProfesores > Desarrollo
 
-> |[🏠️](/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/abrirProfesores/abrirProfesores.md)|[🔍 Análisis](/RUP/01-analisis/casos-uso/0-Administrador/abrirProfesores/README.md)|[📂 Diseño](/RUP/02-diseño/casos-uso/0-Administrador/abrirProfesores/README.md)|**Desarrollo**|Pruebas|
+> |[🏠️](/RUP/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/abrirProfesores/abrirProfesores.md)|[🔍 Análisis](/RUP/01-analisis/casos-uso/0-Administrador/abrirProfesores/README.md)|[📂 Diseño](/RUP/02-diseño/casos-uso/0-Administrador/abrirProfesores/README.md)|**Desarrollo**|Pruebas|
 > |-|-|-|-|-|-|-|
 
 - **Backend:** [profesores.controller.ts](/src/backend/src/modules/profesores/profesores.controller.ts) · [profesores.service.ts](/src/backend/src/modules/profesores/profesores.service.ts) · [profesores.module.ts](/src/backend/src/modules/profesores/profesores.module.ts)

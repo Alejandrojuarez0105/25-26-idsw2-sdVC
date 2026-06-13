@@ -1,6 +1,6 @@
 # Davidario > cerrarSesion (Profesor) > Desarrollo
 
-> |[🏠️](/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/1-Profesor/DiagramaDeContextoProfesor.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/3-CasosDeUsoComunes/cerrarSesion/cerrarSesion.md)|[🔍 Análisis](/RUP/01-analisis/casos-uso/1-Profesor/cerrarSesion/README.md)|[📂 Diseño](/RUP/02-diseño/casos-uso/1-Profesor/cerrarSesion/README.md)|**Desarrollo**|Pruebas|
+> |[🏠️](/RUP/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/1-Profesor/DiagramaDeContextoProfesor.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/3-CasosDeUsoComunes/cerrarSesion/cerrarSesion.md)|[🔍 Análisis](/RUP/01-analisis/casos-uso/1-Profesor/cerrarSesion/README.md)|[📂 Diseño](/RUP/02-diseño/casos-uso/1-Profesor/cerrarSesion/README.md)|**Desarrollo**|Pruebas|
 > |-|-|-|-|-|-|-|
 
 - **Frontend:** [LogoutView.tsx](/src/frontend/src/features/auth/logout/LogoutView.tsx) · [useAuth.ts](/src/frontend/src/hooks/useAuth.ts) · [auth.service.ts](/src/frontend/src/services/auth.service.ts)

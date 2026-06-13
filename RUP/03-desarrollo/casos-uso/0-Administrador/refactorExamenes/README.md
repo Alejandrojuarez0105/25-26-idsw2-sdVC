@@ -1,6 +1,6 @@
 # Davidario > refactorExamenes > Desarrollo
 
-> |[🏠️](/README.md)|**Desarrollo**|
+> |[🏠️](/RUP/README.md)|**Desarrollo**|
 
 - **Backend:** [examenes.controller.ts](/src/backend/src/modules/examenes/examenes.controller.ts) · [examenes.service.ts](/src/backend/src/modules/examenes/examenes.service.ts) · [schema.prisma](/src/backend/prisma/schema.prisma)
 - **Base de Datos:** [database-setup.sql](/src/database-setup.sql)

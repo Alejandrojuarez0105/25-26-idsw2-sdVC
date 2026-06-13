@@ -1,6 +1,6 @@
 # Davidario > consultarCalendario (Profesor) > Desarrollo
 
-> |[🏠️](/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/1-Profesor/DiagramaDeContextoProfesor.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/1-Profesor/consultarCalendario/consultarCalendario.md)|[🔍 Análisis](/RUP/01-analisis/casos-uso/1-Profesor/consultarCalendario/README.md)|[📂 Diseño](/RUP/02-diseño/casos-uso/1-Profesor/consultarCalendario/README.md)|**Desarrollo**|Pruebas|
+> |[🏠️](/RUP/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/1-Profesor/DiagramaDeContextoProfesor.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/1-Profesor/consultarCalendario/consultarCalendario.md)|[🔍 Análisis](/RUP/01-analisis/casos-uso/1-Profesor/consultarCalendario/README.md)|[📂 Diseño](/RUP/02-diseño/casos-uso/1-Profesor/consultarCalendario/README.md)|**Desarrollo**|Pruebas|
 > |-|-|-|-|-|-|-|
 
 - **Backend:** [profesor.controller.ts](/src/backend/src/modules/profesor/profesor.controller.ts) · [profesor-calendario.service.ts](/src/backend/src/modules/profesor/profesor-calendario.service.ts) · [profesor-jwt.guard.ts](/src/backend/src/modules/profesor/profesor-jwt.guard.ts) · [profesor.module.ts](/src/backend/src/modules/profesor/profesor.module.ts)

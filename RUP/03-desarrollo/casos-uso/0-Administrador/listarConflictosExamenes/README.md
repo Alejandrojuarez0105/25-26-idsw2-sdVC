@@ -1,6 +1,6 @@
 # Davidario > listarConflictosExamenes > Desarrollo
 
-> |[🏠️](/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/listarConflictosExamenes/listarConflictosExamenes.md)|[🔍 Análisis](/RUP/01-analisis/casos-uso/0-Administrador/listarConflictosExamenes/README.md)|[📂 Diseño](/RUP/02-diseño/casos-uso/0-Administrador/listarConflictosExamenes/README.md)|**Desarrollo**|Pruebas|
+> |[🏠️](/RUP/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/listarConflictosExamenes/listarConflictosExamenes.md)|[🔍 Análisis](/RUP/01-analisis/casos-uso/0-Administrador/listarConflictosExamenes/README.md)|[📂 Diseño](/RUP/02-diseño/casos-uso/0-Administrador/listarConflictosExamenes/README.md)|**Desarrollo**|Pruebas|
 > |-|-|-|-|-|-|-|
 
 - **Backend:** [examenes.controller.ts](/src/backend/src/modules/examenes/examenes.controller.ts) · [examenes.service.ts](/src/backend/src/modules/examenes/examenes.service.ts)

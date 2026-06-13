@@ -1,6 +1,6 @@
 # Davidario > actualizarConflictosExamenes > Desarrollo
 
-> |[🏠️](/README.md)|**Desarrollo**|
+> |[🏠️](/RUP/README.md)|**Desarrollo**|
 
 - **Backend:** [examenes.controller.ts](/src/backend/src/modules/examenes/examenes.controller.ts) · [examenes.service.ts](/src/backend/src/modules/examenes/examenes.service.ts)
 - **Frontend:** [examenes.service.ts](/src/frontend/src/services/examenes.service.ts) · [ListarConflictosExamenesView.tsx](/src/frontend/src/features/admin/examenes/ListarConflictosExamenesView.tsx) · [AdminDashboard.tsx](/src/frontend/src/features/admin/AdminDashboard.tsx)

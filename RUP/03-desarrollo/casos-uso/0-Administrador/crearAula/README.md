@@ -1,6 +1,6 @@
 # Davidario > crearAula > Desarrollo
 
-> |[🏠️](/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/crearAula/crearAula.md)|[🔍 Análisis](/RUP/01-analisis/casos-uso/0-Administrador/crearAula/README.md)|[📂 Diseño](/RUP/02-diseño/casos-uso/0-Administrador/crearAula/README.md)|**Desarrollo**|Pruebas|
+> |[🏠️](/RUP/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/crearAula/crearAula.md)|[🔍 Análisis](/RUP/01-analisis/casos-uso/0-Administrador/crearAula/README.md)|[📂 Diseño](/RUP/02-diseño/casos-uso/0-Administrador/crearAula/README.md)|**Desarrollo**|Pruebas|
 > |-|-|-|-|-|-|-|
 
 - **Backend:** [aulas.controller.ts](/src/backend/src/modules/aulas/aulas.controller.ts) · [aulas.service.ts](/src/backend/src/modules/aulas/aulas.service.ts)

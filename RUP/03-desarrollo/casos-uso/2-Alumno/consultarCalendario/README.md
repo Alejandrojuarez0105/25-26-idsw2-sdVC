@@ -1,6 +1,6 @@
 # Davidario > consultarCalendario (Alumno) > Desarrollo
 
-> |[🏠️](/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/2-Alumno/DiagramaDeContextoAlumno.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/2-Alumno/consultarCalendario/consultarCalendario.md)|[🔍 Análisis](/RUP/01-analisis/casos-uso/2-Alumno/consultarCalendario/README.md)|[📂 Diseño](/RUP/02-diseño/casos-uso/2-Alumno/consultarCalendario/README.md)|**Desarrollo**|Pruebas|
+> |[🏠️](/RUP/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/2-Alumno/DiagramaDeContextoAlumno.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/2-Alumno/consultarCalendario/consultarCalendario.md)|[🔍 Análisis](/RUP/01-analisis/casos-uso/2-Alumno/consultarCalendario/README.md)|[📂 Diseño](/RUP/02-diseño/casos-uso/2-Alumno/consultarCalendario/README.md)|**Desarrollo**|Pruebas|
 > |-|-|-|-|-|-|-|
 
 - **Backend:** [alumno.controller.ts](/src/backend/src/modules/alumno/alumno.controller.ts) · [alumno-calendario.service.ts](/src/backend/src/modules/alumno/alumno-calendario.service.ts) · [alumno-jwt.guard.ts](/src/backend/src/modules/alumno/alumno-jwt.guard.ts) · [alumno.module.ts](/src/backend/src/modules/alumno/alumno.module.ts)

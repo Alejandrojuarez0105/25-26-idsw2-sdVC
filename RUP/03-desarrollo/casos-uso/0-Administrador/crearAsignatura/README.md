@@ -1,6 +1,6 @@
 # Davidario > crearAsignatura > Desarrollo
 
-> |[🏠️](/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/crearAsignatura/crearAsignatura.md)|[🔍 Análisis](/RUP/01-analisis/casos-uso/0-Administrador/crearAsignatura/README.md)|[📂 Diseño](/RUP/02-diseño/casos-uso/0-Administrador/crearAsignatura/README.md)|**Desarrollo**|Pruebas|
+> |[🏠️](/RUP/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/crearAsignatura/crearAsignatura.md)|[🔍 Análisis](/RUP/01-analisis/casos-uso/0-Administrador/crearAsignatura/README.md)|[📂 Diseño](/RUP/02-diseño/casos-uso/0-Administrador/crearAsignatura/README.md)|**Desarrollo**|Pruebas|
 > |-|-|-|-|-|-|-|
 
 - **Backend:** [asignaturas.controller.ts](/src/backend/src/modules/asignaturas/asignaturas.controller.ts) · [asignaturas.service.ts](/src/backend/src/modules/asignaturas/asignaturas.service.ts)
