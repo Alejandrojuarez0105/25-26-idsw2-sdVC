@@ -1,6 +1,6 @@
 <div align="right">
 
-|[🏠️](/RUP/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/2-Alumno/DiagramaDeContextoAlumno.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/3-CasosDeUsoComunes/cerrarSesion/cerrarSesion.md)|**Análisis**|Diseño|Desarrollo|Pruebas|
+|[🏠️](/RUP/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/2-Alumno/DiagramaDeContextoAlumno.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/3-CasosDeUsoComunes/cerrarSesion/cerrarSesion.md)|**Análisis**|[Diseño](/RUP/02-diseño/casos-uso/2-Alumno/cerrarSesion/README.md)|[Desarrollo](/RUP/03-desarrollo/casos-uso/2-Alumno/cerrarSesion/README.md)|Pruebas|
 |-|-|-|-|-|-|-|
 
 </div>

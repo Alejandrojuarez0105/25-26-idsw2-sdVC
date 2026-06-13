@@ -1,6 +1,6 @@
 <div align="right">
 
-|[🏠️](/RUP/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/1-Profesor/DiagramaDeContextoProfesor.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/1-Profesor/consultarCalendario/consultarCalendario.md)|**Análisis**|Diseño|Desarrollo|Pruebas|
+|[🏠️](/RUP/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/1-Profesor/DiagramaDeContextoProfesor.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/1-Profesor/consultarCalendario/consultarCalendario.md)|**Análisis**|[Diseño](/RUP/02-diseño/casos-uso/1-Profesor/consultarCalendario/README.md)|[Desarrollo](/RUP/03-desarrollo/casos-uso/1-Profesor/consultarCalendario/README.md)|Pruebas|
 |-|-|-|-|-|-|-|
 
 </div>

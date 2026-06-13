@@ -1,6 +1,6 @@
 <div align="right">
 
-|[🏠️](/RUP/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/listarConflictosExamenes/listarConflictosExamenes.md)|**Análisis**|Diseño|Desarrollo|Pruebas|
+|[🏠️](/RUP/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/listarConflictosExamenes/listarConflictosExamenes.md)|**Análisis**|[Diseño](/RUP/02-diseño/casos-uso/0-Administrador/listarConflictosExamenes/README.md)|[Desarrollo](/RUP/03-desarrollo/casos-uso/0-Administrador/listarConflictosExamenes/README.md)|Pruebas|
 |-|-|-|-|-|-|-|
 
 </div>
