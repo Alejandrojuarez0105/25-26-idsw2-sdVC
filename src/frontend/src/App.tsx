@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import AdminDashboard from './features/admin/AdminDashboard';
 import CrearGradoView from './features/admin/grados/CrearGradoView';
@@ -44,8 +44,18 @@ import CrearProfesorView from './features/admin/profesores/CrearProfesorView';
 import EditarProfesorView from './features/admin/profesores/EditarProfesorView';
 
 const App: React.FC = () => {
+  // Tema claro/oscuro persistido. El modo oscuro aplica un filtro tipo Dark Reader
+  // sobre el contenedor de la app; el conmutador queda fuera para no invertirse.
+  const [dark, setDark] = useState<boolean>(() => localStorage.getItem('theme') === 'dark');
+
+  useEffect(() => {
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+    document.body.classList.toggle('app-dark', dark);
+  }, [dark]);
+
   return (
     <Router>
+      <div className={dark ? 'dark-mode-root' : undefined}>
       <Routes>
         <Route path="/login" element={<LoginView />} />
         <Route path="/logout" element={<LogoutView />} />
@@ -91,6 +101,16 @@ const App: React.FC = () => {
         <Route path="/alumno/calendario" element={<AlumnoCalendarioView />} />
         <Route path="/" element={<Navigate to="/login" replace />} />
       </Routes>
+      </div>
+      <button
+        type="button"
+        className={`theme-toggle ${dark ? 'is-dark' : 'is-light'}`}
+        onClick={() => setDark((d) => !d)}
+        title="Cambiar entre modo claro y oscuro"
+        aria-label="Cambiar tema"
+      >
+        {dark ? '☀️ Modo claro' : '🌙 Modo oscuro'}
+      </button>
     </Router>
   );
 };
