@@ -31,6 +31,3 @@ Este directorio contiene el código fuente del sistema de gestión de exámenes 
 2. Instalar dependencias: `npm install`.
 3. Iniciar la aplicación: `npm run dev`.
 4. Acceder a `http://localhost:5173`.
-
-## Casos de Uso Implementados
-- **iniciarSesion()**: Flujo completo de autenticación con JWT y redirección por rol (Admin, Profesor, Alumno).

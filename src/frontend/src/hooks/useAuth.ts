@@ -33,7 +33,7 @@ export const useAuth = () => {
 
   const logout = () => {
     authService.logout();
-    navigate('/login');
+    navigate('/login', { replace: true });
   };
 
   return { login, logout, user, error, loading };

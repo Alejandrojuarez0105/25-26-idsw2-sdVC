@@ -1241,3 +1241,16 @@ Bloque idéntico al usado en el resto de índices (mismos enlaces/orden). Aplica
 **Verificación:** los 7 índices contienen ahora el menú; **95 enlaces** del menú verificados en esos ficheros → **0 rotos**; el contenido previo (incluido el breadcrumb de fase de los índices de desarrollo) se conservó intacto.
 
 **Decisión:** El menú se **antepone** sin eliminar nada (cambio aditivo), por lo que los índices de `03-desarrollo` muestran el menú de badges y, debajo, su breadcrumb de fase. Las **hojas por-caso** (casos de uso individuales) **no** llevan el menú de badges a propósito: usan el breadcrumb de fase, igual que en análisis y diseño. Con esto, todos los **índices de sección** de RUP tienen el menú de navegación superior unificado. Cierra el bloque de unificación de navegación iniciado en la Sesión 85.
+
+## [13/06/2026 16:00] Sesión 89: Protección de rutas en el frontend (guards por rol)
+
+**Prompt:** COMENZAMOS, Sesión 89 — Corregir la autorización en el frontend: actualmente se puede entrar a `/admin` sin autenticarse, y tras cerrar sesión, el botón "atrás" del navegador vuelve a mostrar páginas protegidas. Proteger las rutas para que eso no ocurra.
+
+**Resultado:**
+1. **Nuevo componente `src/frontend/src/components/ProtectedRoute.tsx`:** lee la sesión (`token` + `user`) de `localStorage` **en cada render**. Sin sesión → `Navigate` a `/login`; con sesión pero rol no autorizado → `Navigate` al panel de su propio rol. Soporta uso como ruta de *layout* (`<Outlet/>`).
+2. **`App.tsx`:** se reorganizaron las rutas en **tres grupos protegidos por rol** mediante rutas de layout `<Route element={<ProtectedRoute roles={['Admin'|'Profesor'|'Alumno']} />}>`: `/admin/*` (Admin), `/profesor/*` (Profesor), `/alumno/*` (Alumno). Solo `/login` y `/logout` quedan públicas; `/` redirige a `/login`. Se conservó el wrapper de tema y el conmutador claro/oscuro.
+3. **`useAuth.logout`:** ahora navega con `{ replace: true }` para no dejar la página protegida como destino inmediato del "atrás".
+
+**Verificación:** `vite build` exit 0; `dist/` eliminado. Type-check de los archivos tocados (`App.tsx`, `ProtectedRoute.tsx`, `useAuth.ts`) sin errores (los que aparecen son preexistentes en ImportarAlumnos/ImportarAulas/EditarGrado). Comportamiento resultante: acceso a cualquier ruta protegida sin token → redirige a `/login`; tras logout, "atrás" reevalúa el guard (localStorage vacío) → `/login`; un rol no puede entrar al espacio de otro.
+
+**Decisión:** Se protege la **navegación en el cliente** (lo reportado). La clave del arreglo del botón "atrás" es que el guard **se reevalúa en cada render** leyendo `localStorage`, en lugar de comprobar la sesión una sola vez. Se agruparon las rutas con rutas de *layout* (en vez de envolver ~40 rutas una a una) para minimizar el cambio. **Pendiente (fuera de alcance de esta sesión):** la **API del backend del Administrador** (`/examenes`, `/grados`, etc.) sigue sin *guard* JWT, por lo que la protección real de extremo a extremo requeriría añadir autenticación/roles en esos endpoints en una sesión futura (las ramas `/profesor` y `/alumno` ya la tienen).
