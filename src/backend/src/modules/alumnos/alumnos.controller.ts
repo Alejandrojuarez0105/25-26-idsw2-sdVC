@@ -1,8 +1,10 @@
 import { UseGuards, Controller, Get, Post, Delete, Put, Body, Param, HttpCode, HttpStatus, NotFoundException, ConflictException } from '@nestjs/common';
-import { AdminJwtGuard } from '../../common/admin-jwt.guard';
+import { JwtRolesGuard } from '../../common/jwt-roles.guard';
+import { Roles } from '../../common/roles.decorator';
 import { AlumnosService } from './alumnos.service';
 
-@UseGuards(AdminJwtGuard)
+@UseGuards(JwtRolesGuard)
+@Roles('Admin')
 @Controller('alumnos')
 export class AlumnosController {
   constructor(private readonly alumnosService: AlumnosService) {}

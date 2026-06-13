@@ -1,26 +1,20 @@
 import { Module } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
 import { AlumnoController } from './alumno.controller';
 import { AlumnoCalendarioService } from './alumno-calendario.service';
-import { AlumnoJwtGuard } from './alumno-jwt.guard';
+import { AlumnoResolverGuard } from './alumno-resolver.guard';
 import { PrismaService } from '../../common/prisma.service';
 import { ExamenesModule } from '../examenes/examenes.module';
 
 /**
  * Módulo de la rama Alumno (aditivo). Reutiliza ExamenesModule (que exporta
- * ExamenesService) para el calendario y registra JwtModule con el MISMO secreto
- * de autenticación para verificar el token ya emitido por AuthService.
- * No duplica lógica de calendario ni introduce entidades nuevas.
+ * ExamenesService) para el calendario. La autorización por rol la centraliza
+ * JwtRolesGuard (común, autónomo: instancia su propio JwtService), por lo que
+ * este módulo ya no necesita registrar JwtModule. No duplica lógica de
+ * calendario ni introduce entidades nuevas.
  */
 @Module({
-  imports: [
-    ExamenesModule,
-    JwtModule.register({
-      secret: process.env.JWT_SECRET || 'secretKey',
-      signOptions: { expiresIn: process.env.JWT_EXPIRES_IN || '8h' },
-    }),
-  ],
+  imports: [ExamenesModule],
   controllers: [AlumnoController],
-  providers: [AlumnoCalendarioService, AlumnoJwtGuard, PrismaService],
+  providers: [AlumnoCalendarioService, AlumnoResolverGuard, PrismaService],
 })
 export class AlumnoModule {}

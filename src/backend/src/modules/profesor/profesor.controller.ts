@@ -12,19 +12,22 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { ProfesorJwtGuard } from './profesor-jwt.guard';
+import { JwtRolesGuard } from '../../common/jwt-roles.guard';
+import { Roles } from '../../common/roles.decorator';
+import { ProfesorResolverGuard } from './profesor-resolver.guard';
 import { ProfesorCalendarioService } from './profesor-calendario.service';
 import { IncidenciasService } from './incidencias.service';
 import { CrearIncidenciaDto } from './dto/crear-incidencia.dto';
 
 /**
- * Controlador de la rama Profesor. Todas las rutas están protegidas por
- * ProfesorJwtGuard, que autoriza según el rol del JWT y adjunta el profesor
- * autenticado en `request.profesor`. Funciona con cualquier usuario cuyo rol
- * sea Profesor (sin validaciones por email).
+ * Controlador de la rama Profesor. Todas las rutas exigen rol Profesor:
+ * JwtRolesGuard verifica el JWT y el rol (vía @Roles) y ProfesorResolverGuard
+ * adjunta el profesor autenticado en `request.profesor`. Funciona con cualquier
+ * usuario cuyo rol sea Profesor (sin validaciones por email).
  */
 @Controller('profesor')
-@UseGuards(ProfesorJwtGuard)
+@UseGuards(JwtRolesGuard, ProfesorResolverGuard)
+@Roles('Profesor')
 export class ProfesorController {
   constructor(
     private readonly calendarioService: ProfesorCalendarioService,

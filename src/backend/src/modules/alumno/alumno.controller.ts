@@ -8,17 +8,20 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { AlumnoJwtGuard } from './alumno-jwt.guard';
+import { JwtRolesGuard } from '../../common/jwt-roles.guard';
+import { Roles } from '../../common/roles.decorator';
+import { AlumnoResolverGuard } from './alumno-resolver.guard';
 import { AlumnoCalendarioService } from './alumno-calendario.service';
 
 /**
- * Controlador de la rama Alumno. Todas las rutas están protegidas por
- * AlumnoJwtGuard, que autoriza según el rol del JWT y adjunta el alumno
- * autenticado en `request.alumno`. Funciona con cualquier usuario cuyo rol
- * sea Alumno (sin validaciones por email).
+ * Controlador de la rama Alumno. Todas las rutas exigen rol Alumno:
+ * JwtRolesGuard verifica el JWT y el rol (vía @Roles) y AlumnoResolverGuard
+ * adjunta el alumno autenticado en `request.alumno`. Funciona con cualquier
+ * usuario cuyo rol sea Alumno (sin validaciones por email).
  */
 @Controller('alumno')
-@UseGuards(AlumnoJwtGuard)
+@UseGuards(JwtRolesGuard, AlumnoResolverGuard)
+@Roles('Alumno')
 export class AlumnoController {
   constructor(private readonly calendarioService: AlumnoCalendarioService) {}
 

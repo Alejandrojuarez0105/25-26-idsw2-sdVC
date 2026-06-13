@@ -10,7 +10,8 @@ import { UseGuards,
   Put,
   Res,
 } from '@nestjs/common';
-import { AdminJwtGuard } from '../../common/admin-jwt.guard';
+import { JwtRolesGuard } from '../../common/jwt-roles.guard';
+import { Roles } from '../../common/roles.decorator';
 import { Response } from 'express';
 import { IncidenciasService } from '../profesor/incidencias.service';
 import { CambiarEstadoDto } from './dto/cambiar-estado.dto';
@@ -22,7 +23,8 @@ import { AplicarSolucionDto } from './dto/aplicar-solucion.dto';
  * incidencias, cambiar su estado, aplicar soluciones y exportarlas.
  * Coherente con el resto de endpoints administrativos del sistema.
  */
-@UseGuards(AdminJwtGuard)
+@UseGuards(JwtRolesGuard)
+@Roles('Admin')
 @Controller('incidencias')
 export class IncidenciasController {
   constructor(private readonly incidenciasService: IncidenciasService) {}
