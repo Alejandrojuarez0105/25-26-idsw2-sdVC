@@ -1227,3 +1227,17 @@ Durante la ejecución, el agente continuó generando de forma automática otros 
 **Verificación:** tras el cambio, **0** ocurrencias de `[🏠️](/README.md)` y **50** de `[🏠️](/RUP/README.md)` en `03-desarrollo`; reverificación de enlaces: **512 enlaces absolutos, 0 rotos**.
 
 **Decisión:** Para "que todos redirijan al mismo lugar" se alineó la **minoría** (`03-desarrollo`, que apuntaba a `/README.md`) con la **mayoría** (análisis + diseño, que apuntan a `/RUP/README.md`), cambio mínimo y sin romper enlaces. Se mantienen las demás diferencias (el blockquote `>` y las columnas Detalle, propias de los docs de desarrollo). No se tocó el resaltado de Desarrollo ni los enlaces de Análisis/Diseño, que ya eran correctos. Queda pendiente (si se decide) añadir el menú de badges a los índices de `03-desarrollo`/`00-requisitos` listados en la Sesión 85.
+
+## [13/06/2026 14:45] Sesión 88: Menú de badges en los índices que faltaban
+
+**Prompt:** COMENZAMOS, Sesión 88 — Añadir el menú de navegación superior (badges) a los índices donde faltaba, según el inventario de la Sesión 85.
+
+**Resultado:** Se antepuso el bloque canónico de **badges** (Inicio · Modelo del Dominio · Actores · Diagramas de Contexto · Detalle · Prototipos · Priorización · Sesiones · IA) a los **7 índices** que carecían de él:
+- `RUP/03-desarrollo/README.md` y `RUP/03-desarrollo/casos-uso/README.md` (el menú queda **encima** del breadcrumb de fase existente, que se conserva).
+- `RUP/00-requisitos/README.md`, `RUP/00-requisitos/01-casos-de-uso/README.md`, `RUP/00-requisitos/01-casos-de-uso/1-CasosDeUso/README.md`, y los dos `RUP/00-requisitos/03-sesiones/{21-11-2025,28-10-2025}/README.md`.
+
+Bloque idéntico al usado en el resto de índices (mismos enlaces/orden). Aplicado con script Python (UTF-8), de forma idempotente (omite si ya tenía el menú).
+
+**Verificación:** los 7 índices contienen ahora el menú; **95 enlaces** del menú verificados en esos ficheros → **0 rotos**; el contenido previo (incluido el breadcrumb de fase de los índices de desarrollo) se conservó intacto.
+
+**Decisión:** El menú se **antepone** sin eliminar nada (cambio aditivo), por lo que los índices de `03-desarrollo` muestran el menú de badges y, debajo, su breadcrumb de fase. Las **hojas por-caso** (casos de uso individuales) **no** llevan el menú de badges a propósito: usan el breadcrumb de fase, igual que en análisis y diseño. Con esto, todos los **índices de sección** de RUP tienen el menú de navegación superior unificado. Cierra el bloque de unificación de navegación iniciado en la Sesión 85.
