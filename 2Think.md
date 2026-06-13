@@ -32,3 +32,13 @@ Si alguien entrega un sistema que arranca y hace algo pero que no es el sistema 
 
 - Profesionalmente ante un incumplimiento de requisitos.
 - Académicamente si se quiere es material de análisis.
+
+## Prompts
+
+Si la calidad de lo que el AI construye depende de la calidad de lo que se le describe, el prompt es el último eslabón de esa descripción: el punto donde los artefactos del requisitado se convierten en una instrucción que el AI pueda ejecutar sin ambigüedad.
+
+Para que esa traducción no introdujera ruido —malentendidos, supuestos implícitos o instrucciones contradictorias—, la redacción de los prompts se trabajó de forma deliberada. La siguiente conversación documenta ese proceso: cómo formular peticiones claras y autocontenidas para que el uso de IA fuera trazable y sin problemas de interpretación.
+
+Para este proyecto se utilizó una IA (**ChatGPT**), para que ayudara a que el lenguaje coloquial pasara a ser instrucciones claras para la IA.
+
+- [Conversación: redacción de prompts para un uso claro y sin ambigüedades de la IA](https://chatgpt.com/share/6a2d84ec-feb4-83eb-9990-2050be511fab)
