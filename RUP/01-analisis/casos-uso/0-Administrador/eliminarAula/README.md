@@ -102,7 +102,7 @@ Análisis de colaboración del caso de uso `eliminarAula()` mediante el patrón 
 
 ## referencias
 
-- [Especificación detallada: eliminarAula()](/RUP/00-requisitos/01-casos-de-uso/4-DetallarCasosDeUso/3-CasosDeUsoComunes/eliminarAula.md)
+- [Especificación detallada: eliminarAula()](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/eliminarAula/eliminarAula.md)
 - [Diagrama de contexto - Administrador](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)
 - [Modelo del dominio](/RUP/00-requisitos/00-modelo-del-dominio/README.md)
 - [AGENTES.md](/AGENTES.md) - Metodología de análisis RUP

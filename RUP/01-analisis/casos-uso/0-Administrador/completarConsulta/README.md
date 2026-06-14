@@ -1,7 +1,7 @@
 <div align="right">
 
-|[🏠️](/RUP/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|[Detalle](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/completarConsulta/completarConsulta.md)|**Análisis**|Diseño|Desarrollo|Pruebas|
-|-|-|-|-|-|-|-|
+|[🏠️](/RUP/README.md)|[ 📊](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)|**Análisis**|Diseño|Desarrollo|Pruebas|
+|-|-|-|-|-|-|
 
 </div>
 
@@ -77,7 +77,6 @@ Análisis de colaboración del caso de uso `completarConsulta()` mediante el pat
 
 ## referencias
 
-- [Especificación detallada: completarConsulta()](/RUP/00-requisitos/01-casos-de-uso/5-Prototipo/0-Administrador/completarConsulta/completarConsulta.md)
 - [Diagrama de contexto - Administrador](/images/00-requisitos/01-casos-de-uso/2-DiagramaDeContexto/0-Administrador/DiagramaDeContextoAdministrador.svg)
 - [Modelo del dominio](/RUP/00-requisitos/00-modelo-del-dominio/README.md)
 - [AGENTES.md](/AGENTES.md) - Metodología de análisis RUP

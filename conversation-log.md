@@ -1300,3 +1300,19 @@ Se detuvieron al inicio dos watchers de backend huérfanos de sesiones previas (
 **Verificación:** comprobación de existencia de todos los ficheros e imágenes referenciados por el README (incluida la captura del panel admin). La ampliación de la nota de Roles es textual y no afecta al código.
 
 **Decisión:** El `README.md` principal queda como puerta de entrada única al proyecto, coherente con la metodología RUP y con el estado real del sistema. La única ampliación de contenido respecto a lo verificado fue la nota del apartado de Roles, para reflejar la protección por rol de extremo a extremo (frontend + backend) lograda en las Sesiones 89–91.
+
+## [14/06/2026 14:00] Sesión 93: Auditoría de referencias del repositorio y verificación de builds
+
+**Prompt:** COMENZAMOS, Sesión 93 — Auditar todo el repositorio: verificar enlaces, imágenes y referencias en general, y comprobar que el código compila.
+
+**Resultado:**
+1. **Auditoría determinista de referencias:** se recorrieron los **225** ficheros `.md` y los **155** `.puml`, resolviendo contra disco cada enlace Markdown, imagen (`![]()` y `<img src>`), enlace `<a href>` y directiva `!include`. Total: **2.317 referencias locales** comprobadas (más 278 enlaces externos no descargados, p. ej. badges de shields.io) y **0 `!include` rotos**.
+2. **Builds de código:** `nest build` (backend) y `vite build` (frontend) terminan correctamente (exit 0); el frontend genera su `dist/` sin errores. Confirma que ambos proyectos siguen compilando.
+3. **Se detectaron y corrigieron 5 enlaces rotos** (todos en documentación RUP):
+   - **2 regresiones de la Sesión 91** (renombrado de guards): los informes de desarrollo de `consultarCalendario` de Profesor y Alumno apuntaban a `profesor-jwt.guard.ts` / `alumno-jwt.guard.ts`, ya inexistentes → se actualizaron a `profesor-resolver.guard.ts` / `alumno-resolver.guard.ts` y se añadió el guard común `jwt-roles.guard.ts`.
+   - **`eliminarAula` (análisis):** la referencia a la especificación detallada apuntaba a una ruta inexistente (`4-DetallarCasosDeUso/3-CasosDeUsoComunes/eliminarAula.md`) → corregida al documento real de Prototipo (`5-Prototipo/0-Administrador/eliminarAula/eliminarAula.md`), siguiendo la convención de su caso hermano `eliminarGrado`.
+   - **`completarConsulta` y `completarProceso` (análisis):** enlazaban (breadcrumb "Detalle" y bullet "Especificación detallada") a documentos de requisitos que no existen, por ser casos solo-análisis → se alinearon con la convención del propio repositorio (`completarGestion`), eliminando la celda "Detalle" del breadcrumb y el bullet de especificación.
+
+**Verificación:** tras los arreglos, una segunda pasada del auditor reporta **0 referencias rotas** sobre las 2.317 locales. Se eliminaron los artefactos temporales usados (script de auditoría y las carpetas `dist/` de los builds) para no ensuciar el repositorio.
+
+**Decisión:** La documentación queda con **navegación íntegra (0 enlaces/imágenes rotos)** y el código compilando en ambos extremos. Las correcciones fueron quirúrgicas sobre 5 READMEs de RUP, respetando la estructura existente y resolviendo cada enlace según la convención ya presente en casos hermanos, sin inventar destinos nuevos.
